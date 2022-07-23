@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Database\QueryException;
 
 use App\Jadwalfotografer;
 use App\AdminStudio;
@@ -18,21 +20,13 @@ class JadwalFotograferController extends Controller
      */
     public function index()
     {
-        // $queryRaw=DB::select(DB::raw("select * from jadwal_fotografers"));
-        // return view('jadwalfotografer.index',['data'=>$queryRaw]);
-
-        // $queryRaw=DB::select(DB::raw("select * from jadwal_fotografers inner join
-        // pemesanans on jadwal_fotografers.pemesanans_id=id, 
-        // jadwal_fotografers.data_fotografers.id-id, admin_studios.id=id"));
-        // return view('jadwalfotografer.index',['data'=>$queryRaw]);
-
         $queryBuilder=DB::table("jadwal_fotografers")
-                        ->join("detail_pemesanans", "jadwal_fotografers.detail_pemesanans_id", "=", "detail_pemesanans.id")
-                        ->join("admin_studios", "jadwal_fotografers.admin_studios_id", "=", "admin_studios.id")
-                        ->join("data_fotografers", "jadwal_fotografers.data_fotografers_id", "=", "data_fotografers.id")
-                        ->orderBy("jadwal_fotografers.detail_pemesanans_id", "ASC")
-                        ->select("jadwal_fotografers.*", "detail_pemesanans.id as detail_pemesanans_id", "admin_studios.nama_admin", "data_fotografers.nama")
-                        ->get();
+            ->leftJoin("detail_pemesanans", "jadwal_fotografers.detail_pemesanans_id", "=", "detail_pemesanans.id")
+            ->leftJoin("admin_studios", "jadwal_fotografers.admin_studios_id", "=", "admin_studios.id")
+            ->leftJoin("data_fotografers", "jadwal_fotografers.data_fotografers_id", "=", "data_fotografers.id")
+            ->orderBy("jadwal_fotografers.detail_pemesanans_id", "ASC")
+            ->select("jadwal_fotografers.*", "detail_pemesanans.id as detail_pemesanans_id", "admin_studios.nama_admin", "data_fotografers.nama")
+            ->get();
         return view('jadwalfotografer.index',['data'=>$queryBuilder]);
     }
 
@@ -132,26 +126,28 @@ class JadwalFotograferController extends Controller
 
     public function editForm(Request $request)
     {
-        
         $id=$request->get('id');
-        $ida=$request->get('admin_studios_id');
-        $idp=$request->get('detail_pemesanans_id');
-        $idf=$request->get('data_fotografers_id');
-        $data=JadwalFotografer::find($id);
+        // $data=JadwalFotografer::find($id);
         
-        //select* from jadwal_fotografer where id = $id
+        $data=DB::table("jadwal_fotografers")
+        ->join("detail_pemesanans", "jadwal_fotografers.detail_pemesanans_id", "=", "detail_pemesanans.id")
+        ->join("admin_studios", "jadwal_fotografers.admin_studios_id", "=", "admin_studios.id")
+        ->join("data_fotografers", "jadwal_fotografers.data_fotografers_id", "=", "data_fotografers.id")
+        ->select("jadwal_fotografers.*", "detail_pemesanans.id as detail_pemesanans_id", "admin_studios.nama_admin", "data_fotografers.nama")
+        ->where("jadwal_fotografers.id", $id)
+        ->first();
+        
         return response()->json(array(
             'status'=>'oke',
             'msg'=>view('jadwalfotografer.editForm',compact('data'))->render()
         ),200);
-
-       
     }
 
     public function saveData(Request $request)
     {
         $id=$request->get('id');
         $jadwalfotografer=JadwalFotografer::find($id);
+        
         $jadwalfotografer->admin_studios_id=$request->get('admin_studios_id');
         $jadwalfotografer->detail_pemesanans_id=$request->get('detail_pemesanans_id');
         $jadwalfotografer->data_fotografers_id=$request->get('data_fotografers_id');

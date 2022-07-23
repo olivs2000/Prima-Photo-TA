@@ -9,7 +9,7 @@ class DataFotografer extends Model
 {
     //use HasFactory;
     public $timestamps = false;
-    public $pas_foto = false;
+    // public $pas_foto = false;
 
     protected $table='data_fotografers';
 

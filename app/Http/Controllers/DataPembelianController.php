@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Log;
 
 use App\DataPembelian;
 use App\DetailPembelian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use DB;
 
 class DataPembelianController extends Controller
@@ -16,9 +18,6 @@ class DataPembelianController extends Controller
      */
     public function index()
     {
-        // $queryRaw=DB::select(DB::raw("select * from data_pembelians"));
-        // return view('datapembelian.index',['data'=>$queryRaw]);
-
         $queryBuilder=DB::table("data_pembelians")
         ->orderBy("status", "ASC")
         ->select("data_pembelians.*", "deskripsi_produk")
@@ -45,19 +44,49 @@ class DataPembelianController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
+        $validator = Validator::make($data,[
+            'deskripsi_produk' => 'required',
+            'nama_supplier' => 'required',
+            'alamat_supplier' => 'required',
+            'notelepon_supplier' => 'required',
+            'tanggal_pemesanan' => 'required',
+            'tanggal_penerimaan' => 'required',
+            'status' => 'required',
+            "detail_pembelian"  => "required|array|min:1",
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['result'=>'failed','message'=>$validator->errors()->first()]);
+        }
+        Log::info("Validation pass-------------------");
+        Log::info("data : ".json_encode($data));
+
         $data=new DataPembelian();
         
-        $data->deskripsi_produk=$request->get('deskripsi_produk');
-        $data->stok=$request->get('stok');
-        $data->nama_supplier=$request->get('nama_supplier');
-        $data->alamat_supplier=$request->get('alamat_supplier');
-        $data->notelepon_supplier=$request->get('notelepon_supplier');
-        $data->tanggal_pemesanan=$request->get('tanggal_pemesanan');
-        $data->tanggal_penerimaan=$request->get('tanggal_penerimaan');
-        $data->status=$request->get('status');
+        $data->deskripsi_produk=$request->deskripsi_produk;
+        $data->nama_supplier=$request->nama_supplier;
+        $data->alamat_supplier=$request->alamat_supplier;
+        $data->notelepon_supplier=$request->notelepon_supplier;
+        $data->tanggal_pemesanan=$request->tanggal_pemesanan;
+        $data->tanggal_penerimaan=$request->tanggal_penerimaan;
+        $data->status=$request->status;
         $data->save();
 
+        Log::info("Success save data pembelian-----------------------");
 
+        foreach ($request->detail_pembelian as $detailPembelian) {
+            $detail=new DetailPembelian();
+        
+            $detail->data_pembelians_id=$data->id;
+            $detail->produks_id=$detailPembelian['produks_id'];
+            $detail->nama_produk=$detailPembelian['nama_produk'];
+            $detail->jumlah=$detailPembelian['jumlah'];
+            $detail->harga=$detailPembelian['harga'];
+            $detail->total=$detailPembelian['total'];
+            $detail->save();
+            Log::info("success save detail pembelian-----------------------");
+        }       
 
         return redirect()->route('datapembelian.index')->with('status', 'Data pembelian berhasil tersimpan');
     }

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Checkout;
+use App\Pemesanan;
+use App\Checkout;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
@@ -17,8 +18,8 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        // $data = Checkout::all();
-        // return view('checkout.index', compact('data'));
+        $data = Pemesanan::all();
+        return view('checkout.index', compact('data'));
 
         //return view ("checkout.index", ["data"=>Checkout::all()]);
     }

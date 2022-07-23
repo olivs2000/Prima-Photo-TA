@@ -16,26 +16,20 @@
   </li>
 </ul>
 
-
 <div class="page-toolbar">
 <a href="{{url('datafotografer/create')}}" class="btn btn-info" type="button">+ Add Data Fotografer</a>	
 </div>
-</div>
-
-<!-- <div class="modal fade" id="modalCreate" tabindex="-1" role="basic" aria-hidden="true">
-<div class="modal-dialog modal-wide">
-<div class="modal-content" >
 
 </div>
-</div>
-</div> -->
-
-
 
 <div class="modal fade" id="modalEdit" tabindex="-1" role="basic" aria-hidden="true">
+  <div class="modal-dialog modal-wide">
+    <div class="modal-content" id="modalContent">
     <div style="text-align:center">
     <img src="{{asset('/assets/img/cam1.gif')}}"/>
     </div>
+    </div>
+  </div>
 </div>
 
 @if(session('status'))
@@ -53,63 +47,63 @@
 @endif 
 
 <table class="table" id='dataTable'>
-<thead>
-  <tr>
-    <th>No</th>
-    <th>Foto</th>
-    <th>Nama</th>
-    <th>Alamat</th>
-    <th>No Telepon</th>
-    <th>Email</th>
-    <th>Alat Fotografi</th>
-    <th>Status</th>
-    <th colspan='2'></th>
-  </tr>
-</thead>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Foto</th>
+      <th>Nama</th>
+      <th>Alamat</th>
+      <th>No Telepon</th>
+      <th>Email</th>
+      <th>Alat Fotografi</th>
+      <th>Status</th>
+      <th colspan='2'></th>
+    </tr>
+  </thead>
+
 <tbody>
 
 @foreach($data as $df)
 <tr>
-<td>{{ $df->id }}</td>
-<td><img src="{{asset('images/'.$df->pas_foto)}}" height='50px'></td>
-<td>{{ $df->nama }}</td>
-<td>{{ $df->alamat }}</td>
-<td>{{ $df->notelepon }}</td>
-<td>{{ $df->email }}</td>
-<td>{{ $df->alat_fotografi }}</td>
-<td> 
-@if($df->status == 'Freelance')
-<span class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Freelance</span>
-@else
-<span class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Tetap</span>
-@endif
-</td>  
+  <td>{{ $df->id }}</td>
+  <td id='td-pas_foto-{{$df->id}}'><img src="{{asset('images/'.$df->pas_foto)}}.jpg" height='50px'></td>
+  <td id='td-nama-{{$df->id}}'>{{ $df->nama }}</td>
+  <td id='td-alamat-{{$df->id}}'>{{ $df->alamat }}</td>
+  <td id='td-notelepon-{{$df->id}}'>{{ $df->notelepon }}</td>
+  <td id='td-email-{{$df->id}}'>{{ $df->email }}</td>
+  <td id='td-alat_fotografi-{{$df->id}}'>{{ $df->alat_fotografi }}</td>
+  <td id='td-status-{{$df->id}}'> 
+    @if($df->status == 'Freelance')
+      <span class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Freelance</span>
+    @else
+      <span class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Tetap</span>
+    @endif
+  </td>  
 
+  <td>
+    <a href="#modalEdit" data-toggle='modal' class="btn  btn-warning" onclick="editForm({{$df->id}})">Edit </a> 
+  </td>
 
-<td>
-  <a href="#modalEdit" data-toggle='modal' 
-  class="btn  btn-warning" onclick="editForm({{$df->id}})">Edit </a> 
-</td>
+  <td>
+    <form method="POST" action="{{url('datafotografer/'.$df->id )}}">
+      @csrf
+      @method('DELETE')
+      <input type='submit' value='Delete' class='btn btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
+    </form>
 
-<td>
-<form method="POST" action="{{url('datafotografer/'.$df->id )}}">
-  @csrf
-  @method('DELETE')
-  <input type='submit' value='Delete' class='btn btn-danger'
-  onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
-</form>
-
-
-<!-- <a class='btn btn-xs btn-danger' onclick="if(confirm('Apakah anda yakin?')) deleteDataRemoveTR({{$df->id}})">Delete</a> -->
-</td>
+    <!-- <a class='btn btn-xs btn-danger' onclick="if(confirm('Apakah anda yakin?')) deleteDataRemoveTR({{$df->id}})">Delete</a> -->
+  </td>
 </tr>
-
 @endforeach
+
 </tbody>
+
 </table>
+
 @endsection
 
 </div>
+
 
 @section('javascript')
 <script>
@@ -120,14 +114,20 @@ function editForm(id)
     url:'{{route("datafotografer.editForm")}}',
     data:{'_token':'<?php echo csrf_token() ?>',
         'id':id},
-    success: function(data){
-           $('#modalContent').html(data.msg)}
+    success: function(data)
+    {
+      $('#modalContent').html(data.msg)
+    },
+    error: function(data) 
+    {
+      alert("ajax error, json: " + data);
+    }
   });
 }
 
 function saveDataUpdateTD(id)
 {
-  var ePasFoto = $('#ePas_Foto').val();
+  var ePasFoto = $('#ePasFoto').val();
   var eNama = $('#eNama').val();
   var eAlamat = $('#eAlamat').val();
   var eNotelepon = $('#eNotelepon').val();
@@ -139,24 +139,24 @@ function saveDataUpdateTD(id)
     url:'{{route("datafotografer.saveData")}}',
     data:{'_token':'<?php echo csrf_token() ?>',
         'id':id,
-        'pas_foto':ePas_Foto,
+        'pas_foto':ePasFoto,
         'nama':eNama,
         'alamat':eAlamat,
         'notelepon':eNotelepon,
         'email':eEmail,
-        'alat_fotografi':eAlat_Fotografi,
+        'alat_fotografi':eAlatFotografi,
         'status':eStatus
         },
     success: function(data){
       if(data.status=='oke')
       {
         // alert(data.msg);
-        $('#td_pas_foto_'+id).html(ePas_Foto)
+        $('#td_pas_foto_'+id).html(ePasFoto)
         $('#td_nama_'+id).html(eNama)
         $('#td_alamat_'+id).html(eAlamat)
         $('#td_notelepon_'+id).html(eNotelepon)
         $('#td_email_'+id).html(eEmail)
-        $('#td_alat_fotografi_'+id).html(eAlat_Fotografi)
+        $('#td_alat_fotografi_'+id).html(eAlatFotografi)
         $('#td_status_'+id).html(eStatus)
         $('#pesan').show();
         $('#pesan').html(data.msg)

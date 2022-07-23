@@ -51,6 +51,7 @@ class DetailPembelianController extends Controller
         
         $data->data_pembelians_id=$request->get('data_pembelians_id');
         $data->produks_id=$request->get('produks_id');
+        $data->nama_produk=$request->get('nama_produk');
         $data->jumlah=$request->get('jumlah');
         $data->harga=$request->get('harga');
         $data->total=$request->get('total');
@@ -92,6 +93,7 @@ class DetailPembelianController extends Controller
     {
         $detailpembelian->data_pembelians_id=$request->get('data_pembelians_id');
         $detailpembelian->produks_id=$request->get('produks_id');
+        $detailpembelian->nama_produk=$request->get('nama_produk');
         $detailpembelian->jumlah=$request->get('jumlah');
         $detailpembelian->harga=$request->get('harga');
         $detailpembelian->total=$request->get('total');
@@ -139,6 +141,7 @@ class DetailPembelianController extends Controller
         $detailpembelian=DetailPembelian::find($id);
         $detailpembelian->data_pembelians_id=$request->get('data_pembelians_id');
         $detailpembelian->produks_id=$request->get('produks_id');
+        $detailpembelian->nama_produk=$request->get('nama_produk');
         $detailpembelian->jumlah=$request->get('jumlah');
         $detailpembelian->harga=$request->get('harga');
         $detailpembelian->total=$request->get('total');

@@ -15,17 +15,12 @@ class PaketController extends Controller
      */
     public function index()
     {
-        // $queryRaw=DB::select(DB::raw("select * from pakets"));
-        // return view('paket.index',['paket'=>$queryRaw]);
+        $queryRaw=DB::select(DB::raw("select * from pakets"));
+        return view('paket.index',['paket'=>$queryRaw]);
 
         // $paket = Pakets::all();
         // return view('paket.index', compact('paket'));
 
-        $queryBuilder=DB::table("pakets")
-                        ->join("kategoris", "pakets.kategoris_id", "=", "id")
-                        ->select("pakets.*", "kategoris.nama")
-                        ->get();
-        return view('paket.index',['data'=>$queryBuilder]);
     }
 
     /**
@@ -92,5 +87,32 @@ class PaketController extends Controller
     public function destroy(Paket $paket)
     {
         //
+    }
+
+    public function front_index()
+    {
+        $paket=Paket::all();
+        return view('frontend.paket', compact('paket'));
+    }
+
+    public function addToCart($id)
+    {
+        $p=Paket::find($id);
+        $cart=session()->get('cart2');
+        if(!isset($cart[$id]))
+        {
+            $cart[$id]=[
+                "judul_paket"=>$p->judul_paket,
+                "gambar"=>$id.".jpg",
+                "harga"=>$p->harga,
+                "jumlah"=>1
+            ];
+        }
+        else
+        {
+            $cart[$id]['jumlah']++;
+        }
+        session()->put('cart2', $cart);
+        return redirect()->back()->with('success', 'Paket berhasil ditambahkan ke keranjang');
     }
 }

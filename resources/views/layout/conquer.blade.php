@@ -36,8 +36,8 @@ License: You must have a valid license purchased only from themeforest(the above
 <link href="{{ asset('assets/plugins/fullcalendar/fullcalendar/fullcalendar.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset('assets/plugins/jqvmap/jqvmap/jqvmap.css')}}" rel="stylesheet" type="text/css"/>
 <!-- END PAGE LEVEL PLUGIN STYLES -->
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/select2/select2.css')}}"/>
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
+<link href="{{ asset('assets/plugins/select2/select2.css')}}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}" rel="stylesheet" type="text/css"/>
 <!-- BEGIN THEME STYLES -->
 <link href="{{ asset('assets/css/style-conquer.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset('assets/css/style.css')}}" rel="stylesheet" type="text/css"/>
@@ -63,14 +63,6 @@ License: You must have a valid license purchased only from themeforest(the above
                 <img src="{{ asset('assets/img/primaphoto1.png')}}" alt="logo"/>
             </a>
         </div>
-
-
-
-
-
-
-
-
 
 		<!-- END LOGO -->
 		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -453,7 +445,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<li class="divider">
 					</li>
 					<li>
-					<a href="{{route('home')}}">@csrf<i class="fa fa-key"></i> Log Out</a>
+					<a href="{{route('logout')}}">@csrf<i class="fa fa-key"></i> Log Out</a>
 					 
 					<!-- <form action="{{route('logout')}}" method="POST">
 						@csrf
@@ -545,12 +537,12 @@ License: You must have a valid license purchased only from themeforest(the above
 				        <span class="title">Data Fotografer</span>
 				        </a>
 					</li>
-					<!-- <li>
+					<li>
 						<a href="{{url('email')}}" >
 					    <i class="icon-envelope"></i>
-				        <span class="title">Email</span>
+				        <span class="title">Collaborate</span>
 				        </a>
-					</li> -->
+					</li>
 				</ul>
 			</li>
 
@@ -591,8 +583,14 @@ License: You must have a valid license purchased only from themeforest(the above
 					</li>
 				</ul>
 			</li>
-
-
+			
+			<li>
+				<a href="{{url('login')}}" >
+				<i class="close"></i>
+				<span class="title">Logout</span>
+				</a>
+			</li>
+				
 			<!-- END SIDEBAR MENU -->
 		</div>
 	</div>
@@ -652,9 +650,9 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="{{ asset('assets/plugins/jquery-easypiechart/jquery.easypiechart.min.js')}}" type="text/javascript"></script>
 <script src="{{ asset('assets/plugins/jquery.sparkline.min.js')}}" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
-<script type="text/javascript" src="{{ asset('assets/plugins/select2/select2.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('assets/plugins/datatables/media/js/jquery.dataTables.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}"></script>
+<script src="{{ asset('assets/plugins/select2/select2.min.js')}}" type="text/javascript"></script>
+<script src="{{ asset('assets/plugins/datatables/media/js/jquery.dataTables.min.js')}}" type="text/javascript"></script>
+<script src="{{ asset('assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}" type="text/javascript"></script>
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="{{ asset('assets/scripts/app.js')}}" type="text/javascript"></script>
 <script src="{{ asset('assets/scripts/index.js')}}" type="text/javascript"></script>

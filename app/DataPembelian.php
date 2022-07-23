@@ -11,7 +11,7 @@ class DataPembelian extends Model
     public $timestamps = false;
     public $stok = false;
     // public $id = false;
-    public $tanggal_penerimaan = false;
+    //public $tanggal_penerimaan = false;
 
     protected $table='data_pembelians';
 

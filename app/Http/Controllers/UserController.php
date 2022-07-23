@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $queryRaw=DB::select(DB::raw("select * from user"));
+        $queryRaw=DB::select(DB::raw("select * from user_pelanggans"));
         return view('pelanggan.index',['data'=>$queryRaw]);
     }
 

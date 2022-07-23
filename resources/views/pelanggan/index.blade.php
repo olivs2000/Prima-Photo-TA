@@ -14,18 +14,18 @@
   <!-- PLUGINS CSS STYLE -->
   <!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="pelanggan/plugins/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="pelanggan/plugins/bootstrap/css/bootstrap-slider.css">
+  <link rel="stylesheet" href="plugins/bootstrap-home/css/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/bootstrap-home/css/bootstrap-slider.css">
   <!-- Font Awesome -->
-  <link href="pelanggan/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <!-- Owl Carousel -->
-  <link href="pelanggan/plugins/slick-carousel/slick/slick.css" rel="stylesheet">
-  <link href="pelanggan/plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
+  <link href="plugins/slick-carousel/slick/slick.css" rel="stylesheet">
+  <link href="plugins/slick-carousel/slick/slick-theme.css" rel="stylesheet">
   <!-- Fancy Box -->
-  <link href="pelanggan/plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
-  <link href="pelanggan/plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+  <link href="plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
+  <link href="plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet">
   <!-- CUSTOM CSS -->
-  <link href="pelanggan/css/style.css" rel="stylesheet">
+  <link href="css/stylepelanggan.css" rel="stylesheet">
 
 
   <section>
@@ -33,6 +33,9 @@
 		<div class="row">
 			<div class="col-md-12">
 				<nav class="navbar navbar-expand-lg navbar-light navigation">
+					<a class="navbar-brand" href="index.html">
+                		<img src="{{ asset('assets/img/primaphoto1.png')}}" alt=""/>
+                    </a>
 				
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,6 +43,9 @@
 					</button>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav ml-auto main-nav ">
+						<li class="nav-item dropdown dropdown-slide">
+								<a class="nav-link dropdown-toggle" href="{{url('paket')}}" aria-haspopup="true" >Paket Fotografi</a>
+							</li>
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" href="{{url('produk')}}" aria-haspopup="true" >Produk</a>
 							</li>
@@ -49,8 +55,11 @@
 						</ul>
             
 						<ul class="navbar-nav ml-auto mt-10">
+							<!-- <li class="nav-item">
+                				<a class="nav-link login-button" href="{{url('register')}}"> Registrasi </a>
+							</li> -->
 							<li class="nav-item">
-                <a class="nav-link login-button" href="{{url('login')}}"> Login </a>
+                				<a class="nav-link login-button" href="{{url('login')}}"> Login </a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link text-white add-button" href="{{url('pelanggan/collaborate')}}"> Collaborate</a>
@@ -76,10 +85,32 @@
 				<div class="content-block">
 					<h1>Selamat Datang di Prima Photo </h1>
 					<p>Layanan jasa fotografi terpercaya untuk segala momen penting anda</p>
+
+					<div class="short-popular-category-list text-center">
+                            <h2>PAKET FOTOGRAFI TERPOPULER</h2>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <a href="{{url('paket')}}" ><i class="fa fa-user"></i> Student</a></li>
+                                <li class="list-inline-item">
+                                    <a href="category.html"><i class="fa fa-heart"></i> Wedding</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="{{url('paket')}}"><i class="fa fa-gift"></i> Birthday</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="{{url('paket')}}"><i class="fa fa-cutlery"></i> Product</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="{{url('paket')}}"><i class="fa fa-institution"></i> Graduation</a>
+                                </li>
+                            </ul>
+                        </div>
 				</div>
 
+				
+
 <!-- Advance Search -->
-<div class="advance-search">
+<!-- <div class="advance-search">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-lg-12 col-md-12 align-content-center">
@@ -88,7 +119,7 @@
 					<div class="form-group col-md-4"></div>				
 						<div class="form-group col-md-3">
 							<select class="w-100 form-control mt-lg-1 mt-md-2">
-							<option>Category</option>
+							<option>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  -- CATEGORY --</option>
 							<option value="1">Baby&Kids Photography</option>
 							<option value="2">Family Photography</option>
 							<option value="3">Graduation Photography</option>
@@ -100,9 +131,6 @@
 							<option value="9">Product Photography</option>
 							</select>
 						</div>
-						<!-- <div class="form-group col-md-3">
-							<input type="text" class="form-control my-2 my-lg-1" id="inputLocation4" placeholder="Location">
-						</div> -->
 						<div class="form-group col-md-2 align-self-center">
 							<button type="submit" class="btn btn-primary">Search Now</button>
 						</div>
@@ -111,12 +139,13 @@
 			</div>
 		</div>
 	</div>
-</div>			
+</div>			 -->
 			</div>
 		</div>
 	</div>
 	<!-- Container End -->
 </section>
+
 
 
 <!--===========================================
@@ -129,20 +158,14 @@
 			<div class="col-md-12">
 				<div class="section-title">
 					<h2>Our Albums</h2>
-					<p>------------------------------------------------------------------</p>
+					<p>Some photography process at prima photo studio</p>
 				</div>
 			</div>
 		</div>
 
 <div class="container"> 
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-
+ 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
@@ -210,11 +233,152 @@
   </div>
 </div>
 
-
 </div>
 </div>
 </section>
 
+
+
+<!--==========================================
+=            All Category Section            =
+===========================================-->
+
+<section class=" section">
+	<!-- Container Start -->
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<!-- Section title -->
+				<div class="section-title">
+					<h2>All Categories</h2>
+					<p>The Best Selling Products and Services at Prima Photo Studio</p>
+				</div>
+				<div class="row">
+					<!-- Category list -->
+					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
+						<div class="category-block">
+							<div class="header">
+								<i class="fa fa-image icon-bg-1"></i> 
+								<h4>Bingkai 4R</h4>
+							</div>
+							<ul class="category-list" >
+								<li><a href="">Bingkai foto 4R single <span>93</span></a></li>
+								<li><a href="">Bingkai foto 4R isi 2 <span>233</span></a></li>
+								<li><a href="">Bingkai foto 4R isi 3  <span>183</span></a></li>
+								<li><a href="">Bingkai foto 4R isi 4 <span>343</span></a></li>
+							</ul>
+						</div>
+					</div> <!-- /Category List -->
+					<!-- Category list -->
+					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
+						<div class="category-block">
+							<div class="header">
+								<i class="fa fa-image icon-bg-2"></i> 
+								<h4>Bingkai 10R</h4>
+							</div>
+							<ul class="category-list" >
+								<li><a href="">Bingkai foto 10R biasa <span>393</span></a></li>
+								<li><a href="">Bingkai foto 10RS <span>23</span></a></li>
+								<li><a href="">Bingkai foto 10R gandeng  <span>13</span></a></li>
+								<li><a href="">Bingkai foto 10RS mahar<span>43</span></a></li>
+							</ul>
+						</div>
+					</div> <!-- /Category List -->
+					<!-- Category list -->
+					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
+						<div class="category-block">
+							<div class="header">
+								<i class="fa fa-image icon-bg-3"></i> 
+								<h4>Bingkai 12R</h4>
+							</div>
+							<ul class="category-list" >
+								<li><a href="">Bingkai foto 12R biasa <span>93</span></a></li>
+								<li><a href="">Bingkai foto 12RS <span>23</span></a></li>
+								<li><a href="">Bingkai foto 12R gandeng  <span>83</span></a></li>
+								<li><a href="">Bingkai foto 12RS mahar <span>33</span></a></li>
+							</ul>
+						</div>
+					</div> <!-- /Category List -->
+					<!-- Category list -->
+					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
+						<div class="category-block">
+							<div class="header">
+								<i class="fa fa-image icon-bg-4"></i> 
+								<h4>Album Foto</h4>
+							</div>
+							<ul class="category-list" >
+								<li><a href="">Album foto 10 lbr standar <span>53</span></a></li>
+								<li><a href="">Album foto 10 lbr <span>212</span></a></li>
+								<li><a href="">Album foto 10 lbr bingkai <span>133</span></a></li>
+								<li><a href="">Album foto 15 lbr bingkai <span>143</span></a></li>
+							</ul>
+						</div>
+					</div> <!-- /Category List -->
+					<!-- Category list -->
+					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
+						<div class="category-block">
+							<div class="header">
+								<i class="fa fa-desktop icon-bg-5"></i> 
+								<h4>Cetak Ukuran Pas foto</h4>
+							</div>
+							<ul class="category-list" >
+								<li><a href="">Cetak 2x3 (WR/HP) <span>93</span></a></li>
+								<li><a href="">Cetak 3x4 (WR/HP) <span>233</span></a></li>
+								<li><a href="">cetak 4x6 (WR/HP)  <span>183</span></a></li>
+							</ul>
+						</div>
+					</div> <!-- /Category List -->
+					<!-- Category list -->
+					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
+						<div class="category-block">
+							<div class="header">
+								<i class="fa fa-desktop icon-bg-6"></i> 
+								<h4>Cetak Ukuran postcard</h4>
+							</div>
+							<ul class="category-list" >
+								<li><a href="">Cetak 3R <span>193</span></a></li>
+								<li><a href="">Cetak 4R <span>23</span></a></li>
+								<li><a href="">Cetak 5R  <span>33</span></a></li>
+							</ul>
+						</div>
+					</div> <!-- /Category List -->
+					<!-- Category list -->
+					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
+						<div class="category-block">
+							<div class="header">
+								<i class="fa fa-desktop icon-bg-7"></i> 
+								<h4>Cetak Ukuran Sedang</h4>
+							</div>
+							<ul class="category-list" >
+								<li><a href="">Cetak 6R <span>65</span></a></li>
+								<li><a href="">Cetak 8R <span>23</span></a></li>
+								<li><a href="">Cetak 10R-10RS  <span>113</span></a></li>
+							</ul>
+						</div>
+					</div> <!-- /Category List -->
+					<!-- Category list -->
+					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
+						<div class="category-block">
+							
+							<div class="header">
+								<i class="fa fa-desktop icon-bg-8"></i> 
+								<h4>Cetak Ukuran Besar</h4>
+							</div>
+							<ul class="category-list" >
+								<li><a href="">Cetak 12R-12RS <span>93</span></a></li>
+								<li><a href="">Cetak 16R-16RS <span>233</span></a></li>
+								<li><a href="">Cetak 20R-24RS  <span>183</span></a></li>
+							</ul>
+						</div>
+					</div> <!-- /Category List -->
+					
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Container End -->
+</section>
 
 
 
@@ -255,21 +419,21 @@
 </footer>
 
 <!-- JAVASCRIPTS -->
-<script src="pelanggan/plugins/jQuery/jquery.min.js"></script>
-<script src="pelanggan/plugins/bootstrap/js/popper.min.js"></script>
-<script src="pelanggan/plugins/bootstrap/js/bootstrap.min.js"></script>
-<script src="pelanggan/plugins/bootstrap/js/bootstrap-slider.js"></script>
+<script src="plugins/jQuery-home/jquery.min.js"></script>
+<script src="plugins/bootstrap-home/js/popper.min.js"></script>
+<script src="plugins/bootstrap-home/js/bootstrap.min.js"></script>
+<script src="plugins/bootstrap-home/js/bootstrap-slider.js"></script>
   <!-- tether js -->
-<script src="pelanggan/plugins/tether/js/tether.min.js"></script>
-<script src="pelanggan/plugins/raty/jquery.raty-fa.js"></script>
-<script src="pelanggan/plugins/slick-carousel/slick/slick.min.js"></script>
-<script src="pelanggan/plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-<script src="pelanggan/plugins/fancybox/jquery.fancybox.pack.js"></script>
-<script src="pelanggan/plugins/smoothscroll/SmoothScroll.min.js"></script>
+<script src="plugins/tether/js/tether.min.js"></script>
+<script src="plugins/raty/jquery.raty-fa.js"></script>
+<script src="plugins/slick-carousel/slick/slick.min.js"></script>
+<script src="plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+<script src="plugins/fancybox/jquery.fancybox.pack.js"></script>
+<script src="plugins/smoothscroll/SmoothScroll.min.js"></script>
 <!-- google map -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
-<script src="pelanggan/plugins/google-map/gmap.js"></script>
-<script src="pelanggan/js/script.js"></script>
+<script src="plugins/google-map/gmap.js"></script>
+<script src="js/scriptpelanggan.js"></script>
 
 
 

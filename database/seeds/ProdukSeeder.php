@@ -104,13 +104,13 @@ class ProdukSeeder extends Seeder
         DB::table('produks')->insert([
             'judul_produk' => 'Bingkai 12RS',
             'gambar' => 'B12RSHitam.jpg', 'B12RSPutih.jpg', 'B12RSKayu.jpg','B12RSSilver.jpg', 'B12RSPutihCorak.jpg', 'B12RSCoklat.jpg',
-            'harga' => 75000,
+            'harga' => 65000,
             'stok' => 24,
             'keterangan_produk' => 'Bingkai 12RS dengan list warna hitam polos, putih polos, dan motif kayu'
         ]);
 
         DB::table('produks')->insert([
-            'judul_produk' => 'Bingkai 12R Mahar',
+            'judul_produk' => 'Bingkai 12RS Mahar',
             'gambar' => 'B12RMPutih.jpg', 'B12RMEmas.jpg',
             'harga' => 110000,
             'stok' => 24,
@@ -134,9 +134,9 @@ class ProdukSeeder extends Seeder
         ]);
 
         DB::table('produks')->insert([
-            'judul_produk' => 'Bingkai 16R Mahar',
+            'judul_produk' => 'Bingkai 16RS Mahar',
             'gambar' => 'B16RMPutihEmas.jpg', 'B16RMPutihPutih.jpg', 'B16RMEmasEmas.jpg',
-            'harga' => 200000,
+            'harga' => 180000,
             'stok' => 24,
             'keterangan_produk' => 'Bingkai 16R Mahar dengan list warna emas corak emas, putih corak emas, putih corak putih'
         ]);
@@ -168,7 +168,7 @@ class ProdukSeeder extends Seeder
         DB::table('produks')->insert([
             'judul_produk' => 'Bingkai 24RS',
             'gambar' => 'B24RSEmas.jpg', 'B24RSSilver.jpg', 'B24RSCoklat.jpg', 'B24RSPutih.jpg',
-            'harga' => 275000,
+            'harga' => 260000,
             'stok' => 24,
             'keterangan_produk' => 'Bingkai 24RS dengan list warna emas corak, silver corak, coklat corak dan putih corak'
         ]);

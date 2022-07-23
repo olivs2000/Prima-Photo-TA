@@ -16,27 +16,20 @@
   </li>
 </ul>
 
-
-
 <div class="page-toolbar">
 <a href="{{url('datapembelian/create')}}" class="btn btn-info" type="button">+ Add Data Pembelian</a>	
 </div>
-</div>
 
-<div class="modal fade" id="modalDelete" tabindex="-1" role="basic" aria-hidden="true">
-<div class="modal-dialog">
-  <div class="modal-content" id="modalContent">
-   
 </div>
-</div>
-</div>
-
-
 
 <div class="modal fade" id="modalEdit" tabindex="-1" role="basic" aria-hidden="true">
+  <div class="modal-dialog modal-wide">
+    <div class="modal-content" id="modalContent">
     <div style="text-align:center">
     <img src="{{asset('/assets/img/cam1.gif')}}"/>
     </div>
+    </div>
+  </div>
 </div>
 
 @if(session('status'))
@@ -54,63 +47,62 @@
 @endif 
 
 <table class="table" id='dataTable'>
-<thead>
-<th>No</th>
-<th>Deskripsi Produk</th>
-<th>Stok</th>
-<th>Nama Supplier</th>
-<th>Alamat Supplier</th>
-<th>No Telepon Supplier</th>
-<th>Tanggal Pemesanan</th>
-<th>Tanggal Penerimaan</th>
-<th>Status</th>
-<th colspan='1'></th>
-</thead>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Deskripsi Produk</th>
+      <th>Stok</th>
+      <th>Nama Supplier</th>
+      <th>Alamat Supplier</th>
+      <th>No Telepon Supplier</th>
+      <th>Tanggal Pemesanan</th>
+      <th>Tanggal Penerimaan</th>
+      <th>Status</th>
+      <th colspan='1'></th>
+   </tr>
+  </thead>
+
 <tbody>        
+
 @foreach($data as $dp)
 <tr>
-<td>{{$dp->id}}</td>
+  <td>{{$dp->id}}</td>
 
-<td>
-  <a href="showDetailPembelian/{{$dp->id}}">
-        
-        {{$dp->deskripsi_produk}}</a>
-</td>
+  <td id='td-deskripsi_produk-{{$dp->id}}'>
+    <a href="showDetailPembelian/{{$dp->id}}">{{$dp->deskripsi_produk}}</a>
+  </td>
 
-<td>{{$dp->stok}}</td>
-<td>{{$dp->nama_supplier}}</td>
-<td>{{$dp->alamat_supplier}}</td>
-<td>{{$dp->notelepon_supplier}}</td>
-<td>{{$dp->tanggal_pemesanan}}</td>   
-<td>{{$dp->tanggal_penerimaan}}</td>   
-<td>    
-@if($dp->status == 'proses')
-<span class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">proses</span>
-@else
-<span class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">selesai</span>
-@endif
-</td> 
+  <td id='td-stok-{{$dp->id}}'>{{$dp->stok}}</td>
+  <td id='td-nama_supplier-{{$dp->id}}'>{{$dp->nama_supplier}}</td>
+  <td id='td-alamat_supplier-{{$dp->id}}'>{{$dp->alamat_supplier}}</td>
+  <td id='td-notelepon_supplier-{{$dp->id}}'>{{$dp->notelepon_supplier}}</td>
+  <td id='td-tanggal_pemesanan-{{$dp->id}}'>{{$dp->tanggal_pemesanan}}</td>   
+  <td id='td-tanggal_penerimaan-{{$dp->id}}'>{{$dp->tanggal_penerimaan}}</td>     
+  <td id='td-status-{{$dp->id}}'>    
 
-<td>
-  <a href="#modalEdit" data-toggle='modal' 
-  class="btn  btn-primary" onclick="accepted({{$dp->stok}})">Accepted </a> 
-</td>
+  @if($dp->status == 'proses')
+    <span class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">proses</span>
+  @else
+    <span class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">selesai</span>
+  @endif
+  </td> 
 
-<td>
-  <a href="#modalEdit" data-toggle='modal' 
-  class="btn  btn-warning" onclick="editForm({{$dp->id}})">Edit</a> 
-</td>
+  <td>
+    <a href="#modalEdit" data-toggle='modal' class="btn btn-primary" onclick="accepted({{$dp->stok}})">Accepted </a> 
+  </td>
 
-<td>
-<form method="POST" action="{{url('datapembelian/'.$dp->id )}}">
-  @csrf
-  @method('DELETE')
-  <input type='submit' value='Delete' href="#modalDelete" data-toggle='modal' class='btn btn-danger'
-  onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
-</form>
+  <td>
+   <a href="#modalEdit" data-toggle='modal' class="btn btn-warning" onclick="editForm({{$dp->id}})">Edit</a> 
+  </td>
 
-<!-- <a class='btn btn-danger' onclick="if(confirm('Apakah anda yakin?')) deleteDataRemoveTR({{$dp->id}})">Delete</a> -->
-</td>
+  <td>
+    <form method="POST" action="{{url('datapembelian/'.$dp->id )}}">
+      @csrf
+      @method('DELETE')
+    <input type='submit' value='Delete' href="#modalDelete" data-toggle='modal' class='btn btn-danger'
+    onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
+    </form>
+  </td>
 </tr>
 
 @endforeach
@@ -129,8 +121,14 @@ function editForm(id)
     url:'{{route("datapembelian.editForm")}}',
     data:{'_token':'<?php echo csrf_token() ?>',
         'id':id},
-    success: function(data){
-           $('#modalContent').html(data.msg)}
+    success: function(data)
+    {
+      $('#modalContent').html(data.msg)
+    },
+        error: function(data) 
+    {
+        alert("ajax error, json: " + data);
+    }
   });
 }
 

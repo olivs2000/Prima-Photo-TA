@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Log;
 
 use App\DataFotografer;
 use Illuminate\Http\Request;
@@ -41,11 +42,12 @@ class DataFotograferController extends Controller
         $data=new DataFotografer();
 
         $file=$request->file('pas_foto');
-        $imgFolder='images';
+        $imgFolder="images";
         $fileName=time()."_".$file->getClientOriginalName();
+        //Log::info("masuk--------------");
         $file->move($imgFolder, $fileName);
+        
         $data->pas_foto=$fileName;
-    
         $data->nama=$request->get('nama');
         $data->alamat=$request->get('alamat');
         $data->notelepon=$request->get('notelepon');

@@ -10,6 +10,7 @@ class DetailPembelian extends Model
     //use HasFactory;
 
     protected $table='detail_pembelians';
+    public $timestamps = false;
 
     // public function datapembelian()
     // {

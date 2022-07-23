@@ -1,13 +1,15 @@
 <form role="form" method="POST" action="{{url('datafotografer/'.$data->id)}}">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-        <h4 class="modal-title">Edit Data Fotografer</h4>
-      </div>
-      <div class="modal-body">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+    <h4 class="modal-title">Edit Data Fotografer</h4>
+  </div>
+
+  <div class="modal-body">
 
     @csrf 
     @method('PUT')
     <div class="form-body">
+
 	  <div class="form-group">
 		<label>Foto</label>
 		<input type="file" class="form-control" id="ePasFoto" name="pas_foto" value="{{$data->pas_foto}}">
@@ -45,12 +47,14 @@
       <option>Freelance</option> 
       </select>
   </div>
+  
   </div>
 
   <div class="modal-footer">
       <button type="button" class="btn btn-info" data-dismiss="modal" onclick="saveDataUpdateTD({{$data->id}})">Submit</button>
       <a class="btn btn-default" data-dismiss="modal">Cancel</a>
   </div>
+
   </div>
 
 </form>

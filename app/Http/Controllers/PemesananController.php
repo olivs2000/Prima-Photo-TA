@@ -96,7 +96,7 @@ class PemesananController extends Controller
         $this->authorize('delete-permission');
         try
         {
-            $dataFoto->delete();
+            $pemesanan->delete();
             return redirect()->route('datapemesanan.index')->with('status', 'Data pemesanan berhasil dihapus');
         }
         catch(\PDOException $ex)

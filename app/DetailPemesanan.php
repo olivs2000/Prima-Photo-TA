@@ -9,6 +9,8 @@ class DetailPemesanan extends Model
 {
     //use HasFactory;
 
+    public $timestamps = false;
+
     protected $table='detail_pemesanans';
 
     public function pemesanan()
