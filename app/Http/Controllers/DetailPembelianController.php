@@ -21,12 +21,12 @@ class DetailPembelianController extends Controller
         // return view('detailpembelian.index',['data'=>$queryRaw]);
         
         $queryBuilder=DB::table("detail_pembelians")
-                        ->join("data_pembelians", "detail_pembelians.data_pembelians_id", "=", "id")
-                        ->join("produks", "detail_pembelians.produks_id", "=", "id")
+                        ->leftJoin("data_pembelians", "detail_pembelians.data_pembelians_id", "=", "id")
+                        ->leftJoin("produks", "detail_pembelians.produks_id", "=", "id")
                         ->orderBy("tanggal_pemesanan", "ASC")
-                        ->select("detail_pembelians.*", "data_pembelians.jenis_barang", "produks.judul_produk")
+                        ->select("detail_pembelians.*", "data_pembelians.deskripsi", "produks.judul_produk")
                         ->get();
-        return view('detailpembelian.index',['data'=>$queryBuilder]);
+        return view('detailpembelian.showDetail',['data'=>$queryBuilder]);
     }
 
     /**
@@ -82,24 +82,36 @@ class DetailPembelianController extends Controller
         //
     }
 
+    public function getDetailPembelian($id)
+    {
+        $dataDetailPembelian=DB::table("detail_pembelians")
+            ->leftJoin("produks", "detail_pembelians.produks_id", "=", "produks.id")
+            ->select("detail_pembelians.*")
+            ->where("detail_pembelians.id", $id)
+            ->first();
+
+        return response()->json($dataDetailPembelian,200);
+    }
+
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\DetailPembelian  $detailpembelian
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $detailpembelian->data_pembelians_id=$request->get('data_pembelians_id');
-        $detailpembelian->produks_id=$request->get('produks_id');
-        $detailpembelian->nama_produk=$request->get('nama_produk');
-        $detailpembelian->jumlah=$request->get('jumlah');
-        $detailpembelian->harga=$request->get('harga');
-        $detailpembelian->total=$request->get('total');
+        $detailpembelian = DetailPembelian::where('id',$id)->first();
+        $detailpembelian->data_pembelians_id=$request->data_pembelians_id;
+        $detailpembelian->produks_id=$request->produks_id;
+        $detailpembelian->nama_produk=$request->nama_produk;
+        $detailpembelian->jumlah=$request->jumlah;
+        $detailpembelian->harga=$request->harga;
+        $detailpembelian->total=$request->total;
         $detailpembelian->save(); 
 
-        return redirect()->route('detailpembelian.index')->with('status', 'Detail pembelian berhasil tersimpan');
+        return redirect('datapembelian/'.$request->data_pembelians_id.'/edit')->with('status', 'Detail pembelian berhasil tersimpan');
     }
 
     /**
@@ -108,18 +120,18 @@ class DetailPembelianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(detailpembelian $detailpembelian)
+    public function destroy(Request $request)
     {
         $this->authorize('delete-permission');
         try
         {
-            $dataFoto->delete();
-            return redirect()->route('detailpembelian.index')->with('status', 'Detail Pembelian berhasil dihapus');
+            $detailpembelian = DetailPembelian::where('id',$request->detail_pembelian_id)->delete();
+            return redirect('datapembelian/'.$request->data_pembelians_id.'/edit')->with('status', 'Detail Pembelian berhasil dihapus');
         }
         catch(\PDOException $ex)
         {
             $msg = 'Terjadi kesalahan! Gagal menghapus detail pembelian';
-            return redirect()->route('detailpembelian.index')->with('error', $msg);
+            return redirect('datapembelian/'.$request->data_pembelians_id.'/edit')->with('error', $msg);
         }
     }
 

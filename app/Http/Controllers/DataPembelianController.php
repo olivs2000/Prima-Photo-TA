@@ -19,9 +19,11 @@ class DataPembelianController extends Controller
     public function index()
     {
         $queryBuilder=DB::table("data_pembelians")
-        ->orderBy("status", "ASC")
+        ->orderBy("id", "ASC")
         ->select("data_pembelians.*", "deskripsi_produk")
         ->get();
+
+        // dd($queryBuilder);
         return view('datapembelian.index',['data'=>$queryBuilder]);
     }
 
@@ -94,13 +96,13 @@ class DataPembelianController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\DataPembelian  $dataPembelian
+     * @param  \App\Models\DataPembelian  $datapembelian
      * @return \Illuminate\Http\Response
      */
     public function show(DataPembelian $datapembelian)
     {
-        $data = $datapembelian;
-        return view('datapembelian.show',compact('data'));
+        // $data = $datapembelian;
+        // return view('datapembelian.show',compact('data'));
     }
 
     /**
@@ -109,23 +111,32 @@ class DataPembelianController extends Controller
      * @param  \App\Models\DataPembelian  $datapembelian
      * @return \Illuminate\Http\Response
      */
-    public function edit(DataPembelian $dataPembelian)
+    public function edit(DataPembelian $datapembelian)
     {
         $data = $datapembelian;
-        return view('datapembelian.edit',compact('data'));
+        
+        $dataDetailPembelian=DB::table("detail_pembelians")
+        ->join("data_pembelians", "detail_pembelians.data_pembelians_id", "=", "data_pembelians.id")
+        ->join("produks", "detail_pembelians.produks_id", "=", "produks.id")
+        ->select("detail_pembelians.id", "produks.judul_produk", "detail_pembelians.jumlah", 
+                 "detail_pembelians.harga", "detail_pembelians.total", 
+                 "detail_pembelians.produks_id","produks.id as produk")
+        ->where("detail_pembelians.data_pembelians_id", $data->id)
+        ->get();
+
+        return view('datapembelian.edit',compact('data', 'dataDetailPembelian'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\DataPembelian  $dataPembelian
+     * @param  \App\Models\DataPembelian  $datapembelian
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, DataPembelian $datapembelian)
     {
         $datapembelian->deskripsi_produk=$request->get('deskripsi_produk');
-        // $datapembelian->stok=$request->get('stok');
         $datapembelian->nama_supplier=$request->get('nama_supplier');
         $datapembelian->alamat_supplier=$request->get('alamat_supplier');
         $datapembelian->notelepon_supplier=$request->get('notelepon_supplier');
@@ -206,14 +217,29 @@ class DataPembelianController extends Controller
         }
     }
 
-    public function showDetailPembelian()
+    public function showDetail($id)
     {
+        //Cara I
         $datapembelian=DataPembelian::find($_POST['data_pembelians_id']);
         $deskripsi_produk=$datapembelian->deskripsi_produk;
         return response()->json(array(
             'status'=>'oke',
-            'msg'=>view('datapembelian.showDetailPembelian',compact('deskripsi_produk'))->render()
+            'msg'=>view('datapembelian.showDetail',compact('deskripsi_produk'))->render()
         ),200);
+
+        //Cara II
+        $datapembelian=DataPembelian::find($id);
+        return view('datapembelian.showDetail', compact('datapembelian, id'));
+
+        //Cara III
+    //     $detailpembelian_array = [];
+    //     foreach($request->detail_pembelian as $detailPembelian)
+    //     {
+    //       $detailpembelian_array[$detailPembelian->id] = $detailPembelian->total;
+    //     }
+      
+    //   return view('datapembelian.showDetail')->with(['data_pembelians' => $data_pembelians, 
+    //   'datapembelian' => $datapembelian, 'detail_pembelians' => $detail_Pembelians, 'detailpembelian_array'=>$detailpembelian_array]);
     }
 
 }

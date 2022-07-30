@@ -67,7 +67,7 @@ class DataFotograferController extends Controller
      */
     public function show(datafotografer $datafotografer)
     {
-        $data = $dataFotografer;
+        $data = $datafotografer;
         return view('datafotografer.show',compact('data'));
     }
 
@@ -79,7 +79,7 @@ class DataFotograferController extends Controller
      */
     public function edit(dataFotografer $datafotografer)
     {
-        $data = $dataFotografer;
+        $data = $datafotografer;
         return view('datafotografer.edit',compact('data'));
     }
 
@@ -92,14 +92,14 @@ class DataFotograferController extends Controller
      */
     public function update(Request $request, datafotografer $datafotografer)
     {
-        $dataFotografer->pas_foto=$request->get('pas_foto');
-        $dataFotografer->nama=$request->get('nama');
-        $dataFotografer->alamat=$request->get('alamat');
-        $dataFotografer->notelepon=$request->get('notelepon');
-        $dataFotografer->email=$request->get('email');
-        $dataFotografer->alat_fotografi=$request->get('alat_fotografi');
-        $dataFotografer->status=$request->get('status');
-        $dataFotografer->save(); 
+        $datafotografer->pas_foto=$request->get('pas_foto');
+        $datafotografer->nama=$request->get('nama');
+        $datafotografer->alamat=$request->get('alamat');
+        $datafotografer->notelepon=$request->get('notelepon');
+        $datafotografer->email=$request->get('email');
+        $datafotografer->alat_fotografi=$request->get('alat_fotografi');
+        $datafotografer->status=$request->get('status');
+        $datafotografer->save(); 
 
         return redirect()->route('datafotografer.index')->with('status', 'Data fotografer berhasil tersimpan');
     }
@@ -125,28 +125,28 @@ class DataFotograferController extends Controller
         }
     }
 
-    public function editForm(Request $request)
-    {
-        $id=$request->get('id');
-        $data=DataFotografer::find($id);
-        return response()->json(array(
-            'status'=>'oke',
-            'msg'=>view('datafotografer.editForm',compact('data'))->render()
-        ),200);
-    }
+    // public function editForm(Request $request)
+    // {
+    //     $id=$request->get('id');
+    //     $data=DataFotografer::find($id);
+    //     return response()->json(array(
+    //         'status'=>'oke',
+    //         'msg'=>view('datafotografer.editForm',compact('data'))->render()
+    //     ),200);
+    // }
 
     public function saveData(Request $request)
     {
         $id=$request->get('id');
-        $dataFotografer=DataFotografer::find($id);
-        $dataFotografer->pas_foto=$request->get('pas_foto');
-        $dataFotografer->nama=$request->get('nama');
-        $dataFotografer->alamat=$request->get('alamat');
-        $dataFotografer->notelepon=$request->get('notelepon');
-        $dataFotografer->email=$request->get('email');
-        $dataFotografer->alat_fotografi=$request->get('alat_fotografi');
-        $dataFotografer->status=$request->get('status');
-        $dataFotografer->save();
+        $datafotografer=DataFotografer::find($id);
+        $datafotografer->pas_foto=$request->get('pas_foto');
+        $datafotografer->nama=$request->get('nama');
+        $datafotografer->alamat=$request->get('alamat');
+        $datafotografer->notelepon=$request->get('notelepon');
+        $datafotografer->email=$request->get('email');
+        $datafotografer->alat_fotografi=$request->get('alat_fotografi');
+        $datafotografer->status=$request->get('status');
+        $datafotografer->save();
         return response()->json(array(
             'status'=>'oke',
             'msg'=>'Data fotografer berhasil di update'
@@ -158,8 +158,8 @@ class DataFotograferController extends Controller
         try
         {
             $id=$request->get('id');
-            $dataFotografer=DataFotografer::find($id);
-            $dataFotografer->delete(); 
+            $datafotografer=DataFotografer::find($id);
+            $datafotografer->delete(); 
             return response()->json(array(
             'status'=>'oke',
             'msg'=>'Sukses menghapus data fotografer'

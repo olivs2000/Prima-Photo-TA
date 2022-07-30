@@ -29,7 +29,8 @@ class DetailPemesananController extends Controller
             ->leftJoin("produks", "detail_pemesanans.produks_id", "=", "produks.id")
             ->leftJoin("pakets", "detail_pemesanans.pakets_id", "=", "pakets.id")
             ->orderBy("pemesanans_id", "ASC")
-            ->select("detail_pemesanans.*", "layanans.judul_layanan", "penyewaan_alats.nama_alat", "pemesanans.nama", "produks.judul_produk", "pakets.judul_paket")
+            ->select("detail_pemesanans.*", "layanans.judul_layanan", "penyewaan_alats.nama_alat", 
+                     "pemesanans.nama", "produks.judul_produk", "pakets.judul_paket")
             ->get();
         return view('detailpemesanan.index',['data'=>$queryBuilder]);
     }
@@ -56,9 +57,9 @@ class DetailPemesananController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\DetailPemesanan  $detailpemesanan
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -69,36 +70,37 @@ class DetailPemesananController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\DetailPemesanan  $detailpemesanan
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(DetailPemesanan $detailpemesanan)
     {
-        //
+        $data = $detailpemesanan;
+        return view('detailpemesanan.edit',compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\DetailPemesanan  $detailpemesanan
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        // $detailPemesanan->user_pelanggans_id=$request->get('user_pelanggans_id');
-        // $detailPemesanan->pemesanans_id=$request->get('pemesanans_id');
-        // $detailPemesanan->pakets_id=$request->get('pakets_id');
-        // $detailPemesanan->penyewaan_alats_id=$request->get('penyewaan_alats_id');
-        // $detailPemesanan->produks_id=$request->get('produks_id');
-        // $detailPemesanan->pakets_id=$request->get('pakets_id');
-        // $detailPemesanan->layanans_id=$request->get('layanans_id');
-        // $detailPemesanan->jumlah=$request->get('jumlah');
-        // $detailPemesanan->harga=$request->get('harga');
-        // $detailPemesanan->tanggal_pemesanan=$request->get('tanggal_pemesanan');
-        // $detailPemesanan->total=$request->get('total');
-        $detailPemesanan->status=$request->get('status');
-        $detailPemesanan->save(); 
+        // $detailpemesanan->user_pelanggans_id=$request->get('user_pelanggans_id');
+        // $detailpemesanan->pemesanans_id=$request->get('pemesanans_id');
+        // $detailpemesanan->pakets_id=$request->get('pakets_id');
+        // $detailpemesanan->penyewaan_alats_id=$request->get('penyewaan_alats_id');
+        // $detailpemesanan->produks_id=$request->get('produks_id');
+        // $detailpemesanan->pakets_id=$request->get('pakets_id');
+        // $detailpemesanan->layanans_id=$request->get('layanans_id');
+        // $detailpemesanan->jumlah=$request->get('jumlah');
+        // $detailpemesanan->harga=$request->get('harga');
+        // $detailpemesanan->tanggal_pemesanan=$request->get('tanggal_pemesanan');
+        // $detailpemesanan->total=$request->get('total');
+        $detailpemesanan->status=$request->get('status');
+        $detailpemesanan->save(); 
 
         return redirect()->route('detailpemesanan.index')->with('status', 'Detail pemesanan berhasil tersimpan');
     }
@@ -106,7 +108,7 @@ class DetailPemesananController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\DetailPemesanan  $detailpemesanan
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -114,7 +116,7 @@ class DetailPemesananController extends Controller
         $this->authorize('delete-permission');
         try
         {
-            $detailPemesanan->delete();
+            $detailpemesanan->delete();
             return redirect()->route('detailpemesanan.index')->with('status', 'Detail pemesanan berhasil dihapus');
         }
         catch(\PDOException $ex)
@@ -134,7 +136,8 @@ class DetailPemesananController extends Controller
         ->leftJoin("pemesanans", "detail_pemesanans.pemesanans_id", "=", "pemesanans.id")
         ->leftJoin("produks", "detail_pemesanans.produks_id", "=", "produks.id")
         ->leftJoin("pakets", "detail_pemesanans.pakets_id", "=", "pakets.id")
-        ->select("detail_pemesanans.*", "layanans.judul_layanan", "penyewaan_alats.nama_alat", "pemesanans.nama", "produks.judul_produk", "pakets.judul_paket")
+        ->select("detail_pemesanans.*", "layanans.judul_layanan", "penyewaan_alats.nama_alat", 
+                 "pemesanans.nama", "produks.judul_produk", "pakets.judul_paket")
         ->where("detail_pemesanans.id", $id)
         ->first();
         
@@ -147,20 +150,20 @@ class DetailPemesananController extends Controller
     public function saveData(Request $request)
     {
         $id=$request->post('id');
-        $detailPemesanan=DetailPemesanan::find($id);
-        // $detailPemesanan->user_pelanggans_id=$request->get('user_pelanggans_id');
-        // $detailPemesanan->pemesanans_id=$request->get('pemesanans_id');
-        // $detailPemesanan->pakets_id=$request->get('pakets_id');
-        // $detailPemesanan->penyewaan_alats_id=$request->get('penyewaan_alats_id');
-        // $detailPemesanan->produks_id=$request->get('produks_id');
-        // $detailPemesanan->pakets_id=$request->get('pakets_id');
-        // $detailPemesanan->layanans_id=$request->get('layanans_id');
-        // $detailPemesanan->jumlah=$request->get('jumlah');
-        // $detailPemesanan->harga=$request->get('harga');
-        // $detailPemesanan->total=$request->get('total');
-        // $detailPemesanan->tanggal_pemesanan=$request->get('tanggal_pemesanan');
-        $detailPemesanan->status=$request->get('status');
-        $detailPemesanan->save();
+        $detailpemesanan=DetailPemesanan::find($id);
+        // $detailpemesanan->user_pelanggans_id=$request->get('user_pelanggans_id');
+        // $detailpemesanan->pemesanans_id=$request->get('pemesanans_id');
+        // $detailpemesanan->pakets_id=$request->get('pakets_id');
+        // $detailpemesanan->penyewaan_alats_id=$request->get('penyewaan_alats_id');
+        // $detailpemesanan->produks_id=$request->get('produks_id');
+        // $detailpemesanan->pakets_id=$request->get('pakets_id');
+        // $detailpemesanan->layanans_id=$request->get('layanans_id');
+        // $detailpemesanan->jumlah=$request->get('jumlah');
+        // $detailpemesanan->harga=$request->get('harga');
+        // $detailpemesanan->total=$request->get('total');
+        // $detailpemesanan->tanggal_pemesanan=$request->get('tanggal_pemesanan');
+        $detailpemesanan->status=$request->get('status');
+        $detailpemesanan->save();
         return response()->json(array(
             'status'=>'oke',
             'msg'=>'Detail pemesanan berhasil di update'
@@ -172,8 +175,8 @@ class DetailPemesananController extends Controller
         try
         {
             $id=$request->get('id');
-            $detailPemesanan=DetailPemesanan::find($id);
-            $detailPemesanan->delete(); 
+            $detailpemesanan=DetailPemesanan::find($id);
+            $detailpemesanan->delete(); 
             return response()->json(array(
             'status'=>'oke',
             'msg'=>'Sukses menghapus detail pemesanan'

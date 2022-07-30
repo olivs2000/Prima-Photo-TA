@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\QueryException;
 
-use App\Jadwalfotografer;
+use App\JadwalFotografer;
 use App\AdminStudio;
 use App\DataFotografer;
 use App\DetailPemesanan;
@@ -25,7 +25,8 @@ class JadwalFotograferController extends Controller
             ->leftJoin("admin_studios", "jadwal_fotografers.admin_studios_id", "=", "admin_studios.id")
             ->leftJoin("data_fotografers", "jadwal_fotografers.data_fotografers_id", "=", "data_fotografers.id")
             ->orderBy("jadwal_fotografers.detail_pemesanans_id", "ASC")
-            ->select("jadwal_fotografers.*", "detail_pemesanans.id as detail_pemesanans_id", "admin_studios.nama_admin", "data_fotografers.nama")
+            ->select("jadwal_fotografers.*", "detail_pemesanans.id as detail_pemesanans_id", 
+                     "admin_studios.nama_admin", "data_fotografers.nama")
             ->get();
         return view('jadwalfotografer.index',['data'=>$queryBuilder]);
     }
@@ -79,10 +80,32 @@ class JadwalFotograferController extends Controller
      * @param  \App\Jadwalfotografer  $jadwalfotografer
      * @return \Illuminate\Http\Response
      */
-    public function edit(jadwalfotografer $jadwalfotografer)
+    public function edit($jadwalfotografer)
     {
-        $data = $jadwalfotografer;
-        return view('jadwalfotografer.edit',compact('data'));
+        $id=$jadwalfotografer;
+         
+        $data=DB::table("jadwal_fotografers")
+        ->leftJoin("detail_pemesanans", "jadwal_fotografers.detail_pemesanans_id", "=", "detail_pemesanans.id")
+        ->leftJoin("admin_studios", "jadwal_fotografers.admin_studios_id", "=", "admin_studios.id")
+        ->leftJoin("data_fotografers", "jadwal_fotografers.data_fotografers_id", "=", "data_fotografers.id")
+        ->select("jadwal_fotografers.*", "detail_pemesanans.id as detail_pemesanans_id", 
+                 "admin_studios.nama_admin", "data_fotografers.nama")
+        ->where("jadwal_fotografers.id", $id)
+        ->first();
+
+        $dataDetailPemesanan=DB::table("detail_pemesanans")
+        ->select("detail_pemesanans.id")
+        ->get();
+
+        $dataAdmin=DB::table("admin_studios")
+        ->select("admin_studios.id", "nama_admin")
+        ->get();
+
+        $dataFotografer=DB::table("data_fotografers")
+        ->select("data_fotografers.id", "nama")
+        ->get();
+
+        return view("jadwalfotografer.edit",compact('data', 'dataDetailPemesanan', 'dataAdmin', 'dataFotografer'));
     }
 
     /**
@@ -127,7 +150,6 @@ class JadwalFotograferController extends Controller
     public function editForm(Request $request)
     {
         $id=$request->get('id');
-        // $data=JadwalFotografer::find($id);
         
         $data=DB::table("jadwal_fotografers")
         ->join("detail_pemesanans", "jadwal_fotografers.detail_pemesanans_id", "=", "detail_pemesanans.id")

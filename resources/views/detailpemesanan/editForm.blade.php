@@ -10,7 +10,7 @@
   @method('PUT')
   <div class="form-body">
 
-	<div class="form-group">
+	{{-- <div class="form-group">
 		<label>Pemesanan</label>
 		<input type="text" class="form-control" name="pemesanans" readonly="readonly"  value="{{$data->nama}}">
   </div>
@@ -53,7 +53,7 @@
   <div class="form-group">
 		<label>Tanggal Pemesanan</label>
 		<input type="date" class="form-control" name="tanggal_pemesanan" readonly="readonly"  value="{{$data->tanggal_pemesanan}}">
-  </div>
+  </div> --}}
 
   <div class="form-group">
     <label>Status</label>

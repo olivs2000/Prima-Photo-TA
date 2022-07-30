@@ -243,20 +243,33 @@ Route::post('/jadwalfotografer/deleteData','JadwalFotograferController@deleteDat
 Route::post('/jadwalfotografer/saveData','JadwalFotograferController@saveData')->name('jadwalfotografer.saveData');
 
 Route::resource('/datapemesanan','PemesananController');
+
 Route::resource('/detailpemesanan','DetailPemesananController');
-
 Route::post('/detailpemesanan/editForm','DetailPemesananController@editForm')->name('detailpemesanan.editForm');
-
+Route::post('/detailpemesanan/edit','DetailPemesananController@edit')->name('detailpemesanan.edit');
 Route::post('/detailpemesesanan/saveData','DetailpemesananController@saveData')->name('detailpemesanan.saveData');
 
 Route::resource('/datapembelian','DataPembelianController');
 Route::post('/datapemebelian/createForm','DataPembelianController@createForm')->name('datapembelian.create');
+Route::post('/datapemebelian/edit','DataPembelianController@edit')->name('datapembelian.edit');
 Route::post('/datapemebelian/editForm','DataPembelianController@editForm')->name('datapembelian.editForm');
 Route::post('/datapemebelian/deleteData','DataPembelianController@deleteData')->name('datapembelian.deleteData');
 
-Route::resource('/detailpembelian','DetailPembelianController');
+Route::resource('/detailpembelian','DetailPembelianController',['except' => ['update','destroy']]);
+Route::post('/detailpembelian/edit/{id}','DetailPembelianController@update')->name('detailpembelian.edit');
+Route::post('/detailpembelian/destroy','DetailPembelianController@destroy')->name('detailpembelian.destroy');
+Route::get('/detailpembelian/getDetail/{id}','DetailPembelianController@getDetailPembelian')->name('detailpembelian.getDetail');
+
 Route::post('/datapembelian/saveData','DatapembelianController@saveData')->name('datapembelian.saveData');
-Route::post('/datapembelian/showDetailPembelian','DataPembelianController@showDetailPembelian')->name('datapembelian.showDetailPembelian');
+Route::post('/datapembelian/showDetail','DataPembelianController@showDetail')->name('datapembelian.showDetail');
+
+// Route::get('showDetail/{id}','DataPembelianController@showDetail')->name('datapembelian.showDetail');
+
+// Route::get('datapembelian/{datapembelian}', 'DataPembelianController@showDetail')->name('datapembelian.showDetail');
+
+Route::get('/showDetail', function () {
+    return view('datapembelian.showDetail'); 
+})->name('datapembelian.showDetail');
 
 Route::get('/get-list-produk','ProdukController@getListProduk') ->name('get.list.produk');
 
@@ -272,9 +285,11 @@ Route::get('/get-list-produk','ProdukController@getListProduk') ->name('get.list
 // Route::get('add-to-cart/{id}', 'PenyewaanAlatController@addToCart');
 
 //Cart Produk
-// Route::get('/', 'ProdukController@front_index');
-// Route::get('cart', 'ProdukController@cart');
-// Route::get('add-to-cart/{id}', 'ProdukController@addToCart');
+Route::get('/', 'ProdukController@front_index');
+Route::get('cart', 'ProdukController@cart');
+Route::get('add-to-cart/{id}', 'ProdukController@addToCart');
+
+Route::post('/', [\App\Http\Controllers\ProdukController::class, 'cart'])->name(name:'frontend.cart');
 
 //Cart Layanan
 // Route::get('/', 'LayananController@front_index');

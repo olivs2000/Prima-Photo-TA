@@ -118,4 +118,9 @@ class ProdukController extends Controller
 
         return response()->json($queryRaw,200);
     }
+
+    public function cart (Request $request)
+    {
+        Cart::add('293ad', 'Product 1', 1, 9.99, 550);
+    }
 }

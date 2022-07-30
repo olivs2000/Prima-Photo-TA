@@ -141,7 +141,7 @@
 
 <br><br><br>
 
-@foreach($paket as $p)
+@foreach($pakets as $p)
 <div class="col-md-4">
 <div class="product-item">
 <div class="card">

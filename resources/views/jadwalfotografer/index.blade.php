@@ -76,7 +76,7 @@
     </td>  
 
     <td>
-      <a href="#modalEdit" data-toggle="modal" class="btn btn-warning" onclick="editForm({{$jf->id}})"> Edit </a> 
+      <a href="{{url('jadwalfotografer/'.$jf->id.'/edit') }}" class="btn btn-warning">Edit</a></td>
     </td>
 
     <td>

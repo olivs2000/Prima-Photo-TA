@@ -66,7 +66,7 @@
 @foreach($data as $df)
 <tr>
   <td>{{ $df->id }}</td>
-  <td id='td-pas_foto-{{$df->id}}'><img src="{{asset('images/'.$df->pas_foto)}}.jpg" height='50px'></td>
+  <td id='td-pas_foto-{{$df->id}}'><img src='images/{{$df->pas_foto}}' height='50px'></td>
   <td id='td-nama-{{$df->id}}'>{{ $df->nama }}</td>
   <td id='td-alamat-{{$df->id}}'>{{ $df->alamat }}</td>
   <td id='td-notelepon-{{$df->id}}'>{{ $df->notelepon }}</td>
@@ -81,7 +81,7 @@
   </td>  
 
   <td>
-    <a href="#modalEdit" data-toggle='modal' class="btn  btn-warning" onclick="editForm({{$df->id}})">Edit </a> 
+    <a href="{{url('datafotografer/'.$df->id.'/edit') }}" class="btn btn-warning">Edit</a></td>
   </td>
 
   <td>
@@ -107,23 +107,23 @@
 
 @section('javascript')
 <script>
-function editForm(id)
-{
-  $.ajax({
-    type:'POST',
-    url:'{{route("datafotografer.editForm")}}',
-    data:{'_token':'<?php echo csrf_token() ?>',
-        'id':id},
-    success: function(data)
-    {
-      $('#modalContent').html(data.msg)
-    },
-    error: function(data) 
-    {
-      alert("ajax error, json: " + data);
-    }
-  });
-}
+// function editForm(id)
+// {
+//   $.ajax({
+//     type:'POST',
+//     url:'{{route("datafotografer.editForm")}}',
+//     data:{'_token':'<?php echo csrf_token() ?>',
+//         'id':id},
+//     success: function(data)
+//     {
+//       $('#modalContent').html(data.msg)
+//     },
+//     error: function(data) 
+//     {
+//       alert("ajax error, json: " + data);
+//     }
+//   });
+// }
 
 function saveDataUpdateTD(id)
 {

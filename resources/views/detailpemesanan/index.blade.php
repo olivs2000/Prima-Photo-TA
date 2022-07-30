@@ -18,7 +18,7 @@
 </div>
 
 <div class="modal fade" id="modalEdit" tabindex="-1" role="basic" aria-hidden="true">
-  <div class="modal-dialog modal-wide">
+  <div class="modal-dialog">
     <div class="modal-content" id="modalContent">
     <div style="text-align:center">
     <img src="{{asset('/assets/img/cam1.gif')}}"/>
@@ -83,7 +83,9 @@
   </td>
 
   <td>
-    <a href="#modalEdit" data-toggle="modal" class="btn btn-warning" onclick="editForm({{$dp->id}})"> Edit </a> 
+    {{-- <a href="{{url('detailpemesanan/'.$dp->id.'/edit') }}" class="btn btn-warning">Edit</a> --}}
+
+    <a href="#modalEdit" data-toggle='modal' class="btn btn-warning" onclick="editForm({{$dp->id}})">Edit</a> 
   </td>
 </tr>
 

@@ -10,11 +10,13 @@ class DetailPembelian extends Model
     //use HasFactory;
 
     protected $table='detail_pembelians';
+    protected $fillable = ['data_pembelians_id', 'produks_id', 'jumlah', 'harga','total'];
+
     public $timestamps = false;
 
     // public function datapembelian()
     // {
-    //     return $this->belongsTo('App\MDetailPembelian', 'detail_pembelians_id');
+    //     return $this->belongsTo('App\DataPembelian', 'data_pembelians_id');
     // }
 
     // public function produk()
@@ -24,8 +26,14 @@ class DetailPembelian extends Model
 
     public function produk()
     {
-        return $this->belongsToMany('App\Produk', 'detail_pembelians', 'dataPembelians_id', 
-        'produks_id' )->withPivot('jumlah', 'harga');
+        return $this->belongsToMany('App\Produk', 'detail_pembelians', 'detail_Pembelians_id', 
+        'produks_id' )->withPivot('jumlah','harga', 'total');
+    }
+
+    public function datapembelian()
+    {
+        return $this->belongsToMany('App\DataPembelian', 'detail_pembelians', 'detail_Pembelians_id', 
+        'data_pembelians_id' )->withPivot('jumlah','harga', 'total');
     }
 
 }

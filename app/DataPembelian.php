@@ -19,4 +19,9 @@ class DataPembelian extends Model
     {
         return $this->hasMany("App\DetailPembelian", "data_pembelians_id", "id");
     }
+
+    public function produks()
+    {
+        return $this->belongsToMany(Produk::class, 'detail_pembelians', 'data_pembelians_id', 'produks_id');
+    }
 }

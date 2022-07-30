@@ -15,10 +15,9 @@
 		</li>
 	</ul>
 
-<!-- Start tambah detail pembelian -->
 
- <div class="page-toolbar">
-	{{-- <a href="#modalCreate" data-toggle='modal' class="btn btn-info">+ Add Detail Pembelian</a> --}}
+<!-- Start tambah detail pembelian -->
+<div class="page-toolbar">
 	<button id="create-detail" class="btn btn-info">+ Add Detail Pembelian</button>
 </div>
 
@@ -27,7 +26,7 @@
 <div class="modal fade" id="modalCreate" tabindex="-1" role="basic" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content" >
-		{{-- <form role="form" method="POST" action="{{url('datapembelian/create')}}"> --}}
+
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
 				<h4 class="modal-title">Tambah Detail Pembelian</h4>
@@ -37,18 +36,14 @@
 
 			@csrf 
 			<div class="form-body">
-			
-			{{-- <div class="form-group">
-				<label>Nama Produk</label>
-				<input type="text" id="nama_produk" class="form-control" name="nama_produk">
-			</div> --}}
+
 			<div class="form-group">
 				<label>Nama Produk</label>
-				<Select id="list-produk" onchange="setIdProduk(this);">
-					<option value="">Choose the product..</option>
-				</Select>
-				<input type="hidden" id="produks_id" value="">
-				<input type="hidden" id="nama_produk" value="">
+					<Select id="list-produk" class="form-control" onchange="setIdProduk(this);">
+						<option value="">Choose the product..</option>
+					</Select>
+				<input type="hidden" id="produks_id" value="" class="form-control">
+				<input type="hidden" id="nama_produk" value="" class="form-control">
 			</div>
 
 			<div class="form-group">
@@ -77,8 +72,6 @@
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 			</div>
 
-		{{-- </form> --}}
-
 		</div>
 	</div>
 </div>
@@ -96,7 +89,6 @@
 		{{session('error')}}
 	</div>
 @endif  
-
 <!-- End tambah detail pembelian -->
 
 
@@ -148,13 +140,14 @@
     <a href="{{url('datapembelian')}}" type="button" class="btn btn-default">Cancel</a>
 </div>
 </form>
+
 <table class="table">
 	<thead>
 		<tr>
-			<th>nama produk</th>
-			<th>jumlah</th>
-			<th>harga</th>
-			<th>total</th>
+			<th>Nama Produk</th>
+			<th>Jumlah</th>
+			<th>Harga</th>
+			<th>Total</th>
 		</tr>
 	</thead>
 	<tbody id="detail-pembelian"></tbody>
@@ -251,6 +244,8 @@
 		$.post('{{ route("datapembelian.store") }}', sent, function(response, textStatus) {
 			console.log(response);
 			
+			window.location.replace("http://127.0.0.1:8000/datapembelian");
+			window.location.href = "http://127.0.0.1:8000/datapembelian";
 		});
 	}
 </script>

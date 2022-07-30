@@ -50,7 +50,7 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>Deskripsi Produk</th>
+      <th>Deskripsi</th>
       <th>Stok</th>
       <th>Nama Supplier</th>
       <th>Alamat Supplier</th>
@@ -69,7 +69,10 @@
   <td>{{$dp->id}}</td>
 
   <td id='td-deskripsi_produk-{{$dp->id}}'>
-    <a href="showDetailPembelian/{{$dp->id}}">{{$dp->deskripsi_produk}}</a>
+    <a href="datapembelian/showDetail/({{$dp->id}})">{{$dp->deskripsi_produk}}</a>
+    {{-- @foreach($dp->detail_pembelians as $detail)
+      {{$detail->jumlah}} {{$detail->harga}} {{$detail->total}} &nbsp;&nbsp;
+    @endforeach --}}
   </td>
 
   <td id='td-stok-{{$dp->id}}'>{{$dp->stok}}</td>
@@ -92,7 +95,7 @@
   </td>
 
   <td>
-   <a href="#modalEdit" data-toggle='modal' class="btn btn-warning" onclick="editForm({{$dp->id}})">Edit</a> 
+    <a href="{{url('datapembelian/'.$dp->id.'/edit') }}" class="btn btn-warning">Edit</a></td>
   </td>
 
   <td>
@@ -108,17 +111,26 @@
 @endforeach
 </tbody>
 </table>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="basic" aria-hidden="true">
+  <div class="modal-dialog">
+     <div class="modal-content" id="showDetail">
+       <img src="{{asset('/assets/img/cam1.gif')}}"/>
+     </div>
+  </div>
+</div>
+
 @endsection
 
 </div>
 
 @section('javascript')
 <script>
-function editForm(id)
+function edit(id)
 {
   $.ajax({
     type:'POST',
-    url:'{{route("datapembelian.editForm")}}',
+    url:'{{route("datapembelian.edit")}}',
     data:{'_token':'<?php echo csrf_token() ?>',
         'id':id},
     success: function(data)
@@ -135,7 +147,9 @@ function editForm(id)
 function saveDataUpdateTD(id)
 {
   var eDeskripsiProduk = $('#eDeskripsiProduk').val();
-  // var eStok = $('#eStok').val();
+  var eJumlah = $('#eJumlah').val();
+  var eHarga = $('#eHarga').val();
+  var eTotal = $('#eTotal').val();
   var eNamaSupplier = $('#eNamaSupplier').val();
   var eAlamatSupplier = $('#eAlamatSupplier').val();
   var eNoteleponSupplier = $('#eNoteleponSupplier').val();
@@ -148,7 +162,9 @@ function saveDataUpdateTD(id)
     data:{'_token':'<?php echo csrf_token() ?>',
         'id':id,
         'deskripsi_produk':eDeskripsiProduk,
-        // 'stok':eStok,
+        'jumlah':eJumlah,
+        'harga':eHarga,
+        'total':eTotal,
         'nama_supplier':eNamaSupplier,
         'alamat_supplier':eAlamatSupplier,
         'notelepon_supplier':eNoteleponSupplier,
@@ -161,7 +177,9 @@ function saveDataUpdateTD(id)
       {
         // alert(data.msg);
         $('#td_deskripsi_produk_'+id).html(eDeskripsiProduk)
-        // $('#td_stok_'+id).html(eStok)
+        $('#td_jumlah_'+id).html(eJumlah)
+        $('#td_harga_'+id).html(eHarga)
+        $('#td_total_'+id).html(eTotal)
         $('#td_nama_supplier_'+id).html(eNamaSupplier)
         $('#td_alamat_supplier_'+id).html(eAlamatSupplier)
         $('#td_notelepon_supplier_'+id).html(eNoteleponSupplier)
@@ -197,15 +215,15 @@ function deleteDataRemoveTR(id)
   });
 }
 
-function showDetailPembelian(data_pembelians_id)
+function showDetail(data_pembelians_id)
 {
   $.ajax({
     type:'POST',
-    url:'{{route("datapembelian.showDetailPembelian")}}',
+    url:'{{route("datapembelian.showDetail")}}',
     data:{'_token':'<?php echo csrf_token() ?>',
         'data_pembelians_id':data_pembelians_id},
     success: function(data){
-           $('#showDetailPembelian').html(data.msg)}
+        $('#showDetail').html(data.msg)}
   });
 }
 
