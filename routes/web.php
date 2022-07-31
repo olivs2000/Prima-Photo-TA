@@ -254,22 +254,21 @@ Route::post('/datapemebelian/createForm','DataPembelianController@createForm')->
 Route::post('/datapemebelian/edit','DataPembelianController@edit')->name('datapembelian.edit');
 Route::post('/datapemebelian/editForm','DataPembelianController@editForm')->name('datapembelian.editForm');
 Route::post('/datapemebelian/deleteData','DataPembelianController@deleteData')->name('datapembelian.deleteData');
+Route::post('/datapembelian/saveData','DatapembelianController@saveData')->name('datapembelian.saveData');
+Route::post('/datapembelian/showDetail','DataPembelianController@showDetail')->name('datapembelian.showDetail');
 
 Route::resource('/detailpembelian','DetailPembelianController',['except' => ['update','destroy']]);
 Route::post('/detailpembelian/edit/{id}','DetailPembelianController@update')->name('detailpembelian.edit');
 Route::post('/detailpembelian/destroy','DetailPembelianController@destroy')->name('detailpembelian.destroy');
 Route::get('/detailpembelian/getDetail/{id}','DetailPembelianController@getDetailPembelian')->name('detailpembelian.getDetail');
 
-Route::post('/datapembelian/saveData','DatapembelianController@saveData')->name('datapembelian.saveData');
-Route::post('/datapembelian/showDetail','DataPembelianController@showDetail')->name('datapembelian.showDetail');
-
 // Route::get('showDetail/{id}','DataPembelianController@showDetail')->name('datapembelian.showDetail');
 
 // Route::get('datapembelian/{datapembelian}', 'DataPembelianController@showDetail')->name('datapembelian.showDetail');
 
-Route::get('/showDetail', function () {
-    return view('datapembelian.showDetail'); 
-})->name('datapembelian.showDetail');
+// Route::get('/showDetail', function () {
+//     return view('datapembelian.showDetail'); 
+// })->name('datapembelian.showDetail');
 
 Route::get('/get-list-produk','ProdukController@getListProduk') ->name('get.list.produk');
 

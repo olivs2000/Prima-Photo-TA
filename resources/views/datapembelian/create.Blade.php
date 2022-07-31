@@ -16,7 +16,7 @@
 	</ul>
 
 
-<!-- Start tambah detail pembelian -->
+<!-- Start modal tambah detail pembelian -->
 <div class="page-toolbar">
 	<button id="create-detail" class="btn btn-info">+ Add Detail Pembelian</button>
 </div>
@@ -31,8 +31,6 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
 				<h4 class="modal-title">Tambah Detail Pembelian</h4>
 			</div>
-
-			{{-- <form method="POST" id="submitFormDetail"> --}}
 
 			<div class="modal-body">
 
@@ -74,11 +72,10 @@
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 			</div>
 
-		{{-- </form> --}}
-
 		</div>
 	</div>
-</div>
+</div> 
+<!-- End modal tambah detail pembelian -->
 
 @if(session('status'))
 	<div class="alert alert-success">
@@ -92,9 +89,7 @@
 	<div class="alert alert-danger">
 		{{session('error')}}
 	</div>
-@endif  
-<!-- End tambah detail pembelian -->
-
+@endif 
 
 <form enctype='multipart/form-data' role="form" method="POST" action="{{url('datapembelian/createForm')}}">
 @csrf 
@@ -207,9 +202,8 @@
 				"</td>"+
 			"</tr>"
 		);
+		
 		window.location.href = response.routing;
-
-
 	}
 
 	function setIdProduk(produk){

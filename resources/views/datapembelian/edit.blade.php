@@ -25,7 +25,9 @@
         		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
 				<h4 class="modal-title">Edit Detail Pembelian</h4>
 			</div>
+
 			<form method="POST" id="submitFormDetail">
+
 				@csrf 
 				<div class="modal-body">
 					<div class="form-body">
@@ -56,17 +58,21 @@
 						<input type="text" id="total" class="form-control" name="total" value="{{$data->total}}">
 					</div>
 
-					</div>
-							
+					</div>		
 				</div>
 
 				<div class="modal-footer">
 					<button type="submit" onclick="editDetailPembelian()" class="btn btn-info">Submit</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 				</div>
+
 			</form>
+
 		</div>
 	</div>
+</div> 
+<!-- End modal edit detail pembelian -->
+
 </div>
 
 @if(session('status'))
@@ -81,10 +87,7 @@
 	<div class="alert alert-danger">
 		{{session('error')}}
 	</div>
-@endif  
-<!-- End modal edit detail pembelian -->
-
-</div>
+@endif 
 
 <form role="form" method="POST" action="{{url('datapembelian/'.$data->id )}}">
   @csrf 
@@ -92,33 +95,33 @@
 	<div class="form-body">
 
 		<div class="form-group">
-				<label>Deskripsi</label>
-				<input type="text" class="form-control" name="deskripsi_produk" value="{{$data->deskripsi_produk}}">
+			<label>Deskripsi</label>
+			<input type="text" class="form-control" name="deskripsi_produk" value="{{$data->deskripsi_produk}}">
 		</div>
 
 		<div class="form-group">
-				<label>Nama Supplier</label>
-				<input type="text" class="form-control" name="nama_supplier" value="{{$data->nama_supplier}}">
+			<label>Nama Supplier</label>
+			<input type="text" class="form-control" name="nama_supplier" value="{{$data->nama_supplier}}">
 		</div>
         
 		<div class="form-group">
-				<label>Alamat Supplier</label>
-				<textarea class="form-control" rows="3" name="alamat_supplier">{{$data->alamat_supplier}}</textarea>
+			<label>Alamat Supplier</label>
+			<textarea class="form-control" rows="3" name="alamat_supplier">{{$data->alamat_supplier}}</textarea>
 		</div>
 		
 		<div class="form-group">
-				<label>No Telepon Supplier</label>
-				<input type="text" class="form-control" name="notelepon_supplier" value="{{$data->notelepon_supplier}}">
+			<label>No Telepon Supplier</label>
+			<input type="text" class="form-control" name="notelepon_supplier" value="{{$data->notelepon_supplier}}">
 		</div>
 		
 		<div class="form-group">
-				<label>Tanggal Pemesanan</label>
-				<input type="date" class="form-control" name="tanggal_pemesanan" value="{{$data->tanggal_pemesanan}}">
+			<label>Tanggal Pemesanan</label>
+			<input type="date" class="form-control" name="tanggal_pemesanan" value="{{$data->tanggal_pemesanan}}">
 		</div>
 		
 		<div class="form-group">
-				<label>Tanggal Penerimaan</label>
-				<input type="date" class="form-control" name="tanggal_penerimaan" value="{{$data->tanggal_penerimaan}}">
+			<label>Tanggal Penerimaan</label>
+			<input type="date" class="form-control" name="tanggal_penerimaan" value="{{$data->tanggal_penerimaan}}">
 		</div>
         
 		<div class="form-group">
@@ -139,7 +142,7 @@
 <br><br>
 
 
-<!-- Start tambah detail pembelian -->
+<!-- Start modal tambah detail pembelian -->
 <div class="page-toolbar">
 	<button id="create-detail" class="btn btn-xs btn-info btn-sm m-b-10 m-l-5">+ Add Detail Pembelian</button>
 </div>
@@ -162,7 +165,7 @@
 
 			<div class="form-group">
 				<label>Nama Produk</label>
-					<Select id="list-produk" class="form-control" onchange="setIdProduk(this);">
+					<Select id="list-produk2" class="form-control" onchange="setIdProduk(this);">
 						<option value="">Choose the product..</option>
 					</Select>
 				<input type="hidden" id="produks_id" value="" class="form-control">
@@ -171,17 +174,17 @@
 
 			<div class="form-group">
 				<label>Jumlah</label>
-				<input type="text" id="jumlah" class="form-control" name="jumlah">
+				<input type="text" id="jumlah2" class="form-control" name="jumlah">
 			</div>
 
 			<div class="form-group">
 				<label>Harga</label>
-				<input type="text" id="harga" class="form-control" name="harga">
+				<input type="text" id="harga2" class="form-control" name="harga">
 			</div>
 
 			<div class="form-group">
 				<label>Total</label>
-				<input type="text" id="total" class="form-control" name="total">
+				<input type="text" id="total2" class="form-control" name="total">
 			</div>
 
 			</div>
@@ -198,52 +201,52 @@
 		</div>
 	</div>
 </div>
-<!-- End tambah detail pembelian -->
+<!-- End modal tambah detail pembelian -->
 
 
-
-
-	<table class="table">
-		<thead>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Nama Produk</th>
+			<th>Jumlah</th>
+			<th>Harga</th>
+			<th>Total</th>
+			<th colspan='2'></th>
+		</tr>
+	</thead>
+	<tbody id="detail-pembelian">
+		@foreach ($dataDetailPembelian as $detail)
 			<tr>
-				<th>Nama Produk</th>
-				<th>Jumlah</th>
-				<th>Harga</th>
-				<th>Total</th>
+				<td>
+					{{$detail->judul_produk}}
+				</td>
+				<td>
+					{{$detail->jumlah}}
+				</td>
+				<td>
+					{{$detail->harga}}
+				</td>
+				<td>
+					{{$detail->total}}
+				</td>
+				<td>
+					<button onclick="getDetailPembelian({{$detail->id}})"  data-toggle='modal' class="btn btn-xs btn-warning btn-sm m-b-10 m-l-5">Edit</button>
+				</td>
+				<td>
+					<form method="POST"  action="{{route('detailpembelian.destroy')}}">
+						@csrf
+						<input type="hidden" name="detail_pembelian_id" value="{{$detail->id}}">
+						<input type="hidden" name="data_pembelians_id" value="{{$data->id}}">
+						<input type='submit' value='Delete' href="#modalDelete" data-toggle='modal' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5"
+						onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
+					</form>
+				</td>
 			</tr>
-		</thead>
-		<tbody id="detail-pembelian">
-			@foreach ($dataDetailPembelian as $detail)
-				<tr>
-					<td>
-						{{$detail->judul_produk}}
-					</td>
-					<td>
-						{{$detail->jumlah}}
-					</td>
-					<td>
-						{{$detail->harga}}
-					</td>
-					<td>
-						{{$detail->total}}
-					</td>
-					<td>
-						<button onclick="getDetailPembelian({{$detail->id}})" data-toggle='modal' class="btn btn-warning">Edit</button>
-					</td>
-					<td>
-						<form method="POST" action="{{route('detailpembelian.destroy')}}">
-						 	@csrf
-							<input type="hidden" name="detail_pembelian_id" value="{{$detail->id}}">
-							<input type="hidden" name="data_pembelians_id" value="{{$data->id}}">
-							<input type='submit' value='Delete' href="#modalDelete" data-toggle='modal' class='btn btn-danger'
-							onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
-						</form>
-					</td>
-				</tr>
-			@endforeach
-		</tbody>
-	</table>
+		@endforeach
+	</tbody>
+</table>
 @endsection
+
 
 @section('initialscript')
 <script>
@@ -267,8 +270,77 @@
 
 		listDetailPembelian.push(sent);
 
-		$('#modalCreate').modal('hide');
+		// $('#modalCreate').modal('hide');
 	}
+
+	function insertDetailPembelian(){
+		var namaProduk = $('#nama_produk').val();
+		var jumlah = $('#jumlah2').val();
+		var harga = $('#harga2').val();
+		var id_produk = $('#produks_id').val();
+		var total = $('#total2').val();
+		// var total = $('#total').text(); jadikan type lable dulu
+
+		var sent = {
+			nama_produk: namaProduk,
+			produks_id: id_produk,
+			jumlah2: jumlah,
+			harga2: harga,
+			total2: total
+		}
+
+		listDetailPembelian.push(sent);
+
+		$('#modalCreate').modal('hide');
+
+		$('#nama_produk').val('');
+		$('#jumlah2').val('');
+		$('#harga2').val('');
+		$('#produks_id').val('');
+		$('#total2').val('');
+		$("#list-produk2").val("");
+
+		$('#detail-pembelian').append(
+			"<tr>"+
+				"<td>"+
+					namaProduk+
+				"</td>"+
+				"<td>"+
+					jumlah+
+				"</td>"+
+				"<td>"+
+					harga+
+				"</td>"+
+				"<td>"+
+					total+
+				"</td>"+
+				"<td><button onclick="getDetailPembelian({{$detail->id}})"  data-toggle='modal' class="btn btn-xs btn-warning btn-sm m-b-10 m-l-5">"+"Edit"+"</button>"+
+				"</td>"+
+				"<td>"+
+					+
+				"</td>"+
+			"</tr>"
+		);
+		
+		window.location.href = response.routing;
+	}
+
+	function setIdProduk(produk){
+		$('#produks_id').val(produk.value);
+		$('#nama_produk').val(produk.options[produk.selectedIndex].text);
+	}
+
+	$(document).ready(function(){
+		$('#create-detail').on('click', function (e) {
+			$.get("{{ route('get.list.produk') }}", function(response, textStatus){
+				response.forEach(produk => {
+					$('#list-produk2').append("<option value='"+produk.id+"'>"+produk.judul_produk+"</option>");
+				});
+
+				$('#modalCreate').modal('show');
+			});
+		});
+	});
 
 	function getDetailPembelian(idDetail){
 		var url = "{{ route('detailpembelian.getDetail',':id') }}";
@@ -295,23 +367,6 @@
 			
 		});
 	}
-	
-
-	function setIdProduk(produk){
-		$('#produks_id').val(produk.value);
-		$('#nama_produk').val(produk.options[produk.selectedIndex].text);
-	}
-
-//   $(document).ready(function(){
-// 	$(".btn btn-warning").on('click',function(){
-// 		 var currentRow=$(this).closest("tr");
-// 		 var jumlah=currentRow.find("td:eq(0)").html();
-// 		 var harga=currentRow.find("td:eq(1)").html();
-// 		 var total=currentRow.find("td:eq(2)").html();
-// 		 var data=jumlah+"\n"+harga+"\n"+total;
-// 		 alert(data);
-// 		});
-// 	});
 
 	function submitDataPembelian(){
 		var deskripsi = $('#deskripsi').val();
@@ -340,10 +395,6 @@
 			window.location.href = "http://127.0.0.1:8000/datapembelian";
 		});
 	}
-
-	
-
-
 </script>
 @endsection
 

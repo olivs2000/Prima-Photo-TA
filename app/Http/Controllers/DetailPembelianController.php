@@ -183,16 +183,6 @@ class DetailPembelianController extends Controller
         }
     }
 
-    
-    public function totalprodukperpembelian()
-    {
-        //query advance sesuai report
-        $queryRaw=DB::select(DB::raw("select detail_pembelians.id, detail_pembelians.nama_produk, count(detail_pembelians.id) as jumlah, avg(produks.harga) as harga
-                                      from detail_pembelians inner join produks on detail_pembelians.id=produks.id
-                                      group by detail_pembelians.id, detail_pembelians.nama_produk"));
-        return view("report.totalprodukperpembelian", ["data"=>$queryRaw]);
 
-        //return view("report.totalprodukperpembelian",["data"=>DetailPembelian::all()]);
-    }
 
 }
