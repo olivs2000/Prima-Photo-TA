@@ -17,10 +17,6 @@
 
 
 <!-- Start modal edit detail pembelian -->
-{{-- <div class="page-toolbar">
-	<a href="#modalEdit" data-toggle='modal' class="btn btn-warning">Edit Detail Pembelian</a>
-</div> --}}
-
 <div class="modal fade" id="modalEdit" tabindex="-1" role="basic" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content" >
@@ -139,6 +135,73 @@
 		<a href="{{url('datapembelian')}}" type="button" class="btn btn-default">Cancel</a>
 	</div>
 </form>
+
+<br><br>
+
+
+<!-- Start tambah detail pembelian -->
+<div class="page-toolbar">
+	<button id="create-detail" class="btn btn-xs btn-info btn-sm m-b-10 m-l-5">+ Add Detail Pembelian</button>
+</div>
+
+<br>
+
+<div class="modal fade" id="modalCreate" tabindex="-1" role="basic" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content" >
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+				<h4 class="modal-title">Tambah Detail Pembelian</h4>
+			</div>
+
+			<div class="modal-body">
+
+			@csrf 
+			<div class="form-body">
+
+			<div class="form-group">
+				<label>Nama Produk</label>
+					<Select id="list-produk" class="form-control" onchange="setIdProduk(this);">
+						<option value="">Choose the product..</option>
+					</Select>
+				<input type="hidden" id="produks_id" value="" class="form-control">
+				<input type="hidden" id="nama_produk" value="" class="form-control">
+			</div>
+
+			<div class="form-group">
+				<label>Jumlah</label>
+				<input type="text" id="jumlah" class="form-control" name="jumlah">
+			</div>
+
+			<div class="form-group">
+				<label>Harga</label>
+				<input type="text" id="harga" class="form-control" name="harga">
+			</div>
+
+			<div class="form-group">
+				<label>Total</label>
+				<input type="text" id="total" class="form-control" name="total">
+			</div>
+
+			</div>
+				<div class="form-actions">
+			</div>
+
+			</div>
+
+			<div class="modal-footer">
+				<button type="submit" onclick="insertDetailPembelian()" class="btn btn-info">Submit</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- End tambah detail pembelian -->
+
+
+
 
 	<table class="table">
 		<thead>

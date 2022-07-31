@@ -32,9 +32,9 @@
   </div>
 </div>
 
-@if(session('status'))
+@if(Session::has('status'))
 <div class="alert alert-success">
-{{session('status')}}
+{{Session::get('status')}}
 </div>
 @endif
 
@@ -144,54 +144,54 @@ function edit(id)
   });
 }
 
-function saveDataUpdateTD(id)
-{
-  var eDeskripsiProduk = $('#eDeskripsiProduk').val();
-  var eJumlah = $('#eJumlah').val();
-  var eHarga = $('#eHarga').val();
-  var eTotal = $('#eTotal').val();
-  var eNamaSupplier = $('#eNamaSupplier').val();
-  var eAlamatSupplier = $('#eAlamatSupplier').val();
-  var eNoteleponSupplier = $('#eNoteleponSupplier').val();
-  var eTanggalPemesanan = $('#eTanggalPemesanan').val();
-  var eTanggalPenerimaan = $('#eTanggalPenerimaan').val();
-  var eStatus = $('#eStatus').val();
-  $.ajax({
-    type:'POST',
-    url:'{{route("datapembelian.saveData")}}',
-    data:{'_token':'<?php echo csrf_token() ?>',
-        'id':id,
-        'deskripsi_produk':eDeskripsiProduk,
-        'jumlah':eJumlah,
-        'harga':eHarga,
-        'total':eTotal,
-        'nama_supplier':eNamaSupplier,
-        'alamat_supplier':eAlamatSupplier,
-        'notelepon_supplier':eNoteleponSupplier,
-        'tanggal_pemesanan':eTanggalPemesanan,
-        'tanggal_penerimaan':eTanggalPenerimaan,
-        'status':eStatus,
-        },
-    success: function(data){
-      if(data.status=='oke')
-      {
-        // alert(data.msg);
-        $('#td_deskripsi_produk_'+id).html(eDeskripsiProduk)
-        $('#td_jumlah_'+id).html(eJumlah)
-        $('#td_harga_'+id).html(eHarga)
-        $('#td_total_'+id).html(eTotal)
-        $('#td_nama_supplier_'+id).html(eNamaSupplier)
-        $('#td_alamat_supplier_'+id).html(eAlamatSupplier)
-        $('#td_notelepon_supplier_'+id).html(eNoteleponSupplier)
-        $('#td_tanggal_pemesanan_'+id).html(eTanggalPemesanan)
-        $('#td_tanggal_penerimaan_'+id).html(eTanggalPenerimaan)
-        $('#td_status_'+id).html(eStatus)
-        $('#pesan').show();
-        $('#pesan').html(data.msg)
-      }
-    }
-  });
-}
+// function saveDataUpdateTD(id)
+// {
+//   var eDeskripsiProduk = $('#eDeskripsiProduk').val();
+//   var eJumlah = $('#eJumlah').val();
+//   var eHarga = $('#eHarga').val();
+//   var eTotal = $('#eTotal').val();
+//   var eNamaSupplier = $('#eNamaSupplier').val();
+//   var eAlamatSupplier = $('#eAlamatSupplier').val();
+//   var eNoteleponSupplier = $('#eNoteleponSupplier').val();
+//   var eTanggalPemesanan = $('#eTanggalPemesanan').val();
+//   var eTanggalPenerimaan = $('#eTanggalPenerimaan').val();
+//   var eStatus = $('#eStatus').val();
+//   $.ajax({
+//     type:'POST',
+//     url:'{{route("datapembelian.saveData")}}',
+//     data:{'_token':'<?php echo csrf_token() ?>',
+//         'id':id,
+//         'deskripsi_produk':eDeskripsiProduk,
+//         'jumlah':eJumlah,
+//         'harga':eHarga,
+//         'total':eTotal,
+//         'nama_supplier':eNamaSupplier,
+//         'alamat_supplier':eAlamatSupplier,
+//         'notelepon_supplier':eNoteleponSupplier,
+//         'tanggal_pemesanan':eTanggalPemesanan,
+//         'tanggal_penerimaan':eTanggalPenerimaan,
+//         'status':eStatus,
+//         },
+//     success: function(data){
+//       if(data.status=='oke')
+//       {
+//         // alert(data.msg);
+//         $('#td_deskripsi_produk_'+id).html(eDeskripsiProduk)
+//         $('#td_jumlah_'+id).html(eJumlah)
+//         $('#td_harga_'+id).html(eHarga)
+//         $('#td_total_'+id).html(eTotal)
+//         $('#td_nama_supplier_'+id).html(eNamaSupplier)
+//         $('#td_alamat_supplier_'+id).html(eAlamatSupplier)
+//         $('#td_notelepon_supplier_'+id).html(eNoteleponSupplier)
+//         $('#td_tanggal_pemesanan_'+id).html(eTanggalPemesanan)
+//         $('#td_tanggal_penerimaan_'+id).html(eTanggalPenerimaan)
+//         $('#td_status_'+id).html(eStatus)
+//         $('#pesan').show();
+//         $('#pesan').html(data.msg)
+//       }
+//     }
+//   });
+// }
 
 function deleteDataRemoveTR(id)
 {

@@ -32,6 +32,8 @@
 				<h4 class="modal-title">Tambah Detail Pembelian</h4>
 			</div>
 
+			{{-- <form method="POST" id="submitFormDetail"> --}}
+
 			<div class="modal-body">
 
 			@csrf 
@@ -72,6 +74,8 @@
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 			</div>
 
+		{{-- </form> --}}
+
 		</div>
 	</div>
 </div>
@@ -92,7 +96,7 @@
 <!-- End tambah detail pembelian -->
 
 
-<form enctype='multipart/form-data' role="form" method="POST" action="{{url('datapembelian')}}">
+<form enctype='multipart/form-data' role="form" method="POST" action="{{url('datapembelian/createForm')}}">
 @csrf 
 <div class="form-body">
 
@@ -154,6 +158,8 @@
 </table>
 @endsection
 
+
+
 @section('initialscript')
 <script>
 	var listDetailPembelian = [];
@@ -201,6 +207,8 @@
 				"</td>"+
 			"</tr>"
 		);
+		window.location.href = response.routing;
+
 
 	}
 
@@ -244,8 +252,9 @@
 		$.post('{{ route("datapembelian.store") }}', sent, function(response, textStatus) {
 			console.log(response);
 			
-			window.location.replace("http://127.0.0.1:8000/datapembelian");
-			window.location.href = "http://127.0.0.1:8000/datapembelian";
+			// window.location.replace("http://127.0.0.1:8000/datapembelian");
+
+			window.location.href = response.routing;
 		});
 	}
 </script>

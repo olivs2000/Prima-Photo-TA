@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 use App\DataPembelian;
 use App\DetailPembelian;
@@ -53,7 +54,7 @@ class DataPembelianController extends Controller
             'alamat_supplier' => 'required',
             'notelepon_supplier' => 'required',
             'tanggal_pemesanan' => 'required',
-            'tanggal_penerimaan' => 'required',
+            // 'tanggal_penerimaan' => 'required',
             'status' => 'required',
             "detail_pembelian"  => "required|array|min:1",
         ]);
@@ -90,7 +91,13 @@ class DataPembelianController extends Controller
             Log::info("success save detail pembelian-----------------------");
         }       
 
-        return redirect()->route('datapembelian.index')->with('status', 'Data pembelian berhasil tersimpan');
+        // return redirect()->route('datapembelian.index')->with('status', 'Data pembelian berhasil tersimpan');
+
+        Session::flash('status','Data pembelian berhasil tersimpan'); 
+        $rest['status'] = 'Data pembelian berhasil tersimpan';
+        $rest['routing'] = route('datapembelian.index');
+
+        return response()->json($rest,200);
     }
 
     /**
