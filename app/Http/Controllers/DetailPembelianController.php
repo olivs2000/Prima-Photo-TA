@@ -6,6 +6,7 @@ use App\DetailPembelian;
 use App\DataPembelian;
 use App\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use DB;
 
 class DetailPembelianController extends Controller
@@ -49,15 +50,20 @@ class DetailPembelianController extends Controller
     {
         $data=new DetailPembelian();
         
-        $data->data_pembelians_id=$request->get('data_pembelians_id');
-        $data->produks_id=$request->get('produks_id');
-        $data->nama_produk=$request->get('nama_produk');
-        $data->jumlah=$request->get('jumlah');
-        $data->harga=$request->get('harga');
-        $data->total=$request->get('total');
+        $data->data_pembelians_id=$request->data_pembelians_id;
+        $data->produks_id=$request->produks_id;
+        $data->nama_produk=$request->nama_produk;
+        $data->jumlah=$request->jumlah;
+        $data->harga=$request->harga;
+        $data->total=$request->total;
         $data->save();
 
-        return redirect()->route('detailpembelian.index')->with('status', 'Data pembelian berhasil tersimpan');
+        Session::flash('status','Data detail pembelian berhasil tersimpan'); 
+        $rest['status'] = 'Data detail pembelian berhasil tersimpan';
+        $rest['routing'] = url('datapembelian/'.$request->data_pembelians_id.'/edit');
+
+        // return redirect()->route('detailpembelian.index')->with('status', 'Data pembelian berhasil tersimpan');
+        return response()->json($rest,200);
     }
 
     /**
@@ -92,6 +98,8 @@ class DetailPembelianController extends Controller
 
         return response()->json($dataDetailPembelian,200);
     }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -183,6 +191,14 @@ class DetailPembelianController extends Controller
         }
     }
 
-
+    // public function detailPembelian(Request $request)
+    // {
+    //     $queryBuilder=DB::table("detail_pembelians")
+    //                     ->join("produks", "detail_pembelians.produks_id", "=", "id")
+    //                     ->orderBy("tanggal_pemesanan", "ASC")
+    //                     ->select("detail_pembelians.*", "produks.judul_produk")
+    //                     ->get();
+    //     return response()->json($queryBuilder,200);
+    // }
 
 }

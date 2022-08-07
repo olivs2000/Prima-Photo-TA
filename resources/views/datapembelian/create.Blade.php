@@ -35,7 +35,7 @@
 			<div class="modal-body">
 
 			@csrf 
-			<div class="form-body">
+			<div class="form-body" id="#myTable">
 
 			<div class="form-group">
 				<label>Nama Produk</label>
@@ -48,17 +48,17 @@
 
 			<div class="form-group">
 				<label>Jumlah</label>
-				<input type="text" id="jumlah" class="form-control" name="jumlah">
+				<input type="number" id="jumlah" class="form-control" value="0" name="jumlah">
 			</div>
 
 			<div class="form-group">
 				<label>Harga</label>
-				<input type="text" id="harga" class="form-control" name="harga">
+				<input type="number" id="harga" class="form-control" value="0" name="harga">
 			</div>
 
 			<div class="form-group">
 				<label>Total</label>
-				<input type="text" id="total" class="form-control" name="total">
+				<input type="text" id="total" class="form-control" name="total" readonly="readonly">
 			</div>
 
 			</div>
@@ -206,6 +206,26 @@
 		window.location.href = response.routing;
 	}
 
+	$( "#jumlah" ).keyup(function() {
+		var jumlahBarang = parseInt(this.value);
+		var hargaBarang = parseInt($("#harga").val());
+		var totalBarang = jumlahBarang * hargaBarang;
+		if(isNaN(totalBarang)) {
+			totalBarang = 0;
+		}
+		$("#total").val(totalBarang+"");
+	});
+
+	$( "#harga" ).keyup(function() {
+		var jumlahBarang = parseInt($("#jumlah").val());
+		var hargaBarang = parseInt(this.value);
+		var totalBarang = jumlahBarang * hargaBarang;
+		if(isNaN(totalBarang)) {
+			totalBarang = 0;
+		}
+		$("#total").val(totalBarang+"");
+	});
+
 	function setIdProduk(produk){
 		$('#produks_id').val(produk.value);
 		$('#nama_produk').val(produk.options[produk.selectedIndex].text);
@@ -247,9 +267,11 @@
 			console.log(response);
 			
 			// window.location.replace("http://127.0.0.1:8000/datapembelian");
-
 			window.location.href = response.routing;
 		});
 	}
+
+
+	
 </script>
 @endsection

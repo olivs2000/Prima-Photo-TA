@@ -41,7 +41,7 @@
 </div>
 @endif 
 
-<table class="table" id='dataTable'>
+<table class="table" id="table_contoh">
 <thead>
   <tr>
     <th>ID</th>

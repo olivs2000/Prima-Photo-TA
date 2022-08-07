@@ -50,7 +50,7 @@
 
 					<div class="form-group">
 						<label>Harga</label>
-						<input type="text" id="harga" class="form-control" name="harga" value="{{$data->harga}}">
+						<input type="text" id="harga" class="form-control" name="harga" value="{{number_format($data->harga,0)}}">
 					</div>
 
 					<div class="form-group">
@@ -165,11 +165,11 @@
 
 			<div class="form-group">
 				<label>Nama Produk</label>
-					<Select id="list-produk2" class="form-control" onchange="setIdProduk(this);">
+					<Select id="list-produk2" class="form-control" onchange="setIdProduk2(this);">
 						<option value="">Choose the product..</option>
 					</Select>
-				<input type="hidden" id="produks_id" value="" class="form-control">
-				<input type="hidden" id="nama_produk" value="" class="form-control">
+				<input type="hidden" id="produks_id2" value="" class="form-control">
+				<input type="hidden" id="nama_produk2" value="" class="form-control">
 			</div>
 
 			<div class="form-group">
@@ -274,55 +274,65 @@
 	}
 
 	function insertDetailPembelian(){
-		var namaProduk = $('#nama_produk').val();
+		var namaProduk = $('#nama_produk2').val();
 		var jumlah = $('#jumlah2').val();
 		var harga = $('#harga2').val();
-		var id_produk = $('#produks_id').val();
+		var id_produk = $('#produks_id2').val();
 		var total = $('#total2').val();
 		// var total = $('#total').text(); jadikan type lable dulu
 
 		var sent = {
+			_token : '{{ csrf_token() }}',
 			nama_produk: namaProduk,
 			produks_id: id_produk,
-			jumlah2: jumlah,
-			harga2: harga,
-			total2: total
+			jumlah: jumlah,
+			harga: harga,
+			total: total,
+			data_pembelians_id:"{{$data->id}}",
 		}
 
-		listDetailPembelian.push(sent);
+		var url = "{{ route('detailpembelian.store') }}";
 
-		$('#modalCreate').modal('hide');
+		$.post(url, sent, function(response, textStatus) {
+			// console.log(response);
+			
+			window.location.href = response.routing;
+		});
 
-		$('#nama_produk').val('');
-		$('#jumlah2').val('');
-		$('#harga2').val('');
-		$('#produks_id').val('');
-		$('#total2').val('');
-		$("#list-produk2").val("");
-
-		$('#detail-pembelian').append(
-			"<tr>"+
-				"<td>"+
-					namaProduk+
-				"</td>"+
-				"<td>"+
-					jumlah+
-				"</td>"+
-				"<td>"+
-					harga+
-				"</td>"+
-				"<td>"+
-					total+
-				"</td>"+
-				"<td><button onclick="getDetailPembelian({{$detail->id}})"  data-toggle='modal' class="btn btn-xs btn-warning btn-sm m-b-10 m-l-5">"+"Edit"+"</button>"+
-				"</td>"+
-				"<td>"+
-					+
-				"</td>"+
-			"</tr>"
-		);
 		
-		window.location.href = response.routing;
+		// listDetailPembelian.push(sent);
+
+		// $('#modalCreate').modal('hide');
+
+		// $('#nama_produk').val('');
+		// $('#jumlah2').val('');
+		// $('#harga2').val('');
+		// $('#produks_id').val('');
+		// $('#total2').val('');
+		// $("#list-produk2").val("");
+
+		// $('#detail-pembelian').append(
+		// 	"<tr>"+
+		// 		"<td>"+
+		// 			namaProduk+
+		// 		"</td>"+
+		// 		"<td>"+
+		// 			jumlah+
+		// 		"</td>"+
+		// 		"<td>"+
+		// 			harga+
+		// 		"</td>"+
+		// 		"<td>"+
+		// 			total+
+		// 		"</td>"+
+		// 		// "<td><button onclick='getDetailPembelian({{$detail->id}})' data-toggle='modal' class='btn btn-xs btn-warning btn-sm m-b-10 m-l-5'>Edit</button></td>"
+		// 		+
+		// 		// "<td><form method='POST' action='{{route('detailpembelian.destroy')}}'>@csrf<input type='hidden' name='detail_pembelian_id' value='{{$detail->id}}'><input type='hidden' name='data_pembelians_id' value='{{$data->id}}'><input type='submit' value='Delete' href='#modalDelete' data-toggle='modal' class='btn btn-xs btn-danger btn-sm m-b-10 m-l-5'onclick='if(!confirm('Apakah anda yakin?')) return false;'/></form></td>"
+		// 		+
+		// 	"</tr>"
+		// );
+		
+		// window.location.href = response.routing;
 	}
 
 	function setIdProduk(produk){
@@ -330,9 +340,14 @@
 		$('#nama_produk').val(produk.options[produk.selectedIndex].text);
 	}
 
+	function setIdProduk2(produk){
+		$('#produks_id2').val(produk.value);
+		$('#nama_produk2').val(produk.options[produk.selectedIndex].text);
+	}
+
 	$(document).ready(function(){
 		$('#create-detail').on('click', function (e) {
-			$.get("{{ route('get.list.produk') }}", function(response, textStatus){
+			$.get("{{ route('get.list.produk2') }}", function(response, textStatus){
 				response.forEach(produk => {
 					$('#list-produk2').append("<option value='"+produk.id+"'>"+produk.judul_produk+"</option>");
 				});

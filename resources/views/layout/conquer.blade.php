@@ -671,7 +671,8 @@ jQuery(document).ready(function() {
 //    Index.initKnowElements();
 //    Index.initDashboardDaterange();
 //    Tasks.initDashboardWidget();
-   $('#dataTable').DataTable();
+$('#table_contoh').DataTable();
+
 });
 </script>
 @yield('initialscript')

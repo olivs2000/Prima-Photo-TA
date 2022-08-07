@@ -119,6 +119,13 @@ class ProdukController extends Controller
         return response()->json($queryRaw,200);
     }
 
+    public function getListProduk2(Request $request)
+    {
+        $queryRaw=DB::select(DB::raw("select id, judul_produk from produks"));
+
+        return response()->json($queryRaw,200);
+    }
+
     public function cart (Request $request)
     {
         Cart::add('293ad', 'Product 1', 1, 9.99, 550);

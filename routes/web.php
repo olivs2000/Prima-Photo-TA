@@ -262,7 +262,7 @@ Route::post('/detailpembelian/edit/{id}','DetailPembelianController@update')->na
 Route::post('/detailpembelian/destroy','DetailPembelianController@destroy')->name('detailpembelian.destroy');
 Route::get('/detailpembelian/getDetail/{id}','DetailPembelianController@getDetailPembelian')->name('detailpembelian.getDetail');
 
-// Route::get('showDetail/{id}','DataPembelianController@showDetail')->name('datapembelian.showDetail');
+// Route::get('/datapembelian/showDetail/{id}','DataPembelianController@showDetail')->name('datapembelian.showDetail');
 
 // Route::get('datapembelian/{datapembelian}', 'DataPembelianController@showDetail')->name('datapembelian.showDetail');
 
@@ -271,6 +271,8 @@ Route::get('/detailpembelian/getDetail/{id}','DetailPembelianController@getDetai
 // })->name('datapembelian.showDetail');
 
 Route::get('/get-list-produk','ProdukController@getListProduk') ->name('get.list.produk');
+
+Route::get('/get-list-produk2','ProdukController@getListProduk2') ->name('get.list.produk2');
 
 
 //Cart Paket

@@ -68,11 +68,73 @@
 <tr>
   <td>{{$dp->id}}</td>
 
-  <td id='td-deskripsi_produk-{{$dp->id}}'>
-    <a href="datapembelian/showDetail/({{$dp->id}})">{{$dp->deskripsi_produk}}</a>
-    {{-- @foreach($dp->detail_pembelians as $detail)
-      {{$detail->jumlah}} {{$detail->harga}} {{$detail->total}} &nbsp;&nbsp;
-    @endforeach --}}
+  <td id='td-deskripsi_produk-{{$dp->id}}'>{{$dp->deskripsi_produk}}
+
+      <!-- Start modal detail pembelian -->
+      {{-- <div class="page-toolbar">
+        <a href='show-detail' data-toggle='modal'  onclick='datapembelian/showDetail/({{$dp->id}})' >{{$dp->deskripsi_produk}}</a>
+      </div>
+
+       <br>
+
+      <div class="modal fade" id="modalCreate" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content" >
+
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+              <h4 class="modal-title">{{ $data->judul_produk }}</h4>
+            </div>
+              
+              <div class="modal-body">
+                
+              <table class="table" id="detai_pembelian"> 
+              
+              <thead>
+                <tr>
+                <th>Data</th>
+                <th>Hasil</th>
+                </tr>
+              </thead> 
+              
+              <tbody>
+                  <tr>
+                  <th>Nama Produk</th>
+                  <th>Jumlah</th>
+                  <th>Harga</th>
+                  
+                  </tr>
+
+                  <tr>
+                    <td>{{ $data->judul_produk }}</td>
+                    <td>{{ $data->jumlah }}</td>
+                  </tr>
+                  
+                  <tr>
+                  
+                  <td>{{ $data->harga }}</td>
+                  </tr>
+              
+                  <tr> 
+                  <th>Total</th>
+                  <td>{{ $data->total }}</td>
+                  </tr>
+              </tbody> 
+              
+              </table>
+              
+              </div>
+              
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+              
+              
+          </div>
+        </div>
+      </div>  --}}
+      <!-- End modal detail pembelian -->
+
   </td>
 
   <td id='td-stok-{{$dp->id}}'>{{$dp->stok}}</td>
@@ -82,7 +144,6 @@
   <td id='td-tanggal_pemesanan-{{$dp->id}}'>{{$dp->tanggal_pemesanan}}</td>   
   <td id='td-tanggal_penerimaan-{{$dp->id}}'>{{$dp->tanggal_penerimaan}}</td>     
   <td id='td-status-{{$dp->id}}'>    
-
   @if($dp->status == 'proses')
     <span class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">proses</span>
   @else
@@ -193,39 +254,40 @@ function edit(id)
 //   });
 // }
 
-function deleteDataRemoveTR(id)
-{
-  $.ajax({
-    type:'POST',
-    url:'{{route("datapembelian.deleteData")}}',
-    data:{'_token':'<?php echo csrf_token() ?>',
-        'id':id,
-        },
-    success: function(data){
-      if(data.status=='oke')
-      {
-        alert(data.msg);
-        $('#tr_'+id).remove();
-      }
-      else
-      {
-        alert(data.msg); 
-      }
-    }
-  });
-}
+// function deleteDataRemoveTR(id)
+// {
+//   $.ajax({
+//     type:'POST',
+//     url:'{{route("datapembelian.deleteData")}}',
+//     data:{'_token':'<?php echo csrf_token() ?>',
+//         'id':id,
+//         },
+//     success: function(data){
+//       if(data.status=='oke')
+//       {
+//         alert(data.msg);
+//         $('#tr_'+id).remove();
+//       }
+//       else
+//       {
+//         alert(data.msg); 
+//       }
+//     }
+//   });
+// }
 
-function showDetail(data_pembelians_id)
-{
-  $.ajax({
-    type:'POST',
-    url:'{{route("datapembelian.showDetail")}}',
-    data:{'_token':'<?php echo csrf_token() ?>',
-        'data_pembelians_id':data_pembelians_id},
-    success: function(data){
-        $('#showDetail').html(data.msg)}
-  });
-}
+// function showDetail(data_pembelians_id)
+// {
+//   $.ajax({
+//     type:'POST',
+//     url:'{{route("datapembelian.showDetail")}}',
+//     data:{'_token':'<?php echo csrf_token() ?>',
+//         'data_pembelians_id':data_pembelians_id},
+//     success: function(data){
+//         $('#showDetail').html(data.msg)}
+//   });
+// }
+
 
 </script>
 

@@ -86,7 +86,11 @@ class DataPembelianController extends Controller
             $detail->nama_produk=$detailPembelian['nama_produk'];
             $detail->jumlah=$detailPembelian['jumlah'];
             $detail->harga=$detailPembelian['harga'];
-            $detail->total=$detailPembelian['total'];
+            // $detail->total=$detailPembelian['total'];
+
+            $detail->total=$detailPembelian['jumlah*harga'];
+            $detail->total=$detail->jumlah * $detail->harga;
+            
             $detail->save();
             Log::info("success save detail pembelian-----------------------");
         }       
@@ -227,16 +231,16 @@ class DataPembelianController extends Controller
     public function showDetail($id)
     {
         //Cara I
-        $datapembelian=DataPembelian::find($_POST['data_pembelians_id']);
-        $deskripsi_produk=$datapembelian->deskripsi_produk;
-        return response()->json(array(
-            'status'=>'oke',
-            'msg'=>view('datapembelian.showDetail',compact('deskripsi_produk'))->render()
-        ),200);
+        // $datapembelian=DataPembelian::find($_POST['data_pembelians_id']);
+        // $deskripsi_produk=$datapembelian->deskripsi_produk;
+        // return response()->json(array(
+        //     'status'=>'oke',
+        //     'msg'=>view('datapembelian.showDetail',compact('deskripsi_produk'))->render()
+        // ),200);
 
-        //Cara II
-        $datapembelian=DataPembelian::find($id);
-        return view('datapembelian.showDetail', compact('datapembelian, id'));
+        // //Cara II
+        // $datapembelian=DataPembelian::find($id);
+        // return view('datapembelian.showDetail', compact('datapembelian, id'));
 
         //Cara III
     //     $detailpembelian_array = [];
@@ -247,6 +251,12 @@ class DataPembelianController extends Controller
       
     //   return view('datapembelian.showDetail')->with(['data_pembelians' => $data_pembelians, 
     //   'datapembelian' => $datapembelian, 'detail_pembelians' => $detail_Pembelians, 'detailpembelian_array'=>$detailpembelian_array]);
+
+        //Cara IV
+        $deskripsi_produk = 'Detail Pembelian';
+        $dp = DataPembelian::find($id);
+
+        return view('datapembelian.showDetail', compact('deskripsi_produk, id'));
     }
 
 }

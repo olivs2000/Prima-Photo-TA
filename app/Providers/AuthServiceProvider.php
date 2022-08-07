@@ -62,5 +62,15 @@ class AuthServiceProvider extends ServiceProvider
             : Response::deny('Hanya admin yang dapat melihat.')
         );
         });
+
+
+        //Home Pelanggan
+        Gate::define('home-permission' ,function($user)
+        {
+            return ($user->status=='pelanggan'
+            ? Response::allow()
+            : Response::deny('Login sebagai pelanggan')
+        );
+        });
     }
 }
