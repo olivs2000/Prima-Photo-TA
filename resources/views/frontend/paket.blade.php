@@ -46,22 +46,22 @@
 	<!-- Cart Item -->
 	<div class="media">
 		<a class="pull-left" href="#!">
-			<img class="media-object" src="images/shop/cart/cart-1.jpg" alt="image" />
+			<img class="media-object" src="https://images.unsplash.com/photo-1607947909130-bf48ac6884b9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="image" />
 		</a>
 		<div class="media-body">
-			<h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
+			<h4 class="media-heading"><a href="images/shop/oliv.jpg">Baby&Kids Photography Single</a></h4>
 			<div class="cart-price">
 				<span>1 x</span>
-				<span>1250.00</span>
+				<span>1.000.000</span>
 			</div>
-			<h5><strong>$1200</strong></h5>
+			<h5><strong>Rp. 1.000.000</strong></h5>
 		</div>
 		<a href="#!" class="remove"><i class="tf-ion-close"></i></a>
 	</div><!-- / Cart Item -->
 
 	<div class="cart-summary">
 		<span>Total</span>
-		<span class="total-price">$1799.00</span>
+		<span class="total-price">Rp. 1.000.000</span>
 	</div>
 	<ul class="text-center cart-buttons">
 		<li><a href="cart.html" class="btn btn-small">View Cart</a></li>
@@ -132,7 +132,11 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="content">
-					<h3 class="page-name">Paket</h3>
+					<h1 class="page-name">Paket</h1>
+					<ol class="breadcrumb">
+						<li><a href="index.html">Home</a></li>
+						<li class="active">paket</li>
+					</ol>
 				</div>
 			</div>
 		</div>
@@ -141,23 +145,20 @@
 
 <br><br><br>
 
-@foreach($pakets as $p)
+@foreach($pakets as $paket)
 <div class="col-md-4">
 <div class="product-item">
 <div class="card">
-<img src="https://images.unsplash.com/photo-1607947909130-bf48ac6884b9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="paket alumni 1" style="width:100%"><br>
-<h4>{{$p->judul_paket}}</h4> <br>
-<p class="price">{{$p->harga}}</p><br>
-<!-- <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p><br />  -->
-<a href="{{url('paket/'.$p->id)}}" class="btn-solid-border">view details</a>  <br><br> 
-<a href="{{url('add-to-cart/'.$p->id)}}" class="btn-main">Add to Cart</a> <br><br> 
-<!-- <p><button>Add to Cart</button></p> -->
+<img src="{{$paket->gambar}}" alt="">
+<h4>{{$paket->judul_paket}}</h4> <br>
+<p class="price">{{$paket->harga}}</p><br>
+<a href="{{url('babykidssingle')}}" class="btn-solid-border">view details</a>  <br><br> 
+<a href="#" class="btn-main">Add to Cart</a> <br><br> 
 </div>
 </div>
 </div>
 @endforeach
-
-    
+  
 <!-- Main jQuery -->
 <script src="plugins/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.1 -->

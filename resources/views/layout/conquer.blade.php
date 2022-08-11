@@ -517,6 +517,14 @@ License: You must have a valid license purchased only from themeforest(the above
 			</li> -->
 
 
+			<li >
+				<a href="{{url('dataadmin')}}">
+				<i class="icon-user"></i>
+				<span class="title">Data Admin</span>
+				
+				</a>
+				
+			</li>
 
 			<li >
 				<a href="javascript:;">
@@ -526,15 +534,15 @@ License: You must have a valid license purchased only from themeforest(the above
 				</a>
 				<ul class="sub-menu">
 					<li>
-						<a href="{{url('jadwalfotografer')}}" >
-					    <i class="icon-calendar"></i>
-				        <span class="title">Jadwal Fotografer</span>
-				        </a>
-					</li>
-					<li>
 						<a href="{{url('datafotografer')}}" >
 					    <i class="icon-user"></i>
 				        <span class="title">Data Fotografer</span>
+				        </a>
+					</li>
+					<li>
+						<a href="{{url('jadwalfotografer')}}" >
+					    <i class="icon-calendar"></i>
+				        <span class="title">Jadwal Fotografer</span>
 				        </a>
 					</li>
 					<li>
@@ -553,6 +561,12 @@ License: You must have a valid license purchased only from themeforest(the above
 				<span class="arrow "></span>
 				</a>
 				<ul class="sub-menu">
+					<li>
+						<a href="{{url('datapelanggan')}}" >
+					    <i class="icon-user"></i>
+				        <span class="title">Data Pelanggan</span>
+				        </a>
+					</li>
 					<li>
 						<a href="{{url('datapemesanan')}}" >
 					    <i class="icon-folder"></i>

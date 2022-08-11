@@ -58,11 +58,10 @@ class DetailPembelianController extends Controller
         $data->total=$request->total;
         $data->save();
 
-        Session::flash('status','Data detail pembelian berhasil tersimpan'); 
-        $rest['status'] = 'Data detail pembelian berhasil tersimpan';
+        Session::flash('status','Detail pembelian berhasil tersimpan'); 
+        $rest['status'] = 'Detail pembelian berhasil tersimpan';
         $rest['routing'] = url('datapembelian/'.$request->data_pembelians_id.'/edit');
 
-        // return redirect()->route('detailpembelian.index')->with('status', 'Data pembelian berhasil tersimpan');
         return response()->json($rest,200);
     }
 

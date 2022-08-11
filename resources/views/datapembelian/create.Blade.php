@@ -165,7 +165,6 @@
 		var harga = $('#harga').val();
 		var id_produk = $('#produks_id').val();
 		var total = $('#total').val();
-		// var total = $('#total').text(); jadikan type lable dulu
 
 		var sent = {
 			nama_produk: namaProduk,
@@ -203,7 +202,11 @@
 			"</tr>"
 		);
 		
-		window.location.href = response.routing;
+		var url = "{{ route('detailpembelian.store') }}";
+
+		$.post(url, sent, function(response, textStatus) {
+			window.location.href = response.routing;
+		});
 	}
 
 	$( "#jumlah" ).keyup(function() {

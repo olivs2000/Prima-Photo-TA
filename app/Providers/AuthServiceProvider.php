@@ -19,6 +19,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\DataPemesanan' => 'App\Policies\DataPemesananPolicy',
         'App\DetailPemesanan' => 'App\Policies\DetailPemesananPolicy',
         'App\DataPembelian' => 'App\Policies\DataPembelianPolicy',
+        'App\DataAdmin' => 'App\Policies\DataAdminPolicy',
         'App\Email' => 'App\Policies\EmailPolicy'
     ];
 
@@ -55,6 +56,7 @@ class AuthServiceProvider extends ServiceProvider
         );
         });
 
+        //Halaman data pembelian
         Gate::define('view-permission' ,function($user)
         {
             return ($user->status=='admin'

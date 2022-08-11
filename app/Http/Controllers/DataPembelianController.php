@@ -24,7 +24,6 @@ class DataPembelianController extends Controller
         ->select("data_pembelians.*", "deskripsi_produk")
         ->get();
 
-        // dd($queryBuilder);
         return view('datapembelian.index',['data'=>$queryBuilder]);
     }
 

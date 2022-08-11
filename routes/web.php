@@ -7,6 +7,8 @@ use App\Http\Controllers\DataPemesananController;
 use App\Http\Controllers\DetailPemesananController;
 use App\Http\Controllers\DataPembelianController;
 use App\Http\Controllers\DetailPembelianController;
+use App\Http\Controllers\DataPelangganController;
+use App\Http\Controllers\AdminStudioController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\PenyewaanAlatController;
 use App\Http\Controllers\ProdukController;
@@ -231,6 +233,7 @@ Route::get('/productpaket2', function () {
 
 
 Route::resource('datafotografer', 'DataFotograferController');
+
 Route::post('/datafotografer/createForm','DataFotograferController@createForm')->name('datafotografer.create');
 Route::post('/datafotografer/editForm','DataFotograferController@editForm')->name('datafotografer.editForm');
 Route::post('/datafotografer/deleteData','DataFotograferController@deleteData')->name('datafotografer.deleteData');
@@ -244,6 +247,10 @@ Route::post('/jadwalfotografer/saveData','JadwalFotograferController@saveData')-
 
 Route::resource('/datapemesanan','PemesananController');
 
+Route::resource('/dataadmin','AdminStudioController');
+
+Route::resource('/datapelanggan','DataPelangganController');
+
 Route::resource('/detailpemesanan','DetailPemesananController');
 Route::post('/detailpemesanan/editForm','DetailPemesananController@editForm')->name('detailpemesanan.editForm');
 Route::post('/detailpemesanan/edit','DetailPemesananController@edit')->name('detailpemesanan.edit');
@@ -255,20 +262,13 @@ Route::post('/datapemebelian/edit','DataPembelianController@edit')->name('datape
 Route::post('/datapemebelian/editForm','DataPembelianController@editForm')->name('datapembelian.editForm');
 Route::post('/datapemebelian/deleteData','DataPembelianController@deleteData')->name('datapembelian.deleteData');
 Route::post('/datapembelian/saveData','DatapembelianController@saveData')->name('datapembelian.saveData');
-Route::post('/datapembelian/showDetail','DataPembelianController@showDetail')->name('datapembelian.showDetail');
 
-Route::resource('/detailpembelian','DetailPembelianController',['except' => ['update','destroy']]);
+// Route::post('/datapemebelian/create','DataPembelianController@create')->name('datapembelian.create');
+Route::resource('/detailpembelian','DetailPembelianController',['except' => ['store','update','destroy']]);
+Route::post('/detailpembelian/create','DetailPembelianController@store')->name('detailpembelian.store');
 Route::post('/detailpembelian/edit/{id}','DetailPembelianController@update')->name('detailpembelian.edit');
 Route::post('/detailpembelian/destroy','DetailPembelianController@destroy')->name('detailpembelian.destroy');
 Route::get('/detailpembelian/getDetail/{id}','DetailPembelianController@getDetailPembelian')->name('detailpembelian.getDetail');
-
-// Route::get('/datapembelian/showDetail/{id}','DataPembelianController@showDetail')->name('datapembelian.showDetail');
-
-// Route::get('datapembelian/{datapembelian}', 'DataPembelianController@showDetail')->name('datapembelian.showDetail');
-
-// Route::get('/showDetail', function () {
-//     return view('datapembelian.showDetail'); 
-// })->name('datapembelian.showDetail');
 
 Route::get('/get-list-produk','ProdukController@getListProduk') ->name('get.list.produk');
 

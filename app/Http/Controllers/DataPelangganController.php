@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\AdminStudio;
+use App\Pelanggan;
 use Illuminate\Http\Request;
 use DB;
 
-class AdminStudioController extends Controller
+class DataPelangganController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class AdminStudioController extends Controller
      */
     public function index()
     {
-        $queryRaw=DB::select(DB::raw("select * from admin_studios"));
-        return view('dataadmin.index',['data'=>$queryRaw]);
+        $queryRaw=DB::select(DB::raw("select * from pelanggans"));
+        return view('datapelanggan.index',['data'=>$queryRaw]);
     }
 
     /**
@@ -80,20 +80,20 @@ class AdminStudioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AdminStudio $dataadmin)
+    public function destroy(DataPelanggan $datapelanggan)
     {
         $this->authorize('delete-permission');
         try
         {
-            $dataadmin->delete();
-            return redirect()->route('dataadmin.index')->with('status', 'Data admin berhasil dihapus');
+            $datapelanggan->delete();
+            return redirect()->route('datapelanggan.index')->with('status', 'Data pelanggan berhasil dihapus');
         }
         catch(\PDOException $ex)
         {
-            $msg = 'Terjadi kesalahan! Gagal menghapus data admin';
-            return redirect()->route('dataadmin.index')->with('error', $msg);
+            $msg = 'Terjadi kesalahan! Gagal menghapus data pelanggan';
+            return redirect()->route('datapelanggan.index')->with('error', $msg);
         }
     }
 
-    
+  
 }

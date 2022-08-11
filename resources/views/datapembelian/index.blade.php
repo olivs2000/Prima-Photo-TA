@@ -253,42 +253,6 @@ function edit(id)
 //     }
 //   });
 // }
-
-// function deleteDataRemoveTR(id)
-// {
-//   $.ajax({
-//     type:'POST',
-//     url:'{{route("datapembelian.deleteData")}}',
-//     data:{'_token':'<?php echo csrf_token() ?>',
-//         'id':id,
-//         },
-//     success: function(data){
-//       if(data.status=='oke')
-//       {
-//         alert(data.msg);
-//         $('#tr_'+id).remove();
-//       }
-//       else
-//       {
-//         alert(data.msg); 
-//       }
-//     }
-//   });
-// }
-
-// function showDetail(data_pembelians_id)
-// {
-//   $.ajax({
-//     type:'POST',
-//     url:'{{route("datapembelian.showDetail")}}',
-//     data:{'_token':'<?php echo csrf_token() ?>',
-//         'data_pembelians_id':data_pembelians_id},
-//     success: function(data){
-//         $('#showDetail').html(data.msg)}
-//   });
-// }
-
-
 </script>
 
 @endsection

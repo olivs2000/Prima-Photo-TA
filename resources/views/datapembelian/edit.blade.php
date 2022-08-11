@@ -55,7 +55,7 @@
 
 					<div class="form-group">
 						<label>Total</label>
-						<input type="text" id="total" class="form-control" name="total" value="{{$data->total}}">
+						<input type="text" id="total" class="form-control" name="total" readonly="readonly" value="{{$data->total}}">
 					</div>
 
 					</div>		
@@ -184,7 +184,7 @@
 
 			<div class="form-group">
 				<label>Total</label>
-				<input type="text" id="total2" class="form-control" name="total">
+				<input type="text" id="total2" class="form-control" name="total" readonly="readonly">
 			</div>
 
 			</div>
@@ -258,7 +258,6 @@
 		var harga = $('#harga').val();
 		var id_produk = $('#produks_id').val();
 		var total = $('#total').val();
-		// var total = $('#total').text(); jadikan type lable dulu
 
 		var sent = {
 			nama_produk: namaProduk,
@@ -269,8 +268,6 @@
 		}
 
 		listDetailPembelian.push(sent);
-
-		// $('#modalCreate').modal('hide');
 	}
 
 	function insertDetailPembelian(){
@@ -294,46 +291,49 @@
 		var url = "{{ route('detailpembelian.store') }}";
 
 		$.post(url, sent, function(response, textStatus) {
-			// console.log(response);
-			
 			window.location.href = response.routing;
 		});
-
-		
-		// listDetailPembelian.push(sent);
-
-		// $('#modalCreate').modal('hide');
-
-		// $('#nama_produk').val('');
-		// $('#jumlah2').val('');
-		// $('#harga2').val('');
-		// $('#produks_id').val('');
-		// $('#total2').val('');
-		// $("#list-produk2").val("");
-
-		// $('#detail-pembelian').append(
-		// 	"<tr>"+
-		// 		"<td>"+
-		// 			namaProduk+
-		// 		"</td>"+
-		// 		"<td>"+
-		// 			jumlah+
-		// 		"</td>"+
-		// 		"<td>"+
-		// 			harga+
-		// 		"</td>"+
-		// 		"<td>"+
-		// 			total+
-		// 		"</td>"+
-		// 		// "<td><button onclick='getDetailPembelian({{$detail->id}})' data-toggle='modal' class='btn btn-xs btn-warning btn-sm m-b-10 m-l-5'>Edit</button></td>"
-		// 		+
-		// 		// "<td><form method='POST' action='{{route('detailpembelian.destroy')}}'>@csrf<input type='hidden' name='detail_pembelian_id' value='{{$detail->id}}'><input type='hidden' name='data_pembelians_id' value='{{$data->id}}'><input type='submit' value='Delete' href='#modalDelete' data-toggle='modal' class='btn btn-xs btn-danger btn-sm m-b-10 m-l-5'onclick='if(!confirm('Apakah anda yakin?')) return false;'/></form></td>"
-		// 		+
-		// 	"</tr>"
-		// );
-		
-		// window.location.href = response.routing;
 	}
+
+	$( "#jumlah" ).keyup(function() {
+		var jumlahBarang = parseInt(this.value);
+		var hargaBarang = parseInt($("#harga").val());
+		var totalBarang = jumlahBarang * hargaBarang;
+		if(isNaN(totalBarang)) {
+			totalBarang = 0;
+		}
+		$("#total").val(totalBarang+"");
+	});
+
+	$( "#harga" ).keyup(function() {
+		var jumlahBarang = parseInt($("#jumlah").val());
+		var hargaBarang = parseInt(this.value);
+		var totalBarang = jumlahBarang * hargaBarang;
+		if(isNaN(totalBarang)) {
+			totalBarang = 0;
+		}
+		$("#total").val(totalBarang+"");
+	});
+
+	$( "#jumlah2" ).keyup(function() {
+		var jumlahBarang = parseInt(this.value);
+		var hargaBarang = parseInt($("#harga2").val());
+		var totalBarang = jumlahBarang * hargaBarang;
+		if(isNaN(totalBarang)) {
+			totalBarang = 0;
+		}
+		$("#total2").val(totalBarang+"");
+	});
+
+	$( "#harga2" ).keyup(function() {
+		var jumlahBarang = parseInt($("#jumlah2").val());
+		var hargaBarang = parseInt(this.value);
+		var totalBarang = jumlahBarang * hargaBarang;
+		if(isNaN(totalBarang)) {
+			totalBarang = 0;
+		}
+		$("#total2").val(totalBarang+"");
+	});
 
 	function setIdProduk(produk){
 		$('#produks_id').val(produk.value);
@@ -374,12 +374,12 @@
 				$('#total').val(response.total);
 				$('#produks_id').val(response.produks_id);
 				$('#nama_produk').val(response.nama_produk);
+
 				var urlUpdate = "{{route('detailpembelian.edit',':id')}}";
 				urlUpdate = urlUpdate.replace(':id',idDetail);
 				$('#submitFormDetail').attr('action', urlUpdate);
 				$('#modalEdit').modal('show');
 			});
-			
 		});
 	}
 

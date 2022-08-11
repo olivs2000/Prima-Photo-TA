@@ -2,7 +2,7 @@
 
 @section('content')
 <h3 class="page-title">
-	Data Pemesanan <small></small>
+	Data Pelanggan <small></small>
 </h3>
 <div class="page-bar">
 <ul class="page-breadcrumb">
@@ -24,27 +24,26 @@
     <th>Nama</th>
     <th>No Telepon</th>
     <th>Email</th>
-    <th>Alamat</th>
-    <th>Lokasi Acara</th>
-    <th>Tanggal Acara</th>
-    <th>Waktu Acara</th>
-    <th>Total</th>  
+    {{-- <th colspan='1'></th> --}}
   <tr>
 </thead>
 
 <tbody>
 
-@foreach($data as $p)
+@foreach($data as $dp)
 <tr>
-  <td>{{$p->id}}</td>
-  <td>{{$p->nama}}</td>
-  <td>{{$p->notelepon}}</td>
-  <td>{{$p->email}}</td>
-  <td>{{$p->alamat}}</td>
-  <td>{{$p->lokasi_acara}}</td>
-  <td>{{$p->tanggal_acara}}</td>
-  <td>{{$p->waktu_acara}}</td>
-  <td>Rp. {{$p->total}}</td>  
+  <td>{{$dp->id}}</td>
+  <td>{{$dp->nama}}</td>
+  <td>{{$dp->notelepon}}</td>
+  <td>{{$dp->email}}</td>
+
+  {{-- <td>
+    <form method="POST" action="{{url('datapelanggan/'.$dp->id )}}">
+      @csrf
+      @method('DELETE')
+      <input type='submit' value='Delete' class='btn btn-xs btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
+    </form>
+  </td> --}}
 </tr>
 
 @endforeach
@@ -52,6 +51,14 @@
 </table>
 
 @endsection
+
+
+
+
+
+
+
+
 
 
 

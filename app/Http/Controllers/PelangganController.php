@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pelanggan;
+use App\pelanggan;
 use Illuminate\Http\Request;
 use DB;
 
@@ -15,7 +15,7 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        $queryRaw=DB::select(DB::raw("select * from users"));
+        $queryRaw=DB::select(DB::raw("select * from user"));
         return view('pelanggan.index',['data'=>$queryRaw]);
     }
 
@@ -43,10 +43,10 @@ class PelangganController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\pelanggan  $pelanggan
+     * @param  \App\Pelanggan  $datapelanggan
      * @return \Illuminate\Http\Response
      */
-    public function show(pelanggan $pelanggan)
+    public function show(DataPelanggan $datapelanggan)
     {
         //
     }
@@ -54,10 +54,10 @@ class PelangganController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\pelanggan  $pelanggan
+     * @param  \App\Pelanggan  $datapelanggan
      * @return \Illuminate\Http\Response
      */
-    public function edit(pelanggan $pelanggan)
+    public function edit(DataPelanggan $datapelanggan)
     {
         //
     }
@@ -66,10 +66,10 @@ class PelangganController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\pelanggan  $pelanggan
+     * @param  \App\Pelanggan  $datapelanggan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, pelanggan $pelanggan)
+    public function update(Request $request, DataPelanggan $datapelanggan)
     {
         //
     }
@@ -80,8 +80,10 @@ class PelangganController extends Controller
      * @param  \App\Models\pelanggan  $pelanggan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(pelanggan $pelanggan)
+    public function destroy(DataPelanggan $datapelanggan)
     {
-        //
+      
     }
+
+
 }
