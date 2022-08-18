@@ -1,7 +1,7 @@
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>Detail Produk</title>
+  <title>Detail Paket</title>
 
   <!-- Mobile Specific Metas
   ================================================== -->
@@ -32,9 +32,7 @@
 <section class="top-header">
 <div class="container">
 <div class="row">
-<div class="col-md-4 col-xs-12 col-sm-4">
-
-</div>
+<div class="col-md-4 col-xs-12 col-sm-4"></div>
 <div class="col-md-4 col-xs-12 col-sm-4">
 <!-- Site Logo -->
 <div class="logo text-center">
@@ -110,20 +108,25 @@
 						<a href="{{url('pelanggan')}}">Home</a>
 					</li><!-- / Home -->
 
+					<!-- Paket -->
+					<li class="dropdown ">
+						<a href="{{url('paket')}}">Paket</a>
+					</li><!-- / Paket -->
+
 					<!-- Produk -->
 					<li class="dropdown ">
 						<a href="{{url('produk')}}">Produk</a>
 					</li><!-- / Produk -->
 
-					<!-- Paket -->
-					<li class="dropdown ">
-						<a href="{{url('paket')}}">Paket Fotografi</a>
-					</li><!-- / Paket -->
-
 					<!-- layanan -->
 					<li class="dropdown ">
 						<a href="{{url('layanan')}}">Layanan</a>
 					</li><!-- / layanan-->
+
+					<!-- Penyewaan Alat -->
+					<li class="dropdown ">
+						<a href="{{url('penyewaanalat')}}">Sewa Alat</a>
+					</li><!-- / Penyewaan Alat -->
 
 				</ul><!-- / .nav .navbar-nav -->
 
@@ -132,12 +135,15 @@
 		</div><!-- / .container -->
 	</nav>
 </section>
+
 <section class="single-product">
-	<div class="container">
+<div class="container">
+
+@foreach($pakets as $paket)
 
 <div class="col-md-7">
 <div class="single-product-details">
-<h2>Album Foto</h2>
+<h2>{{$paket->judul_paket}}</h2>
 
 
 <!-- ini -->
@@ -152,13 +158,13 @@
 <!-- Wrapper for slides -->
 <div class="carousel-inner" role="listbox">
 	<div class="item active">
-	<img src="https://images.unsplash.com/photo-1621413412189-c1b47c66f70b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80">
+	<img src="https://images.unsplash.com/photo-1607947909130-bf48ac6884b9?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870">
 	</div>
 	<div class="item">
-	<img src="https://images.unsplash.com/photo-1581403339300-ac621813a3b9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80">
+	<img src="https://images.unsplash.com/photo-1616843777726-2b35ac7c4215?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870">
 	</div>
 	<div class="item">
-	<img src="https://images.unsplash.com/photo-1600283349832-a9c60f58a46f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80">
+	<img src="https://eyewanderphoto.com/assets/uploads/portfolio/_width900height600/newborn_batonrouge.jpg">
 	</div>
 </div>
 
@@ -166,30 +172,13 @@
 </section>
 <!-- ini-->
 
-<p class="product-price">Rp. 100.000 - Rp. 160.000</p>
+<p class="product-price">Harga : Rp. {{$paket->harga}}</p>
 
-<p>Album foto isi 10 sheets standar, uk 26cmX32cm (100.000), album foto isi 10 sheets berbingkai, uk 35cmX35cm (120.000),
-    album foto isi 15 sheets standar, uk 26cmX32cm (130.000), album foto isi 15 sheets berbingkai, uk 35cmX35cm (160.000),
-    warna sheets hitam, ukuran 35cmX35cm</p>
+<p>Durasi : {{$paket->durasi}}</p>
 
-<div class="product-size">
-<span>Jenis Album:</span>
-<select class="form-control">
-	<option>--Album--</option>
-	<option>Album 10 sheets standar</option>
-	<option>Album 10 sheets berbingkai</option>
-	<option>Album 15 sheets standar</option>
-	<option>Album 15 sheets berbingkai</option>
-</select>
-</div>
+<p>Jumlah Jepretan : {{$paket->jumlah_jepretan}} jepretan</p>
 
-<div class="product-quantity">
-	<span>Jumlah:</span>
-	<div class="product-quantity-slider">
-		<input id="product-quantity" type="text" value="0" name="product-quantity">
-	</div>
-</div>
-
+<p>Keterangan : {{$paket->keterangan}}</p>
 <br>
 
 <a href="cart.html" class="btn btn-main mt-20">Add To Cart</a>
@@ -197,8 +186,11 @@
 </div>
 </div>
 
+@endforeach
+
 </div>
 </section>
+
 
 
 

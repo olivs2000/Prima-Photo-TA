@@ -22,13 +22,15 @@
   <link rel="stylesheet" href="css/styleaviato.css">
 
 
-<section class="page-header">
+  <section class="page-header">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="content">
 					<h1 class="page-name">Checkout</h1>
 					<ol class="breadcrumb">
+						{{-- <li><a href="index.html">Home</a></li>
+						<li class="active">collaborate</li> --}}
 					</ol>
 				</div>
 			</div>
@@ -140,23 +142,25 @@
                      </div>
                      <br><br>
 
-<section class="page-header">
-	<div class="container">
-			<div class="col-md-10">
-            <h6 class="page-name">Pembayaran dapat dilakukan menggunakan:</h6>
-            <h6 class="page-name">No VIrtual Account BNI: 8578149566949804</h6>
-            <h6 class="page-name">No Rekening BNI: 0097927804</h6>
-            <h6 class="page-name">No VIrtual Account BCA: 8735089566949804</h6>
-            <h6 class="page-name">No Rekening BCA: 2373089804</h6>
-			</div>
-		</div>
-	</div>
-</section>
+                     <section class="page-header">
+                        <div class="container">
+                              <div class="col-md-10">
+                                 <h6 class="page-name">Pembayaran dapat dilakukan menggunakan:</h6>
+                                 <h6 class="page-name">No VIrtual Account BNI: 8578149566949804</h6>
+                                 <h6 class="page-name">No Rekening BNI: 0097927804</h6>
+                                 <h6 class="page-name">No VIrtual Account BCA: 8735089566949804</h6>
+                                 <h6 class="page-name">No Rekening BCA: 2373089804</h6>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
                      
-
                   </div>
                </div>
             </div>
+
+
+            
          </div>
       </div>
    </div>

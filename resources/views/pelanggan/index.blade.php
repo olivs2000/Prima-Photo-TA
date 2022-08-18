@@ -62,7 +62,7 @@
                 				<a class="nav-link login-button" href="{{url('login')}}"> Login </a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link text-white add-button" href="{{url('pelanggan/collaborate')}}"> Collaborate</a>
+								<a class="nav-link text-white add-button" href="{{url('collaborate')}}"> Collaborate</a>
 							</li>
 						</ul>
 					</div>

@@ -194,7 +194,6 @@ class DataPembelianController extends Controller
         $id=$request->get('id');
         $datapembelian=DataPembelian::find($id);
         $datapembelian->deskripsi_produk=$request->get('deskripsi_produk');
-        // $datapembelian->stok=$request->get('stok');
         $datapembelian->nama_supplier=$request->get('nama_supplier');
         $datapembelian->alamat_supplier=$request->get('alamat_supplier');
         $datapembelian->notelepon_supplier=$request->get('notelepon_supplier');

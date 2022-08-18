@@ -16,11 +16,7 @@ class PaketController extends Controller
     public function index()
     {
         $queryRaw=DB::select(DB::raw("select * from pakets"));
-        return view('paket.index',['paket'=>$queryRaw]);
-
-        // $paket = Pakets::all();
-        // return view('paket.index', compact('paket'));
-
+        return view('paket.index',['pakets'=>$queryRaw]);
     }
 
     /**
@@ -87,6 +83,16 @@ class PaketController extends Controller
     public function destroy(Paket $paket)
     {
         //
+    }
+
+    public function detailPaket(Request $request, Paket $paket)
+    {
+        $paket->judul_produk=$request->get('judul_produk');
+        $paket->gambar=$request->get('gambar');
+        $paket->durasi=$request->get('durasi');
+        $paket->jumlah_jepretan=$request->get('jumlah_jepretan');
+        $paket->harga=$request->get('harga');
+        $paket->keterangan=$request->get('keterangan');
     }
 
     public function front_index()

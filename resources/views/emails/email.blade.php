@@ -1,15 +1,12 @@
 @component('mail::message')
+# Pemesanan Anda Sedang di Proses
 
-<h1> {{ $details['title'] }} </h1>
-<h1> {{ $details['body'] }} </h1>
+The body of your message.
 
 @component('mail::button', ['url' => ''])
-    
+Tampil
 @endcomponent
 
-Thanks, <br>
+Thanks,<br>
 {{ config('app.name') }}
-
 @endcomponent
-
-

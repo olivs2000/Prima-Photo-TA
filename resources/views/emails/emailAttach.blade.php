@@ -1,15 +1,12 @@
 @component('mail::message')
+# Prima Photo
 
-<h1> {{ $details['title'] }} </h1>
-<h1> {{ $details['body'] }} </h1>
+Detail Pemesanan Anda
 
 @component('mail::button', ['url' => ''])
-    
+Tampilkan
 @endcomponent
 
-Thanks, <br>
+Thanks,<br>
 {{ config('app.name') }}
-
 @endcomponent
-
-

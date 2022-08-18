@@ -16,7 +16,7 @@ class ProdukController extends Controller
     public function index()
     {
         $queryRaw=DB::select(DB::raw("select * from produks"));
-        return view('produk.index',['data'=>$queryRaw]);
+        return view('produk.index',['produks'=>$queryRaw]);
     }
 
     /**

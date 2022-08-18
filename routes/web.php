@@ -1,6 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use Illuminate\Auth\Event\Login;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\JadwalFotograferController;
 use App\Http\Controllers\DataFotograferController;
 use App\Http\Controllers\DataPemesananController;
@@ -14,6 +16,10 @@ use App\Http\Controllers\PenyewaanAlatController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\KonfirmasiController;
+use App\Http\Controllers\CollaborateController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +37,17 @@ Route::view('/', 'auth/login');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Route::get('email', [MailController::class,'index']);
+
+Route::get('email', [EmailController::class,'kirim']);
+Route::get('attach', [EmailController::class,'attach']);
+Route::get('pesan', [EmailController::class,'notif']);
+
 Route::resource('checkout','CheckoutController');
+
+Route::resource('konfirmasi','KonfirmasiController');
+
+Route::resource('collaborate','CollaborateController');
 
 Route::resource('pelanggan','UserController');
 
@@ -157,6 +173,7 @@ Route::get('/albumfoto', function () {
 
 // START PAKET //
 Route::resource('paket','PaketController');
+Route::get('paket/{id}', 'PaketController@detailPaket');
 
 Route::get('/babykidssingle', function () {
     return view('paket.babykidssingle'); 

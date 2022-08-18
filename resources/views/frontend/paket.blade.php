@@ -158,6 +158,7 @@
 </div>
 </div>
 @endforeach
+
   
 <!-- Main jQuery -->
 <script src="plugins/jquery/dist/jquery.min.js"></script>

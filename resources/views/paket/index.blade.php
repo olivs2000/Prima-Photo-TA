@@ -20,7 +20,6 @@
 <link rel="stylesheet" href="css/styleaviato.css">
 
 <br><br><br>
-
 <!-- Start Top Header Bar -->
 <section class="top-header">
 <div class="container">
@@ -144,15 +143,15 @@
 </section>
 
 <br><br><br>
-
 @foreach($pakets as $paket)
+
 <div class="col-md-4">
 <div class="product-item">
 <div class="card">
-<img src="{{$paket->gambar}}" alt="">
+<img src="{{$paket->gambar}}" alt="" style="width:100%">
 <h4>{{$paket->judul_paket}}</h4> <br>
 <p class="price">{{$paket->harga}}</p><br>
-<a href="{{url('babykidssingle')}}" class="btn-solid-border">view details</a>  <br><br> 
+<a href="{{url($paket->id)}}" class="btn-solid-border">view details</a>  <br><br> 
 <a href="#" class="btn-main">Add to Cart</a> <br><br> 
 </div>
 </div>
@@ -183,4 +182,3 @@
 <!-- Main Js File -->
 <script src="js/scriptaviato.js"></script>
 
-    

@@ -11,9 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-     
-        $this->call(DataFotoSeeder::class);
-        $this->call(dataCetakSeeder::class);
 
         // $this->call(UserSeeder::class);
     }

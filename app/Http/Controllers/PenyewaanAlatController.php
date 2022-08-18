@@ -16,7 +16,7 @@ class PenyewaanAlatController extends Controller
     public function index()
     {
         $queryRaw=DB::select(DB::raw("select * from penyewaan_alats"));
-        return view('penyewaanalat.index',['data'=>$queryRaw]);
+        return view('penyewaanalat.index',['penyewaanalats'=>$queryRaw]);
     }
 
     /**

@@ -132,12 +132,15 @@
 		</div><!-- / .container -->
 	</nav>
 </section>
+
 <section class="single-product">
-	<div class="container">
+<div class="container">
+
+@foreach($produks as $produk)
 
 <div class="col-md-7">
 <div class="single-product-details">
-<h2>Album Foto</h2>
+<h2>{{$produk->judul_produk}}</h2>
 
 
 <!-- ini -->
@@ -166,22 +169,11 @@
 </section>
 <!-- ini-->
 
-<p class="product-price">Rp. 100.000 - Rp. 160.000</p>
+<p>Stok: {{$produk->stok}}</p>
 
-<p>Album foto isi 10 sheets standar, uk 26cmX32cm (100.000), album foto isi 10 sheets berbingkai, uk 35cmX35cm (120.000),
-    album foto isi 15 sheets standar, uk 26cmX32cm (130.000), album foto isi 15 sheets berbingkai, uk 35cmX35cm (160.000),
-    warna sheets hitam, ukuran 35cmX35cm</p>
+<p class="product-price">Harga: Rp. {{$produk->harga}}</p>
 
-<div class="product-size">
-<span>Jenis Album:</span>
-<select class="form-control">
-	<option>--Album--</option>
-	<option>Album 10 sheets standar</option>
-	<option>Album 10 sheets berbingkai</option>
-	<option>Album 15 sheets standar</option>
-	<option>Album 15 sheets berbingkai</option>
-</select>
-</div>
+<p>Keterangan: {{$produk->keterangan_produk}}</p>
 
 <div class="product-quantity">
 	<span>Jumlah:</span>
@@ -196,6 +188,8 @@
 </div>
 </div>
 </div>
+
+@endforeach
 
 </div>
 </section>

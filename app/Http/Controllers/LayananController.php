@@ -16,7 +16,7 @@ class LayananController extends Controller
     public function index()
     {
         $queryRaw=DB::select(DB::raw("select * from layanans"));
-        return view('layanan.index',['data'=>$queryRaw]);
+        return view('layanan.index',['layanans'=>$queryRaw]);
     }
 
     /**

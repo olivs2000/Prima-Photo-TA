@@ -1,7 +1,7 @@
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>Detail Produk</title>
+  <title>Detail Alat</title>
 
   <!-- Mobile Specific Metas
   ================================================== -->
@@ -32,9 +32,7 @@
 <section class="top-header">
 <div class="container">
 <div class="row">
-<div class="col-md-4 col-xs-12 col-sm-4">
-
-</div>
+<div class="col-md-4 col-xs-12 col-sm-4"></div>
 <div class="col-md-4 col-xs-12 col-sm-4">
 <!-- Site Logo -->
 <div class="logo text-center">
@@ -110,15 +108,20 @@
 						<a href="{{url('pelanggan')}}">Home</a>
 					</li><!-- / Home -->
 
+					<!-- Penyewaan Alat -->
+					<li class="dropdown ">
+						<a href="{{url('penyewaanalat')}}">Sewa Alat</a>
+					</li><!-- / Penyewaan Alat -->
+
+					<!-- Paket -->
+					<li class="dropdown ">
+						<a href="{{url('paket')}}">Paket</a>
+					</li><!-- / Paket -->
+
 					<!-- Produk -->
 					<li class="dropdown ">
 						<a href="{{url('produk')}}">Produk</a>
 					</li><!-- / Produk -->
-
-					<!-- Paket -->
-					<li class="dropdown ">
-						<a href="{{url('paket')}}">Paket Fotografi</a>
-					</li><!-- / Paket -->
 
 					<!-- layanan -->
 					<li class="dropdown ">
@@ -135,9 +138,12 @@
 <section class="single-product">
 	<div class="container">
 
+@foreach($penyewaanalats as $sewa)
+
 <div class="col-md-7">
 <div class="single-product-details">
-<h2>Album Foto</h2>
+<h2>{{$sewa->nama_alat}}</h2>
+
 
 
 <!-- ini -->
@@ -146,19 +152,15 @@
 <ol class="carousel-indicators">
 	<li data-target=".carousel" data-slide-to="0" class="active"></li>
 	<li data-target=".carousel" data-slide-to="1"></li>
-	<li data-target=".carousel" data-slide-to="2"></li>
 </ol>
 
 <!-- Wrapper for slides -->
 <div class="carousel-inner" role="listbox">
+	<div class="item">
+	<img src="https://images.unsplash.com/photo-1590028974453-72ee91a8a13b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80">
+	</div>
 	<div class="item active">
-	<img src="https://images.unsplash.com/photo-1621413412189-c1b47c66f70b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80">
-	</div>
-	<div class="item">
-	<img src="https://images.unsplash.com/photo-1581403339300-ac621813a3b9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80">
-	</div>
-	<div class="item">
-	<img src="https://images.unsplash.com/photo-1600283349832-a9c60f58a46f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80">
+	<img src="https://lzd-img-global.slatic.net/g/p/95dde7e077c461b761cdbc2edfa12109.jpg_720x720q80.jpg">
 	</div>
 </div>
 
@@ -166,30 +168,11 @@
 </section>
 <!-- ini-->
 
-<p class="product-price">Rp. 100.000 - Rp. 160.000</p>
+<p>Stok: {{$sewa->stok}}</p>
 
-<p>Album foto isi 10 sheets standar, uk 26cmX32cm (100.000), album foto isi 10 sheets berbingkai, uk 35cmX35cm (120.000),
-    album foto isi 15 sheets standar, uk 26cmX32cm (130.000), album foto isi 15 sheets berbingkai, uk 35cmX35cm (160.000),
-    warna sheets hitam, ukuran 35cmX35cm</p>
+<p class="product-price">Harga: Rp. {{$sewa->harga}}</p>
 
-<div class="product-size">
-<span>Jenis Album:</span>
-<select class="form-control">
-	<option>--Album--</option>
-	<option>Album 10 sheets standar</option>
-	<option>Album 10 sheets berbingkai</option>
-	<option>Album 15 sheets standar</option>
-	<option>Album 15 sheets berbingkai</option>
-</select>
-</div>
-
-<div class="product-quantity">
-	<span>Jumlah:</span>
-	<div class="product-quantity-slider">
-		<input id="product-quantity" type="text" value="0" name="product-quantity">
-	</div>
-</div>
-
+<p>tipe: {{$sewa->tipe}}</p>
 <br>
 
 <a href="cart.html" class="btn btn-main mt-20">Add To Cart</a>
@@ -197,9 +180,10 @@
 </div>
 </div>
 
+@endforeach
+
 </div>
 </section>
-
 
 
 <!--Essential Scripts
