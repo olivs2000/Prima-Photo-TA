@@ -85,6 +85,7 @@ class PaketController extends Controller
         //
     }
 
+
     public function detailPaket(Request $request, Paket $paket)
     {
         $paket->judul_produk=$request->get('judul_produk');
@@ -97,8 +98,8 @@ class PaketController extends Controller
 
     public function front_index()
     {
-        $paket=Paket::all();
-        return view('frontend.paket', compact('paket'));
+        $pakets=Paket::all();
+        return view('paket.index', compact('pakets'));
     }
 
     public function addToCart($id)
@@ -109,7 +110,7 @@ class PaketController extends Controller
         {
             $cart[$id]=[
                 "judul_paket"=>$p->judul_paket,
-                "gambar"=>$id.".jpg",
+                "gambar"=>$p->gambar,
                 "harga"=>$p->harga,
                 "jumlah"=>1
             ];

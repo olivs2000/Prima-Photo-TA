@@ -99,7 +99,7 @@ class LayananController extends Controller
         {
             $cart[$id]=[
                 "judul_layanan"=>$l->judul_layanan,
-                "gambar"=>$id.".jpg",
+                "gambar"=>$l->gambar,
                 "harga"=>$l->harga,
                 "jumlah"=>1
             ];

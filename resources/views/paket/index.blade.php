@@ -26,7 +26,6 @@
 <div class="row">
 <div class="col-md-4 col-xs-12 col-sm-4"></div>
 <div class="col-md-4 col-xs-12 col-sm-4">
-<!-- Site Logo -->
 <div class="logo text-center">
 	<!-- replace logo here -->
 	<text id="PRIMA PHOTO">
@@ -34,44 +33,55 @@
 	</text>	
 </div>
 </div>
-			
-<div class="col-md-4 col-xs-12 col-sm-4">
+	
+
 <!-- Cart -->
-<ul class="top-menu text-right list-inline">
-<li class="dropdown cart-nav dropdown-slide">
-<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i
-		class="tf-ion-android-cart"></i>Cart</a>
-<div class="dropdown-menu cart-dropdown">
-	<!-- Cart Item -->
-	<div class="media">
-		<a class="pull-left" href="#!">
-			<img class="media-object" src="https://images.unsplash.com/photo-1607947909130-bf48ac6884b9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="image" />
-		</a>
-		<div class="media-body">
-			<h4 class="media-heading"><a href="images/shop/oliv.jpg">Baby&Kids Photography Single</a></h4>
-			<div class="cart-price">
-				<span>1 x</span>
-				<span>1.000.000</span>
+<div class="col-md-4 col-xs-12 col-sm-4">
+	<ul class="top-menu text-right list-inline">
+		<li class="dropdown cart-nav dropdown-slide">
+			<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i class="tf-ion-android-cart"></i>Cart</a>
+				<div class="dropdown-menu cart-dropdown">
+
+				<!-- Cart Item -->
+				@if(session()->get('cart2'))
+				@foreach(session()->get('cart2') as $id => $details )
+				<div class="media">
+					<a class="pull-left" href="#!">
+						<img class="media-object" src="{{$details['gambar']}}" alt="image" />
+					</a>
+				<div class="media-body">
+					<h4 class="media-heading">{{$details['judul_paket']}}</h4>
+					<div class="cart-price">
+						<span>{{$details['jumlah']}} x</span>
+						<span>{{$details['harga']}}</span>
+					</div>
+				</div>
+				</div>
+				@endforeach
+				@endif
+				<!-- Cart Item -->
+
+				<?php $total=0; ?>
+				@if(session()->get('cart2'))
+				@foreach(session()->get('cart2') as $id => $details )
+				<?php $total+=$details['harga']*$details['jumlah']; ?>
+				@endforeach
+				@endif
+				<div class="cart-summary">
+					<span>Total</span>
+					<span class="total-price">Rp. {{$total}}</span>
+				</div>
+
+				<ul class="text-center cart-buttons">
+					<li><a href="{{url('checkout')}}" class="btn btn-small">Checkout</a></li>
+				</ul>
+
 			</div>
-			<h5><strong>Rp. 1.000.000</strong></h5>
-		</div>
-		<a href="#!" class="remove"><i class="tf-ion-close"></i></a>
-	</div><!-- / Cart Item -->
-
-	<div class="cart-summary">
-		<span>Total</span>
-		<span class="total-price">Rp. 1.000.000</span>
-	</div>
-	<ul class="text-center cart-buttons">
-		<li><a href="cart.html" class="btn btn-small">View Cart</a></li>
-		<li><a href="checkout.html" class="btn btn-small btn-solid-border">Checkout</a></li>
+		</li>
 	</ul>
-</div>
+</div><!-- / Cart -->
 
-</li><!-- / Cart -->
 
-</ul><!-- / .nav .navbar-nav .navbar-right -->
-</div>
 </div>
 </div>
 </section><!-- End Top Header Bar -->
@@ -143,8 +153,16 @@
 </section>
 
 <br><br><br>
-@foreach($pakets as $paket)
 
+@if(session('success'))
+<div class="alert alert-success alert-common" role="alert"><i class="tf-ion-thumbsup"></i> Horee!!
+{{session('success')}}
+</div>
+@endif
+
+<br><br><br>
+
+@foreach($pakets as $paket)
 <div class="col-md-4">
 <div class="product-item">
 <div class="card">
@@ -152,7 +170,7 @@
 <h4>{{$paket->judul_paket}}</h4> <br>
 <p class="price">{{$paket->harga}}</p><br>
 <a href="{{url($paket->id)}}" class="btn-solid-border">view details</a>  <br><br> 
-<a href="#" class="btn-main">Add to Cart</a> <br><br> 
+<a href="{{url('add-to-cart/' .$paket->id)}}" class="btn-main">Add to Cart</a> <br><br> 
 </div>
 </div>
 </div>

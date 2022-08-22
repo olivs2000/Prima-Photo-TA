@@ -20,7 +20,6 @@
 <link rel="stylesheet" href="css/styleaviato.css">
 
 <br><br><br>
-
 <!-- Start Top Header Bar -->
 <section class="top-header">
 <div class="container">
@@ -37,6 +36,7 @@
 </div>
 			
 <div class="col-md-4 col-xs-12 col-sm-4">
+	
 <!-- Cart -->
 <ul class="top-menu text-right list-inline">
 <li class="dropdown cart-nav dropdown-slide">
@@ -143,22 +143,27 @@
 	</div>
 </section>
 
-<br><br><br>
+@if(session('success'))
+<div class="alert alert-success alert-common" role="alert"><i class="tf-ion-thumbsup"></i> Berhasil ditambahkan ke keranjang
+{{session('success')}}
+</div>
+@endif
 
+<br><br><br>
 @foreach($pakets as $paket)
+
 <div class="col-md-4">
 <div class="product-item">
 <div class="card">
-<img src="{{$paket->gambar}}" alt="">
+<img src="{{$paket->gambar}}" alt="" style="width:100%">
 <h4>{{$paket->judul_paket}}</h4> <br>
 <p class="price">{{$paket->harga}}</p><br>
-<a href="{{url('babykidssingle')}}" class="btn-solid-border">view details</a>  <br><br> 
-<a href="#" class="btn-main">Add to Cart</a> <br><br> 
+<a href="{{url($paket->id)}}" class="btn-solid-border">view details</a>  <br><br> 
+<a href="{{url('add-to-cart/' .$paket->id)}}" class="btn-main">Add to Cart</a> <br><br> 
 </div>
 </div>
 </div>
 @endforeach
-
   
 <!-- Main jQuery -->
 <script src="plugins/jquery/dist/jquery.min.js"></script>
@@ -184,4 +189,3 @@
 <!-- Main Js File -->
 <script src="js/scriptaviato.js"></script>
 
-    

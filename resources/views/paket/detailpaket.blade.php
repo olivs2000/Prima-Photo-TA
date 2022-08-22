@@ -155,7 +155,6 @@
 	<li data-target=".carousel" data-slide-to="2"></li>
 </ol>
 
-<!-- Wrapper for slides -->
 <div class="carousel-inner" role="listbox">
 	<div class="item active">
 	<img src="https://images.unsplash.com/photo-1607947909130-bf48ac6884b9?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870">

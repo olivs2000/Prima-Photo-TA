@@ -173,7 +173,10 @@ Route::get('/albumfoto', function () {
 
 // START PAKET //
 Route::resource('paket','PaketController');
-Route::get('paket/{id}', 'PaketController@detailPaket');
+
+Route::get('/detailpaket', function () {
+    return view('paket.detailpaket'); 
+})->name('paket.detailpaket');
 
 Route::get('/babykidssingle', function () {
     return view('paket.babykidssingle'); 
@@ -293,9 +296,9 @@ Route::get('/get-list-produk2','ProdukController@getListProduk2') ->name('get.li
 
 
 //Cart Paket
-// Route::get('/', 'PaketController@front_index');
-// Route::get('cart', 'PaketController@cart');
-// Route::get('add-to-cart/{id}', 'PaketController@addToCart');
+Route::get('paket', 'PaketController@front_index');
+Route::get('cart', 'PaketController@cart');
+Route::get('add-to-cart/{id}', 'PaketController@addToCart');
 
 //Cart Penyewaan Alat
 // Route::get('/', 'PenyewaanAlatController@front_index');
@@ -303,11 +306,11 @@ Route::get('/get-list-produk2','ProdukController@getListProduk2') ->name('get.li
 // Route::get('add-to-cart/{id}', 'PenyewaanAlatController@addToCart');
 
 //Cart Produk
-Route::get('/', 'ProdukController@front_index');
-Route::get('cart', 'ProdukController@cart');
-Route::get('add-to-cart/{id}', 'ProdukController@addToCart');
+// Route::get('/', 'ProdukController@front_index');
+// Route::get('cart', 'ProdukController@cart');
+// Route::get('add-to-cart/{id}', 'ProdukController@addToCart');
 
-Route::post('/', [\App\Http\Controllers\ProdukController::class, 'cart'])->name(name:'frontend.cart');
+// Route::post('/', [\App\Http\Controllers\ProdukController::class, 'cart'])->name(name:'frontend.cart');
 
 //Cart Layanan
 // Route::get('/', 'LayananController@front_index');

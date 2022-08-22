@@ -1,6 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
 <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
@@ -21,6 +18,26 @@
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/styleaviato.css">
 
+  <!-- Start Top Header Bar -->
+<section class="top-header">
+   <div class="container">
+   <div class="row">
+   <div class="col-md-4 col-xs-12 col-sm-4"></div>
+   <div class="col-md-4 col-xs-12 col-sm-4">
+   <!-- Site Logo -->
+   <div class="logo text-center">
+       <!-- replace logo here -->
+       <text id="PRIMA PHOTO">
+           <h1>PRIMA PHOTO</h1>
+       </text>	
+   </div>
+   </div>
+        <div class="col-md-4 col-xs-12 col-sm-4">
+        </div>
+     </div>
+  </div>
+</section><!-- End Top Header Bar -->
+
 
   <section class="page-header">
 	<div class="container">
@@ -29,8 +46,8 @@
 				<div class="content">
 					<h1 class="page-name">Checkout</h1>
 					<ol class="breadcrumb">
-						{{-- <li><a href="index.html">Home</a></li>
-						<li class="active">collaborate</li> --}}
+                  <li><a href="index.html">Home</a></li>
+						<li class="active">checkout</li>
 					</ol>
 				</div>
 			</div>
@@ -79,8 +96,8 @@
                            <label for="user_city">Waktu Mulai</label>
                            <input type="text" class="form-control" id="waktu_acara" placeholder="">
                         </div>
-
                      </div>
+                     <a href="confirmation.html" class="btn btn-main mt-20">Order</a >
                   </form>
                </div>
 
@@ -188,4 +205,3 @@
     <!-- Main Js File -->
     <script src="js/scriptaviato.js"></script>
     
-@endsection

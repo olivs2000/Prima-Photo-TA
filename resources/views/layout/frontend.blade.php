@@ -90,8 +90,6 @@
                         <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
                             <p>Total: <span class="text-info">{{$total}}</span></p>
                         </div>
-
-
                     </div>
                     
                     @if(session()->get('cart2'))

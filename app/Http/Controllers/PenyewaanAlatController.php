@@ -99,7 +99,7 @@ class PenyewaanAlatController extends Controller
         {
             $cart[$id]=[
                 "nama_alat"=>$pa->nama_alat,
-                "gambar"=>$id.".jpg",
+                "gambar"=>$pa->gambar,
                 "harga"=>$pa->harga,
                 "jumlah"=>1,
             ];
