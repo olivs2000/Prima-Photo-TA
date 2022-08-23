@@ -57,8 +57,8 @@
       <div class="col-md-6 col-md-offset-3">
         <div class="block text-center">
         	<i class="tf-ion-android-checkmark-circle"></i>
-          <h2 class="text-center">Terima kasih telah melakukan pemesanan!</h2>
-          <p>Setelah berhasil melakukan pembayaran, silahkan cek email anda untuk melihat detail pemesanan.</p>
+          <h2 class="text-center">Terima kasih telah melakukan pendaftaran!</h2>
+          <p>Untuk info lebih lanjut silahkan cek email anda.</p>
 			<a href="{{url('pelanggan')}}"class="btn btn-main mt-20">Beranda Pelanggan</a>
         </div>
       </div>

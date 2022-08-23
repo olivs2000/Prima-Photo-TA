@@ -157,8 +157,8 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="section-title">
-					<h2>Our Albums</h2>
-					<p>Some photography process at prima photo studio</p>
+					<h2>Album Kami</h2>
+					<p>Beberapa hasil fotografi yang ada di studio Prima Photo</p>
 				</div>
 			</div>
 		</div>
@@ -250,8 +250,8 @@
 			<div class="col-12">
 				<!-- Section title -->
 				<div class="section-title">
-					<h2>All Categories</h2>
-					<p>The Best Selling Products and Services at Prima Photo Studio</p>
+					<h2>Kategori Produk dan Layanan</h2>
+					<p>Produk dan Layanan Terlaris di Prima Photo Studio</p>
 				</div>
 				<div class="row">
 					<!-- Category list -->

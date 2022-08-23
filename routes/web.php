@@ -17,7 +17,9 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\KonfirmasiController;
+use App\Http\Controllers\KonfirmasiColController;
 use App\Http\Controllers\CollaborateController;
+use App\Http\Controllers\CollaborateAdminController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 
@@ -47,7 +49,12 @@ Route::resource('checkout','CheckoutController');
 
 Route::resource('konfirmasi','KonfirmasiController');
 
+Route::resource('konfirmasicol','KonfirmasicolController');
+
 Route::resource('collaborate','CollaborateController');
+Route::post('/collaborate/createForm','CollaborateController@createForm')->name('collaborate.create');
+
+Route::resource('collaborateadmin','CollaborateAdminController');
 
 Route::resource('pelanggan','UserController');
 
@@ -317,6 +324,6 @@ Route::get('add-to-cart/{id}', 'PaketController@addToCart');
 // Route::get('cart', 'LayananController@cart');
 // Route::get('add-to-cart/{id}', 'LayananController@addToCart');
 
-// Route::get('submit_checkout','CheckoutController@submit_front')->name('submitCheckout');
+Route::get('submit_checkout','CheckoutController@submit_front')->name('submitCheckout');
 
 

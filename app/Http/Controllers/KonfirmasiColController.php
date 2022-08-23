@@ -7,11 +7,11 @@ use App\Collaborate;
 use App\Konfirmasi;
 use DB;
 
-class KonfirmasiController extends Controller
+class KonfirmasiColController extends Controller
 {
     public function index()
     {
         $data = Collaborate::all();
-        return view('konfirmasi.index', compact('data'));
+        return view('konfirmasicol.index', compact('data'));
     }
 }

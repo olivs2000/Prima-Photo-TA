@@ -105,7 +105,7 @@
 
 					<!-- Home -->
 					<li class="dropdown ">
-						<a href="{{url('pelanggan')}}">Home</a>
+						<a href="{{url('pelanggan')}}">Beranda</a>
 					</li><!-- / Home -->
 
 					<!-- Paket -->
@@ -147,6 +147,7 @@
 
 
 <!-- ini -->
+
 <section class="awSlider">
   <div  class="carousel slide" data-ride="carousel">
 <ol class="carousel-indicators">
@@ -171,7 +172,7 @@
 </section>
 <!-- ini-->
 
-<p class="product-price">Harga : Rp. {{$paket->harga}}</p>
+<p class="product-price">Harga : Rp. {{number_format($paket->harga)}}</p>
 
 <p>Durasi : {{$paket->durasi}}</p>
 

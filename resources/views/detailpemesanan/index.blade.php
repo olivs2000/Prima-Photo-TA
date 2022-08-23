@@ -70,8 +70,8 @@
   <td>{{$dp->judul_layanan}}</td>
   <td>{{$dp->judul_produk}}</td>
   <td>{{$dp->jumlah}}</td>
-  <td>Rp. {{$dp->harga}}</td>
-  <td>Rp. {{$dp->total}}</td>  
+  <td>Rp. {{number_format($dp->harga)}}</td>
+  <td>Rp. {{number_format($dp->total)}}</td>  
   <td>{{$dp->tanggal_pemesanan}}</td>
 
   <td id='td-status-{{$dp->id}}'> 

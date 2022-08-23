@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\DetailPemesanan;
+use App\Keranjang;
 use App\Checkout;
 use Illuminate\Http\Request;
 use DB;
@@ -18,7 +18,7 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        $data = DetailPemesanan::all();
+        $data = Keranjang::all();
         return view('checkout.index', compact('data'));
 
         //return view ("checkout.index", ["data"=>Checkout::all()]);
@@ -95,15 +95,16 @@ class CheckoutController extends Controller
     {
         $cart=session()->get('cart2');
         $user=Auth::user();
-        $c=new Checkout;
-        $c->user_id=$user->id;
-        $c->tanggal_transaksi=Carbon::now()->toDateTimeString();
+        $c=new Keranjang;
+        // $c->user_id=$user->id;
+        // $c->user_id=1;
+        // $c->tanggal_pemesanan=Carbon::now()->toDateTimeString();
         $c->save();
 
-        $t->insertProduct($cart);
+        $c->insertPaket($cart);
 
         session()->forget('cart2');
 
-        return redirect('/');
+        return redirect('checkout.index');
     }
 }

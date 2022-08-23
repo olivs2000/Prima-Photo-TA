@@ -44,7 +44,7 @@
   <td>{{$p->lokasi_acara}}</td>
   <td>{{$p->tanggal_acara}}</td>
   <td>{{$p->waktu_acara}}</td>
-  <td>Rp. {{$p->total}}</td>  
+  <td>Rp. {{number_format($p->total)}}</td>  
 </tr>
 
 @endforeach

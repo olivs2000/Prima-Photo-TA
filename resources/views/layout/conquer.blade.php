@@ -546,7 +546,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				        </a>
 					</li>
 					<li>
-						<a href="{{url('email')}}" >
+						<a href="{{url('collaborateadmin')}}" >
 					    <i class="icon-envelope"></i>
 				        <span class="title">Collaborate</span>
 				        </a>

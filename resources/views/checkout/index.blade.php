@@ -46,7 +46,7 @@
 				<div class="content">
 					<h1 class="page-name">Checkout</h1>
 					<ol class="breadcrumb">
-                  <li><a href="index.html">Home</a></li>
+                  <li><a href="index.html">Beranda</a></li>
 						<li class="active">checkout</li>
 					</ol>
 				</div>
@@ -97,7 +97,7 @@
                            <input type="text" class="form-control" id="waktu_acara" placeholder="">
                         </div>
                      </div>
-                     <a href="confirmation.html" class="btn btn-main mt-20">Order</a >
+                     <a href="{{ url('konfirmasi') }}" class="btn btn-main mt-20">Order</a >
                   </form>
                </div>
 
@@ -139,24 +139,16 @@
                         <div class="media-body">
                            <h4 class="media-heading">Ambassador Heritage 1921</h4>
                            <p class="price">1 x $249</p>
-                           <span class="remove" >Remove</span>
                         </div>
                      </div>
                     
-                     <ul class="summary-prices">
-                        <li>
-                           <span>Subtotal:</span>
-                           <span class="price">$190</span>
-                        </li>
-                        <li>
-                           <span>Shipping:</span>
-                           <span>Free</span>
-                        </li>
-                     </ul>
+                     <ul class="summary-prices"></ul>
+
                      <div class="summary-total">
                         <span>Total</span>
                         <span>$250</span>
                      </div>
+
                      <br><br>
 
                      <section class="page-header">

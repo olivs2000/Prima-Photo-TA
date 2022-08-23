@@ -69,11 +69,15 @@
 				@endif
 				<div class="cart-summary">
 					<span>Total</span>
-					<span class="total-price">Rp. {{$total}}</span>
+					<span class="total-price">Rp. {{number_format($total)}}</span>
 				</div>
 
+				{{-- <ul class="text-center cart-buttons">
+					<li><a href="{{ route('submitCheckout') }}" class="btn btn-small">Checkout</a></li>
+				</ul> --}}
+
 				<ul class="text-center cart-buttons">
-					<li><a href="{{url('checkout')}}" class="btn btn-small">Checkout</a></li>
+					<li><a href="{{ url('checkout') }}" class="btn btn-small">Checkout</a></li>
 				</ul>
 
 			</div>
@@ -143,7 +147,7 @@
 				<div class="content">
 					<h1 class="page-name">Paket</h1>
 					<ol class="breadcrumb">
-						<li><a href="index.html">Home</a></li>
+						<li><a href="index.html">Beranda</a></li>
 						<li class="active">paket</li>
 					</ol>
 				</div>
@@ -168,8 +172,8 @@
 <div class="card">
 <img src="{{$paket->gambar}}" alt="" style="width:100%">
 <h4>{{$paket->judul_paket}}</h4> <br>
-<p class="price">{{$paket->harga}}</p><br>
-<a href="{{url($paket->id)}}" class="btn-solid-border">view details</a>  <br><br> 
+<p class="price">Rp. {{number_format($paket->harga)}}</p><br>
+<a href="{{url('detailpaket/' .$paket->id)}}" class="btn-solid-border">view details</a>  <br><br> 
 <a href="{{url('add-to-cart/' .$paket->id)}}" class="btn-main">Add to Cart</a> <br><br> 
 </div>
 </div>
