@@ -11,7 +11,7 @@ class CollaborateController extends Controller
 {
     public function index()
     {
-        $queryRaw=DB::select(DB::raw("select * from collaborate"));
+        $queryRaw=DB::select(DB::raw("select * from collaborates"));
         return view('collaborate.index',['collaborate'=>$queryRaw]);
     }
 
