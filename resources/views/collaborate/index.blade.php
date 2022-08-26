@@ -1,29 +1,29 @@
-  <!-- Basic Page Needs
-  ================================================== -->
-  <meta charset="utf-8">
-  <title>Collaborate</title>
+<!-- Basic Page Needs
+================================================== -->
+<meta charset="utf-8">
+<title>Collaborate</title>
 
-  <!-- Mobile Specific Metas
-  ================================================== -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="Construction Html5 Template">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <meta name="author" content="Themefisher">
-  <meta name="generator" content="Themefisher Constra HTML Template v1.0">
-  
-  <!-- Themefisher Icon font -->
-  <link rel="stylesheet" href="plugins/themefisher-font/style.css">
-  <!-- bootstrap.min css -->
-  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
-  
-  <!-- Animate css -->
-  <link rel="stylesheet" href="plugins/animate/animate.css">
-  <!-- Slick Carousel -->
-  <link rel="stylesheet" href="plugins/slick/slick.css">
-  <link rel="stylesheet" href="plugins/slick/slick-theme.css">
-  
-  <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/styleaviato.css">
+<!-- Mobile Specific Metas
+================================================== -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Construction Html5 Template">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="author" content="Themefisher">
+<meta name="generator" content="Themefisher Constra HTML Template v1.0">
+
+<!-- Themefisher Icon font -->
+<link rel="stylesheet" href="plugins/themefisher-font/style.css">
+<!-- bootstrap.min css -->
+<link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+
+<!-- Animate css -->
+<link rel="stylesheet" href="plugins/animate/animate.css">
+<!-- Slick Carousel -->
+<link rel="stylesheet" href="plugins/slick/slick.css">
+<link rel="stylesheet" href="plugins/slick/slick-theme.css">
+
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="css/styleaviato.css">
 
 
 <!-- Start Top Header Bar -->
@@ -32,17 +32,14 @@
     <div class="row">
     <div class="col-md-4 col-xs-12 col-sm-4"></div>
     <div class="col-md-4 col-xs-12 col-sm-4">
-    <!-- Site Logo -->
-    <div class="logo text-center">
-        <!-- replace logo here -->
-        <text id="PRIMA PHOTO">
-            <h1>PRIMA PHOTO</h1>
-        </text>	
-    </div>
-    </div>
-			<div class="col-md-4 col-xs-12 col-sm-4">
-			</div>
+		<div class="logo text-center">
+			<text id="PRIMA PHOTO">
+				<h1>PRIMA PHOTO</h1>
+			</text>	
 		</div>
+    </div>
+	<div class="col-md-4 col-xs-12 col-sm-4"></div>
+	</div>
 	</div>
 </section><!-- End Top Header Bar -->
 
@@ -71,9 +68,9 @@
 				<!-- Contact Form -->
 				<div class="contact-form col-md-6 " >
 					<form enctype='multipart/form-data' id="contact-form" method="post" action="{{url('konfirmasicol')}}" role="form">
-					
+						@csrf 
 						<div class="form-group">
-							<input type="text" placeholder="Nama Lengkap" class="form-control" name="name" id="name">
+							<input type="text" placeholder="Nama Lengkap" class="form-control" name="nama" id="nama">
 						</div>
 
                         <div class="form-group">
@@ -101,14 +98,6 @@
                             <input  type="file" class="form-control" id="pas_foto" name="pas_foto">
 						</div>
 						
-						{{-- <div id="mail-success" class="success">
-							Thank you. The Mailman is on His Way :
-						</div>
-						
-						<div id="mail-fail" class="error">
-							Sorry, don't know what happened. Try later :
-						</div> --}}
-						
 						<div id="cf-submit">
 							<input type="submit" id="contact-submit" class="btn btn-transparent" value="Kirim">
 						</div>						
@@ -117,12 +106,10 @@
 				</div>
 				<!-- ./End Contact Form -->
 				
-				<!-- Contact Details -->
 				<div class="contact-details col-md-6 " >
 					<div class="google-map">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.0285366052844!2d117.41932321406965!3d-8.496606088341574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcb932df2d305f1%3A0x618d57e4e4fd068d!2sPrima%20Photo!5e0!3m2!1sid!2sid!4v1660543922184!5m2!1sid!2sid" width="650" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 					</div>
-
                     
 					<ul class="contact-short-info" >
 						<li>
@@ -139,77 +126,13 @@
 						</li>
 					</ul>
 					
-					{{-- <div class="social-icon">
-						<ul>
-							<li><a class="fb-icon" href="https://www.facebook.com/themefisher"><i class="tf-ion-social-facebook"></i></a></li>
-							<li><a href="https://www.twitter.com/themefisher"><i class="tf-ion-social-twitter"></i></a></li>
-							<li><a href="https://themefisher.com/"><i class="tf-ion-social-dribbble-outline"></i></a></li>
-							<li><a href="https://themefisher.com/"><i class="tf-ion-social-googleplus-outline"></i></a></li>
-							<li><a href="https://themefisher.com/"><i class="tf-ion-social-pinterest-outline"></i></a></li>
-						</ul>
-					</div> --}}
-					
 				</div>
-				<!-- / End Contact Details -->
 				
 			</div> 
 		</div>
 	</div>
 </section>
-	
-
-
-
-{{-- <footer class="footer section text-center">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<ul class="social-media">
-					<li>
-						<a href="https://www.facebook.com/themefisher">
-							<i class="tf-ion-social-facebook"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.instagram.com/themefisher">
-							<i class="tf-ion-social-instagram"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.twitter.com/themefisher">
-							<i class="tf-ion-social-twitter"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.pinterest.com/themefisher/">
-							<i class="tf-ion-social-pinterest"></i>
-						</a>
-					</li>
-				</ul>
-				<ul class="footer-menu text-uppercase">
-					<li>
-						<a href="contact.html">CONTACT</a>
-					</li>
-					<li>
-						<a href="shop.html">SHOP</a>
-					</li>
-					<li>
-						<a href="pricing.html">Pricing</a>
-					</li>
-					<li>
-						<a href="contact.html">PRIVACY POLICY</a>
-					</li>
-				</ul>
-				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
-			</div>
-		</div>
-	</div>
-</footer> --}}
-
-    <!-- 
-    Essential Scripts
-    =====================================-->
-    
+  
        
    <!-- Main jQuery -->
    <script src="plugins/jquery/dist/jquery.min.js"></script>

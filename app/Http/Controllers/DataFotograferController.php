@@ -125,16 +125,6 @@ class DataFotograferController extends Controller
         }
     }
 
-    // public function editForm(Request $request)
-    // {
-    //     $id=$request->get('id');
-    //     $data=DataFotografer::find($id);
-    //     return response()->json(array(
-    //         'status'=>'oke',
-    //         'msg'=>view('datafotografer.editForm',compact('data'))->render()
-    //     ),200);
-    // }
-
     public function saveData(Request $request)
     {
         $id=$request->get('id');

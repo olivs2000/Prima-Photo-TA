@@ -12,9 +12,13 @@ use App\Http\Controllers\DetailPembelianController;
 use App\Http\Controllers\DataPelangganController;
 use App\Http\Controllers\AdminStudioController;
 use App\Http\Controllers\PaketController;
+use App\Http\Controllers\PaketAdminController;
 use App\Http\Controllers\PenyewaanAlatController;
+use App\Http\Controllers\PenyewaanAlatAdminController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\ProdukAdminController;
 use App\Http\Controllers\LayananController;
+use App\Http\Controllers\LayananAdminController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\KonfirmasiController;
 use App\Http\Controllers\KonfirmasiColController;
@@ -52,7 +56,6 @@ Route::resource('konfirmasi','KonfirmasiController');
 Route::resource('konfirmasicol','KonfirmasicolController');
 
 Route::resource('collaborate','CollaborateController');
-Route::post('/collaborate/createForm','CollaborateController@createForm')->name('collaborate.create');
 
 Route::resource('collaborateadmin','CollaborateAdminController');
 
@@ -62,6 +65,8 @@ Route::resource('pelanggan','UserController');
 
 // START LAYANAN //
 Route::resource('layanan','LayananController');
+
+Route::resource('layananadmin','LayananAdminController');
 
 Route::get('/pasfoto', function () {
     return view('layanan.pasfoto'); 
@@ -90,12 +95,14 @@ Route::get('/cetak20R', function () {
 Route::get('/cetak24R', function () {
     return view('layanan.cetak24R'); 
 })->name('layanan.cetak24R');
-// START LAYANAN //
+// END LAYANAN //
 
 
 
 // START SEWA ALAT //
 Route::resource('penyewaanalat','PenyewaanAlatController');
+
+Route::resource('penyewaanalatadmin','PenyewaanAlatAdminController');
 
 Route::get('/backdrop', function () {
     return view('penyewaanalat.backdrop'); 
@@ -132,12 +139,14 @@ Route::get('/light', function () {
 Route::get('/tripod', function () {
     return view('penyewaanalat.tripod'); 
 })->name('penyewaanalat.tripod');
-// END PAKET SEWA ALAT //
+// END ySEWA ALAT //
 
 
 
 // START PRODUK //
 Route::resource('produk','ProdukController');
+
+Route::resource('produkadmin','ProdukAdminController');
 
 Route::get('/bingkai4R', function () {
     return view('produk.bingkai4R'); 
@@ -180,6 +189,8 @@ Route::get('/albumfoto', function () {
 
 // START PAKET //
 Route::resource('paket','PaketController');
+
+Route::resource('paketadmin','PaketAdminController');
 
 Route::get('/detailpaket', function () {
     return view('paket.detailpaket'); 

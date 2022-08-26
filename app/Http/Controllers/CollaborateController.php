@@ -28,7 +28,6 @@ class CollaborateController extends Controller
         $file=$request->file('pas_foto');
         $imgFolder="images";
         $fileName=time()."_".$file->getClientOriginalName();
-        //Log::info("masuk--------------");
         $file->move($imgFolder, $fileName);
         
         $data->pas_foto=$fileName;
@@ -40,6 +39,6 @@ class CollaborateController extends Controller
         $data->pengalaman=$request->get('pengalaman');
         $data->save();
 
-        return redirect()->route('collaborate.index')->with('status', 'Data Berhasil Terkiriim!');
+        return redirect()->route('konfirmasicol.index')->with('status', 'Data Berhasil Terkirim!');
     }
 }

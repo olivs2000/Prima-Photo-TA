@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Paket;
+use App\Kategori;
 use Illuminate\Http\Request;
 use DB;
 
@@ -26,7 +27,8 @@ class PaketController extends Controller
      */
     public function create()
     {
-        //
+        $kategoris=Kategori::all();
+        return view('paketadmin.create', compact('kategoris'));
     }
 
     /**
@@ -37,7 +39,18 @@ class PaketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=new Paket();
+
+        $data->gambar=$request->get('gambar');
+        $data->judul_paket=$request->get('judul_paket');
+        $data->durasi=$request->get('durasi');
+        $data->jumlah_jepretan=$request->get('jumlah_jepretan');
+        $data->harga=$request->get('harga');
+        $data->keterangan=$request->get('keterangan');       
+        $data->kategoris_id=$request->get('kategoris_id');
+        $data->save();
+
+        return redirect()->route('paketadmin.index')->with('status', 'Paket baru berhasil tersimpan');
     }
 
     /**

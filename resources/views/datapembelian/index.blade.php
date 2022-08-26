@@ -17,7 +17,7 @@
 </ul>
 
 <div class="page-toolbar">
-<a href="{{url('datapembelian/create')}}" class="btn btn-info" type="button">+ Add Data Pembelian</a>	
+<a href="{{url('datapembelian/create')}}" class="btn btn-info" type="button">+ Tambah Data Pembelian</a>	
 </div>
 
 </div>

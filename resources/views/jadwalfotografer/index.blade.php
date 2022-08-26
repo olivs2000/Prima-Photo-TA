@@ -17,7 +17,7 @@
 </ul>
 
 <div class="page-toolbar">
-<a href="{{url('jadwalfotografer/create')}}" class="btn btn-info" type="button">+ Add Jadwal Fotografer</a>	
+<a href="{{url('jadwalfotografer/create')}}" class="btn btn-info" type="button">+ Tambah Jadwal Fotografer</a>	
 </div>
 
 </div>

@@ -17,7 +17,7 @@
 </ul>
 
 <div class="page-toolbar">
-<a href="{{url('datafotografer/create')}}" class="btn btn-info" type="button">+ Add Data Fotografer</a>	
+<a href="{{url('datafotografer/create')}}" class="btn btn-info" type="button">+ Tambah Data Fotografer</a>	
 </div>
 
 </div>

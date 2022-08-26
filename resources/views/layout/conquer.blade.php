@@ -597,6 +597,40 @@ License: You must have a valid license purchased only from themeforest(the above
 					</li>
 				</ul>
 			</li>
+
+			<li >
+				<a href="javascript:;">
+				<i class="icon-credit-card"></i>
+				<span class="title">Penjualan</span>
+				<span class="arrow "></span>
+				</a>     
+				<ul class="sub-menu">
+					<li>
+						<a href="{{url('paketadmin')}}" >
+					    <i class="icon-puzzle"></i>
+				        <span class="title">Paket</span>
+				        </a>
+					</li>
+					<li>
+						<a href="{{url('produkadmin')}}" >
+					    <i class="icon-picture"></i>
+				        <span class="title">Produk</span>
+				        </a>
+					</li>
+					<li>
+						<a href="{{url('layananadmin')}}" >
+					    <i class="icon-crop"></i>
+				        <span class="title">Layanan</span>
+				        </a>
+					</li>
+					<li>
+						<a href="{{url('penyewaanalatadmin')}}" >
+					    <i class="icon-camera"></i>
+				        <span class="title">Alat Fotografi</span>
+				        </a>
+					</li>
+				</ul>
+			</li>
 			
 			<li>
 				<a href="{{url('login')}}" >

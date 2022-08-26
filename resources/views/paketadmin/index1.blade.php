@@ -1,7 +1,7 @@
 <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>Collaborate</title>
+  <title>Paket Fotografi</title>
   
   <!-- Themefisher Icon font -->
   <link rel="stylesheet" href="plugins/themefisher-font/style.css">
@@ -41,10 +41,10 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="content">
-					<h1 class="page-name">Collaborate</h1>
+					<h1 class="page-name">Paket Fotografi</h1>
 					<ol class="breadcrumb">
 						<li><a href="index.html">Beranda</a></li>
-						<li class="active">Profil</li>
+						<li class="active">Paket</li>
 					</ol>
 				</div>
 			</div>
@@ -58,20 +58,28 @@
       <div class="col-md-12">   
         <a class="btn btn-main btn-small btn-round-full" href="{{ url('home') }}"><< Back</a>  
 
-        @foreach($collaborate as $col)
+        @foreach($data as $p)
         <div class="dashboard-wrapper dashboard-user-profile">
           <div class="media">
             <div class="pull-left text-center" href="#!">
-              <img class="media-object user-img" src='images/{{$col->pas_foto}}' alt="Image">
+              <img class="media-object user-img" src='{{$p->gambar}}' alt="Image">
             </div>
             <div class="media-body">
               <ul class="user-profile-list">
-                <li><span>Nama:</span>{{$col->nama}}</li>
-                <li><span>Alamat:</span>{{$col->alamat}}</li>
-                <li><span>Email:</span>{{$col->email}}</li>
-                <li><span>No Telepon:</span>{{$col->notelepon}}</li>
-                <li><span>Alat Fotografi:</span>{{$col->alat_fotografi}}</li>
-                <li><span>Pengalaman:</span>{{$col->pengalaman}}</li>
+                {{-- <li><span>Link Gambar:</span>{{$p->gambar}}</li> --}}
+                <li><span>Judul Paket:</span>{{$p->judul_paket}}</li>
+                <li><span>Durasi:</span>{{$p->durasi}}</li>
+                <li><span>Jepretan:</span>{{$p->jumlah_jepretan}}</li>
+                <li><span>Harga:</span>Rp. {{number_format($p->harga)}}</li>
+                <li><span>Keterangan:</span>{{$p->keterangan}}</li>
+                <li><span>Kategori:</span>{{$p->nama}}</li>
+                <li><span>Action:</span><a href="{{url('paketadmin/'.$p->id.'/edit') }}" class="btn btn-xs btn-warning">Edit</a>  <form method="POST" action="{{url('paketadmin/'.$p->id )}}">
+                  @csrf
+                  @method('DELETE')
+                  <input type='submit' value='Delete' class='btn btn-xs btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
+                </form> 
+                </li>
+                
               </ul>
             </div>
           </div>

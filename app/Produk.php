@@ -9,6 +9,8 @@ class Produk extends Model
 {
     //use HasFactory;
 
+    public $timestamps = false;
+
     public function detailpembelian()
     {
         return $this->hasMany("App\DetailPembelian", "produks_id", "id");

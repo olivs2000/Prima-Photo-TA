@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kategori extends Model
 {
-    use HasFactory;
+    // use HasFactory;
 
     public function paket()
     {

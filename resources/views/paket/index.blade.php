@@ -53,7 +53,7 @@
 					<h4 class="media-heading">{{$details['judul_paket']}}</h4>
 					<div class="cart-price">
 						<span>{{$details['jumlah']}} x</span>
-						<span>{{$details['harga']}}</span>
+						<span>{{number_format($details['harga'])}}</span>
 					</div>
 				</div>
 				</div>
@@ -71,10 +71,6 @@
 					<span>Total</span>
 					<span class="total-price">Rp. {{number_format($total)}}</span>
 				</div>
-
-				{{-- <ul class="text-center cart-buttons">
-					<li><a href="{{ route('submitCheckout') }}" class="btn btn-small">Checkout</a></li>
-				</ul> --}}
 
 				<ul class="text-center cart-buttons">
 					<li><a href="{{ url('checkout') }}" class="btn btn-small">Checkout</a></li>
@@ -159,7 +155,7 @@
 <br><br><br>
 
 @if(session('success'))
-<div class="alert alert-success alert-common" role="alert"><i class="tf-ion-thumbsup"></i> Horee!!
+<div class="alert alert-success alert-common alert-solid" role="alert"><i class="tf-ion-thumbsup"></i> Horee!!
 {{session('success')}}
 </div>
 @endif

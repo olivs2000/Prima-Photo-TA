@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Keranjang;
-use App\Checkout;
+use App\Pemesanan;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
@@ -18,10 +18,11 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        $data = Keranjang::all();
-        return view('checkout.index', compact('data'));
+        // $queryRaw=DB::select(DB::raw("select * from keranjangs"));
+        // return view('checkout.index',['keranjangs'=>$queryRaw]);
 
-        //return view ("checkout.index", ["data"=>Checkout::all()]);
+        $data = Pemesanan::all();
+        return view('konfirmasi.index', compact('data'));
     }
 
     /**
@@ -31,7 +32,8 @@ class CheckoutController extends Controller
      */
     public function create()
     {
-        //
+        $data=Pemesanan::all();
+        return view('checkout.index', compact('data'));
     }
 
     /**
@@ -42,7 +44,18 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=new Pemesanan();
+        $data->nama=$request->get('nama');
+        $data->notelepon=$request->get('notelepon');
+        $data->email=$request->get('email');
+        $data->alamat=$request->get('alamat');
+        $data->lokasi_acara=$request->get('lokasi_acara');
+        $data->tanggal_acara=$request->get('tanggal_acara');
+        $data->waktu_acara=$request->get('waktu_acara');
+        $data->total=$request->get('total');
+        $data->save();
+
+        return redirect()->route('konfirmasi.index');
     }
 
     /**

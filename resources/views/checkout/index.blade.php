@@ -62,40 +62,41 @@
             <div class="col-md-8">
                <div class="block billing-details">
                   <h4 class="widget-title">Data Pemesan</h4>
-                  <form class="checkout-form">
+                  <form enctype='multipart/form-data' class="checkout-form" method="post" action="{{url('konfirmasi')}}" role="form">
                      <div class="form-group">
                         <label for="full_name">Nama Lengkap</label>
-                        <input type="text" class="form-control" id="nama" placeholder="">
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="">
                      </div>
                      <div class="form-group">
                         <label for="user_address">No Telepon</label>
-                        <input type="text" class="form-control" id="notelepon" placeholder="">
+                        <input type="text" class="form-control" id="notelepon" name="notelepon" placeholder="">
                      </div>
                      <div class="form-group">
                         <label for="user_address">Email</label>
-                        <input type="text" class="form-control" id="email" placeholder="">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="">
                      </div>
                      <div class="form-group">
                         <label for="user_address">Alamat</label>
-                        <input type="text" class="form-control" id="alamat" placeholder="">
+                        <input type="text" class="form-control" id="alamat" name="alamat" placeholder="">
                      </div>
 
-                   <br><br><br>
+                  <br><br><br>
+
                   <h4 class="widget-title">Pemesanan Fotografer</h4>
                   <p>*Wajib mengisi jika anda juga memesan jasa fotografer dan lewati jika tidak</p>
                      <div class="form-group">
                         <label for="user_address">Lokasi Acara</label>
-                        <input type="text" class="form-control" id="lokasi_acara" placeholder="">
+                        <input type="text" class="form-control" id="lokasi_acara" name="lokasi_acara" placeholder="">
                      </div>
                      <div class="checkout-country-code clearfix">
-                        <div class="form-group">
-                           <label for="user_post_code">Tanggal Acara</label>
-                           <input type="date" class="form-control" id="tanggal_acara" placeholder="">
-                        </div>
-                        <div class="form-group" >
-                           <label for="user_city">Waktu Mulai</label>
-                           <input type="text" class="form-control" id="waktu_acara" placeholder="">
-                        </div>
+                     <div class="form-group">
+                        <label for="user_post_code">Tanggal Acara</label>
+                        <input type="date" class="form-control" id="tanggal_acara" name="tanggal_acara" placeholder="">
+                     </div>
+                     <div class="form-group" >
+                        <label for="user_city">Waktu Mulai</label>
+                        <input type="text" class="form-control" id="waktu_acara" name="waktu_acara" placeholder="Tulis dalam format 12:00">
+                     </div>
                      </div>
                      <a href="{{ url('konfirmasi') }}" class="btn btn-main mt-20">Order</a >
                   </form>
@@ -133,21 +134,33 @@
                   <div class="block">
                      <h4 class="widget-title">Ringkasan Pemesanan</h4>
                      <div class="media product-card">
-                        <a class="pull-left" href="product-single.html">
-                           <img class="media-object" src="images/oliv.jpg" alt="Image" height='80px'/>
-                        </a>
-                        <div class="media-body">
-                           <h4 class="media-heading">Ambassador Heritage 1921</h4>
-                           <p class="price">1 x $249</p>
-                        </div>
+
+                     @if(session()->get('cart2'))
+                     @foreach(session()->get('cart2') as $id => $details )
+                     <a class="pull-left" href="product-single.html">
+                        <img class="media-object" src="{{$details['gambar']}}" alt="Image" height='80px'/>
+                     </a>
+                     <div class="media-body">
+                        <h4 class="media-heading">{{$details['judul_paket']}}</h4>
+                        <p class="price">{{$details['jumlah']}} X {{number_format($details['harga'])}}</p>
+                     </div>
                      </div>
                     
                      <ul class="summary-prices"></ul>
+                     <?php $total=0; ?>
+                     @if(session()->get('cart2'))
+                     @foreach(session()->get('cart2') as $id => $details )
+                     <?php $total+=$details['harga']*$details['jumlah']; ?>
+                     @endforeach
+                     @endif
 
                      <div class="summary-total">
                         <span>Total</span>
-                        <span>$250</span>
+                        <span>Rp. {{number_format($total)}}</span>
                      </div>
+                     
+                     @endforeach
+                     @endif
 
                      <br><br>
 
