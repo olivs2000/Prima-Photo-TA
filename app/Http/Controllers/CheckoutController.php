@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Keranjang;
 use App\Pemesanan;
+use App\Checkout;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
@@ -18,11 +18,11 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        // $queryRaw=DB::select(DB::raw("select * from keranjangs"));
-        // return view('checkout.index',['keranjangs'=>$queryRaw]);
+        $queryRaw=DB::select(DB::raw("select * from pemesanans"));
+        return view('checkout.index',['pemesanan'=>$queryRaw]);
 
-        $data = Pemesanan::all();
-        return view('konfirmasi.index', compact('data'));
+        // $data = Pemesanan::all();
+        // return view('checkout.index', compact('data'));
     }
 
     /**
@@ -45,6 +45,7 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
         $data=new Pemesanan();
+
         $data->nama=$request->get('nama');
         $data->notelepon=$request->get('notelepon');
         $data->email=$request->get('email');

@@ -18,7 +18,7 @@
 
 <!-- Start modal tambah detail pembelian -->
 <div class="page-toolbar">
-	<button id="create-detail" class="btn btn-info">+ Add Detail Pembelian</button>
+	<button id="create-detail" class="btn btn-info">+ Tambah Detail Pembelian</button>
 </div>
 
 </div>

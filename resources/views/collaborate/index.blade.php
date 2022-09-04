@@ -41,7 +41,8 @@
 	<div class="col-md-4 col-xs-12 col-sm-4"></div>
 	</div>
 	</div>
-</section><!-- End Top Header Bar -->
+</section>
+<!-- End Top Header Bar -->
 
 
 <section class="page-header">

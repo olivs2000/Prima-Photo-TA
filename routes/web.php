@@ -192,6 +192,12 @@ Route::resource('paket','PaketController');
 
 Route::resource('paketadmin','PaketAdminController');
 
+Route::post('/paket/showDetail','PaketController@showDetail')->name('paket.showDetail');
+
+Route::get('/show', function () {
+    return view('paket.show'); 
+})->name('paket.show');
+
 Route::get('/detailpaket', function () {
     return view('paket.detailpaket'); 
 })->name('paket.detailpaket');

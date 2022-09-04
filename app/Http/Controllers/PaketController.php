@@ -61,7 +61,8 @@ class PaketController extends Controller
      */
     public function show(Paket $paket)
     {
-        //
+        $data = $paket;
+        return view('paket.show',compact('data'));
     }
 
     /**
@@ -98,6 +99,16 @@ class PaketController extends Controller
         //
     }
 
+    public function showDetail()
+    {
+        $paket=Paket::find($_POST['paket_id']);
+        $judul_paket=$paket->id;
+        // $data=$paket->products;
+        return response()->json(array(
+            'status'=>'oke',
+            'msg'=>view('paket.showDetail',compact('judul_paket'))->render()
+        ),200);
+    }
 
     public function detailPaket(Request $request, Paket $paket)
     {

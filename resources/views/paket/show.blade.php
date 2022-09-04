@@ -139,11 +139,11 @@
 <section class="single-product">
 <div class="container">
 
-@foreach($pakets as $paket)
+{{-- @foreach($data as $paket) --}}
 
 <div class="col-md-7">
 <div class="single-product-details">
-<h2>{{$paket->judul_paket}}</h2>
+<h2>{{$data->judul_paket}}</h2>
 
 
 <!-- ini -->
@@ -157,7 +157,7 @@
 </ol>
 
 <div class="carousel-inner" role="listbox">
-	<div class="item active">
+	{{-- <div class="item active">
 	<img src="https://images.unsplash.com/photo-1607947909130-bf48ac6884b9?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870">
 	</div>
 	<div class="item">
@@ -165,6 +165,10 @@
 	</div>
 	<div class="item">
 	<img src="https://eyewanderphoto.com/assets/uploads/portfolio/_width900height600/newborn_batonrouge.jpg">
+	</div> --}}
+
+	<div class="item">
+		<img src="{{$data->src}}">
 	</div>
 </div>
 
@@ -172,13 +176,13 @@
 </section>
 <!-- ini-->
 
-<p class="product-price">Harga : Rp. {{number_format($paket->harga)}}</p>
+<p class="product-price">Harga : Rp. {{number_format($data->harga)}}</p>
 
-<p>Durasi : {{$paket->durasi}}</p>
+<p>Durasi : {{$data->durasi}}</p>
 
-<p>Jumlah Jepretan : {{$paket->jumlah_jepretan}} jepretan</p>
+<p>Jumlah Jepretan : {{$data->jumlah_jepretan}} jepretan</p>
 
-<p>Keterangan : {{$paket->keterangan}}</p>
+<p>Keterangan : {{$data->keterangan}}</p>
 <br>
 
 <a href="cart.html" class="btn btn-main mt-20">Add To Cart</a>
@@ -186,7 +190,7 @@
 </div>
 </div>
 
-@endforeach
+{{-- @endforeach --}}
 
 </div>
 </section>

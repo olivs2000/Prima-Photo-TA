@@ -9,6 +9,8 @@ class Pemesanan extends Model
 {
     //use HasFactory;
 
+    public $timestamps = false;
+
     public function detailpemesanan()
     {
         return $this->hasMany("App\DetailPemesanan", "pemesanans_id", "id");

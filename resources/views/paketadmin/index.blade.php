@@ -56,7 +56,7 @@
       <th>Jepretan</th>
       <th>Harga</th>
       <th>Keterangan</th>
-      <th>Nama Kategori</th>
+      <th>Kategori</th>
       <th colspan='2'></th>
    </tr>
   </thead>

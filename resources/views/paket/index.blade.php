@@ -169,7 +169,7 @@
 <img src="{{$paket->gambar}}" alt="" style="width:100%">
 <h4>{{$paket->judul_paket}}</h4> <br>
 <p class="price">Rp. {{number_format($paket->harga)}}</p><br>
-<a href="{{url('detailpaket/' .$paket->id)}}" class="btn-solid-border">view details</a>  <br><br> 
+<a href="{{url('paket.show/'.$paket->id)}}" class="btn-solid-border">view details</a>  <br><br> 
 <a href="{{url('add-to-cart/' .$paket->id)}}" class="btn-main">Add to Cart</a> <br><br> 
 </div>
 </div>

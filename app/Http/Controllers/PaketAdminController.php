@@ -25,6 +25,12 @@ class PaketAdminController extends Controller
         return view('paketadmin.create', compact('kategoris'));
     }
 
+    public function show(Paket $paket)
+    {
+        $data = $paket;
+        return view('paket.show',compact('data'));
+    }
+
     public function store(Request $request)
     {
         $data=new Paket();
@@ -41,11 +47,8 @@ class PaketAdminController extends Controller
         return redirect()->route('paketadmin.index')->with('status', 'Paket baru berhasil tersimpan');
     }
 
-    public function edit(Paket $Paketpaketadmin)
+    public function edit(Paket $paketadmin)
     {
-        // $data = $paketadmin;
-        // return view('paketadmin.edit',compact('data'));
-
         $id=$paketadmin;
 
         $data=DB::table("pakets")
@@ -91,3 +94,4 @@ class PaketAdminController extends Controller
         }
     }
 }
+
