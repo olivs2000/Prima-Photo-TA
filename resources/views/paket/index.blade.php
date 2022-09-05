@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="css/styleaviato.css">
 
 <br><br><br>
+
 <!-- Start Top Header Bar -->
 <section class="top-header">
 <div class="container">
@@ -37,12 +38,13 @@
 
 <!-- Cart -->
 <div class="col-md-4 col-xs-12 col-sm-4">
+	{{-- @dd(Session::flush()) --}}
 	<ul class="top-menu text-right list-inline">
 		<li class="dropdown cart-nav dropdown-slide">
 			<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i class="tf-ion-android-cart"></i>Cart</a>
 				<div class="dropdown-menu cart-dropdown">
 
-				<!-- Cart Item -->
+				<!-- Start Cart Item Paket -->
 				@if(session()->get('cart2'))
 				@foreach(session()->get('cart2') as $id => $details )
 				<div class="media">
@@ -59,14 +61,90 @@
 				</div>
 				@endforeach
 				@endif
-				<!-- Cart Item -->
 
 				<?php $total=0; ?>
 				@if(session()->get('cart2'))
-				@foreach(session()->get('cart2') as $id => $details )
+				@foreach(session()->get('cart2') as $id => $details)
 				<?php $total+=$details['harga']*$details['jumlah']; ?>
 				@endforeach
+				@endif			
+				<!-- End Cart Item Paket -->
+
+				<!-- Start Cart Item Produk -->
+				@if(session()->get('cart1'))
+				@foreach(session()->get('cart1') as $id => $details2)
+				<div class="media">
+					<a class="pull-left" href="#!">
+						<img class="media-object" src="{{$details2['gambar']}}" alt="image" />
+					</a>
+				<div class="media-body">
+					<h4 class="media-heading">{{$details2['judul_produk']}}</h4>
+					<div class="cart-price">
+						<span>{{$details2['jumlah']}} x</span>
+						<span>{{number_format($details2['harga'])}}</span>
+					</div>
+				</div>
+				</div>
+				@endforeach
 				@endif
+
+				@if(session()->get('cart1'))
+				@foreach(session()->get('cart1') as $id => $details2)
+				<?php $total+=$details2['harga']*$details2['jumlah']; ?>
+				@endforeach
+				@endif	
+				<!-- End Cart Item Produk -->
+
+				<!-- Start Cart Item Layanan -->
+				@if(session()->get('cart3'))
+				@foreach(session()->get('cart3') as $id => $details3)
+				<div class="media">
+					<a class="pull-left" href="#!">
+						<img class="media-object" src="{{$details3['gambar']}}" alt="image" />
+					</a>
+				<div class="media-body">
+					<h4 class="media-heading">{{$details3['judul_layanan']}}</h4>
+					<div class="cart-price">
+						<span>{{$details3['jumlah']}} x</span>
+						<span>{{number_format($details3['harga'])}}</span>
+					</div>
+				</div>
+				</div>
+				@endforeach
+				@endif
+
+				@if(session()->get('cart3'))
+				@foreach(session()->get('cart3') as $id => $details3)
+				<?php $total+=$details3['harga']*$details3['jumlah']; ?>
+				@endforeach
+				@endif	
+				<!-- End Cart Item Layanan -->
+
+				<!-- Start Cart Item Penyewaan Alat -->
+				@if(session()->get('cart4'))
+				@foreach(session()->get('cart4') as $id => $details4)
+				<div class="media">
+					<a class="pull-left" href="#!">
+						<img class="media-object" src="{{$details4['gambar']}}" alt="image" />
+					</a>
+				<div class="media-body">
+					<h4 class="media-heading">{{$details4['judul_layanan']}}</h4>
+					<div class="cart-price">
+						<span>{{$details4['jumlah']}} x</span>
+						<span>{{number_format($details4['harga'])}}</span>
+					</div>
+				</div>
+				</div>
+				@endforeach
+				@endif
+
+				@if(session()->get('cart4'))
+				@foreach(session()->get('cart4') as $id => $details4)
+				<?php $total+=$details4['harga']*$details4['jumlah']; ?>
+				@endforeach
+				@endif	
+				<!-- End Cart Item Penyewaan Alat -->
+				
 				<div class="cart-summary">
 					<span>Total</span>
 					<span class="total-price">Rp. {{number_format($total)}}</span>
@@ -81,13 +159,12 @@
 	</ul>
 </div><!-- / Cart -->
 
-
 </div>
 </div>
-</section><!-- End Top Header Bar -->
+</section>
+<!-- End Top Header Bar -->
 
 
-<!-- Main Menu Section -->
 <section class="menu">
 	<nav class="navbar navigation">
 		<div class="container">
@@ -101,9 +178,8 @@
 					<span class="icon-bar"></span>
 				</button>
 
-			</div><!-- / .navbar-header -->
+			</div>
 
-			<!-- Navbar Links -->
 			<div id="navbar" class="navbar-collapse collapse text-center">
 				<ul class="nav navbar-nav">
 
@@ -124,14 +200,14 @@
 
 					<!-- Penyewaan Alat -->
 					<li class="dropdown ">
-						<a href="{{url('penyewaanalat')}}">Sewa Alat</a>
+						<a href="{{url('penyewaanalat')}}">Sewa Alat Fotografi</a>
 					</li><!-- / Penyewaan Alat -->
 
-				</ul><!-- / .nav .navbar-nav -->
+				</ul>
 
 			</div>
-			<!--/.navbar-collapse -->
-		</div><!-- / .container -->
+
+		</div>
 	</nav>
 </section>
 
@@ -169,8 +245,8 @@
 <img src="{{$paket->gambar}}" alt="" style="width:100%">
 <h4>{{$paket->judul_paket}}</h4> <br>
 <p class="price">Rp. {{number_format($paket->harga)}}</p><br>
-<a href="{{url('paket.show/'.$paket->id)}}" class="btn-solid-border">view details</a>  <br><br> 
-<a href="{{url('add-to-cart/' .$paket->id)}}" class="btn-main">Add to Cart</a> <br><br> 
+<a href="{{url('paket/'.$paket->id)}}" class="btn-solid-border">view details</a>  <br><br> 
+<a href="{{url('add-to-cart-paket/' .$paket->id)}}" class="btn-main">Add to Cart</a> <br><br> 
 </div>
 </div>
 </div>

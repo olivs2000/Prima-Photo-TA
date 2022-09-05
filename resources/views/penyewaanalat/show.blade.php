@@ -1,26 +1,33 @@
+  <!-- Basic Page Needs
+  ================================================== -->
+  <meta charset="utf-8">
+  <title>Detail Alat Fotografi</title>
 
-@section('content')
-<!-- Basic Page Needs
-================================================== -->
-<meta charset="utf-8">
-<title>Sewa Alat Fotografi</title>
+  <!-- Mobile Specific Metas
+  ================================================== -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Construction Html5 Template">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="author" content="Themefisher">
+  <meta name="generator" content="Themefisher Constra HTML Template v1.0">
 
-<!-- Themefisher Icon font -->
-<link rel="stylesheet" href="plugins/themefisher-font/style.css">
-<!-- bootstrap.min css -->
-<link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  
+  <!-- Themefisher Icon font -->
+  <link rel="stylesheet" href="{{ asset('plugins/themefisher-font/style.css') }}">
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}">
+  
+  <!-- Animate css -->
+  <link rel="stylesheet" href="{{ asset('plugins/animate/animate.css') }}">
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" href="{{ asset('plugins/slick/slick.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/slick/slick-theme.css') }}">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="{{ asset('css/styleaviato.css') }}">
 
-<!-- Animate css -->
-<link rel="stylesheet" href="plugins/animate/animate.css">
-<!-- Slick Carousel -->
-<link rel="stylesheet" href="plugins/slick/slick.css">
-<link rel="stylesheet" href="plugins/slick/slick-theme.css">
-
-<!-- Main Stylesheet -->
-<link rel="stylesheet" href="css/styleaviato.css">
-
-<br><br><br>
 <!-- Start Top Header Bar -->
+
 <section class="top-header">
 <div class="container">
 <div class="row">
@@ -28,14 +35,13 @@
 <div class="col-md-4 col-xs-12 col-sm-4">
 <!-- Site Logo -->
 <div class="logo text-center">
-	<!-- replace logo here -->
+<!-- replace logo here -->
 	<text id="PRIMA PHOTO">
 		<h1>PRIMA PHOTO</h1>
-	</text>	
+	</text>					
 </div>
 </div>
-			
-		
+
 <!-- Cart -->
 <div class="col-md-4 col-xs-12 col-sm-4">
 	<ul class="top-menu text-right list-inline">
@@ -63,7 +69,7 @@
 
 				<?php $total=0; ?>
 				@if(session()->get('cart2'))
-				@foreach(session()->get('cart2') as $id => $details )
+				@foreach(session()->get('cart2') as $id => $details)
 				<?php $total+=$details['harga']*$details['jumlah']; ?>
 				@endforeach
 				@endif			
@@ -88,7 +94,7 @@
 				@endif
 
 				@if(session()->get('cart1'))
-				@foreach(session()->get('cart1') as $id => $details2 )
+				@foreach(session()->get('cart1') as $id => $details2)
 				<?php $total+=$details2['harga']*$details2['jumlah']; ?>
 				@endforeach
 				@endif	
@@ -113,7 +119,7 @@
 				@endif
 
 				@if(session()->get('cart3'))
-				@foreach(session()->get('cart3') as $id => $details3 )
+				@foreach(session()->get('cart3') as $id => $details3)
 				<?php $total+=$details3['harga']*$details3['jumlah']; ?>
 				@endforeach
 				@endif	
@@ -179,29 +185,33 @@
 
 			</div>
 
-
 			<div id="navbar" class="navbar-collapse collapse text-center">
 				<ul class="nav navbar-nav">
 
-				<!-- Home -->
-                <li class="dropdown ">
-                    <a href="{{url('pelanggan')}}">Home</a>
-                </li><!-- / Home -->
+					<!-- Home -->
+					<li class="dropdown ">
+						<a href="{{url('pelanggan')}}">Beranda</a>
+					</li><!-- / Home -->
 
-                <!-- Paket -->
-                <li class="dropdown ">
-                    <a href="{{url('paket')}}">Paket</a>
-                </li><!-- / Paket -->
+                    <!-- penyewaan alat -->
+					<li class="dropdown ">
+						<a href="{{url('penyewaanalat')}}">Sewa Alat Fotografi</a>
+					</li><!-- / penyewaan alat -->
 
-                <!-- Produk -->
-                <li class="dropdown ">
-                    <a href="{{url('produk')}}">Produk</a>
-                </li><!-- / Produk -->
+                    <!-- paket -->
+					<li class="dropdown ">
+						<a href="{{url('paket')}}">Paket Fotografi</a>
+					</li><!-- / paket -->
 
-                <!-- layanan -->
-                <li class="dropdown ">
-                    <a href="{{url('layanan')}}">Layanan</a>
-                </li><!-- / layanan-->
+					<!-- produk -->
+					<li class="dropdown ">
+						<a href="{{url('produk')}}">Produk</a>
+					</li><!-- / produk -->
+
+					<!-- layanan -->
+					<li class="dropdown ">
+						<a href="{{url('layanan')}}">Layanan</a>
+					</li><!-- / layanan-->
 
 				</ul>
 
@@ -210,68 +220,100 @@
 	</nav>
 </section>
 
+<section class="single-product">
+<div class="container">
 
-<section class="page-header">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="content">
-					<h1 class="page-name">Sewa Alat</h1>
-					<ol class="breadcrumb">
-						<li><a href="index.html">Home</a></li>
-						<li class="active">Sewa Alat Fotografi</li>
-					</ol>
-				</div>
+<div class="col-md-7">
+<div class="single-product-details">
+<h2>{{$data->nama_alat}}</h2>
+
+
+<!-- ini -->
+<section class="awSlider">
+  <div  class="carousel slide" data-ride="carousel">
+<ol class="carousel-indicators">
+	<li data-target=".carousel" data-slide-to="0" class="active"></li>
+	<li data-target=".carousel" data-slide-to="1"></li>
+	<li data-target=".carousel" data-slide-to="2"></li>
+</ol>
+
+<div class="carousel-inner" role="listbox">
+	@foreach ($data->gambar_detail as $key => $gambar_detail)
+		@if ($key == 0)
+			<div class="item active">
+				<img src="{{ asset('storage/').'/'.$gambar_detail}}">
 			</div>
-		</div>
+		@else
+			<div class="item">
+				<img src="{{ asset('storage/').'/'.$gambar_detail}}">
+			</div>
+		@endif
+		
+	@endforeach
+</div>
+
+</div>
+</section>
+<!-- ini-->
+
+<div class="product-quantity">
+	<span>Stok :</span> {{$data->stok}}
+</div>
+
+<div class="product-quantity">
+	<span class="product-price">Harga :</span> Rp. {{number_format($data->harga)}}
+</div>
+
+<div class="product-quantity">
+	<span>tipe :</span> {{$data->tipe}}
+</div>
+
+<div class="product-quantity">
+	<span>Jumlah :</span>
+	<div class="product-quantity-slider">
+		<input id="product-quantity" type="text" value="0" name="product-quantity">
 	</div>
+</div>
+
+<br>
+
+<a href="{{url('add-to-cart-penyewaanalat/' .$data->id)}}" class="btn btn-main mt-20">Add To Cart</a>
+
+</div>
+</div>
+</div>
+
+</div>
 </section>
 
-<br><br><br>
 
-@if(session('success'))
-<div class="alert alert-success alert-common alert-solid" role="alert"><i class="tf-ion-thumbsup"></i> Horee!!
-{{session('success')}}
-</div>
-@endif
 
-<br><br><br>
 
-@foreach($penyewaanalats as $sewa)
-<div class="col-md-4">
-<div class="product-item">
-<div class="card">
-<img src="{{$sewa->gambar}}" alt="" style="width:100%">
-<h4>{{$sewa->nama_alat}}</h4> <br>
-<p class="price">{{$sewa->harga}}</p><br>
-<a href="{{url('penyewaanalat/'.$sewa->id)}}" class="btn-solid-border">view details</a>  <br><br> 
-<a href="{{url('add-to-cart-penyewaanalat/' .$sewa->id)}}" class="btn-main">Add to Cart</a> <br><br> 
-</div>
-</div>
-</div>
-@endforeach
-  
+<!--Essential Scripts
+=====================================-->
+
 <!-- Main jQuery -->
-<script src="plugins/jquery/dist/jquery.min.js"></script>
+<script src="{{ asset('plugins/jquery/dist/jquery.min.js') }}"></script>
 <!-- Bootstrap 3.1 -->
-<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- Bootstrap Touchpin -->
-<script src="plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+<script src="{{ asset('plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js') }}"></script>
 <!-- Instagram Feed Js -->
-<script src="plugins/instafeed/instafeed.min.js"></script>
+<script src="{{ asset('plugins/instafeed/instafeed.min.js') }}"></script>
 <!-- Video Lightbox Plugin -->
-<script src="plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
+<script src="{{ asset('plugins/ekko-lightbox/dist/ekko-lightbox.min.js') }}"></script>
 <!-- Count Down Js -->
-<script src="plugins/syo-timer/build/jquery.syotimer.min.js"></script>
+<script src="{{ asset('plugins/syo-timer/build/jquery.syotimer.min.js') }}"></script>
 
 <!-- slick Carousel -->
-<script src="plugins/slick/slick.min.js"></script>
-<script src="plugins/slick/slick-animation.min.js"></script>
+<script src="{{ asset('plugins/slick/slick.min.js') }}"></script>
+<script src="{{ asset('plugins/slick/slick-animation.min.js') }}"></script>
 
 <!-- Google Mapl -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-<script type="text/javascript" src="plugins/google-map/gmap.js"></script>
+<script src="{{ asset('https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw') }}"></script>
+<script type="{{ asset('text/javascript" src="plugins/google-map/gmap.js') }}"></script>
 
 <!-- Main Js File -->
-<script src="js/scriptaviato.js"></script>
+<script src="{{ asset('js/scriptaviato.js') }}"></script>
+
 

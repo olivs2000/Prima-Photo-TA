@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Paket;
 use App\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use DB;
 
 class PaketController extends Controller
@@ -27,8 +28,7 @@ class PaketController extends Controller
      */
     public function create()
     {
-        $kategoris=Kategori::all();
-        return view('paketadmin.create', compact('kategoris'));
+
     }
 
     /**
@@ -39,18 +39,7 @@ class PaketController extends Controller
      */
     public function store(Request $request)
     {
-        $data=new Paket();
-
-        $data->gambar=$request->get('gambar');
-        $data->judul_paket=$request->get('judul_paket');
-        $data->durasi=$request->get('durasi');
-        $data->jumlah_jepretan=$request->get('jumlah_jepretan');
-        $data->harga=$request->get('harga');
-        $data->keterangan=$request->get('keterangan');       
-        $data->kategoris_id=$request->get('kategoris_id');
-        $data->save();
-
-        return redirect()->route('paketadmin.index')->with('status', 'Paket baru berhasil tersimpan');
+     
     }
 
     /**
@@ -62,6 +51,8 @@ class PaketController extends Controller
     public function show(Paket $paket)
     {
         $data = $paket;
+        $data->gambar_detail = Storage::disk('public')->files($data->gambar_detail);
+        
         return view('paket.show',compact('data'));
     }
 
@@ -99,34 +90,13 @@ class PaketController extends Controller
         //
     }
 
-    public function showDetail()
-    {
-        $paket=Paket::find($_POST['paket_id']);
-        $judul_paket=$paket->id;
-        // $data=$paket->products;
-        return response()->json(array(
-            'status'=>'oke',
-            'msg'=>view('paket.showDetail',compact('judul_paket'))->render()
-        ),200);
-    }
-
-    public function detailPaket(Request $request, Paket $paket)
-    {
-        $paket->judul_produk=$request->get('judul_produk');
-        $paket->gambar=$request->get('gambar');
-        $paket->durasi=$request->get('durasi');
-        $paket->jumlah_jepretan=$request->get('jumlah_jepretan');
-        $paket->harga=$request->get('harga');
-        $paket->keterangan=$request->get('keterangan');
-    }
-
     public function front_index()
     {
         $pakets=Paket::all();
         return view('paket.index', compact('pakets'));
     }
 
-    public function addToCart($id)
+    public function addToCart(Request $request, $id)
     {
         $p=Paket::find($id);
         $cart=session()->get('cart2');

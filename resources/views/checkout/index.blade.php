@@ -119,27 +119,109 @@
                      <h4 class="widget-title">Ringkasan Pemesanan</h4>
                      <div class="media product-card">
 
-                     @if(session()->get('cart2'))
-                     @foreach(session()->get('cart2') as $id => $details )
-                     <a class="pull-left" href="product-single.html">
-                        <img class="media-object" src="{{$details['gambar']}}" alt="Image" height='80px'/>
-                     </a>
+                   		<!-- Start Cart Item Paket -->
+                        @if(session()->get('cart2'))
+                        @foreach(session()->get('cart2') as $id => $details )
+                        <div class="media">
+                           <a class="pull-left" href="#!">
+                              <img class="media-object" src="{{$details['gambar']}}" alt="image" />
+                           </a>
+                        <div class="media-body">
+                           <h4 class="media-heading">{{$details['judul_paket']}}</h4>
+                           <div class="cart-price">
+                              <span>{{$details['jumlah']}} x</span>
+                              <span>{{number_format($details['harga'])}}</span>
+                           </div>
+                        </div>
+                        </div>
+                        @endforeach
+                        @endif
 
-                     <div class="media-body">
-                        <h4 class="media-heading">{{$details['judul_paket']}}</h4>
-                        <p class="price">{{$details['jumlah']}} X {{number_format($details['harga'])}}</p>
-                     </div>
+                        <?php $total=0; ?>
+                        @if(session()->get('cart2'))
+                        @foreach(session()->get('cart2') as $id => $details )
+                        <?php $total+=$details['harga']*$details['jumlah']; ?>
+                        @endforeach
+                        @endif			
+                        <!-- End Cart Item Paket -->
 
-                     </div>
+                        <!-- Start Cart Item Produk -->
+                        @if(session()->get('cart1'))
+                        @foreach(session()->get('cart1') as $id => $details2)
+                        <div class="media">
+                           <a class="pull-left" href="#!">
+                              <img class="media-object" src="{{$details2['gambar']}}" alt="image" />
+                           </a>
+                        <div class="media-body">
+                           <h4 class="media-heading">{{$details2['judul_produk']}}</h4>
+                           <div class="cart-price">
+                              <span>{{$details2['jumlah']}} x</span>
+                              <span>{{number_format($details2['harga'])}}</span>
+                           </div>
+                        </div>
+                        </div>
+                        @endforeach
+                        @endif
+
+                        @if(session()->get('cart1'))
+                        @foreach(session()->get('cart1') as $id => $details2 )
+                        <?php $total+=$details2['harga']*$details2['jumlah']; ?>
+                        @endforeach
+                        @endif	
+                        <!-- End Cart Item Produk -->
+
+                        <!-- Start Cart Item Layanan -->
+                        @if(session()->get('cart3'))
+                        @foreach(session()->get('cart3') as $id => $details3)
+                        <div class="media">
+                           <a class="pull-left" href="#!">
+                              <img class="media-object" src="{{$details3['gambar']}}" alt="image" />
+                           </a>
+                        <div class="media-body">
+                           <h4 class="media-heading">{{$details3['judul_layanan']}}</h4>
+                           <div class="cart-price">
+                              <span>{{$details3['jumlah']}} x</span>
+                              <span>{{number_format($details3['harga'])}}</span>
+                           </div>
+                        </div>
+                        </div>
+                        @endforeach
+                        @endif
+
+                        @if(session()->get('cart3'))
+                        @foreach(session()->get('cart3') as $id => $details3 )
+                        <?php $total+=$details3['harga']*$details3['jumlah']; ?>
+                        @endforeach
+                        @endif	
+                        <!-- End Cart Item Layanan -->
+
+                        <!-- Start Cart Item Penyewaan Alat -->
+                        @if(session()->get('cart4'))
+                        @foreach(session()->get('cart4') as $id => $details4)
+                        <div class="media">
+                           <a class="pull-left" href="#!">
+                              <img class="media-object" src="{{$details4['gambar']}}" alt="image" />
+                           </a>
+                        <div class="media-body">
+                           <h4 class="media-heading">{{$details4['nama_alat']}}</h4>
+                           <div class="cart-price">
+                              <span>{{$details4['jumlah']}} x</span>
+                              <span>{{number_format($details4['harga'])}}</span>
+                           </div>
+                        </div>
+                        </div>
+                        @endforeach
+                        @endif
+
+                        @if(session()->get('cart4'))
+                        @foreach(session()->get('cart4') as $id => $details4 )
+                        <?php $total+=$details4['harga']*$details4['jumlah']; ?>
+                        @endforeach
+                        @endif	
+                        <!-- End Cart Item Penyewaan Alat -->
                     
-                     <ul class="summary-prices"></ul>
-                     
-                     <?php session_start(); $total=0; session_destroy(); ?>
-                     @if(session()->get('cart2'))
-                     @foreach(session()->get('cart2') as $id => $details )
-                     <?php $total+=$details['harga']*$details['jumlah']; ?>
-                     @endforeach
-                     @endif
+                        <ul class="summary-prices"></ul>
+
 
                      <div class="summary-total">
                         <span>Total</span>
@@ -149,8 +231,7 @@
 
                   </form>
                      
-                  @endforeach
-                  @endif
+            
 
                   <br><br>
 

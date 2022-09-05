@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Produk;
 use DB;
 
@@ -46,9 +47,11 @@ class ProdukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Produk $produk)
     {
-        //
+        $data = $produk;
+        $data->gambar_detail = Storage::disk('public')->files($data->gambar_detail);
+        return view('produk.show',compact('data'));
     }
 
     /**
@@ -91,10 +94,10 @@ class ProdukController extends Controller
         return view('frontend.produk', compact('produk'));
     }
 
-    public function addToCart($id)
+    public function addToCart(Request $request, $id)
     {
         $p=Produk::find($id);
-        $cart=session()->get('cart2');
+        $cart=session()->get('cart1');
         if(!isset($cart[$id]))
         {
             $cart[$id]=[
@@ -108,7 +111,7 @@ class ProdukController extends Controller
         {
             $cart[$id]['jumlah']++;
         }
-        session()->put('cart2', $cart);
+        session()->put('cart1', $cart);
         return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang');
     }
 
@@ -130,4 +133,6 @@ class ProdukController extends Controller
     {
         Cart::add('293ad', 'Product 1', 1, 9.99, 550);
     }
+
+
 }

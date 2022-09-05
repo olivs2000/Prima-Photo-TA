@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\PenyewaanAlat;
 use DB;
 
@@ -46,9 +47,11 @@ class PenyewaanAlatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(PenyewaanAlat $penyewaanalat)
     {
-        //
+        $data = $penyewaanalat;
+        $data->gambar_detail = Storage::disk('public')->files($data->gambar_detail);
+        return view('penyewaanalat.show',compact('data'));
     }
 
     /**
@@ -94,7 +97,7 @@ class PenyewaanAlatController extends Controller
     public function addToCart($id)
     {
         $pa=PenyewaanAlat::find($id);
-        $cart=session()->get('cart2');
+        $cart=session()->get('cart4');
         if(!isset($cart[$id]))
         {
             $cart[$id]=[
@@ -108,7 +111,7 @@ class PenyewaanAlatController extends Controller
         {
             $cart[$id]['jumlah']++;
         }
-        session()->put('cart2', $cart);
+        session()->put('cart4', $cart);
         return redirect()->back()->with('success', 'Alat fotografi berhasil ditambahkan ke keranjang');
     }
 }
