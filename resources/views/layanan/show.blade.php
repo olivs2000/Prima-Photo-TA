@@ -215,13 +215,20 @@
 	</nav>
 </section>
 
+<br>
+
+@if(session('success'))
+<div class="alert alert-success alert-common alert-solid" role="alert"><i class="tf-ion-thumbsup"></i> Horee!!
+{{session('success')}}
+</div>
+@endif
+
 <section class="single-product">
 <div class="container">
 
 <div class="col-md-7">
 <div class="single-product-details">
 <h2>{{$data->judul_layanan}}</h2>
-
 
 <!-- ini -->
 <section class="awSlider">

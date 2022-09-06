@@ -24,6 +24,7 @@ use App\Http\Controllers\KonfirmasiController;
 use App\Http\Controllers\KonfirmasiColController;
 use App\Http\Controllers\CollaborateController;
 use App\Http\Controllers\CollaborateAdminController;
+use App\Http\Controllers\RiwayatPemesananController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 
@@ -61,6 +62,7 @@ Route::resource('collaborateadmin','CollaborateAdminController');
 
 Route::resource('pelanggan','UserController');
 
+Route::resource('riwayatpemesanan','RiwayatPemesananController');
 
 
 // START LAYANAN //

@@ -243,7 +243,7 @@
 <div class="card">
 <img src="{{$sewa->gambar}}" alt="" style="width:100%">
 <h4>{{$sewa->nama_alat}}</h4> <br>
-<p class="price">{{$sewa->harga}}</p><br>
+<p class="price">Rp. {{number_format($sewa->harga)}}</p><br>
 <a href="{{url('penyewaanalat/'.$sewa->id)}}" class="btn-solid-border">view details</a>  <br><br> 
 <a href="{{url('add-to-cart-penyewaanalat/' .$sewa->id)}}" class="btn-main">Add to Cart</a> <br><br> 
 </div>

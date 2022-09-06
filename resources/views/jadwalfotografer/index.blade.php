@@ -50,7 +50,7 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>Detail Pemesanan</th>
+      <th>No Detail Pemesanan</th>
       <th>Nama Fotografer</th>
       <th>Admin Studio</th>
       <th>Status</th>

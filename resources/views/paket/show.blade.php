@@ -220,6 +220,14 @@
 	</nav>
 </section>
 
+<br>
+
+@if(session('success'))
+<div class="alert alert-success alert-common alert-solid" role="alert"><i class="tf-ion-thumbsup"></i> Horee!!
+{{session('success')}}
+</div>
+@endif
+
 <section class="single-product">
 <div class="container">
 

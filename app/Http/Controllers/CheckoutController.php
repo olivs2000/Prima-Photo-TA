@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pemesanan;
+use App\DetailPemesanan;
 use App\Checkout;
 use Illuminate\Http\Request;
 use DB;
@@ -107,17 +108,17 @@ class CheckoutController extends Controller
     
     public function submit_front()
     {
-        $cart=session()->get('cart2');
+        $cart=session()->get('cart1');
         $user=Auth::user();
-        $c=new Keranjang;
-        // $c->user_id=$user->id;
-        // $c->user_id=1;
-        // $c->tanggal_pemesanan=Carbon::now()->toDateTimeString();
+        $c=new DetailPemesanan;
+        $c->user_id=$user->id;
+        $c->user_id=1;
+        $c->tanggal_pemesanan=Carbon::now()->toDateTimeString();
         $c->save();
 
         $c->insertPaket($cart);
 
-        session()->forget('cart2');
+        session()->forget('cart1');
 
         return redirect('checkout.index');
     }

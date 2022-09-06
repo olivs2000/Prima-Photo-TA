@@ -112,6 +112,7 @@ class PenyewaanAlatController extends Controller
             $cart[$id]['jumlah']++;
         }
         session()->put('cart4', $cart);
+        // session()->forget('cart4');
         return redirect()->back()->with('success', 'Alat fotografi berhasil ditambahkan ke keranjang');
     }
 }

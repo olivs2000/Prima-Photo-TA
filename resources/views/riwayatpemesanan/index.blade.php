@@ -1,7 +1,7 @@
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>Success</title>
+  <title>Detail Pemesanan</title>
 
   <!-- Mobile Specific Metas
   ================================================== -->
@@ -27,7 +27,7 @@
 
 
 <!-- Start Top Header Bar -->
-<section class="top-header">
+<section class="page-header">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-xs-12 col-sm-4"></div>
@@ -35,86 +35,66 @@
 				<!-- Site Logo -->
 				<div class="logo text-center">
 					<text id="PRIMA PHOTO">
-						<h1>PRIMA PHOTO</h1>
+						<h1>Detail Pemesanan</h1>
 					</text>	
 				</div>
 			</div>
-
 			<div class="col-md-4 col-xs-12 col-sm-4">
-				<ul class="top-menu text-right list-inline">
-				</ul>
+				<ul class="top-menu text-right list-inline"></ul>
 			</div>
 		</div>
 	</div>
-</section><!-- End Top Header Bar -->
+</section>
+<!-- End Top Header Bar -->
 
-<br><br><br><br>
-
-<!-- Page Wrapper -->
-<section class="page-wrapper success-msg">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <div class="block text-center">
-        	<i class="tf-ion-android-checkmark-circle"></i>
-          <h2 class="text-center">Terima kasih telah melakukan pemesanan!</h2>
-          <p>Setelah berhasil melakukan pembayaran, silahkan cek email anda untuk melihat detail pemesanan.</p>
-		  <a href="{{url('riwayatpemesanan')}}"class="btn btn-main mt-20">Lihat Detail Pemesanan</a>
-        </div>
+<div class="page-wrapper">
+  <div class="cart shopping">
+    <div class="container">
+      <div class="row">
+          <div class="block">
+            <div class="product-list">
+              <form method="post">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="">Nama</th>
+                      {{-- <th class="">Pemesanan</th> --}}
+                      <th class="">Jumlah</th>
+                      <th class="">Harga</th>
+                      <th class="">Total</th>
+                      <th class="">Tanggal Pemesanan</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($data as $rp)
+                    <tr class="">
+                      {{-- <td class="">
+                        <div class="product-info">
+                          <a>{{$rp->detail_pemesanans_id}}</a>
+                        </div>
+                      </td>
+                      <td class="">$200.00</td>
+                      <td class="">
+                        <a class="product-remove" href="#!">Remove</a>
+                      </td> --}}
+                      <td>{{$rp->nama}}</a></td>
+                      {{-- <td>{{$rp->...}}</td> --}}
+                      <td>{{$rp->jumlah}}</td>
+                      <td>{{$rp->harga}}</td>
+                      <td>{{$rp->total}}</td>
+                      <td>{{$rp->tanggal_pemesanan}}</td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+                {{-- <a href="checkout.html" class="btn btn-main pull-right">Print</a> --}}
+              </form>
+            </div>
+          </div>
       </div>
     </div>
   </div>
-</section>
-<!-- /.page-warpper -->
-
-
-
-
-{{-- <footer class="footer section text-center">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<ul class="social-media">
-					<li>
-						<a href="https://www.facebook.com/themefisher">
-							<i class="tf-ion-social-facebook"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.instagram.com/themefisher">
-							<i class="tf-ion-social-instagram"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.twitter.com/themefisher">
-							<i class="tf-ion-social-twitter"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.pinterest.com/themefisher/">
-							<i class="tf-ion-social-pinterest"></i>
-						</a>
-					</li>
-				</ul>
-				<ul class="footer-menu text-uppercase">
-					<li>
-						<a href="contact.html">CONTACT</a>
-					</li>
-					<li>
-						<a href="shop.html">SHOP</a>
-					</li>
-					<li>
-						<a href="pricing.html">Pricing</a>
-					</li>
-					<li>
-						<a href="contact.html">PRIVACY POLICY</a>
-					</li>
-				</ul>
-				<p class="copyright-text">Copyright &copy;2021, Designed &amp; Developed by <a href="https://themefisher.com/">Themefisher</a></p>
-			</div>
-		</div>
-	</div>
-</footer> --}}
+</div>
 
     <!-- 
     Essential Scripts
@@ -139,4 +119,3 @@
 
    <!-- Main Js File -->
    <script src="js/scriptaviato.js"></script>
-    
