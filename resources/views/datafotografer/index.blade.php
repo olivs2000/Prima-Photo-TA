@@ -81,14 +81,14 @@
   </td>  
 
   <td>
-    <a href="{{url('datafotografer/'.$df->id.'/edit') }}" class="btn btn-warning">Edit</a></td>
+    <a href="{{url('datafotografer/'.$df->id.'/edit') }}" class="btn btn-warning">Ubah</a></td>
   </td>
 
   <td>
     <form method="POST" action="{{url('datafotografer/'.$df->id )}}">
       @csrf
       @method('DELETE')
-      <input type='submit' value='Delete' class='btn btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
+      <input type='submit' value='Hapus' class='btn btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
     </form>
 
     <!-- <a class='btn btn-xs btn-danger' onclick="if(confirm('Apakah anda yakin?')) deleteDataRemoveTR({{$df->id}})">Delete</a> -->

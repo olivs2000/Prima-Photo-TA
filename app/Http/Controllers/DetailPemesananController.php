@@ -88,17 +88,6 @@ class DetailPemesananController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $detailpemesanan->user_pelanggans_id=$request->get('user_pelanggans_id');
-        // $detailpemesanan->pemesanans_id=$request->get('pemesanans_id');
-        // $detailpemesanan->pakets_id=$request->get('pakets_id');
-        // $detailpemesanan->penyewaan_alats_id=$request->get('penyewaan_alats_id');
-        // $detailpemesanan->produks_id=$request->get('produks_id');
-        // $detailpemesanan->pakets_id=$request->get('pakets_id');
-        // $detailpemesanan->layanans_id=$request->get('layanans_id');
-        // $detailpemesanan->jumlah=$request->get('jumlah');
-        // $detailpemesanan->harga=$request->get('harga');
-        // $detailpemesanan->tanggal_pemesanan=$request->get('tanggal_pemesanan');
-        // $detailpemesanan->total=$request->get('total');
         $detailpemesanan->status=$request->get('status');
         $detailpemesanan->save(); 
 
@@ -128,6 +117,13 @@ class DetailPemesananController extends Controller
 
     public function editForm(Request $request)
     {
+        // $id=$request->get('id');
+        // $data=DetailPemesanan::find($id);
+        // return response()->json(array(
+        //     'status'=>'oke',
+        //     'msg'=>view('detailpemesanan.editForm',compact('data'))->render()
+        // ),200);
+
         $id=$request->get('id');
 
         $data=DB::table("detail_pemesanans")

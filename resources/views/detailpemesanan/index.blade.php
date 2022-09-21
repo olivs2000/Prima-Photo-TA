@@ -53,8 +53,8 @@
     <th>Jumlah</th>
     <th>Harga</th>
     <th>Total</th>
-    <th>Tanggal Pemesanan</th>
-    <th>Status</th>    
+    <th>Tanggal Pembayaran</th>   
+    <th>Tanggal Pemesanan</th>   
     <th colspan='1'></th>
   <tr>
 </thead>
@@ -72,21 +72,9 @@
   <td>{{$dp->jumlah}}</td>
   <td>Rp. {{number_format($dp->harga)}}</td>
   <td>Rp. {{number_format($dp->total)}}</td>  
+  <td>{{$dp->tanggal_pembayaran}}</td>
   <td>{{$dp->tanggal_pemesanan}}</td>
-
-  <td id='td-status-{{$dp->id}}'> 
-    @if($dp->status == 'proses')
-      <span class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">proses</span>
-    @else
-      <span class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">selesai</span>
-    @endif
-  </td>
-
-  <td>
-    {{-- <a href="{{url('detailpemesanan/'.$dp->id.'/edit') }}" class="btn btn-warning">Edit</a> --}}
-
-    <a href="#modalEdit" data-toggle='modal' class="btn btn-warning" onclick="editForm({{$dp->id}})">Edit</a> 
-  </td>
+  
 </tr>
 
 @endforeach

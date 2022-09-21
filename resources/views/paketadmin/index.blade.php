@@ -74,14 +74,14 @@
   <td id='td-keterangan-{{$p->id}}'>{{$p->keterangan}}</td>
   <td id='td-kategoris_id-{{$p->id}}'>{{$p->nama}}</td>      
   <td>
-    <a href="{{url('paketadmin/'.$p->id.'/edit') }}" class="btn btn-warning">Edit</a>
+    <a href="{{url('paketadmin/'.$p->id.'/edit') }}" class="btn btn-warning">Ubah</a>
   </td>
 
   <td>
     <form method="POST" action="{{url('paketadmin/'.$p->id )}}">
       @csrf
       @method('DELETE')
-      <input type='submit' value='Delete' class='btn btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
+      <input type='submit' value='Hapus' class='btn btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
     </form>
   </td>
 

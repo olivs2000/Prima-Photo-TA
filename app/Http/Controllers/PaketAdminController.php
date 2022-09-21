@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Paket;
 use App\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use DB;
 
 class PaketAdminController extends Controller
@@ -47,7 +49,7 @@ class PaketAdminController extends Controller
         return redirect()->route('paketadmin.index')->with('status', 'Paket baru berhasil tersimpan');
     }
 
-    public function edit(Paket $paketadmin)
+    public function edit($paketadmin)
     {
         $id=$paketadmin;
 
@@ -57,11 +59,19 @@ class PaketAdminController extends Controller
         ->where("pakets.id", $id)
         ->first();
 
-        $kategori=DB::table("kategoris")
+        $kategoris=DB::table("kategoris")
         ->select("kategoris.id", "nama")
         ->get();
 
-        return view("paketadmin.edit",compact('data', 'kategori'));
+        return view("paketadmin.edit",compact('data', 'kategoris'));
+
+        // $id=$request->get('id');
+        // $idk=$request->get('kategoris_id');
+        // $data=Paket::find($id);
+        // return response()->json(array(
+        //     'status'=>'oke',
+        //     'msg'=>view('paketadmin.edit',compact('data', 'idk'))->render()
+        // ),200);
     }
 
     public function update(Request $request, Paket $paketadmin)
@@ -92,6 +102,22 @@ class PaketAdminController extends Controller
             $msg = 'Terjadi kesalahan! Gagal menghapus paket';
             return redirect()->route('paketadmin.index')->with('error', $msg);
         }
+    }
+
+    public function createDirecrotory(Request $request)
+    {
+        $path = public_path('storage');
+
+        if(!File::isDirectory($path)){
+            File::makeDirectory($path, 0777, true, true);
+
+        }   
+    }
+
+    public function createFolder()
+    {
+        $response = Storage::makeDirectory('storage');
+        //dd($response);
     }
 }
 

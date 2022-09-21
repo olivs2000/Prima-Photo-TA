@@ -40,7 +40,7 @@
 <div class="col-md-4 col-xs-12 col-sm-4">
 	<ul class="top-menu text-right list-inline">
 		<li class="dropdown cart-nav dropdown-slide">
-			<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i class="tf-ion-android-cart"></i>Cart</a>
+			<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i class="tf-ion-android-cart"></i>Keranjang</a>
 				<div class="dropdown-menu cart-dropdown">
 
 				<!-- Start Cart Item Paket -->
@@ -184,7 +184,7 @@
 
                     <!-- Home -->
                     <li class="dropdown ">
-                        <a href="{{url('pelanggan')}}">Home</a>
+                        <a href="{{url('pelanggan')}}">Beranda</a>
                     </li><!-- / Home -->
 
                     <!-- Produk -->
@@ -212,7 +212,7 @@
 				<div class="content">
 					<h1 class="page-name">Layanan</h1>
 					<ol class="breadcrumb">
-						<li><a href="index.html">Home</a></li>
+						<li><a href="index.html">Beranda</a></li>
 						<li class="active">Layanan</li>
 					</ol>
 				</div>
@@ -238,8 +238,8 @@
 <img src="{{$layanan->gambar}}" alt="" style="width:100%">
 <h4>{{$layanan->judul_layanan}}</h4> <br>
 <p class="price">Rp. {{number_format($paket->harga)}}</p><br>
-<a href="{{url('layanan/'.$layanan->id)}}" class="btn-solid-border">view details</a>  <br><br> 
-<a href="{{url('add-to-cart-layanan/' .$layanan->id)}}" class="btn-main">Add to Cart</a> <br><br> 
+<a href="{{url('layanan/'.$layanan->id)}}" class="btn-solid-border">Lihat Detail</a>  <br><br> 
+<a href="{{url('add-to-cart-layanan/' .$layanan->id)}}" class="btn-main">Masukan Keranjang</a> <br><br> 
 </div>
 </div>
 </div>

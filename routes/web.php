@@ -194,8 +194,6 @@ Route::resource('paket','PaketController');
 
 Route::resource('paketadmin','PaketAdminController');
 
-Route::post('/paket/showDetail','PaketController@showDetail')->name('paket.showDetail');
-
 Route::get('/detailpaket', function () {
     return view('paket.detailpaket'); 
 })->name('paket.detailpaket');
@@ -288,6 +286,8 @@ Route::post('/jadwalfotografer/deleteData','JadwalFotograferController@deleteDat
 Route::post('/jadwalfotografer/saveData','JadwalFotograferController@saveData')->name('jadwalfotografer.saveData');
 
 Route::resource('/datapemesanan','PemesananController');
+Route::post('/datapemesanan/editForm','PemesananController@editForm')->name('datapemesanan.editForm');
+Route::post('/datapemesanan/saveData','PemesananController@saveData')->name('datapemesanan.saveData');
 
 Route::resource('/dataadmin','AdminStudioController');
 
@@ -338,5 +338,9 @@ Route::get('cart', 'LayananController@cart');
 Route::get('add-to-cart-layanan/{id}', 'LayananController@addToCart');
 
 Route::get('submit_checkout','CheckoutController@submit_front')->name('submitCheckout');
+
+Route::get('create-directory', function () {
+    Storage::disk('public')->makeDirectory('storage');
+});
 
 

@@ -20,6 +20,10 @@ class AuthServiceProvider extends ServiceProvider
         'App\DetailPemesanan' => 'App\Policies\DetailPemesananPolicy',
         'App\DataPembelian' => 'App\Policies\DataPembelianPolicy',
         'App\DataAdmin' => 'App\Policies\DataAdminPolicy',
+        'App\PaketAdmin' => 'App\Policies\PaketAdminPolicy',
+        'App\ProdukAdmin' => 'App\Policies\ProdukAdminPolicy',
+        'App\LayananAdmin' => 'App\Policies\LayananAdminPolicy',
+        'App\PenyewaanAlat Admin' => 'App\Policies\PenyewaanAlatAdminPolicy',
         'App\Email' => 'App\Policies\EmailPolicy'
     ];
 

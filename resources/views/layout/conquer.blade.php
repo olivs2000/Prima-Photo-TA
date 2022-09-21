@@ -445,7 +445,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<li class="divider">
 					</li>
 					<li>
-					<a href="{{route('logout')}}">@csrf<i class="fa fa-key"></i> Log Out</a>
+					<a href="{{route('logout')}}">@csrf<i class="fa fa-key"></i> Keluar</a>
 					 
 					<!-- <form action="{{route('logout')}}" method="POST">
 						@csrf

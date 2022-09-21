@@ -152,18 +152,18 @@
   </td> 
 
   <td>
-    <a href="#modalEdit" data-toggle='modal' class="btn btn-primary" onclick="accepted({{$dp->stok}})">Accepted </a> 
+    <a href="#modalEdit" data-toggle='modal' class="btn btn-primary" onclick="accepted({{$dp->stok}})">Diterima </a> 
   </td>
 
   <td>
-    <a href="{{url('datapembelian/'.$dp->id.'/edit') }}" class="btn btn-warning">Edit</a></td>
+    <a href="{{url('datapembelian/'.$dp->id.'/edit') }}" class="btn btn-warning">Ubah</a></td>
   </td>
 
   <td>
     <form method="POST" action="{{url('datapembelian/'.$dp->id )}}">
       @csrf
       @method('DELETE')
-    <input type='submit' value='Delete' href="#modalDelete" data-toggle='modal' class='btn btn-danger'
+    <input type='submit' value='Hapus' href="#modalDelete" data-toggle='modal' class='btn btn-danger'
     onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
     </form>
   </td>

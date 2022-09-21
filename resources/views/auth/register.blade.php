@@ -118,7 +118,7 @@
     </div>
 </div> -->
 
-<p class="mt-20">Already have an account?<a href="{{ route('login') }}"> Login</a></p>
+<p class="mt-20">Sudah punya akun ?<a href="{{ route('login') }}"> Login</a></p>
 
 </div>
 </div>

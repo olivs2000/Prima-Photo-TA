@@ -26,6 +26,11 @@
 </div>
 
 <div class="form-group">
+	<label>Gambar Detail</label>
+	<input type="text" class="form-control" name="gambar">
+</div>
+
+<div class="form-group">
 	<label>Judul Produk</label>
 	<input type="text" class="form-control" name="judul_produk">
 </div>

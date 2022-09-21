@@ -2,7 +2,7 @@
 
 @section('content')
 <h3 class="page-title">
-	Welcome to Prima Photo Studio
+	Prima Photo Studio
 </h3>
 	<div class="page-bar">
 	    <ul class="page-breadcrumb">

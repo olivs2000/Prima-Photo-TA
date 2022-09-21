@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h3 class="page-title">	Edit Jadwal Fotografer </h3>
+<h3 class="page-title">	Ubah Jadwal Fotografer </h3>
 <div class="page-bar">
 	  <ul class="page-breadcrumb">
 			<li>

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h3 class="page-title">	Ubah Paket</h3>
+<h3 class="page-title">	Ubah Paket Fotografi </h3>
 <div class="page-bar">
 	  <ul class="page-breadcrumb">
 			<li>
@@ -11,7 +11,7 @@
 				<i class="fa fa-angle-right"></i>
 			</li>
 			<li>
-				<a href="#">Paket</a>
+				<a href="#">Paket Fotografi</a>
 			</li>
 		</ul>
 </div>
@@ -31,16 +31,16 @@
             <label>Judul Paket</label>
             <input type="text" class="form-control" name="judul_paket" value="{{$data->judul_paket}}">
         </div>
-
+    
         <div class="form-group">
             <label>Durasi</label>
             <input type="time" class="form-control" name="durasi" value="{{$data->durasi}}">
         </div>
-
+    
         <div class="form-group">
             <label>Jumlah Jepretan</label>
             <input type="text" class="form-control" name="jumlah_jepretan" value="{{$data->jumlah_jepretan}}">
-        </div>
+          </div>
     
         <div class="form-group">
             <label>Harga</label>
@@ -51,11 +51,11 @@
             <label>Keterangan</label>
             <input type="text" class="form-control" name="keterangan" value="{{$data->keterangan}}">
         </div>
-
+    
         <div class="form-group">
             <label>Kategori</label>
             <select class="form-control" name="kategoris_id">
-                @foreach($kategoris as $kategori)
+                @foreach($kategori as $kategori)
                     <option value='{{$kategori->id}}'>{{$kategori->nama}}</option> 
                 @endforeach
             </select>

@@ -59,7 +59,7 @@
                 				<a class="nav-link login-button" href="{{url('register')}}"> Registrasi </a>
 							</li> -->
 							<li class="nav-item">
-                				<a class="nav-link login-button" href="{{url('login')}}"> Login </a>
+                				<a class="nav-link login-button" href="{{url('login')}}"> Masuk </a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link text-white add-button" href="{{url('collaborate')}}"> Collaborate</a>

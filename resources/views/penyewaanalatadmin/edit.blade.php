@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h3 class="page-title">	Edit Alat Fotografi</h3>
+<h3 class="page-title">	Ubah Alat Fotografi</h3>
 <div class="page-bar">
 	  <ul class="page-breadcrumb">
 			<li>
@@ -44,7 +44,7 @@
     
         <div class="form-group">
             <label>Tipe</label>
-            <input type="text" class="form-control" name="keterangan_produk" value="{{$data->tipe}}">
+            <input type="text" class="form-control" name="tipe" value="{{$data->tipe}}">
         </div>
 
 	</div>

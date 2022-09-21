@@ -56,7 +56,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">   
-        <a class="btn btn-main btn-small btn-round-full" href="{{ url('home') }}"><< Back</a>  
+        <a class="btn btn-main btn-small btn-round-full" href="{{ url('home') }}"><< Kembali</a>  
 
         @foreach($collaborate as $col)
         <div class="dashboard-wrapper dashboard-user-profile">

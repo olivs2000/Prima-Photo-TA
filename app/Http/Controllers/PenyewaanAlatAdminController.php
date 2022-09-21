@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\PenyewaanAlat;
 use DB;
 
@@ -25,10 +26,10 @@ class PenyewaanAlatAdminController extends Controller
         $data=new PenyewaanAlat();
 
         $data->gambar=$request->get('gambar');
-        $data->judul_alat=$request->get('judul_alat');
+        $data->nama_alat=$request->get('nama_alat');
         $data->stok=$request->get('stok');
         $data->harga=$request->get('harga');
-        $data->keterangan_alat=$request->get('keterangan_alat');       
+        $data->tipe=$request->get('tipe');       
         $data->save();
 
         return redirect()->route('penyewaanalatadmin.index')->with('status', 'Alat baru berhasil tersimpan');
@@ -43,10 +44,10 @@ class PenyewaanAlatAdminController extends Controller
     public function update(Request $request, PenyewaanAlat $penyewaanalatadmin)
     {
         $penyewaanalatadmin->gambar=$request->get('gambar');
-        $penyewaanalatadmin->judul_alat=$request->get('judul_alat');
+        $penyewaanalatadmin->nama_alat=$request->get('nama_alat');
         $penyewaanalatadmin->stok=$request->get('stok');
         $penyewaanalatadmin->harga=$request->get('harga');
-        $penyewaanalatadmin->keterangan_alat=$request->get('keterangan_alat'); 
+        $penyewaanalatadmin->tipe=$request->get('tipe'); 
         $penyewaanalatadmin->save(); 
 
         return redirect()->route('penyewaanalatadmin.index')->with('status', 'Alat berhasil tersimpan');

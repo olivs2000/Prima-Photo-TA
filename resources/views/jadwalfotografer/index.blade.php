@@ -76,14 +76,14 @@
     </td>  
 
     <td>
-      <a href="{{url('jadwalfotografer/'.$jf->id.'/edit') }}" class="btn btn-warning">Edit</a></td>
+      <a href="{{url('jadwalfotografer/'.$jf->id.'/edit') }}" class="btn btn-warning">Ubah</a></td>
     </td>
 
     <td>
       <form method="POST" action="{{url('jadwalfotografer/'.$jf->id )}}">
         @csrf
         @method('DELETE')
-        <input type='submit' value='Delete' class='btn btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
+        <input type='submit' value='Hapus' class='btn btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
       </form>
     </td>
   </tr>

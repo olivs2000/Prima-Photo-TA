@@ -102,7 +102,7 @@
         </div>
     </div>
 </div> -->
-<p class="mt-20">New in this site ?<a href="{{ route('register') }}"> Create New Account</a></p>
+<p class="mt-20">Mau buat akun baru ?<a href="{{ route('register') }}"> Klik disini</a></p>
 </div>
 </div>
 </div>

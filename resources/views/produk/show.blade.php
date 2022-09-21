@@ -233,31 +233,31 @@
 
 <!-- ini -->
 <section class="awSlider">
-  <div  class="carousel slide" data-ride="carousel">
-<ol class="carousel-indicators">
-	<li data-target=".carousel" data-slide-to="0" class="active"></li>
-	<li data-target=".carousel" data-slide-to="1"></li>
-	<li data-target=".carousel" data-slide-to="2"></li>
-</ol>
-
-<div class="carousel-inner" role="listbox">
-	@foreach ($data->gambar_detail as $key => $gambar_detail)
-		@if ($key == 0)
-			<div class="item active">
-				<img src="{{ asset('storage/').'/'.$gambar_detail}}">
-			</div>
-		@else
-			<div class="item">
-				<img src="{{ asset('storage/').'/'.$gambar_detail}}">
-			</div>
-		@endif
-		
-	@endforeach
-</div>
-
-</div>
-</section>
-<!-- ini-->
+	<div  class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+	  <li data-target=".carousel" data-slide-to="0" class="active"></li>
+	  <li data-target=".carousel" data-slide-to="1"></li>
+	  <li data-target=".carousel" data-slide-to="2"></li>
+  </ol>
+  
+  <div class="carousel-inner" role="listbox">
+	  @foreach ($data->gambar_detail as $key => $gambar_detail)
+		  @if ($key == 0)
+			  <div class="item active">
+				  <img src="{{ asset('storage/').'/'.$gambar_detail}}">
+			  </div>
+		  @else
+			  <div class="item">
+				  <img src="{{ asset('storage/').'/'.$gambar_detail}}">
+			  </div>
+		  @endif
+		  
+	  @endforeach
+  </div>
+  
+  </div>
+  </section>
+  <!-- ini-->
 
 <div class="product-quantity">
 <span>Stok :</span> {{$data->stok}}
@@ -280,7 +280,7 @@
 
 <br>
 
-<a href="{{url('add-to-cart-produk/' .$data->id)}}" class="btn btn-main mt-20">Add To Cart</a>
+<a href="{{url('add-to-cart-produk/' .$data->id)}}" class="btn btn-main mt-20">Masukan Keranjang</a>
 
 </div>
 </div>

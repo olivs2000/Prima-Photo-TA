@@ -246,15 +246,6 @@
 </ol>
 
 <div class="carousel-inner" role="listbox">
-	{{-- <div class="item active">
-	<img src="https://images.unsplash.com/photo-1607947909130-bf48ac6884b9?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870">
-	</div>
-	<div class="item">
-	<img src="https://images.unsplash.com/photo-1616843777726-2b35ac7c4215?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870">
-	</div>
-	<div class="item">
-	<img src="https://eyewanderphoto.com/assets/uploads/portfolio/_width900height600/newborn_batonrouge.jpg">
-	</div> --}}
 	@foreach ($data->gambar_detail as $key => $gambar_detail)
 		@if ($key == 0)
 			<div class="item active">
@@ -292,7 +283,7 @@
 
 <br>
 
-<a href="{{url('add-to-cart-paket/' .$data->id)}}" class="btn btn-main mt-20">Add To Cart</a>
+<a href="{{url('add-to-cart-paket/' .$data->id)}}" class="btn btn-main mt-20">Masukan Keranjang</a>
 
 </div>
 </div>

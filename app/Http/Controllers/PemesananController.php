@@ -70,16 +70,10 @@ class PemesananController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Pemesanan $pemesanan)
     {
-        $pemesanan->nama=$request->get('nama');
-        $pemesanan->notelepon=$request->get('notelepon');
-        $pemesanan->email=$request->get('email');
-        $pemesanan->alamat=$request->get('alamat');
-        $pemesanan->lokasi_acara=$request->get('lokasi_acara');
-        $pemesanan->tanggal_acara=$request->get('tanggal_acara');
-        $pemesanan->waktu_acara=$request->get('waktu_acara');
-        $pemesanan->total=$request->get('total');
+        $pemesanan->status_pembayaran=$request->get('status_pembayaran');
+        $pemesanan->status_pemesanan=$request->get('status_pemesanan');
         $pemesanan->save(); 
 
         return redirect()->route('datapemesanan.index')->with('status', 'Data pemesanan berhasil tersimpan');
@@ -112,7 +106,7 @@ class PemesananController extends Controller
         $data=Pemesanan::find($id);
         return response()->json(array(
             'status'=>'oke',
-            'msg'=>view('datapemesanan.edit',compact('data'))->render()
+            'msg'=>view('datapemesanan.editForm',compact('data'))->render()
         ),200);
     }
 
@@ -120,14 +114,8 @@ class PemesananController extends Controller
     {
         $id=$request->get('id');
         $pemesanan=Pemesanan::find($id);
-        $pemesanan->nama=$request->get('nama');
-        $pemesanan->notelepon=$request->get('notelepon');
-        $pemesanan->email=$request->get('email');
-        $pemesanan->alamat=$request->get('alamat');
-        $pemesanan->lokasi_acara=$request->get('lokasi_acara');
-        $pemesanan->tanggal_acara=$request->get('tanggal_acara');
-        $pemesanan->waktu_acara=$request->get('waktu_acara');
-        $pemesanan->total=$request->get('total');
+        $pemesanan->status_pembayaran=$request->get('status_pembayaran');
+        $pemesanan->status_pemesanan=$request->get('status_pemesanan');
         $pemesanan->save();
         return response()->json(array(
             'status'=>'oke',

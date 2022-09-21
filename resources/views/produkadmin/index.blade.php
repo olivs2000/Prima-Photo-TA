@@ -70,14 +70,14 @@
   <td id='td-harga-{{$p->id}}'>Rp. {{number_format($p->harga)}}</td>
   <td id='td-keterangan_produk-{{$p->id}}'>{{$p->keterangan_produk}}</td>     
   <td>
-    <a href="{{url('produkadmin/'.$p->id.'/edit') }}" class="btn btn-warning">Edit</a>
+    <a href="{{url('produkadmin/'.$p->id.'/edit') }}" class="btn btn-warning">Ubah</a>
   </td>
 
   <td>
     <form method="POST" action="{{url('produkadmin/'.$p->id )}}">
       @csrf
       @method('DELETE')
-      <input type='submit' value='Delete' class='btn btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
+      <input type='submit' value='Hapus' class='btn btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
     </form>
   </td>
 

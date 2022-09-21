@@ -55,7 +55,7 @@
     <form method="POST" action="{{url('dataadmin/'.$as->id )}}">
       @csrf
       @method('DELETE')
-      <input type='submit' value='Delete' class='btn btn-xs btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
+      <input type='submit' value='Hapus' class='btn btn-xs btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
     </form>
   </td>
 </tr>

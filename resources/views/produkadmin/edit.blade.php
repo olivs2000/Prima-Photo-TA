@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h3 class="page-title">	Edit Produk</h3>
+<h3 class="page-title">	Ubah Produk</h3>
 <div class="page-bar">
 	  <ul class="page-breadcrumb">
 			<li>

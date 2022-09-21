@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h3 class="page-title">	Edit Data Fotografer </h3>
+<h3 class="page-title">	Ubah Data Fotografer </h3>
 <div class="page-bar">
 	  <ul class="page-breadcrumb">
 			<li>
@@ -55,9 +55,9 @@
       <div class="form-group">
           <label>Status</label>
           <select class="form-control" name="status" value="{{$data->status}}">
-          {{-- <option>Tetap</option> 
-          <option>Freelance</option>  --}}
-          <option>{{$data->status}}</option>
+          <option>Tetap</option> 
+          <option>Freelance</option> 
+          {{-- <option>{{$data->status}}</option> --}}
           </select>
       </div>
 

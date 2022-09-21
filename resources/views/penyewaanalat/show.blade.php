@@ -277,7 +277,7 @@
 
 <br>
 
-<a href="{{url('add-to-cart-penyewaanalat/' .$data->id)}}" class="btn btn-main mt-20">Add To Cart</a>
+<a href="{{url('add-to-cart-penyewaanalat/' .$data->id)}}" class="btn btn-main mt-20">Masukan Keranjang</a>
 
 </div>
 </div>

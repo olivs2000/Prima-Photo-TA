@@ -28,7 +28,8 @@ class PaketController extends Controller
      */
     public function create()
     {
-
+        $kategoris=Kategori::all();
+        return view('paketadmin.create', compact('kategoris'));
     }
 
     /**
@@ -39,7 +40,18 @@ class PaketController extends Controller
      */
     public function store(Request $request)
     {
-     
+        $data=new Paket();
+
+        $data->gambar=$request->get('gambar');
+        $data->judul_paket=$request->get('judul_paket');
+        $data->durasi=$request->get('durasi');
+        $data->jumlah_jepretan=$request->get('jumlah_jepretan');
+        $data->harga=$request->get('harga');
+        $data->keterangan=$request->get('keterangan');       
+        $data->kategoris_id=$request->get('kategoris_id');
+        $data->save();
+
+        return redirect()->route('paketadmin.index')->with('status', 'Paket baru berhasil tersimpan');
     }
 
     /**
@@ -62,21 +74,35 @@ class PaketController extends Controller
      * @param  \App\Models\Paket  $paket
      * @return \Illuminate\Http\Response
      */
-    public function edit(Paket $paket)
+    public function edit(Paket $paketadmin)
     {
-        //
+        $id=$paketadmin;
+
+        $data=DB::table("pakets")
+        ->leftJoin("kategoris", "pakets.kategoris_id", "=", "kategoris.id")
+        ->select("pakets.*", "kategoris.nama")
+        ->where("pakets.id", $id)
+        ->first();
+
+        $kategori=DB::table("kategoris")
+        ->select("kategoris.id", "nama")
+        ->get();
+
+        return view("paketadmin.edit",compact('data', 'kategori'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Paket  $paket
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Paket $paket)
+    public function update(Request $request, Paket $paketadmin)
     {
-        //
+        $paketadmin->gambar=$request->get('gambar');
+        $paketadmin->judul_paket=$request->get('judul_paket');
+        $paketadmin->durasi=$request->get('durasi');
+        $paketadmin->jumlah_jepretan=$request->get('jumlah_jepretan');
+        $paketadmin->harga=$request->get('harga');
+        $paketadmin->keterangan=$request->get('keterangan');
+        $paketadmin->kategoris_id=$request->get('kategoris_id');
+        $paketadmin->save(); 
+
+        return redirect()->route('paketadmin.index')->with('status', 'Paket berhasil tersimpan');
     }
 
     /**
