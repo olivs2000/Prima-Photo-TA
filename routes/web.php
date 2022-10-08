@@ -25,6 +25,8 @@ use App\Http\Controllers\KonfirmasiColController;
 use App\Http\Controllers\CollaborateController;
 use App\Http\Controllers\CollaborateAdminController;
 use App\Http\Controllers\RiwayatPemesananController;
+use App\Http\Controllers\DetailPemesananPelangganController;
+use App\Http\Controllers\DropzoneController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 
@@ -46,6 +48,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Route::get('email', [MailController::class,'index']);
 
+Route::middleware(['auth'])->group(function () {
+    
+
 Route::get('email', [EmailController::class,'kirim']);
 Route::get('attach', [EmailController::class,'attach']);
 Route::get('pesan', [EmailController::class,'notif']);
@@ -63,6 +68,8 @@ Route::resource('collaborateadmin','CollaborateAdminController');
 Route::resource('pelanggan','UserController');
 
 Route::resource('riwayatpemesanan','RiwayatPemesananController');
+
+Route::resource('/detailpemesananpelanggan','DetailPemesananPelangganController');
 
 
 // START LAYANAN //
@@ -299,15 +306,17 @@ Route::post('/detailpemesanan/edit','DetailPemesananController@edit')->name('det
 Route::post('/detailpemesesanan/saveData','DetailpemesananController@saveData')->name('detailpemesanan.saveData');
 
 Route::resource('/datapembelian','DataPembelianController');
-Route::post('/datapemebelian/createForm','DataPembelianController@createForm')->name('datapembelian.create');
+Route::resource('/datapembelian','DataPembelianController',['except' => ['store','update','destroy']]);
+Route::post('/datapemebelian/create','DataPembelianController@create')->name('datapembelian.create');
 Route::post('/datapemebelian/edit','DataPembelianController@edit')->name('datapembelian.edit');
 Route::post('/datapemebelian/editForm','DataPembelianController@editForm')->name('datapembelian.editForm');
 Route::post('/datapemebelian/deleteData','DataPembelianController@deleteData')->name('datapembelian.deleteData');
 Route::post('/datapembelian/saveData','DatapembelianController@saveData')->name('datapembelian.saveData');
 
-// Route::post('/datapemebelian/create','DataPembelianController@create')->name('datapembelian.create');
 Route::resource('/detailpembelian','DetailPembelianController',['except' => ['store','update','destroy']]);
 Route::post('/detailpembelian/create','DetailPembelianController@store')->name('detailpembelian.store');
+Route::post('/detailpembelian/create','DetailPembelianController@add')->name('detailpembelian.add');
+Route::post('/detailpembelian/update','DetailPembelianController@update')->name('detailpembelian.update');
 Route::post('/detailpembelian/edit/{id}','DetailPembelianController@update')->name('detailpembelian.edit');
 Route::post('/detailpembelian/destroy','DetailPembelianController@destroy')->name('detailpembelian.destroy');
 Route::get('/detailpembelian/getDetail/{id}','DetailPembelianController@getDetailPembelian')->name('detailpembelian.getDetail');
@@ -316,6 +325,9 @@ Route::get('/get-list-produk','ProdukController@getListProduk') ->name('get.list
 
 Route::get('/get-list-produk2','ProdukController@getListProduk2') ->name('get.list.produk2');
 
+// Route::get('dropzone', [DropzoneController::class,'dropzone']);
+// Route::post('dropzone/store', [DropzoneController::class, 'dropzoneStore'])->name('dropzone.store');
+Route::post('/paketadmin/dropzone', 'DropzoneController@dropzone')->name('dropzone');
 
 //Cart Paket
 Route::get('paket', 'PaketController@front_index');
@@ -343,4 +355,4 @@ Route::get('create-directory', function () {
     Storage::disk('public')->makeDirectory('storage');
 });
 
-
+});

@@ -26,6 +26,16 @@
             <label>Link Gambar</label>
             <input type="text" class="form-control" name="gambar" value="{{$data->gambar}}">
         </div>
+
+        <div class="form-group">
+            <label>Nama Folder Gambar Detail</label>
+            <input type="text" class="form-control" name="gambar_detail" value="{{$data->gambar_detail}}">
+        </div>
+
+        <div class="form-group">
+            <label>Gambar Detail</label>
+            <input type="text" class="form-control" name="gambar_detail" value="{{$data->gambar_detail}}">
+        </div>
     
          <div class="form-group">
             <label>Judul Paket</label>

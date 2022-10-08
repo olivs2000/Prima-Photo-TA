@@ -26,6 +26,7 @@ class ProdukAdminController extends Controller
         $data=new Produk();
 
         $data->gambar=$request->get('gambar');
+        $data->gambar_detail=$request->get('gambar_detail');
         $data->judul_produk=$request->get('judul_produk');
         $data->stok=$request->get('stok');
         $data->harga=$request->get('harga');
@@ -44,6 +45,7 @@ class ProdukAdminController extends Controller
     public function update(Request $request, Produk $produkadmin)
     {
         $produkadmin->gambar=$request->get('gambar');
+        $produkadmin->gambar_detail=$request->get('gambar_detail');
         $produkadmin->judul_produk=$request->get('judul_produk');
         $produkadmin->stok=$request->get('stok');
         $produkadmin->harga=$request->get('harga');

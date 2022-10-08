@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Paket;
 use App\Kategori;
+use Dropzone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use DB;
 
 class PaketAdminController extends Controller
@@ -30,7 +32,21 @@ class PaketAdminController extends Controller
     public function show(Paket $paket)
     {
         $data = $paket;
+
         return view('paket.show',compact('data'));
+    }
+
+    public function dropzone(Request $request)
+    {
+        $file = $request->file('file');
+
+        File::create([
+            'title' => $file->getClientOriginalName(),
+            'description' => '',
+            'path' => $file->store('public/storage')
+        ]);
+
+        return redirect()->with('status', 'Paket baru berhasil tersimpan');
     }
 
     public function store(Request $request)
@@ -38,6 +54,7 @@ class PaketAdminController extends Controller
         $data=new Paket();
 
         $data->gambar=$request->get('gambar');
+        $data->gambar_detail=$request->get('gambar_detail');
         $data->judul_paket=$request->get('judul_paket');
         $data->durasi=$request->get('durasi');
         $data->jumlah_jepretan=$request->get('jumlah_jepretan');
@@ -77,6 +94,7 @@ class PaketAdminController extends Controller
     public function update(Request $request, Paket $paketadmin)
     {
         $paketadmin->gambar=$request->get('gambar');
+        $paketadmin->gambar_detail=$request->get('gambar_detail');
         $paketadmin->judul_paket=$request->get('judul_paket');
         $paketadmin->durasi=$request->get('durasi');
         $paketadmin->jumlah_jepretan=$request->get('jumlah_jepretan');

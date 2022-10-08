@@ -41,7 +41,7 @@
 </div>
 @endif 
 
-<table class="table" id="table_contoh">
+<table class="table">
 <thead>
   <tr>
     <th>ID</th>
@@ -53,8 +53,8 @@
     <th>Jumlah</th>
     <th>Harga</th>
     <th>Total</th>
-    <th>Tanggal Pembayaran</th>   
     <th>Tanggal Pemesanan</th>   
+    <th>Waktu Pembayaran</th>   
     <th colspan='1'></th>
   <tr>
 </thead>
@@ -72,9 +72,8 @@
   <td>{{$dp->jumlah}}</td>
   <td>Rp. {{number_format($dp->harga)}}</td>
   <td>Rp. {{number_format($dp->total)}}</td>  
-  <td>{{$dp->tanggal_pembayaran}}</td>
   <td>{{$dp->tanggal_pemesanan}}</td>
-  
+  <td>{{$dp->waktu_pembayaran}}</td>
 </tr>
 
 @endforeach

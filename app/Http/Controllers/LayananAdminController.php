@@ -26,6 +26,7 @@ class LayananAdminController extends Controller
         $data=new Layanan();
 
         $data->gambar=$request->get('gambar');
+        $data->gambar_detail=$request->get('gambar_detail');
         $data->judul_layanan=$request->get('judul_layanan');
         $data->ukuran_foto=$request->get('ukuran_foto');
         $data->hasil_cetak=$request->get('hasil_cetak');
@@ -45,6 +46,7 @@ class LayananAdminController extends Controller
     public function update(Request $request, Layanan $layananadmin)
     {
         $layananadmin->gambar=$request->get('gambar');
+        $layananadmin->gambar_detail=$request->get('gambar_detail');
         $layananadmin->judul_layanan=$request->get('judul_layanan');
         $layananadmin->ukuran_foto=$request->get('ukuran_foto');
         $layananadmin->hasil_cetak=$request->get('hasil_cetak');

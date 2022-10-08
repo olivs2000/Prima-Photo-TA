@@ -18,9 +18,6 @@ class DetailPembelianController extends Controller
      */
     public function index()
     {
-        // $queryRaw=DB::select(DB::raw("select * from detailpembelians"));
-        // return view('detailpembelian.index',['data'=>$queryRaw]);
-        
         $queryBuilder=DB::table("detail_pembelians")
                         ->leftJoin("data_pembelians", "detail_pembelians.data_pembelians_id", "=", "id")
                         ->leftJoin("produks", "detail_pembelians.produks_id", "=", "id")
@@ -61,6 +58,25 @@ class DetailPembelianController extends Controller
         Session::flash('status','Detail pembelian berhasil tersimpan'); 
         $rest['status'] = 'Detail pembelian berhasil tersimpan';
         $rest['routing'] = url('datapembelian/'.$request->data_pembelians_id.'/edit');
+
+        return response()->json($rest,200);
+    }
+
+    public function add(Request $request)
+    {
+        $data=new DetailPembelian();
+        
+        $data->data_pembelians_id=$request->data_pembelians_id;
+        $data->produks_id=$request->produks_id;
+        $data->nama_produk=$request->nama_produk;
+        $data->jumlah=$request->jumlah;
+        $data->harga=$request->harga;
+        $data->total=$request->total;
+        $data->save();
+
+        Session::flash('status','Data pembelian berhasil tersimpan'); 
+        $rest['status'] = 'Data pembelian berhasil tersimpan';
+        $rest['routing'] = route('datapembelian/create');
 
         return response()->json($rest,200);
     }

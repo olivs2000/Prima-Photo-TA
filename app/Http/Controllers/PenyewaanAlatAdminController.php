@@ -26,6 +26,7 @@ class PenyewaanAlatAdminController extends Controller
         $data=new PenyewaanAlat();
 
         $data->gambar=$request->get('gambar');
+        $data->gambar_detail=$request->get('gambar_detail');
         $data->nama_alat=$request->get('nama_alat');
         $data->stok=$request->get('stok');
         $data->harga=$request->get('harga');
@@ -44,6 +45,7 @@ class PenyewaanAlatAdminController extends Controller
     public function update(Request $request, PenyewaanAlat $penyewaanalatadmin)
     {
         $penyewaanalatadmin->gambar=$request->get('gambar');
+        $penyewaanalatadmin->gambar_detail=$request->get('gambar_detail');
         $penyewaanalatadmin->nama_alat=$request->get('nama_alat');
         $penyewaanalatadmin->stok=$request->get('stok');
         $penyewaanalatadmin->harga=$request->get('harga');

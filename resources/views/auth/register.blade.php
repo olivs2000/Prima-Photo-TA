@@ -106,7 +106,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-main text-center">
-                                    {{ __('Register') }}
+                                    {{ __('Daftar') }}
                                 </button>
                             </div>
                         </div>
@@ -118,7 +118,7 @@
     </div>
 </div> -->
 
-<p class="mt-20">Sudah punya akun ?<a href="{{ route('login') }}"> Login</a></p>
+<p class="mt-20">Sudah punya akun ?<a href="{{ route('login') }}"> Masuk</a></p>
 
 </div>
 </div>

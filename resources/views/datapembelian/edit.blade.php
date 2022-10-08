@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h3 class="page-title">	Ubah Data Pembelian </h3>
+<h3 class="page-title">	Edit Data Pembelian </h3>
 <div class="page-bar">
 	  <ul class="page-breadcrumb">
 			<li>
@@ -23,7 +23,7 @@
 	
 			<div class="modal-header">
         		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-				<h4 class="modal-title">Ubah Detail Pembelian</h4>
+				<h4 class="modal-title">Edit Detail Pembelian</h4>
 			</div>
 
 			<form method="POST" id="submitFormDetail">
@@ -144,7 +144,7 @@
 
 <!-- Start modal tambah detail pembelian -->
 <div class="page-toolbar">
-	<button id="create-detail" class="btn btn-xs btn-info btn-sm m-b-10 m-l-5">+ Tambah Detail Pembelian</button>
+	<button id="create-detail" class="btn btn-xs btn-info btn-sm m-b-10 m-l-5">+ Add Detail Pembelian</button>
 </div>
 
 <br>
@@ -230,14 +230,14 @@
 					{{$detail->total}}
 				</td>
 				<td>
-					<button onclick="getDetailPembelian({{$detail->id}})"  data-toggle='modal' class="btn btn-xs btn-warning btn-sm m-b-10 m-l-5">Ubah</button>
+					<button onclick="getDetailPembelian({{$detail->id}})"  data-toggle='modal' class="btn btn-xs btn-warning btn-sm m-b-10 m-l-5">Edit</button>
 				</td>
 				<td>
 					<form method="POST"  action="{{route('detailpembelian.destroy')}}">
 						@csrf
 						<input type="hidden" name="detail_pembelian_id" value="{{$detail->id}}">
 						<input type="hidden" name="data_pembelians_id" value="{{$data->id}}">
-						<input type='submit' value='Hapus' href="#modalDelete" data-toggle='modal' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5"
+						<input type='submit' value='Delete' href="#modalDelete" data-toggle='modal' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5"
 						onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
 					</form>
 				</td>

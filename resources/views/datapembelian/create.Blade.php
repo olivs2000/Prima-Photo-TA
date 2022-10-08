@@ -91,7 +91,7 @@
 	</div>
 @endif 
 
-<form enctype='multipart/form-data' role="form" method="POST" action="{{url('datapembelian/createForm')}}">
+<form enctype='multipart/form-data' role="form" method="POST" action="{{url('datapembelian')}}">
 @csrf 
 <div class="form-body">
 
@@ -157,6 +157,7 @@
 
 @section('initialscript')
 <script>
+
 	var listDetailPembelian = [];
 
 	function insertDetailPembelian(){
@@ -202,7 +203,7 @@
 			"</tr>"
 		);
 		
-		var url = "{{ route('detailpembelian.store') }}";
+		var url = "{{ route('detailpembelian.add') }}";
 
 		$.post(url, sent, function(response, textStatus) {
 			window.location.href = response.routing;
@@ -269,7 +270,7 @@
 		$.post('{{ route("datapembelian.store") }}', sent, function(response, textStatus) {
 			console.log(response);
 			
-			// window.location.replace("http://127.0.0.1:8000/datapembelian");
+			//window.location.replace("http://127.0.0.1:8000/datapembelian");
 			window.location.href = response.routing;
 		});
 	}

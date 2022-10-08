@@ -46,6 +46,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <link href="{{ asset('assets/css/pages/tasks.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset('assets/css/themes/light.css')}}" rel="stylesheet" type="text/css" id="style_color"/>
 <link href="{{ asset('assets/css/custom.css')}}" rel="stylesheet" type="text/css"/>
+
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
 @yield('javascript')
@@ -445,13 +446,11 @@ License: You must have a valid license purchased only from themeforest(the above
 					<li class="divider">
 					</li>
 					<li>
-					<a href="{{route('logout')}}">@csrf<i class="fa fa-key"></i> Keluar</a>
-					 
-					<!-- <form action="{{route('logout')}}" method="POST">
+						<form action="{{route('home')}}" method="POST">
 						@csrf
 						<i class="fa fa-key"></i></a>
-						<input type='submit' value='Log Out'>
-					</form> -->
+						<input type='submit' class='btn btn-xs btn-danger' value='Logout'>
+						</form>
 					</li>
 				</ul>
 			</li>

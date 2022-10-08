@@ -85,9 +85,7 @@ class DataPembelianController extends Controller
             $detail->nama_produk=$detailPembelian['nama_produk'];
             $detail->jumlah=$detailPembelian['jumlah'];
             $detail->harga=$detailPembelian['harga'];
-            // $detail->total=$detailPembelian['total'];
 
-            $detail->total=$detailPembelian['jumlah*harga'];
             $detail->total=$detail->jumlah * $detail->harga;
             
             $detail->save();
