@@ -107,7 +107,8 @@
                      </div>
 
                      <div id="cf-submit">
-                        <input type="submit" id="contact-submit" class="btn btn-main mt-20" value="Order">
+                        {{-- <input type="submit" id="contact-submit" class="btn btn-main mt-20" value="Order"> --}}
+                        <a href="{{ route('submitCheckout') }}" id="contact-submit" class="btn btn-main mt-20">Order</a>
                      </div>
 
                </div>
@@ -239,9 +240,9 @@
                      <div class="container">
                            <div class="col-md-10">
                               <h6 class="page-name">Pembayaran dapat dilakukan menggunakan:</h6>
-                              <h6 class="page-name">No VIrtual Account BNI: 8578149566949804</h6>
+                              <h6 class="page-name">No Virtual Account BNI: 8578149566949804</h6>
                               <h6 class="page-name">No Rekening BNI: 0097927804</h6>
-                              <h6 class="page-name">No VIrtual Account BCA: 8735089566949804</h6>
+                              <h6 class="page-name">No Virtual Account BCA: 8735089566949804</h6>
                               <h6 class="page-name">No Rekening BCA: 2373089804</h6>
                            </div>
                         </div>

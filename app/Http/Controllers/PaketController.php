@@ -49,6 +49,7 @@ class PaketController extends Controller
         $data->harga=$request->get('harga');
         $data->keterangan=$request->get('keterangan');       
         $data->kategoris_id=$request->get('kategoris_id');
+
         $data->save();
 
         return redirect()->route('paketadmin.index')->with('status', 'Paket baru berhasil tersimpan');

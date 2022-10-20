@@ -168,6 +168,7 @@
 		var total = $('#total').val();
 
 		var sent = {
+			_token : '{{ csrf_token() }}',
 			nama_produk: namaProduk,
 			produks_id: id_produk,
 			jumlah: jumlah,
@@ -203,11 +204,11 @@
 			"</tr>"
 		);
 		
-		var url = "{{ route('detailpembelian.add') }}";
+		// var url = "{{ route('detailpembelian.store') }}";
 
-		$.post(url, sent, function(response, textStatus) {
-			window.location.href = response.routing;
-		});
+		// $.post(url, sent, function(response, textStatus) {
+		// 	window.location.href = response.routing;
+		// });
 	}
 
 	$( "#jumlah" ).keyup(function() {
@@ -274,8 +275,6 @@
 			window.location.href = response.routing;
 		});
 	}
-
-
 	
 </script>
 @endsection

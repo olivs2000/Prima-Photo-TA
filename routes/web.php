@@ -46,11 +46,8 @@ Route::view('/', 'auth/login');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::get('email', [MailController::class,'index']);
-
 Route::middleware(['auth'])->group(function () {
     
-
 Route::get('email', [EmailController::class,'kirim']);
 Route::get('attach', [EmailController::class,'attach']);
 Route::get('pesan', [EmailController::class,'notif']);
@@ -313,16 +310,17 @@ Route::post('/datapemebelian/editForm','DataPembelianController@editForm')->name
 Route::post('/datapemebelian/deleteData','DataPembelianController@deleteData')->name('datapembelian.deleteData');
 Route::post('/datapembelian/saveData','DatapembelianController@saveData')->name('datapembelian.saveData');
 
+Route::resource('/detailpembelian','DetailPembelianController');
 Route::resource('/detailpembelian','DetailPembelianController',['except' => ['store','update','destroy']]);
 Route::post('/detailpembelian/create','DetailPembelianController@store')->name('detailpembelian.store');
-Route::post('/detailpembelian/create','DetailPembelianController@add')->name('detailpembelian.add');
 Route::post('/detailpembelian/update','DetailPembelianController@update')->name('detailpembelian.update');
 Route::post('/detailpembelian/edit/{id}','DetailPembelianController@update')->name('detailpembelian.edit');
 Route::post('/detailpembelian/destroy','DetailPembelianController@destroy')->name('detailpembelian.destroy');
 Route::get('/detailpembelian/getDetail/{id}','DetailPembelianController@getDetailPembelian')->name('detailpembelian.getDetail');
 
-Route::get('/get-list-produk','ProdukController@getListProduk') ->name('get.list.produk');
+Route::post('/detailpembelian/create','DetailPembelianController@add')->name('detailpembelian.add');
 
+Route::get('/get-list-produk','ProdukController@getListProduk') ->name('get.list.produk');
 Route::get('/get-list-produk2','ProdukController@getListProduk2') ->name('get.list.produk2');
 
 // Route::get('dropzone', [DropzoneController::class,'dropzone']);
@@ -350,6 +348,7 @@ Route::get('cart', 'LayananController@cart');
 Route::get('add-to-cart-layanan/{id}', 'LayananController@addToCart');
 
 Route::get('submit_checkout','CheckoutController@submit_front')->name('submitCheckout');
+
 
 Route::get('create-directory', function () {
     Storage::disk('public')->makeDirectory('storage');

@@ -144,7 +144,7 @@
 
 <!-- Start modal tambah detail pembelian -->
 <div class="page-toolbar">
-	<button id="create-detail" class="btn btn-xs btn-info btn-sm m-b-10 m-l-5">+ Add Detail Pembelian</button>
+	<button id="create-detail" class="btn btn-xs btn-info btn-sm m-b-10 m-l-5">+ Tambah Detail Pembelian</button>
 </div>
 
 <br>
@@ -250,6 +250,7 @@
 
 @section('initialscript')
 <script>
+	
 	var listDetailPembelian = [];
 
 	function editDetailPembelian(){

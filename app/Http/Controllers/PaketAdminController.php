@@ -61,6 +61,19 @@ class PaketAdminController extends Controller
         $data->harga=$request->get('harga');
         $data->keterangan=$request->get('keterangan');       
         $data->kategoris_id=$request->get('kategoris_id');
+
+        $request->validate([
+            'file' => 'required|image|max:2408' 
+        ]);
+
+        $storage = $request->file('file')->store('public/storage/'.$request->get('gambar_detail'));
+
+        $url = Storage::url($storage);
+
+        File::create([
+            'url' => $url
+        ]);
+
         $data->save();
 
         return redirect()->route('paketadmin.index')->with('status', 'Paket baru berhasil tersimpan');

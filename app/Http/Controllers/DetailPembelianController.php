@@ -74,11 +74,24 @@ class DetailPembelianController extends Controller
         $data->total=$request->total;
         $data->save();
 
-        Session::flash('status','Data pembelian berhasil tersimpan'); 
+        Log::info("masuk");
+        
+        Session::flash('status','Detail pembelian berhasil tersimpan'); 
         $rest['status'] = 'Data pembelian berhasil tersimpan';
-        $rest['routing'] = route('datapembelian/create');
-
+        $rest['routing'] = url('datapembelian/'.$request.'/create');
+       
         return response()->json($rest,200);
+    }
+
+    public function getDetailPembelianAdd($id)
+    {
+        $dataDetailPembelianAdd=DB::table("detail_pembelians")
+            ->leftJoin("produks", "detail_pembelians.produks_id", "=", "produks.id")
+            ->select("detail_pembelians.*")
+            ->where("detail_pembelians.id", $id)
+            ->first();
+
+        return response()->json($dataDetailPembelian,200);
     }
 
     /**
@@ -113,8 +126,6 @@ class DetailPembelianController extends Controller
 
         return response()->json($dataDetailPembelian,200);
     }
-
-
 
     /**
      * Update the specified resource in storage.

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Pemesanan;
+use App\Layanan;
+use App\Produk;
+use App\Paket;
+use App\PenyewaanAlat;
 use App\DetailPemesanan;
 use App\Checkout;
 use Illuminate\Http\Request;
@@ -34,7 +38,12 @@ class CheckoutController extends Controller
     public function create()
     {
         $data=Pemesanan::all();
-        return view('checkout.index', compact('data'));
+        $detail=DetailPemesanan::all();
+        $layanan=Layanan::all();
+        $produk=Produk::all();
+        $paket=Paket::all();
+        $penyewaanalat=PenyewaanAlat::all();
+        return view('checkout.index', compact('data','detail','layanan','produk','paket','penyewaanalat'));
     }
 
     /**
@@ -46,7 +55,6 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
         $data=new Pemesanan();
-
         $data->nama=$request->get('nama');
         $data->notelepon=$request->get('notelepon');
         $data->email=$request->get('email');
@@ -56,6 +64,19 @@ class CheckoutController extends Controller
         $data->waktu_acara=$request->get('waktu_acara');
         $data->total=$request->get('total');
         $data->save();
+
+        $detail=new DetailPemesanan();
+        $detail->layanans_id=$request->get('layanans_id');
+        $detail->penyewaan_alats_id=$request->get('penyewaan_alats_id');
+        $detail->produks_id=$request->get('produks_id');
+        $detail->pakets_id=$request->get('pakets_id');
+        $detail->pemesanans_id=$request->get('pemesanans_id');
+        $detail->jumlah=$request->get('jumlah');
+        $detail->harga=$request->get('harga');
+        $detail->total=$request->get('total');
+        $detail->tanggal_pemesanan=$request->get('tanggal_pemesanan');
+        $detail->waktu_pembayaran=$request->get('waktu_pembayaran');
+        $detail->save();
 
         return redirect()->route('konfirmasi.index');
     }
@@ -108,17 +129,23 @@ class CheckoutController extends Controller
     
     public function submit_front()
     {
-        $cart=session()->get('cart1');
-        $user=Auth::user();
+        $cart=session()->get('cart');
         $c=new DetailPemesanan;
-        $c->user_id=$user->id;
-        $c->user_id=1;
-        $c->tanggal_pemesanan=Carbon::now()->toDateTimeString();
+        $c=new Pemesanan;
+        $c->pemesanans_id=$pemesanans->id;
+        $c->layanans_id=$layanans->id;
+        $c->produks_id=$produks->id;
+        $c->pakets_id=$pakets->id;
+        $c->penyewaan_alats_id=$penyewaan_alats->id;
         $c->save();
 
-        $c->insertPaket($cart);
+        $c->insertPemesanans($cart);
+        $c->insertPakets($cart);
+        $c->insertProduks($cart);
+        $c->insertLayanans($cart);
+        $c->insertPenyewaanAlats($cart);
 
-        session()->forget('cart1');
+        session()->forget('cart1', 'cart2', 'cart3', 'cart4');
 
         return redirect('checkout.index');
     }

@@ -34,10 +34,10 @@
 	<input type="text" class="form-control" name="gambar_detail">
 </div>
 
-{{-- <div class="form-group">
+<div class="form-group">
 	<label>Gambar Detail</label>
-	<input type="dropzone" class="form-control" name="gambar_detail">
-</div> --}}
+	<input class="dz-default dz-message" name="gambar_detail">
+</div>
 
 <div class="form-group">
 	<label>Judul Paket</label>
@@ -82,9 +82,6 @@
 
 </form>
 
-<form action="/file-upload" class="dropzone" is="my-awesome-dropzone">
-<input type="file" name="file" id="">
-</form>
 @endsection
 
 
