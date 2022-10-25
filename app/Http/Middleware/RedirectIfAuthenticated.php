@@ -20,6 +20,25 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             return redirect(RouteServiceProvider::HOME);
+
+
+                // $role = Auth::user()->status;
+                // switch ($role) {
+                //     case 'admin' :
+                //         return '/home';
+                //         break;
+                //     case 'fotografer' :
+                //         return '/home';
+                //         break;
+                //     case 'pelanggan' :
+                //         return '/pelanggan';
+                //         break;
+        
+                //     default;
+                //     return '/home';
+                //     break;
+                // }
+            
         }
 
         return $next($request);

@@ -36,20 +36,99 @@ class PaketAdminController extends Controller
         return view('paket.show',compact('data'));
     }
 
-    public function dropzone(Request $request)
+    public function dropzoneStore(Request $request)
     {
-        $file = $request->file('file');
+        //                                 // Cara 1 //
+        // $image = $request->file('file')->store('public/storage/'.$request->get('gambar_detail'));
+        // $imageName = time() . '-' . strtupper(Str::random(10)) . '.' . $image->extension();
+        // $image->move(public_path('storage'), $imageName);
+        // return response()->json(['success'=> $imageName]);
 
-        File::create([
-            'title' => $file->getClientOriginalName(),
-            'description' => '',
-            'path' => $file->store('public/storage')
-        ]);
 
-        return redirect()->with('status', 'Paket baru berhasil tersimpan');
+        //                                 // Cara 2 //
+        // $request->validate([
+        //     'file' => 'required|image|max:2408' 
+        // ]);
+        // $storage = $request->file('file')->store('public/storage/'.$request->get('gambar_detail'));
+        // $url = Storage::url($storage);
+        // File::create([
+        //     'url' => $url
+        // ]);
+        // return redirect()->json('paket.show');
+
+
+        //                                 // Cara 3 //
+        // $file = $request->file('file')->store('public/storage/'.$request->get('gambar_detail'));
+        // File::create([
+        //     'title' => $file->getClientOriginalName(),
+        //     'description' => '',
+        //     'path' => $file->store('public/storage')
+        // ]);
+        // return redirect()->with('status', 'Paket baru berhasil tersimpan');
+
+
+        //                                 // Cara 4 (JS Cara 3)//
+        // $image = $request->file('file')->store('public/storage/'.$request->get('gambar_detail'));
+        // $imageName = $image->getClientOriginalName();
+        // $image->move(public_path('storage'), $imageName);
+        // $imageUpload = new ImageUpload();
+        // $imageUpload->filename = $imageName;
+        // $imageUpload->save();
+        // return response()->json(['success' => $imageName]);
+
+        //                                 // Cara 5 (JS Cara 4)//
+        // $image = $request->file('file')->store('public/storage/'.$request->get('gambar_detail'));
+        // $imageName = time() .'.'. $image->extension();
+        // $image->move(public_path('storage'), $imageName);
+        // return response()->json(['success' => $imageName]);
     }
 
-    public function store(Request $request)
+    public function upload(Request $request)
+    {
+        $image = $request->file('file');
+        $imageName = time() .'.'. $image->extension();
+        $image->move(public_path('storage/temp_dropzone'), $imageName);
+        return response()->json(['success' => $imageName]);
+    }
+
+    public function dropzoneDestroy(Request $request)
+    {
+        $filename = $request->get('filename');
+        ImageUpload::where('filename', $filename)->delete();
+        $path = public_path().'/storage/'.$filename;
+
+        if(file_exist($path))
+        {
+            unlink($path);
+        }
+
+        return $filename;
+    }
+
+    function fetch()
+    {
+        $image = \File::allFiles(public_path('storage'));
+        $output = '<div class="row">';
+        foreach($image as $img)
+        {
+            $output .= '<div class="col-md-2" style="margin-bottom:16px;" align="center"><img src="'.asset('storage/' . $img->getFileName()).'"
+            class="img-thumbnail" width="175" height="175" style="height:175px;" /> 
+            <button type="button" class="btn btn-link remove_image" id"'.$img->getFileName().'">Remove</button>
+            </div>';
+        }
+        $output .='</div>>';
+        echo $output;
+    }
+
+    function delete(Request $request)
+    {
+        if($request->get('gambar_detail'))
+        {
+            \File::delete(public_path('storage/' .  $request->get('gambar_detail')));
+        }
+    }
+
+    public function saveData(Request $request)
     {
         $data=new Paket();
 
@@ -61,6 +140,8 @@ class PaketAdminController extends Controller
         $data->harga=$request->get('harga');
         $data->keterangan=$request->get('keterangan');       
         $data->kategoris_id=$request->get('kategoris_id');
+
+
 
         $request->validate([
             'file' => 'required|image|max:2408' 
@@ -75,6 +156,8 @@ class PaketAdminController extends Controller
         ]);
 
         $data->save();
+
+
 
         return redirect()->route('paketadmin.index')->with('status', 'Paket baru berhasil tersimpan');
     }

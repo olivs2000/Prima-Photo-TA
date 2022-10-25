@@ -1,10 +1,8 @@
 @extends('layout.conquer')
 
-@section('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-@endsection
-
 @section('content')
+
+
 
 <h3 class="page-title">Tambah Paket Fotografi</h3>
 <div class="page-bar">
@@ -20,7 +18,7 @@
 		</ul>
 </div>
 
-<form enctype='multipart/form-data' role="form" method="POST" action="{{url('paketadmin')}}">
+<form enctype='multipart/form-data' role="form" method="POST" action="{{route('paket.saveData')}}">
 @csrf 
 <div class="form-body">
 
@@ -34,9 +32,28 @@
 	<input type="text" class="form-control" name="gambar_detail">
 </div>
 
-<div class="form-group">
-	<label>Gambar Detail</label>
-	<input class="dz-default dz-message" name="gambar_detail">
+
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<label>Gambar Detail</label>
+		{{-- <input type="file" class="dropzone" name="gambar_detail"> --}}
+	</div>
+
+	<div class="panel-body">
+		<div class="dropzone" id="myDropzone"></div>
+	</div>
+</div>
+
+<br>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<label>Hasil Upload Gambar Detail</label>
+	</div>
+	<div class="panel-body">
+
+	</div>
 </div>
 
 <div class="form-group">
@@ -76,7 +93,7 @@
 </div>
 
 <div class="form-actions">
-    <button type="submit" class="btn btn-info">Submit</button>
+    <button type="submit" class="btn btn-info" id="submit-all">Submit</button>
     <a href="{{url('paketadmin')}}" type="button" class="btn btn-default">Cancel</a>
 </div>
 
@@ -85,13 +102,49 @@
 @endsection
 
 
-@section('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js" integrity="sha512-U2WE1ktpMTuRBPoCFDzomoIorbOyUv0sP8B+INA3EzNAhehbzED1rOJg6bCqPf/Tuposxb5ja/MAUnC8THSbLQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@section('javascript')
 
+{{-- Cara 4  --}}
 <script type="text/javascript">
-	Dropzone.options.imageUpload = {
-		maxFilesize : 3,
-		acceptedFiles: ".jpeg,.jpg,.png,.gif"
-	};
+	Dropzone.options.myDropzone= {
+		url: "{{route('dropzone.upload')}}",
+		autoProcessQueue: false,
+		uploadMultiple: true,
+		parallelUploads: 5,
+		maxFiles: 5,
+		maxFilesize: 1,
+		acceptedFiles: 'image/*',
+		addRemoveLinks: true,
+		init: function() {
+			dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
+
+			// for Dropzone to process the queue (instead of default form behavior):
+			document.getElementById("submit-all").addEventListener("click", function(e) {
+				// Make sure that the form isn't actually being sent.
+				e.preventDefault();
+				e.stopPropagation();
+				dzClosure.processQueue();
+			});
+
+			//send all the form data along with the files:
+			this.on("sendingmultiple", function(data, xhr, formData) {
+				formData.append("firstname", jQuery("#firstname").val());
+				formData.append("lastname", jQuery("#lastname").val());
+			});
+		}
+	}
+
+	$(document).on('click', '.remove_image', function() {
+		var name = $(this).attr('id');
+		$.ajax({
+			url:"{{ route('paketadmin.delete') }}",
+			data:{name : name},
+			success:function(data)
+			{
+				load_images(); 
+			}
+		})
+	});
+
 </script>
 @endsection

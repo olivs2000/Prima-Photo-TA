@@ -42,9 +42,8 @@ class DataFotograferController extends Controller
         $data=new DataFotografer();
 
         $file=$request->file('pas_foto');
-        $imgFolder="images";
+        $imgFolder='images';
         $fileName=time()."_".$file->getClientOriginalName();
-        //Log::info("masuk--------------");
         $file->move($imgFolder, $fileName);
         
         $data->pas_foto=$fileName;

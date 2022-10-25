@@ -237,7 +237,7 @@
 <div class="card">
 <img src="{{$layanan->gambar}}" alt="" style="width:100%">
 <h4>{{$layanan->judul_layanan}}</h4> <br>
-<p class="price">Rp. {{number_format($paket->harga)}}</p><br>
+<p class="price">Rp. {{number_format($layanan->harga)}}</p><br>
 <a href="{{url('layanan/'.$layanan->id)}}" class="btn-solid-border">Lihat Detail</a>  <br><br> 
 <a href="{{url('add-to-cart-layanan/' .$layanan->id)}}" class="btn-main">Masukan Keranjang</a> <br><br> 
 </div>

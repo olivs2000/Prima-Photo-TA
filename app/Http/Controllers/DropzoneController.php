@@ -28,7 +28,7 @@ class DropzoneController extends Controller
     public function dropzoneStore(Request $request)
     {
         //Cara 1
-        $image = $request->file('gambar_detail');
+        $image = $request->file('file');
    
         $imageName = time() . '-' . strtoupper(Str::random(10)) . '.' . $image->extension();
         $image->move(public_path('storage'), $imageName);

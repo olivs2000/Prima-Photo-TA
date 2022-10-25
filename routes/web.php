@@ -45,6 +45,9 @@ use Illuminate\Support\Facades\Http;
 Route::view('/', 'auth/login');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/checkStorage', function(){
+    dd(public_path('storage'));
+});
 
 Route::middleware(['auth'])->group(function () {
     
@@ -198,6 +201,9 @@ Route::resource('paket','PaketController');
 
 Route::resource('paketadmin','PaketAdminController');
 
+Route::post('/storepaket','PaketAdminController@saveData')->name('paket.saveData');
+Route::post('/saveDropzone', 'PaketAdminController@upload')->name('dropzone.upload');
+
 Route::get('/detailpaket', function () {
     return view('paket.detailpaket'); 
 })->name('paket.detailpaket');
@@ -323,9 +329,10 @@ Route::post('/detailpembelian/create','DetailPembelianController@add')->name('de
 Route::get('/get-list-produk','ProdukController@getListProduk') ->name('get.list.produk');
 Route::get('/get-list-produk2','ProdukController@getListProduk2') ->name('get.list.produk2');
 
-// Route::get('dropzone', [DropzoneController::class,'dropzone']);
-// Route::post('dropzone/store', [DropzoneController::class, 'dropzoneStore'])->name('dropzone.store');
-Route::post('/paketadmin/dropzone', 'DropzoneController@dropzone')->name('dropzone');
+//Dropzone
+Route::post('paketadmin/create', [PaketAdminController::class, 'store'])->name('paketadmin.store');
+Route::post('paketadmin/create', 'PaketAdmin@store')->name('paketadmin.store');
+Route::post('paketadmin/destroy', 'PaketAdmin@destroy')->name('paketadmin.destroy');
 
 //Cart Paket
 Route::get('paket', 'PaketController@front_index');
@@ -353,5 +360,11 @@ Route::get('submit_checkout','CheckoutController@submit_front')->name('submitChe
 Route::get('create-directory', function () {
     Storage::disk('public')->makeDirectory('storage');
 });
+
+Route::get('paketadmin/fetch','PaketAdminController@fetch')->name('paketadmin.fetch');
+
+Route::get('paketadmin/delete','PaketAdminController@delete')->name('paketadmin.delete');
+
+// Route::get('paketadmin/upload','PaketAdminController@upload')->name('paketadmin.upload');
 
 });

@@ -14,7 +14,8 @@ class PaketController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     */ 
+
     public function index()
     {
         $queryRaw=DB::select(DB::raw("select * from pakets"));
@@ -141,7 +142,7 @@ class PaketController extends Controller
             $cart[$id]['jumlah']++;
         }
         session()->put('cart2', $cart);
-        // session()->forget('cart2');
+        session()->forget('cart2');
         return redirect()->back()->with('success', 'Paket berhasil ditambahkan ke keranjang');
     }
 }
