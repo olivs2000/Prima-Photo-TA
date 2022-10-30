@@ -2,11 +2,9 @@
 
 @section('content')
 
-
-
 <h3 class="page-title">Tambah Paket Fotografi</h3>
-<div class="page-bar">
-	  <ul class="page-breadcrumb">
+	<div class="page-bar">
+	    <ul class="page-breadcrumb">
 			<li>
 				<i class="fa fa-home"></i>
 				<a href="index.html">Master</a>
@@ -16,7 +14,7 @@
 				<a href="#">Paket Fotografi</a>
 			</li>
 		</ul>
-</div>
+	</div>
 
 <form enctype='multipart/form-data' role="form" method="POST" action="{{route('paket.saveData')}}">
 @csrf 
@@ -32,29 +30,26 @@
 	<input type="text" class="form-control" name="gambar_detail">
 </div>
 
-
-
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<label>Gambar Detail</label>
 		{{-- <input type="file" class="dropzone" name="gambar_detail"> --}}
 	</div>
-
 	<div class="panel-body">
 		<div class="dropzone" id="myDropzone"></div>
 	</div>
 </div>
 
-<br>
+{{--<br>
 
-<div class="panel panel-default">
+ <div class="panel panel-default">
 	<div class="panel-heading">
 		<label>Hasil Upload Gambar Detail</label>
 	</div>
 	<div class="panel-body">
 
 	</div>
-</div>
+</div> --}}
 
 <div class="form-group">
 	<label>Judul Paket</label>
@@ -65,10 +60,11 @@
 	<label>Durasi</label>
 	<input type="time" class="form-control" name="durasi">
 </div>
+</div>
 
 <div class="form-group">
 	<label>Jumlah Jepretan</label>
-	<input type="text" class="form-control" name="jumlah_jepretan">
+	<input type="number" class="form-control" name="jumlah_jepretan">
 </div>
 
 <div class="form-group">
@@ -90,11 +86,11 @@
 	</select>
 </div>
 
-</div>
-
 <div class="form-actions">
     <button type="submit" class="btn btn-info" id="submit-all">Submit</button>
     <a href="{{url('paketadmin')}}" type="button" class="btn btn-default">Cancel</a>
+</div>
+
 </div>
 
 </form>

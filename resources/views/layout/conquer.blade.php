@@ -551,6 +551,12 @@ License: You must have a valid license purchased only from themeforest(the above
 				        </a>
 					</li>
 					<li>
+						<a href="{{url('alatfotografi')}}" >
+					    <i class="icon-camera"></i>
+				        <span class="title">Data Alat Fotografi</span>
+				        </a>
+					</li>
+					<li>
 						<a href="{{url('collaborateadmin')}}" >
 					    <i class="icon-envelope"></i>
 				        <span class="title">Collaborate</span>

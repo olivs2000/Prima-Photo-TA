@@ -49,7 +49,7 @@
 
         <div class="form-group">
             <label>Jumlah Jepretan</label>
-            <input type="text" class="form-control" name="jumlah_jepretan" value="{{$data->jumlah_jepretan}}">
+            <input type="number" class="form-control" name="jumlah_jepretan" value="{{$data->jumlah_jepretan}}">
         </div>
     
         <div class="form-group">

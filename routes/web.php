@@ -26,6 +26,7 @@ use App\Http\Controllers\CollaborateController;
 use App\Http\Controllers\CollaborateAdminController;
 use App\Http\Controllers\RiwayatPemesananController;
 use App\Http\Controllers\DetailPemesananPelangganController;
+use App\Http\Controllers\ALatFotografiController;
 use App\Http\Controllers\DropzoneController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
@@ -302,6 +303,8 @@ Route::post('/datapemesanan/saveData','PemesananController@saveData')->name('dat
 Route::resource('/dataadmin','AdminStudioController');
 
 Route::resource('/datapelanggan','DataPelangganController');
+
+Route::resource('alatfotografi', 'AlatFotografiController');
 
 Route::resource('/detailpemesanan','DetailPemesananController');
 Route::post('/detailpemesanan/editForm','DetailPemesananController@editForm')->name('detailpemesanan.editForm');
