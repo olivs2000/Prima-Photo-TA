@@ -66,9 +66,9 @@
   <td id='td-nama_peminjam-{{$af->id}}'>{{ $af->nama_peminjam }}</td>
   <td id='td-status-{{$af->id}}'> 
     @if($af->status == 'tersedia')
-      <span class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Tersedia</span>
+      <span class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Tersedia</span>
     @else
-      <span class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Tidak Tersedia</span>
+      <span class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Tidak Tersedia</span>
     @endif
   </td>  
 

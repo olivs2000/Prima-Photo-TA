@@ -65,6 +65,9 @@ Route::resource('konfirmasicol','KonfirmasicolController');
 Route::resource('collaborate','CollaborateController');
 
 Route::resource('collaborateadmin','CollaborateAdminController');
+Route::post('/collaborateadmin/deleteData','CollaborateAdminController@deleteData')->name('collaborateadmin.deleteData');
+Route::post('/collaborateadmin/editForm','CollaborateAdminController@editForm')->name('collaborateadmin.editForm');
+Route::post('/collaborateadmin/saveData','CollaborateAdminController@saveData')->name('collaborateadmin.saveData');
 
 Route::resource('pelanggan','UserController');
 

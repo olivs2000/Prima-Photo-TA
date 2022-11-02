@@ -5,11 +5,10 @@ namespace App;
 //use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AlatFotografi extends Model
+class CollaborateAdmin extends Model
 {
     //use HasFactory;
-
     public $timestamps = false;
 
-    protected $table='alat_fotografis';
+    protected $table='collaborates';
 }

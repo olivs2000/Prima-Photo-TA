@@ -65,7 +65,7 @@ class AlatFotografiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(alatfotografi $alatfotografi)
     {
         $data = $alatfotografi;
         return view('alatfotografi.edit',compact('data'));

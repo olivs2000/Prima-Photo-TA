@@ -52,6 +52,30 @@
 	</div>
 </section>
 
+<div class="modal fade" id="modalEdit" tabindex="-1" role="basic" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" id="modalContent">
+    <div style="text-align:center">
+    <img src="{{asset('/assets/img/cam1.gif')}}"/>
+    </div>
+    </div>
+  </div>
+</div>
+
+@if(session('status'))
+<div class="alert alert-success">
+{{session('status')}}
+</div>
+@endif
+
+<div class="alert alert-success" id='pesan' style="display:none"></div>
+
+@if(session('error'))
+<div class="alert alert-danger">
+{{session('error')}}
+</div>
+@endif 
+
 <section class="user-dashboard page-wrapper">
   <div class="container">
     <div class="row">
@@ -72,6 +96,21 @@
                 <li><span>No Telepon:</span>{{$col->notelepon}}</li>
                 <li><span>Alat Fotografi:</span>{{$col->alat_fotografi}}</li>
                 <li><span>Pengalaman:</span>{{$col->pengalaman}}</li>
+
+              <li><td id='td-status-{{$col->id}}'><span>Status:</span>
+                @if($col->status == 'tahap seleksi')
+                  <span class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Tahap Seleksi</span>
+                @elseif($col->status == 'diterima')
+                  <span class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Diterima</span>
+                @else
+                  <span class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">Ditolak</span>
+                @endif
+              </td></li>  
+            
+              <li><td>
+                <a href="#modalEdit" data-toggle="modal" class="btn-xs btn-warning" onclick="editForm({{$col->id}})">Ubah</a> 
+              </td></li>
+
               </ul>
             </div>
           </div>
@@ -82,6 +121,61 @@
     </div>
   </div>
 </section>
+
+@section('javascript')
+<script>
+  
+function editForm(id)
+  {
+    $.ajax({
+      type:'POST',
+      url:'{{route("collaborateadmin.editForm")}}',
+      data:{'_token':'<?php echo csrf_token() ?>',
+          'id':id},
+      success: function(data)
+      {
+        $('#modalContent').html(data.msg)
+      },
+      error: function(data) 
+      {
+        alert("ajax error, json: " + data);
+      }
+    });
+  }
+
+  function saveDataUpdateTD(id)
+{
+  var eStatus = $('#eStatus').val();
+  $.ajax({
+    type:'POST',
+    url:'{{route("collaborateadmin.saveData")}}',
+    data:{'_token':'<?php echo csrf_token() ?>',
+        'id':id,
+        'status':eStatus
+        },
+    success: function(data){
+      if(data.status=='oke')
+      {
+        $('#td_status_'+id).html(eStatus)
+        $('#pesan').show();
+        $('#pesan').html(data.msg)
+      }
+    }
+  });
+}
+
+
+</script>
+@endsection
+
+
+
+
+
+
+
+
+
 
 
  <!-- Main jQuery -->
