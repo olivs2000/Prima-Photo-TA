@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use DB;
 
 class PaketAdminController extends Controller
@@ -83,43 +84,6 @@ class PaketAdminController extends Controller
         // return response()->json(['success' => $imageName]);
     }
 
-    public function upload(Request $request)
-    {
-        $image = $request->file('file');
-        $imageName = time() .'.'. $image->extension();
-        $image->move(public_path('storage/temp_dropzone'), $imageName);
-        return response()->json(['success' => $imageName]);
-    }
-
-    public function dropzoneDestroy(Request $request)
-    {
-        $filename = $request->get('filename');
-        ImageUpload::where('filename', $filename)->delete();
-        $path = public_path().'/storage/'.$filename;
-
-        if(file_exist($path))
-        {
-            unlink($path);
-        }
-
-        return $filename;
-    }
-
-    function fetch()
-    {
-        $image = \File::allFiles(public_path('storage'));
-        $output = '<div class="row">';
-        foreach($image as $img)
-        {
-            $output .= '<div class="col-md-2" style="margin-bottom:16px;" align="center"><img src="'.asset('storage/' . $img->getFileName()).'"
-            class="img-thumbnail" width="175" height="175" style="height:175px;" /> 
-            <button type="button" class="btn btn-link remove_image" id"'.$img->getFileName().'">Remove</button>
-            </div>';
-        }
-        $output .='</div>>';
-        echo $output;
-    }
-
     function delete(Request $request)
     {
         if($request->get('gambar_detail'))
@@ -130,10 +94,38 @@ class PaketAdminController extends Controller
 
     public function saveData(Request $request)
     {
+        $request->validate([
+            'file_foto.*' => 'required|mimes:jpg,jpeg,png,bmp|max:20000' ,
+            'judul_paket' => 'required|min:3',
+            'gambar' => 'required',
+            'durasi' => 'required',
+            'jumlah_jepretan' => 'required',
+            'harga' => 'required',
+            'keterangan' => 'required',
+            'kategoris_id' => 'required'
+        ]);
+        Log::info("pass validation---------------------------");
+
         $data=new Paket();
+        $foldername = str_replace(' ', '', $request->get('judul_paket'));
+        Log::info("nama folder : ".$foldername);
+
+        if($request->file('file_foto')){
+            Log::info("File exist----------------------------");
+            foreach ($request->file('file_foto') as $img) {
+                $imageName = strtotime(now()).rand(11111,99999).'.'.$img->getClientOriginalExtension();
+                $original_name = $img->getClientOriginalName();
+    
+                if(!is_dir(public_path('storage/'.$foldername))){
+                    mkdir(public_path('storage/'.$foldername), 0777, true);
+                }
+    
+                $img->move(public_path('storage/'.$foldername), $original_name.$imageName);
+            }
+        }
 
         $data->gambar=$request->get('gambar');
-        $data->gambar_detail=$request->get('gambar_detail');
+        $data->gambar_detail=$foldername;
         $data->judul_paket=$request->get('judul_paket');
         $data->durasi=$request->get('durasi');
         $data->jumlah_jepretan=$request->get('jumlah_jepretan');
@@ -141,23 +133,7 @@ class PaketAdminController extends Controller
         $data->keterangan=$request->get('keterangan');       
         $data->kategoris_id=$request->get('kategoris_id');
 
-
-
-        $request->validate([
-            'file' => 'required|image|max:2408' 
-        ]);
-
-        $storage = $request->file('file')->store('public/storage/'.$request->get('gambar_detail'));
-
-        $url = Storage::url($storage);
-
-        File::create([
-            'url' => $url
-        ]);
-
         $data->save();
-
-
 
         return redirect()->route('paketadmin.index')->with('status', 'Paket baru berhasil tersimpan');
     }
@@ -176,27 +152,43 @@ class PaketAdminController extends Controller
         ->select("kategoris.id", "nama")
         ->get();
 
-        return view("paketadmin.edit",compact('data', 'kategoris'));
+        $data->nama_folder = $data->gambar_detail;
 
-        // $id=$request->get('id');
-        // $idk=$request->get('kategoris_id');
-        // $data=Paket::find($id);
-        // return response()->json(array(
-        //     'status'=>'oke',
-        //     'msg'=>view('paketadmin.edit',compact('data', 'idk'))->render()
-        // ),200);
+        $data->gambar_detail = array_map(function($e){
+            return asset($e);
+        }, glob("storage/".$data->gambar_detail."/*.{*}", GLOB_BRACE));
+
+        return view("paketadmin.edit",compact('data', 'kategoris'));
     }
 
-    public function update(Request $request, Paket $paketadmin)
+    public function update(Request $request, $paketadmin_id)
     {
+        $foldername = str_replace(' ', '', $request->get('nama_folder'));
+        $paketadmin = Paket::find($paketadmin_id);
         $paketadmin->gambar=$request->get('gambar');
-        $paketadmin->gambar_detail=$request->get('gambar_detail');
+        $paketadmin->gambar_detail=$request->get('nama_folder');
         $paketadmin->judul_paket=$request->get('judul_paket');
         $paketadmin->durasi=$request->get('durasi');
         $paketadmin->jumlah_jepretan=$request->get('jumlah_jepretan');
         $paketadmin->harga=$request->get('harga');
         $paketadmin->keterangan=$request->get('keterangan');
         $paketadmin->kategoris_id=$request->get('kategoris_id');
+
+        if($request->file('file_foto')){
+            Log::info("File exist----------------------------");
+            foreach ($request->file('file_foto') as $img) {
+                $imageName = strtotime(now()).rand(11111,99999).'.'.$img->getClientOriginalExtension();
+                $original_name = $img->getClientOriginalName();
+    
+                if(!is_dir(public_path('storage/'.$foldername))){
+                    mkdir(public_path('storage/'.$foldername), 0777, true);
+                }
+    
+                $img->move(public_path('storage/'.$foldername), $original_name.$imageName);
+            }
+        }
+
+
         $paketadmin->save(); 
 
         return redirect()->route('paketadmin.index')->with('status', 'Paket berhasil tersimpan');
@@ -218,20 +210,21 @@ class PaketAdminController extends Controller
         }
     }
 
-    public function createDirecrotory(Request $request)
+    public function deleteDetailGambar(Request $request)
     {
-        $path = public_path('storage');
+        $request->validate([
+            'nama_gambar' => 'required' ,
+            'nama_folder' => 'required',
+        ]);
+        Log::info("pass validation---------------------------");
 
-        if(!File::isDirectory($path)){
-            File::makeDirectory($path, 0777, true, true);
+        if(File::exists(public_path('storage/'.$request->nama_folder.'/'.$request->nama_gambar))){
+            Log::info("Delete file...............................");
+            File::delete(public_path('storage/'.$request->nama_folder.'/'.$request->nama_gambar));
+        }
 
-        }   
-    }
+        return response()->json(['msg'=> 'success']);
 
-    public function createFolder()
-    {
-        $response = Storage::makeDirectory('storage');
-        //dd($response);
     }
 }
 

@@ -21,7 +21,7 @@ class Produk extends Model
         return $this->hasMany("App\DetailPemesanan", "produks_id", "id");
     }
 
-    public function datapembelians()
+    public function datapembelian()
     {
         return $this->belongsToMany(DataPembelian::class, 'detail_pembelians', 'produks_id', 'data_pembelians_id');
     }

@@ -56,11 +56,8 @@
   </div> --}}
 
   <div class="form-group">
-    <label>Status</label>
-      <select class="form-control" id="eStatus" name="status">
-        <option>proses</option> 
-        <option>selesai</option> 
-      </select>
+    <label>Estimasi Pemesanan Tiba</label>
+      <input type="date" class="form-control" id="eEstimasiSampai" name="eEstimasiSampai"  value="{{$data->estimasi_sampai}}">
    </div>
    
   </div>

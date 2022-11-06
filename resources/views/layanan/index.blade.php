@@ -52,9 +52,12 @@
 					</a>
 				<div class="media-body">
 					<h4 class="media-heading">{{$details['judul_paket']}}</h4>
+					<input type="hidden" name="judul_paket" value="{{$details['judul_paket']}}">
 					<div class="cart-price">
 						<span>{{$details['jumlah']}} x</span>
+						<input type="hidden" name="jumlah" value="{{$details['jumlah']}}">
 						<span>{{number_format($details['harga'])}}</span>
+						<input type="hidden" name="harga" value="{{$details['harga']}}">
 					</div>
 				</div>
 				</div>
@@ -78,9 +81,12 @@
 					</a>
 				<div class="media-body">
 					<h4 class="media-heading">{{$details2['judul_produk']}}</h4>
+					<input type="hidden" name="judul_produk" value="{{$details2['judul_produk']}}">
 					<div class="cart-price">
 						<span>{{$details2['jumlah']}} x</span>
+						<input type="hidden" name="jumlah2" value="{{$details2['jumlah']}}">
 						<span>{{number_format($details2['harga'])}}</span>
+						<input type="hidden" name="harga2" value="{{$details2['harga']}}">
 					</div>
 				</div>
 				</div>
@@ -103,9 +109,12 @@
 					</a>
 				<div class="media-body">
 					<h4 class="media-heading">{{$details3['judul_layanan']}}</h4>
+					<input type="hidden" name="judul_layanan" value="{{$details3['judul_layanan']}}">
 					<div class="cart-price">
 						<span>{{$details3['jumlah']}} x</span>
+						<input type="hidden" name="jumlah3" value="{{$details3['jumlah']}}">
 						<span>{{number_format($details3['harga'])}}</span>
+						<input type="hidden" name="harga3" value="{{$details3['harga']}}">
 					</div>
 				</div>
 				</div>
@@ -124,13 +133,17 @@
 				@foreach(session()->get('cart4') as $id => $details4)
 				<div class="media">
 					<a class="pull-left" href="#!">
-						<img class="media-object" src="{{$details4['gambar']}}" alt="image" />
+						<img class="media-object" src="{{$details4['gambar']}}" 
+						alt="image" />
 					</a>
 				<div class="media-body">
-					<h4 class="media-heading">{{$details4['judul_layanan']}}</h4>
+					<h4 class="media-heading">{{$details4['nama_alat']}}</h4>
+					<input type="hidden" name="nama_alat" value="{{$details4['nama_alat']}}">
 					<div class="cart-price">
 						<span>{{$details4['jumlah']}} x</span>
+						<input type="hidden" name="jumlah4" value="{{$details4['jumlah']}}">
 						<span>{{number_format($details4['harga'])}}</span>
+						<input type="hidden" name="harga4" value="{{$details4['harga']}}">
 					</div>
 				</div>
 				</div>

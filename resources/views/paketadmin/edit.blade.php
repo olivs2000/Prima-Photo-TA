@@ -1,8 +1,7 @@
 @extends('layout.conquer')
 
 @section('content')
-
-<h3 class="page-title">	Ubah Paket</h3>
+<h3 class="page-title">Ubah Paket Fotografi</h3>
 <div class="page-bar">
 	  <ul class="page-breadcrumb">
 			<li>
@@ -15,8 +14,7 @@
 			</li>
 		</ul>
 </div>
-
-<form role="form" method="POST" action="{{url('paketadmin/'.$data->id )}}">
+<form role="form" method="POST" action="{{route('paketadmin.update',$data->id)}}" enctype="multipart/form-data">
     @csrf 
     @method("PUT")
 
@@ -27,14 +25,28 @@
             <input type="text" class="form-control" name="gambar" value="{{$data->gambar}}">
         </div>
 
-        <div class="form-group">
-            <label>Nama Folder Gambar Detail</label>
-            <input type="text" class="form-control" name="gambar_detail" value="{{$data->gambar_detail}}">
-        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <label>Gambar Detail</label> 
+            </div><br>
+            
+            &nbsp; &nbsp;
 
-        <div class="form-group">
-            <label>Gambar Detail</label>
-            <input type="text" class="form-control" name="gambar_detail" value="{{$data->gambar_detail}}">
+            <input type="hidden" name="nama_folder" value="{{$data->nama_folder}}">
+            
+            @foreach ( $data->gambar_detail as $detail) 
+            <img src='{{$detail}}' height='50px'> 
+                @php
+                    $filename = explode('/', $detail);
+                    $filename = end($filename);
+                @endphp
+            <input type='button' value='Hapus' class='btn btn-xs btn-danger btn-sm m-b-10 m-l-5' 
+                onclick= "deleteGambar('{{$data->nama_folder}}', '{{$filename}}')"/>
+            @endforeach 
+
+            <div class="panel-body">
+                <input type="file" name="file_foto[]" multiple>
+            </div>
         </div>
     
          <div class="form-group">
@@ -79,4 +91,48 @@
 	</div>
 
 </form>
+@endsection
+
+@section('javascript')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script type="text/javascript">
+    function deleteGambar(foldername, filename){
+        swal({
+              title: `Are you sure you want to delete this picture?`,
+              text: "If you delete this, it will be gone forever.",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{route('delete.gambar')}}",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        nama_folder:foldername,
+                        nama_gambar:filename,
+                    },
+                    success: function (data) {
+                        location.reload();
+                    }         
+                });
+            }
+          });
+    }
+
+	$(document).on('click', '.remove_image', function() {
+		var name = $(this).attr('id');
+		$.ajax({
+			url:"{{ route('paketadmin.delete') }}",
+			data:{name : name},
+			success:function(data)
+			{
+				load_images(); 
+			}
+		})
+	});
+
+</script>
 @endsection

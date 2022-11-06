@@ -133,10 +133,13 @@
 						<img class="media-object" src="{{$details4['gambar']}}" alt="image" />
 					</a>
 				<div class="media-body">
-					<h4 class="media-heading">{{$details4['judul_layanan']}}</h4>
+					<h4 class="media-heading">{{$details4['nama_alat']}}</h4>
+					<input type="hidden" name="nama_alat" value="{{$details4['nama_alat']}}">
 					<div class="cart-price">
 						<span>{{$details4['jumlah']}} x</span>
+						<input type="hidden" name="jumlah4" value="{{$details4['jumlah']}}">
 						<span>{{number_format($details4['harga'])}}</span>
+						<input type="hidden" name="harga4" value="{{$details4['harga']}}">
 					</div>
 				</div>
 				</div>

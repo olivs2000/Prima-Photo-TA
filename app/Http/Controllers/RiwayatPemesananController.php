@@ -10,12 +10,11 @@ use DB;
 
 class RiwayatPemesananController extends Controller
 {
-    public function index()
+    public function index(Request $request, $pemesanan_id)
     {
-        $queryBuilder=DB::table("detail_pemesanans")
-        ->leftJoin("pemesanans", "detail_pemesanans.pemesanans_id", "=", "pemesanans.id")
-        ->select("detail_pemesanans.*", "pemesanans.nama")
-        ->get();
-        return view('riwayatpemesanan.index',['data'=>$queryBuilder]);
+        $pemesanan = Pemesanan::find($pemesanan_id);
+        $queryBuilder=DetailPemesanan::where('pemesanans_id',$pemesanan_id)->get();
+        
+        return view('riwayatpemesanan.index',['pemesanan'=>$pemesanan,'data'=>$queryBuilder]);
     }
 }

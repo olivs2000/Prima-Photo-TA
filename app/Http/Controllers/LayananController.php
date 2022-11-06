@@ -112,7 +112,7 @@ class LayananController extends Controller
             $cart[$id]['jumlah']++;
         }
         session()->put('cart3', $cart);
-        // session()->forget('cart3');
+        
         return redirect()->back()->with('success', 'Layanan berhasil ditambahkan ke keranjang');
     }
 }

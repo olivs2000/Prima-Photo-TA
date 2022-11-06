@@ -25,7 +25,7 @@ class CollaborateController extends Controller
     {
         $data=new Collaborate();
 
-        $file=$request->file('pas_foto');
+      
         $imgFolder="images";
         $fileName=time()."_".$file->getClientOriginalName();
         $file->move($imgFolder, $fileName);

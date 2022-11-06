@@ -88,7 +88,7 @@ class DetailPemesananController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $detailpemesanan->status=$request->get('status');
+        $detailpemesanan->estimasi_sampai=$request->get('estimasi_sampai');
         $detailpemesanan->save(); 
 
         return redirect()->route('detailpemesanan.index')->with('status', 'Detail pemesanan berhasil tersimpan');
@@ -117,13 +117,6 @@ class DetailPemesananController extends Controller
 
     public function editForm(Request $request)
     {
-        // $id=$request->get('id');
-        // $data=DetailPemesanan::find($id);
-        // return response()->json(array(
-        //     'status'=>'oke',
-        //     'msg'=>view('detailpemesanan.editForm',compact('data'))->render()
-        // ),200);
-
         $id=$request->get('id');
 
         $data=DB::table("detail_pemesanans")
@@ -147,7 +140,7 @@ class DetailPemesananController extends Controller
     {
         $id=$request->post('id');
         $detailpemesanan=DetailPemesanan::find($id);
-        $detailpemesanan->status=$request->get('status');
+        $detailpemesanan->estimasi_sampai=$request->get('estimasi_sampai');
         $detailpemesanan->save();
         return response()->json(array(
             'status'=>'oke',

@@ -8,10 +8,9 @@ use DB;
 
 class KonfirmasiController extends Controller
 {
-    public function index()
+    public function index(Request $request, $pemesanan_id)
     {
-        $data = Pemesanan::all();
-        return view('konfirmasi.index', compact('data'));
+        return view('konfirmasi.index', ['pemesanan_id'=>$pemesanan_id]);
     }
 
     public function store(Request $request)
@@ -25,6 +24,7 @@ class KonfirmasiController extends Controller
         $data->tanggal_acara=$request->get('tanggal_acara');
         $data->waktu_acara=$request->get('waktu_acara');
         $data->total=$request->get('total');
+        $data->bukti_transfer=$request->get('bukti_transfer');
         $data->save();
 
         return redirect()->route('konfirmasi.index');

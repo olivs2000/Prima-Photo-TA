@@ -49,6 +49,21 @@
 
 <div class="page-wrapper">
   <div class="cart shopping">
+
+    {{-- <th class="">Nama : </th>
+    <th class="">{{$pemesanan->nama}}</th>
+    <th class="">No telepon : </th>
+    <th class="">{{$pemesanan->notelepon}}</th>
+    <th class="">Email : </th>
+    <th class="">{{$pemesanan->email}}</th>
+    <th class="">Alamat : </th>
+    <th class="">{{$pemesanan->alamat}}</th> --}}
+
+        <li><span>Nama : </span>{{$pemesanan->nama}}</li>
+        <li><span>No Telepon : </span>{{$pemesanan->notelepon}}</li>
+        <li><span>Email : </span>{{$pemesanan->email}}</li>
+        <li><span>Alamat : </span>{{$pemesanan->alamat}}</li>
+
     <div class="container">
       <div class="row">
           <div class="block">
@@ -57,32 +72,25 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th class="">Nama</th>
-                      {{-- <th class="">Pemesanan</th> --}}
-                      <th class="">Jumlah</th>
-                      <th class="">Harga</th>
-                      <th class="">Total</th>
-                      <th class="">Tanggal Pemesanan</th>
+                    
+                      <th class="">Jumlah Pemesanan</th>
+                      <th class="">Harga Pemesanan</th>
+                      <th class="">Total Pembayaran</th>
+                      <th class="">Tanggal Transaksi</th>
+                      <th class="">Status Pembayaran</th>
+                      <th class="">Status Pemesanan</th>
+
                     </tr>
                   </thead>
                   <tbody>
                     @foreach($data as $rp)
                     <tr class="">
-                      {{-- <td class="">
-                        <div class="product-info">
-                          <a>{{$rp->detail_pemesanans_id}}</a>
-                        </div>
-                      </td>
-                      <td class="">$200.00</td>
-                      <td class="">
-                        <a class="product-remove" href="#!">Remove</a>
-                      </td> --}}
-                      <td>{{$rp->nama}}</a></td>
-                      {{-- <td>{{$rp->...}}</td> --}}
                       <td>{{$rp->jumlah}}</td>
                       <td>{{$rp->harga}}</td>
                       <td>{{$rp->total}}</td>
-                      <td>{{$rp->tanggal_pemesanan}}</td>
+                      <td>{{$rp->tanggal_transaksi}}</td>
+                      <td>{{$rp->status_pembayaran}}</td>
+                      <td>{{$rp->status_pemesanan}}</td>
                     </tr>
                     @endforeach
                   </tbody>

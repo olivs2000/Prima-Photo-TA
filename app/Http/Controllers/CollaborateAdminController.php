@@ -44,13 +44,13 @@ class CollaborateAdminController extends Controller
         }
     }
 
-    public function editForm(Request $request)
+    public function editcol(Request $request)
     {
         $id=$request->get('id');
-        $data=collaborateAdmin::find($id);
+        $data=CollaborateAdmin::find($id);
         return response()->json(array(
             'status'=>'oke',
-            'msg'=>view('collaborateadmin.editForm',compact('data'))->render()
+            'msg'=>view('collaborateadmin.editcol',compact('data'))->render()
         ),200);
     }
 

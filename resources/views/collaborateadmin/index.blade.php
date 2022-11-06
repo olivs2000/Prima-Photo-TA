@@ -82,7 +82,7 @@
       <div class="col-md-12">   
         <a class="btn btn-main btn-small btn-round-full" href="{{ url('home') }}"><< Kembali</a>  
 
-        @foreach($collaborate as $col)
+      @foreach($collaborate as $col)
         <div class="dashboard-wrapper dashboard-user-profile">
           <div class="media">
             <div class="pull-left text-center" href="#!">
@@ -97,84 +97,82 @@
                 <li><span>Alat Fotografi:</span>{{$col->alat_fotografi}}</li>
                 <li><span>Pengalaman:</span>{{$col->pengalaman}}</li>
 
-              <li><td id='td-status-{{$col->id}}'><span>Status:</span>
-                @if($col->status == 'tahap seleksi')
-                  <span class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Tahap Seleksi</span>
-                @elseif($col->status == 'diterima')
-                  <span class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Diterima</span>
-                @else
-                  <span class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">Ditolak</span>
-                @endif
-              </td></li>  
-            
-              <li><td>
-                <a href="#modalEdit" data-toggle="modal" class="btn-xs btn-warning" onclick="editForm({{$col->id}})">Ubah</a> 
-              </td></li>
-
+                <li><td><span>Status:</span>
+                  @if($col->status == 'tahap seleksi')
+                    <span id='td-status-{{$col->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Tahap Seleksi</span>
+                  @elseif($col->status == 'diterima')
+                    <span id='td-status-{{$col->id}}' class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Diterima</span>
+                  @else
+                    <span id='td-status-{{$col->id}}' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">Ditolak</span>
+                  @endif
+                </td></li>  
+              
+                <li><td>
+                  <a href="#modalEdit" data-toggle='modal' class="btn-xs btn-warning" onclick="editcol({{$col->id}})">Ubah</a>
+                </td></li>
+                
               </ul>
             </div>
           </div>
         </div>
-        @endforeach
+      @endforeach
 
       </div>
     </div>
   </div>
 </section>
 
-@section('javascript')
 <script>
-  
-function editForm(id)
-  {
-    $.ajax({
-      type:'POST',
-      url:'{{route("collaborateadmin.editForm")}}',
-      data:{'_token':'<?php echo csrf_token() ?>',
-          'id':id},
-      success: function(data)
-      {
-        $('#modalContent').html(data.msg)
-      },
-      error: function(data) 
-      {
-        alert("ajax error, json: " + data);
-      }
-    });
-  }
 
-  function saveDataUpdateTD(id)
+function editcol(id)
 {
-  var eStatus = $('#eStatus').val();
   $.ajax({
     type:'POST',
-    url:'{{route("collaborateadmin.saveData")}}',
+    url:'{{route("collaborateadmin.editcol")}}',
     data:{'_token':'<?php echo csrf_token() ?>',
-        'id':id,
-        'status':eStatus
-        },
-    success: function(data){
-      if(data.status=='oke')
-      {
-        $('#td_status_'+id).html(eStatus)
-        $('#pesan').show();
-        $('#pesan').html(data.msg)
-      }
+         'id':id},
+    success:function(data)
+    {
+      $('#modalContent').html(data.msg)
+    },
+    error: function(data)
+    {
+      alert("ajax error, json: " +data);
     }
   });
 }
 
 
+function saveDataUpdateTD(id)
+  {
+    var eStatus = $('#eStatus').val();
+    $.ajax({
+      type:'POST',
+      url:'{{route("collaborateadmin.saveData")}}',
+      data:{'_token':'<?php echo csrf_token() ?>',
+          'id':id,
+          'status':eStatus
+          },
+      success: function(data){
+        console.log(eStatus);
+        if(data.status=='oke')
+        {
+          $('#td-status-'+id).text(eStatus);
+          if(eStatus == "Ditolak"){
+            $('#td-status-'+id).attr('class', 'btn btn-xs btn-danger btn-sm m-b-10 m-l-5');
+          }else if(eStatus == "Diterima"){
+            $('#td-status-'+id).attr('class', 'btn btn-xs btn-success btn-sm m-b-10 m-l-5');
+          }else{
+            $('#td-status-'+id).attr('class', 'btn btn-xs btn-default btn-sm m-b-10 m-l-5');
+          }
+          $('#pesan').show();
+          $('#pesan').html(data.msg)
+        }
+      }
+    });
+  }
+
 </script>
-@endsection
-
-
-
-
-
-
-
-
 
 
 

@@ -53,8 +53,8 @@
     <th>Jumlah</th>
     <th>Harga</th>
     <th>Total</th>
-    <th>Tanggal Pemesanan</th>   
-    <th>Waktu Pembayaran</th>   
+    <th>Tanggal Transaksi</th>   
+    <th>Estimasi Waktu Sampai</th>   
     <th colspan='1'></th>
   <tr>
 </thead>
@@ -72,8 +72,12 @@
   <td>{{$dp->jumlah}}</td>
   <td>Rp. {{number_format($dp->harga)}}</td>
   <td>Rp. {{number_format($dp->total)}}</td>  
-  <td>{{$dp->tanggal_pemesanan}}</td>
-  <td>{{$dp->waktu_pembayaran}}</td>
+  <td>{{$dp->tanggal_transaksi}}</td>
+  <td>{{$dp->estimasi_sampai}}</td>
+
+  <td>
+    <a href="#modalEdit" data-toggle='modal' class="btn btn-warning" onclick="editForm({{$dp->id}})">Ubah</a> 
+  </td>
 </tr>
 
 @endforeach
@@ -109,18 +113,18 @@ function editForm(id)
 
 function saveDataUpdateTD(id)
 {
-  var eStatus = $('#eStatus').val();
+  var eEstimasiSampai = $('#eEstimasiSampai').val();
   $.ajax({
     type:'POST',
     url:'{{route("detailpemesanan.saveData")}}',
     data:{'_token':'<?php echo csrf_token() ?>',
         'id':id,
-        'status':eStatus
+        'estimasi_sampai':eEstimasiSampai
         },
     success: function(data){
       if(data.status=='oke')
       {
-        $('#td_status_'+id).html(eStatus)
+        $('#td_estimasi_sampai_'+id).html(eEstimasiSampai)
         $('#pesan').show();
         $('#pesan').html(data.msg)
       }

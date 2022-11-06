@@ -16,7 +16,8 @@
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4| ^2.4.0",
-        "midtrans/midtrans-php": "^2.5"
+        "midtrans/midtrans-php": "^2.5",
+        "realrashid/sweet-alert": "^5.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

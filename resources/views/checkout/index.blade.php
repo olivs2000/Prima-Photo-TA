@@ -63,7 +63,7 @@
                <div class="block billing-details">
                   <h4 class="widget-title">Data Pemesan</h4>
 
-                  <form enctype='multipart/form-data' class="checkout-form" method="post" action="{{url('konfirmasi')}}" role="form">
+                  <form enctype='multipart/form-data' class="checkout-form" method="post" action="{{url('checkout/store')}}" role="form">
                      @csrf 
                      <div class="form-group">
                         <label>Nama Lengkap</label>
@@ -80,6 +80,10 @@
                      <div class="form-group">
                         <label>Alamat</label>
                         <input type="text" class="form-control" id="alamat" name="alamat" placeholder="">
+                     </div>
+                     <div class="form-group">
+                        <h5>Sertakan bukti transfer anda dibawah ini: </h5>
+                        <input type="file" class="form-control" id="bukti_transfer" name="bukti_transfer">
                      </div>
 
                      <br><br><br>
@@ -106,11 +110,13 @@
 
                      </div>
 
-                     <div id="cf-submit">
-                        {{-- <input type="submit" id="contact-submit" class="btn btn-main mt-20" value="Order"> --}}
-                        <a href="{{ route('submitCheckout') }}" id="contact-submit" class="btn btn-main mt-20">Order</a>
-                     </div>
+                     {{-- <div id="cf-submit">
+                        <a href="{{ route('store') }}" id="contact-submit" class="btn btn-main mt-20">Order</a>
+                     </div> --}}
 
+                     <div id="cf-submit">
+                        <input type="submit" id="contact-submit" class="btn btn-main mt-20t" value="Order">
+                     </div>	
                </div>
             </div>
             
@@ -129,9 +135,12 @@
                            </a>
                         <div class="media-body">
                            <h4 class="media-heading">{{$details['judul_paket']}}</h4>
+                           <input type="hidden" name="judul_paket" value="{{$details['judul_paket']}}">
                            <div class="cart-price">
                               <span>{{$details['jumlah']}} x</span>
+                              <input type="hidden" name="jumlah" value="{{$details['jumlah']}}">
                               <span>{{number_format($details['harga'])}}</span>
+                              <input type="hidden" name="harga" value="{{$details['harga']}}">
                            </div>
                         </div>
                         </div>
@@ -155,9 +164,12 @@
                            </a>
                         <div class="media-body">
                            <h4 class="media-heading">{{$details2['judul_produk']}}</h4>
+                           <input type="hidden" name="judul_produk" value="{{$details2['judul_produk']}}">
                            <div class="cart-price">
                               <span>{{$details2['jumlah']}} x</span>
+                              <input type="hidden" name="jumlah2" value="{{$details2['jumlah']}}">
                               <span>{{number_format($details2['harga'])}}</span>
+                              <input type="hidden" name="harga2" value="{{$details2['harga']}}">
                            </div>
                         </div>
                         </div>
@@ -180,9 +192,12 @@
                            </a>
                         <div class="media-body">
                            <h4 class="media-heading">{{$details3['judul_layanan']}}</h4>
+                           <input type="hidden" name="judul_layanan" value="{{$details3['judul_layanan']}}">
                            <div class="cart-price">
                               <span>{{$details3['jumlah']}} x</span>
+                              <input type="hidden" name="jumlah3" value="{{$details3['jumlah']}}">
                               <span>{{number_format($details3['harga'])}}</span>
+                              <input type="hidden" name="harga3" value="{{$details3['harga']}}">
                            </div>
                         </div>
                         </div>
@@ -205,9 +220,12 @@
                            </a>
                         <div class="media-body">
                            <h4 class="media-heading">{{$details4['nama_alat']}}</h4>
+                           <input type="hidden" name="nama_alat" value="{{$details4['nama_alat']}}">
                            <div class="cart-price">
                               <span>{{$details4['jumlah']}} x</span>
+                              <input type="hidden" name="jumlah4" value="{{$details4['jumlah']}}">
                               <span>{{number_format($details4['harga'])}}</span>
+                              <input type="hidden" name="harga4" value="{{$details4['harga']}}">
                            </div>
                         </div>
                         </div>
