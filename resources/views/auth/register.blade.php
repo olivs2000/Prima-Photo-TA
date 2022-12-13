@@ -97,7 +97,7 @@
                             <label for='admin'> <h5>Admin</h5></label> &nbsp &nbsp
                             <input type='radio' id='fotografer' name='roles' value='fotografer'>
                             <label for='fotografer'><h5>Fotografer</h5></label> &nbsp &nbsp 
-                            <input action="{{url('pelanggan')}}" type='radio' id='pelanggan' name='roles' value='pelanggan'>
+                            <input type='radio' id='pelanggan' name='roles' value='pelanggan'>
                             <label for='pelanggan'><h5>Pelanggan</h5></label>                       
                         </div>
 

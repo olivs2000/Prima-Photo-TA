@@ -57,13 +57,12 @@ class CheckoutController extends Controller
     {
         $data=new Pemesanan();
        
-        $file=$request->file('bukti_transfer');
-        $imgFolder="images";
-        $fileName=time()."_".$file->getClientOriginalName();
-        //dd($fileName); 
-        $file->move($imgFolder, $fileName);
+        // $file=$request->file('bukti_transfer');
+        // $imgFolder="images";
+        // $fileName=time()."_".$file->getClientOriginalName();
+        // $file->move($imgFolder, $fileName);
        
-        $data->bukti_transfer=$fileName;
+        // $data->bukti_transfer=$fileName;
         
         $data->nama=$request->get('nama');
         $data->notelepon=$request->get('notelepon');
@@ -85,7 +84,7 @@ class CheckoutController extends Controller
         $penyewaanalat = PenyewaanAlat::where('nama_alat',$request->get('nama_alat'))->first();
 
         $detail=new DetailPemesanan();
-        $detail->layanans_id=$paket->id;
+        $detail->layanans_id=($layanan)?$layanan->id:null;
         $detail->penyewaan_alats_id=($penyewaanalat)?$penyewaanalat->id:null;
         $detail->produks_id=($produk)?$produk->id:null;
         $detail->pakets_id=($paket)?$paket->id:null;

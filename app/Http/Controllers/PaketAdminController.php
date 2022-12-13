@@ -188,7 +188,6 @@ class PaketAdminController extends Controller
             }
         }
 
-
         $paketadmin->save(); 
 
         return redirect()->route('paketadmin.index')->with('status', 'Paket berhasil tersimpan');

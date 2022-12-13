@@ -81,10 +81,10 @@
                         <label>Alamat</label>
                         <input type="text" class="form-control" id="alamat" name="alamat" placeholder="">
                      </div>
-                     <div class="form-group">
+                     {{-- <div class="form-group">
                         <h5>Sertakan bukti transfer anda dibawah ini: </h5>
                         <input type="file" class="form-control" id="bukti_transfer" name="bukti_transfer">
-                     </div>
+                     </div> --}}
 
                      <br><br><br>
 

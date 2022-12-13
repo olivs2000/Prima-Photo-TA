@@ -27,7 +27,7 @@
             <input type="file" class="form-control" name="pas_foto" value="{{$data->pas_foto}}">
         </div>
     
-         <div class="form-group">
+        <div class="form-group">
             <label>Nama</label>
             <input type="text" class="form-control" name="nama" value="{{$data->nama}}">
         </div>
@@ -40,17 +40,17 @@
         <div class="form-group">
             <label>No Telepon</label>
             <input type="text" class="form-control" name="notelepon" value="{{$data->notelepon}}">
-          </div>
+        </div>
     
         <div class="form-group">
             <label>Email</label>
             <input type="text" class="form-control" name="email" value="{{$data->email}}">
-          </div>
+        </div>
     
         <div class="form-group">
             <label>Alat Fotografi</label>
             <input type="text" class="form-control" name="alat_fotografi" value="{{$data->alat_fotografi}}">
-          </div>
+        </div>
     
       <div class="form-group">
           <label>Status</label>

@@ -41,7 +41,7 @@
 </div>
 @endif 
 
-<table  id="table_contoh" class="table">
+<table  class='table'>
 <thead>
   <tr>
     <th>ID</th>
@@ -54,7 +54,8 @@
     <th>Waktu Acara</th>
     <th>Total</th> 
     <th>Status Pembayaran</th> 
-    <th>Status Pemesanan</th>  
+    <th>Status Pemesanan</th>
+    <th colspan='1'></th>  
   <tr>
 </thead>
 
@@ -72,33 +73,64 @@
   <td>{{$p->waktu_acara}}</td>
   <td>Rp. {{number_format($p->total)}}</td>  
 
+  {{-- <td>
+    @if($col->status == 'ditolak')
+      <span id='td-status-{{$col->id}}' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">Ditolak</span>
+    @elseif($col->status == 'diterima')
+      <span id='td-status-{{$col->id}}' class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Diterima</span>
+    @else
+      <span id='td-status-{{$col->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Tahap Seleksi</span>
+    @endif
+  </td> --}}
+
   <td id='td-status_pembayaran-{{$p->id}}'> 
     @if($p->status_pembayaran == 'belum')
-      <span class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">belum</span>
+      <span id='td-status_pembayaran-{{$p->id}}' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">belum</span>
+    @elseif($p->status_pembayaran == 'selesai')
+      <span id='td-status_pembayaran-{{$p->id}}' class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">selesai</span>
     @else
-      <span class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">selesai</span>
+      <span id='td-status_pembayaran-{{$p->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Proses</span>
     @endif
   </td>
 
   <td id='td-status_pemesanan-{{$p->id}}'> 
     @if($p->status_pemesanan == 'proses')
+      <span id='td-status_pemesanan-{{$p->id}}' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">Proses</span>
+    @elseif($p->status_pemesanan == 'selesai')
+      <span id='td-status_pemesanan-{{$p->id}}' class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Selesai</span>
+    @else
+      <span id='td-status_pemesanan-{{$p->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Menunggu Konfirmasi</span>
+    @endif
+  </td>
+
+  {{-- <td id='td-status_pemesanan-{{$p->id}}'> 
+    @if($p->status_pemesanan == 'proses')
       <span class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">proses</span>
     @else
       <span class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">selesai</span>
     @endif
-  </td>
+  </td> --}}
 
   <td>
     <a href="#modalEdit" data-toggle='modal' class="btn btn-warning" onclick="editForm({{$p->id}})">Ubah</a> 
   </td>
+
+  <td>
+    <form method="POST" action="{{url('datapemesanan/'.$p->id )}}">
+      @csrf
+      @method('DELETE')
+      <input type='submit' value='Hapus' class='btn btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
+    </form>
+  </td>
 </tr>
 
 @endforeach
+
 </tbody>
+
 </table>
 
 @endsection
-
 
 
 
@@ -146,7 +178,6 @@ function saveDataUpdateTD(id)
     }
   });
 }
-
 </script>
 @endsection
 

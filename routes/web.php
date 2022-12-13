@@ -6,6 +6,7 @@ use App\Http\Controllers\EmailController;
 use App\Http\Controllers\JadwalFotograferController;
 use App\Http\Controllers\DataFotograferController;
 use App\Http\Controllers\DataPemesananController;
+use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\DetailPemesananController;
 use App\Http\Controllers\DataPembelianController;
 use App\Http\Controllers\DetailPembelianController;
@@ -26,7 +27,7 @@ use App\Http\Controllers\CollaborateController;
 use App\Http\Controllers\CollaborateAdminController;
 use App\Http\Controllers\RiwayatPemesananController;
 use App\Http\Controllers\DetailPemesananPelangganController;
-use App\Http\Controllers\ALatFotografiController;
+use App\Http\Controllers\AlatFotografiController;
 use App\Http\Controllers\DropzoneController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
@@ -46,10 +47,14 @@ use Illuminate\Support\Facades\Http;
 Route::view('/', 'auth/login');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+
 Route::get('/checkStorage', function(){
     dd(public_path('storage'));
 });
+
 Route::post('/saveDropzone', 'PaketAdminController@upload')->name('dropzone.upload');
+
 Route::middleware(['auth'])->group(function () {
     
     Route::get('email', [EmailController::class,'kirim']);
@@ -61,7 +66,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('konfirmasi/{pemesanan_id}','KonfirmasiController@index')->name('konfirmasi.index');
     Route::resource('konfirmasi','KonfirmasiController',['except' => ['index']]);
-
 
     Route::resource('konfirmasicol','KonfirmasicolController');
 
@@ -85,6 +89,12 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('layanan','LayananController');
 
     Route::resource('layananadmin','LayananAdminController');
+
+    Route::post('/delete-gambar','LayananAdminController@deleteDetailGambar')->name('delete.gambar');
+
+    Route::post('/storepaket','LayananAdminController@saveData')->name('layananadmin.saveData');
+
+    Route::get('layananadmin/delete','LayananAdminController@delete')->name('layananadmin.delete');
 
     Route::get('/pasfoto', function () {
         return view('layanan.pasfoto'); 
@@ -122,6 +132,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('penyewaanalatadmin','PenyewaanAlatAdminController');
 
+    Route::post('/delete-gambar','PenyewaanAlatAdminController@deleteDetailGambar')->name('delete.gambar');
+
+    Route::post('/storepaket','PenyewaanAlatAdminController@saveData')->name('penyewaanalatadmin.saveData');
+
+    Route::get('penyewaanalatadmin/delete','PenyewaanAlatAdminController@delete')->name('penyewaanalatadmin.delete');
+
     Route::get('/backdrop', function () {
         return view('penyewaanalat.backdrop'); 
     })->name('penyewaanalat.backdrop');
@@ -157,7 +173,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tripod', function () {
         return view('penyewaanalat.tripod'); 
     })->name('penyewaanalat.tripod');
-    // END ySEWA ALAT //
+    // END SEWA ALAT //
 
 
 
@@ -165,6 +181,12 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('produk','ProdukController');
 
     Route::resource('produkadmin','ProdukAdminController');
+
+    Route::post('/delete-gambar','ProdukAdminController@deleteDetailGambar')->name('delete.gambar');
+
+    Route::post('/storepaket','ProdukAdminController@saveData')->name('produkadmin.saveData');
+
+    Route::get('produkadmin/delete','ProdukAdminController@delete')->name('produkadmin.delete');
 
     Route::get('/bingkai4R', function () {
         return view('produk.bingkai4R'); 
@@ -207,10 +229,14 @@ Route::middleware(['auth'])->group(function () {
 
     // START PAKET //
     Route::resource('paket','PaketController');
+
     Route::resource('paketadmin','PaketAdminController');
+
     Route::post('/delete-gambar','PaketAdminController@deleteDetailGambar')->name('delete.gambar');
 
-    Route::post('/storepaket','PaketAdminController@saveData')->name('paket.saveData');
+    Route::post('/storepaket','PaketAdminController@saveData')->name('paketadmin.saveData');
+
+    Route::get('paketadmin/delete','PaketAdminController@delete')->name('paketadmin.delete');
 
     Route::get('/detailpaket', function () {
         return view('paket.detailpaket'); 
@@ -307,7 +333,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/datapemesanan/editForm','PemesananController@editForm')->name('datapemesanan.editForm');
     Route::post('/datapemesanan/saveData','PemesananController@saveData')->name('datapemesanan.saveData');
 
+    Route::resource('/datapemesanan','DataPemesananController');
+    Route::post('/datapemesanan/editForm','DataPemesananController@editForm')->name('datapemesanan.editForm');
+    Route::post('/datapemesanan/saveData','DataPemesananController@saveData')->name('datapemesanan.saveData');
+
     Route::resource('/dataadmin','AdminStudioController');
+    Route::post('/delete-admin','AdminStudioController@deleteAdmin')->name('delete.admin');
+    Route::post('/delete-gambar','PaketAdminController@deleteDetailGambar')->name('delete.gambar');
+    Route::delete('/delete-admin', [AdminStudioController::class, 'delete'])->name('delete.admin');
 
     Route::resource('/datapelanggan','DataPelangganController');
 
@@ -369,11 +402,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('create-directory', function () {
         Storage::disk('public')->makeDirectory('storage');
     });
-
-    Route::get('paketadmin/fetch','PaketAdminController@fetch')->name('paketadmin.fetch');
-
-    Route::get('paketadmin/delete','PaketAdminController@delete')->name('paketadmin.delete');
-
-    // Route::get('paketadmin/upload','PaketAdminController@upload')->name('paketadmin.upload');
 
 });

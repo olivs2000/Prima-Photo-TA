@@ -73,10 +73,18 @@
   <td>Rp. {{number_format($dp->harga)}}</td>
   <td>Rp. {{number_format($dp->total)}}</td>  
   <td>{{$dp->tanggal_transaksi}}</td>
-  <td>{{$dp->estimasi_sampai}}</td>
+  <td>{{$dp->estimasi_selesai}}</td>
 
   <td>
     <a href="#modalEdit" data-toggle='modal' class="btn btn-warning" onclick="editForm({{$dp->id}})">Ubah</a> 
+  </td>
+
+  <td>
+    <form method="POST" action="{{url('detailpemesanan/'.$dp->id )}}">
+      @csrf
+      @method('DELETE')
+      <input type='submit' value='Hapus' class='btn btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
+    </form>
   </td>
 </tr>
 

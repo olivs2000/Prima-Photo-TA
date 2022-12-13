@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Produk;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use DB;
 
 class ProdukAdminController extends Controller
@@ -21,40 +24,108 @@ class ProdukAdminController extends Controller
         return view('produkadmin.create', compact('produks'));
     }
 
-    public function store(Request $request)
+    // public function store(Request $request)
+    // {
+    //     $data=new Produk();
+
+    //     $data->gambar=$request->get('gambar');
+    //     $data->gambar_detail=$request->get('gambar_detail');
+    //     $data->judul_produk=$request->get('judul_produk');
+    //     $data->stok=$request->get('stok');
+    //     $data->harga=$request->get('harga');
+    //     $data->keterangan_produk=$request->get('keterangan_produk');       
+    //     $data->save();
+
+    //     return redirect()->route('produkadmin.index')->with('status', 'Produk baru berhasil tersimpan');
+    // }
+
+    public function edit($produkadmin)
     {
-        $data=new Produk();
+        $id = $produkadmin;
 
-        $data->gambar=$request->get('gambar');
-        $data->gambar_detail=$request->get('gambar_detail');
-        $data->judul_produk=$request->get('judul_produk');
-        $data->stok=$request->get('stok');
-        $data->harga=$request->get('harga');
-        $data->keterangan_produk=$request->get('keterangan_produk');       
-        $data->save();
+        $data=DB::table("produks")
+        ->select("produks.*")
+        ->where("produks.id", $id)
+        ->first();
 
-        return redirect()->route('produkadmin.index')->with('status', 'Produk baru berhasil tersimpan');
-    }
+        $data->nama_folder = $data->gambar_detail;
 
-    public function edit(Produk $produkadmin)
-    {
-        $data = $produkadmin;
+        $data->gambar_detail = array_map(function($e){
+            return asset($e);
+        }, glob("storage/".$data->gambar_detail."/*.{*}", GLOB_BRACE));
+
         return view('produkadmin.edit',compact('data'));
     }
 
-    public function update(Request $request, Produk $produkadmin)
+    public function update(Request $request, $produkadmin_id)
     {
+        $foldername = str_replace(' ', '', $request->get('nama_folder'));
+        $produkadmin = Produk::find($produkadmin_id);
         $produkadmin->gambar=$request->get('gambar');
         $produkadmin->gambar_detail=$request->get('gambar_detail');
         $produkadmin->judul_produk=$request->get('judul_produk');
         $produkadmin->stok=$request->get('stok');
         $produkadmin->harga=$request->get('harga');
         $produkadmin->keterangan_produk=$request->get('keterangan_produk');   
+
+        if($request->file('file_foto')){
+            Log::info("File exist----------------------------");
+            foreach ($request->file('file_foto') as $img) {
+                $imageName = strtotime(now()).rand(11111,99999).'.'.$img->getClientOriginalExtension();
+                $original_name = $img->getClientOriginalName();
+    
+                if(!is_dir(public_path('storage/'.$foldername))){
+                    mkdir(public_path('storage/'.$foldername), 0777, true);
+                }
+    
+                $img->move(public_path('storage/'.$foldername), $original_name.$imageName);
+            }
+        }
+
         $produkadmin->save(); 
 
         return redirect()->route('produkadmin.index')->with('status', 'Produk berhasil tersimpan');
     }
 
+    public function saveData(Request $request)
+    {
+        $request->validate([
+            'file_foto.*' => 'required|mimes:jpg,jpeg,png,bmp|max:20000' ,
+            'judul_produk' => 'required|min:3',
+            'gambar' => 'required',
+            'harga' => 'required',
+            'keterangan_produk' => 'required'
+        ]);
+        Log::info("pass validation---------------------------");
+
+        $data=new Produk();
+        $foldername = str_replace(' ', '', $request->get('judul_produk'));
+        Log::info("nama folder : ".$foldername);
+
+        if($request->file('file_foto')){
+            Log::info("File exist----------------------------");
+            foreach ($request->file('file_foto') as $img) {
+                $imageName = strtotime(now()).rand(11111,99999).'.'.$img->getClientOriginalExtension();
+                $original_name = $img->getClientOriginalName();
+    
+                if(!is_dir(public_path('storage/'.$foldername))){
+                    mkdir(public_path('storage/'.$foldername), 0777, true);
+                }
+    
+                $img->move(public_path('storage/'.$foldername), $original_name.$imageName);
+            }
+        }
+
+        $data->gambar=$request->get('gambar');
+        $data->gambar_detail=$foldername;
+        $data->judul_produk=$request->get('judul_produk');
+        $data->harga=$request->get('harga');
+        $data->keterangan_produk=$request->get('keterangan_produk');       
+
+        $data->save();
+
+        return redirect()->route('produkadmin.index')->with('status', 'Produk baru berhasil tersimpan');
+    }
 
     public function destroy(Produk $produkadmin)
     {
@@ -69,5 +140,30 @@ class ProdukAdminController extends Controller
             $msg = 'Terjadi kesalahan! Gagal menghapus layanan';
             return redirect()->route('produkadmin.index')->with('error', $msg);
         }
+    }
+
+    function delete(Request $request)
+    {
+        if($request->get('gambar_detail'))
+        {
+            \File::delete(public_path('storage/' .  $request->get('gambar_detail')));
+        }
+    }
+
+    public function deleteDetailGambar(Request $request)
+    {
+        $request->validate([
+            'nama_gambar' => 'required' ,
+            'nama_folder' => 'required',
+        ]);
+        Log::info("pass validation---------------------------");
+
+        if(File::exists(public_path('storage/'.$request->nama_folder.'/'.$request->nama_gambar))){
+            Log::info("Delete file...............................");
+            File::delete(public_path('storage/'.$request->nama_folder.'/'.$request->nama_gambar));
+        }
+
+        return response()->json(['msg'=> 'success']);
+
     }
 }

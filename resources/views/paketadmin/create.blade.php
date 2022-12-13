@@ -16,18 +16,13 @@
 		</ul>
 	</div>
 
-<form method="POST" action="{{route('paket.saveData')}}" enctype="multipart/form-data">
+<form method="POST" action="{{route('paketadmin.saveData')}}" enctype="multipart/form-data">
 	@csrf
 	<div class="form-body">
 
 	<div class="form-group">
 		<label>Link Gambar</label>
 		<input type="text" class="form-control" id="pas_foto" name="gambar">
-	</div>
-
-	<div class="form-group">
-		<label>Judul Paket</label>
-		<input type="text" class="form-control" name="judul_paket">
 	</div>
 	
 	<div class="panel panel-default">
@@ -37,6 +32,11 @@
 		<div class="panel-body">
 			<input type="file" name="file_foto[]" multiple>
 		</div>
+	</div>
+
+	<div class="form-group">
+		<label>Judul Paket</label>
+		<input type="text" class="form-control" name="judul_paket">
 	</div>
 
 	<div class="form-group">

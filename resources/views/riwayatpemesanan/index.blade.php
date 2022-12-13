@@ -89,8 +89,26 @@
                       <td>{{$rp->harga}}</td>
                       <td>{{$rp->total}}</td>
                       <td>{{$rp->tanggal_transaksi}}</td>
-                      <td>{{$rp->status_pembayaran}}</td>
-                      <td>{{$rp->status_pemesanan}}</td>
+
+                      <td id='td-status_pembayaran-{{$rp->id}}'> 
+                        @if($rp->status_pembayaran == 'belum')
+                          <span id='td-status_pembayaran-{{$rp->id}}' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">belum</span>
+                        @elseif($rp->status_pembayaran == 'selesai')
+                          <span id='td-status_pembayaran-{{$rp->id}}' class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">selesai</span>
+                        @else
+                          <span id='td-status_pembayaran-{{$rp->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Proses</span>
+                        @endif
+                      </td>
+                    
+                      <td id='td-status_pemesanan-{{$rp->id}}'> 
+                        @if($rp->status_pemesanan == 'proses')
+                          <span id='td-status_pemesanan-{{$rp->id}}' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">Proses</span>
+                        @elseif($rp->status_pemesanan == 'selesai')
+                          <span id='td-status_pemesanan-{{$rp->id}}' class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Selesai</span>
+                        @else
+                          <span id='td-status_pemesanan-{{$rp->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Menunggu Konfirmasi</span>
+                        @endif
+                      </td>
                     </tr>
                     @endforeach
                   </tbody>

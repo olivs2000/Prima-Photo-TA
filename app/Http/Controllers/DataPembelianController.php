@@ -67,6 +67,7 @@ class DataPembelianController extends Controller
         $data=new DataPembelian();
         
         $data->deskripsi_produk=$request->deskripsi_produk;
+        $data->stok=$request->stok;
         $data->nama_supplier=$request->nama_supplier;
         $data->alamat_supplier=$request->alamat_supplier;
         $data->notelepon_supplier=$request->notelepon_supplier;
@@ -145,6 +146,7 @@ class DataPembelianController extends Controller
     public function update(Request $request, DataPembelian $datapembelian)
     {
         $datapembelian->deskripsi_produk=$request->get('deskripsi_produk');
+        $datapembelian->stok=$request->get('stok');
         $datapembelian->nama_supplier=$request->get('nama_supplier');
         $datapembelian->alamat_supplier=$request->get('alamat_supplier');
         $datapembelian->notelepon_supplier=$request->get('notelepon_supplier');
@@ -192,6 +194,7 @@ class DataPembelianController extends Controller
         $id=$request->get('id');
         $datapembelian=DataPembelian::find($id);
         $datapembelian->deskripsi_produk=$request->get('deskripsi_produk');
+        $datapembelian->stok=$request->get('stok');
         $datapembelian->nama_supplier=$request->get('nama_supplier');
         $datapembelian->alamat_supplier=$request->get('alamat_supplier');
         $datapembelian->notelepon_supplier=$request->get('notelepon_supplier');

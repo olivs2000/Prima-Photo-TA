@@ -271,7 +271,7 @@
 		$.post('{{ route("datapembelian.store") }}', sent, function(response, textStatus) {
 			console.log(response);
 			
-			//window.location.replace("http://127.0.0.1:8000/datapembelian");
+			window.location.replace("http://127.0.0.1:8000/datapembelian");
 			window.location.href = response.routing;
 		});
 	}

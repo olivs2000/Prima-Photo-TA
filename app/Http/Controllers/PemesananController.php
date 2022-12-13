@@ -67,7 +67,7 @@ class PemesananController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Pemesanan  $pemesanan
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Pemesanan $pemesanan)
@@ -82,10 +82,10 @@ class PemesananController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Pemesanan $pemesanan
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pemesanan $pemesanan)
     {
         $this->authorize('delete-permission');
         try
@@ -95,7 +95,7 @@ class PemesananController extends Controller
         }
         catch(\PDOException $ex)
         {
-            $msg = 'Gagal hapus data pemesanan';
+            $msg = 'Terjadi kesalahan! Gagal menghapus pemesanan';
             return redirect()->route('datapemesanan.index')->with('error', $msg);
         }
     }
@@ -121,5 +121,24 @@ class PemesananController extends Controller
             'status'=>'oke',
             'msg'=>'Data pemesanan berhasil di update'
         ),200);
+    }
+
+    public function deleteData(Request $request)
+    {
+        try
+        {
+            $id=$request->get('id');
+            $pemesanan=Pemesanan::find($id);
+            $pemesanan->delete(); 
+            return response()->json(array(
+            'status'=>'oke',
+            'msg'=>'Sukses menghapus pemesanan'
+        ),200);
+        }catch(\PDOException $e){
+            return response()->json(array(
+                'status'=>'oke',
+                'msg'=>'Gagal menghapus pemesanan'
+            ),200);
+        }
     }
 }

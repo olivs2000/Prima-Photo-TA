@@ -58,6 +58,15 @@
       <input type='submit' value='Hapus' class='btn btn-xs btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
     </form>
   </td>
+
+  <td>
+    <form method="POST" action="{{ url('delete.admin') }}">
+      @csrf
+      <input name="_method" type="hidden" value="DELETE">
+      <button type="button" class="btn btn-xs btn-danger show_confirm" onclick= "deleteAdmin('{{$as->id}}')" data-toggle="tooltip" title='Delete'>Hapus 2</button>
+    </form>
+  </td>
+
 </tr>
 
 @endforeach
@@ -68,18 +77,38 @@
 
 
 
+@section('javascript')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script type="text/javascript">
 
 
+function deleteAdmin(namaadmin, notelepon, email){
+    swal({
+        title: `Yakin ingin menghapus data?`,
+          text: "Jika anda menghapus data ini, data tidak dapat kembali lagi.",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                type: "POST",
+                url: "{{route('delete.admin')}}",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    nama_admin:namaadmin,
+                    notelepon:notelepon,
+                    email:email
+                },
+                success: function (data) {
+                    location.reload();
+                }         
+            });
+        }
+      });
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+    
+</script>
+@endsection

@@ -16,7 +16,7 @@
 		</ul>
 </div>
 
-<form enctype='multipart/form-data' role="form" method="POST" action="{{url('produkadmin')}}">
+<form enctype='multipart/form-data' method="POST" action="{{url('produkadmin.savedata')}}">
 @csrf 
 <div class="form-body">
 
@@ -25,9 +25,13 @@
 	<input type="text" class="form-control" name="gambar">
 </div>
 
-<div class="form-group">
-	<label>Gambar Detail</label>
-	<input type="text" class="form-control" name="gambar_detail">
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<label>Gambar Detail</label>
+	</div>
+	<div class="panel-body">
+		<input type="file" name="file_foto[]" multiple>
+	</div>
 </div>
 
 <div class="form-group">
@@ -35,10 +39,10 @@
 	<input type="text" class="form-control" name="judul_produk">
 </div>
 
-<div class="form-group">
+{{-- <div class="form-group">
 	<label>Stok</label>
 	<input type="stok" class="form-control" name="stok">
-</div>
+</div> --}}
 
 <div class="form-group">
 	<label>Harga</label>

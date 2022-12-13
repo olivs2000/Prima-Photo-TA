@@ -1,6 +1,7 @@
 @extends('layout.conquer')
 
 @section('content')
+
 <h3 class="page-title">Ubah Paket Fotografi</h3>
 <div class="page-bar">
 	  <ul class="page-breadcrumb">
@@ -14,6 +15,7 @@
 			</li>
 		</ul>
 </div>
+
 <form role="form" method="POST" action="{{route('paketadmin.update',$data->id)}}" enctype="multipart/form-data">
     @csrf 
     @method("PUT")
@@ -26,6 +28,7 @@
         </div>
 
         <div class="panel panel-default">
+            
             <div class="panel-heading">
                 <label>Gambar Detail</label> 
             </div><br>
@@ -49,7 +52,7 @@
             </div>
         </div>
     
-         <div class="form-group">
+        <div class="form-group">
             <label>Judul Paket</label>
             <input type="text" class="form-control" name="judul_paket" value="{{$data->judul_paket}}">
         </div>
@@ -98,8 +101,8 @@
 <script type="text/javascript">
     function deleteGambar(foldername, filename){
         swal({
-              title: `Are you sure you want to delete this picture?`,
-              text: "If you delete this, it will be gone forever.",
+            title: `Yakin ingin menghapus gambar?`,
+              text: "Jika anda menghapus gambar ini, gambar tidak dapat kembali lagi.",
               icon: "warning",
               buttons: true,
               dangerMode: true,

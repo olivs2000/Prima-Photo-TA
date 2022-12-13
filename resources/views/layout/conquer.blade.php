@@ -79,8 +79,9 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!-- END RESPONSIVE MENU TOGGLER -->
 		<!-- BEGIN TOP NAVIGATION MENU -->
 		<ul class="nav navbar-nav pull-right">
+
 			<!-- BEGIN NOTIFICATION DROPDOWN -->
-			<li class="dropdown" id="header_notification_bar">
+			{{-- <li class="dropdown" id="header_notification_bar">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 				<i class="icon-bell"></i>
 				<span class="badge badge-success">
@@ -181,10 +182,11 @@ License: You must have a valid license purchased only from themeforest(the above
 						<a href="#">See all notifications <i class="fa fa-angle-right"></i></a>
 					</li>
 				</ul>
-			</li>
+			</li> --}}
 			<!-- END NOTIFICATION DROPDOWN -->
+
 			<!-- BEGIN INBOX DROPDOWN -->
-			<li class="dropdown" id="header_inbox_bar">
+			{{-- <li class="dropdown" id="header_inbox_bar">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 				<i class="icon-envelope-open"></i>
 				<span class="badge badge-info">
@@ -279,10 +281,11 @@ License: You must have a valid license purchased only from themeforest(the above
 						<a href="inbox.html">See all messages <i class="fa fa-angle-right"></i></a>
 					</li>
 				</ul>
-			</li>
+			</li> --}}
 			<!-- END INBOX DROPDOWN -->
+
 			<!-- BEGIN TODO DROPDOWN -->
-			<li class="dropdown" id="header_task_bar">
+			{{-- <li class="dropdown" id="header_task_bar">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 				<i class="icon-calendar"></i>
 				<span class="badge badge-warning">
@@ -414,11 +417,16 @@ License: You must have a valid license purchased only from themeforest(the above
 						<a href="#">See all tasks <i class="fa fa-angle-right"></i></a>
 					</li>
 				</ul>
-			</li>
+			</li> --}}
 			<!-- END TODO DROPDOWN -->
+			
+			
 			<li class="devider">
 				 &nbsp;
 			</li>
+
+			
+
 			<!-- BEGIN USER LOGIN DROPDOWN -->
 			<li class="dropdown user">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
@@ -452,9 +460,9 @@ License: You must have a valid license purchased only from themeforest(the above
 					<li class="divider">
 					</li>
 					<li>
-						<form action="{{route('home')}}" method="POST">
+						<form action="{{route('logout')}}" method="GET">
 						@csrf
-						<i class="fa fa-key"></i></a>
+						<i class="fa fa-logout"></i></a>
 						<input type='submit' class='btn btn-xs btn-danger' value='Logout'>
 						</form>
 					</li>
@@ -729,7 +737,7 @@ jQuery(document).ready(function() {
 //    Index.initKnowElements();
 //    Index.initDashboardDaterange();
 //    Tasks.initDashboardWidget();
-$('#table_contoh').DataTable();
+$('#table').DataTable();
 
 });
 </script>

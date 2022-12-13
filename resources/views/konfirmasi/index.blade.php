@@ -58,7 +58,7 @@
         <div class="block text-center">
         	<i class="tf-ion-android-checkmark-circle"></i>
           <h2 class="text-center">Terima kasih telah melakukan pemesanan!</h2>
-          <p>Setelah berhasil melakukan pembayaran, silahkan cek email anda untuk melihat detail pemesanan.</p>
+          <p>Silakan lihat detail pemesanan dan cek status pembayaran apabila belum menyelesaikan pembayaran silahkan lakukan pembayaran sebelum 24 jam.</p>
 		  <a href="{{url('riwayatpemesanan/'.$pemesanan_id)}}"class="btn btn-main mt-20">Lihat Detail Pemesanan</a>
         </div>
       </div>

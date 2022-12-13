@@ -4,17 +4,16 @@
 
 <h3 class="page-title">	Ubah Data Pembelian </h3>
 <div class="page-bar">
-	<ul class="page-breadcrumb">
-		<li>
-			<i class="fa fa-home"></i>
-			<a href="index.html">Master</a>
-			<i class="fa fa-angle-right"></i>
-		</li>
-		<li>
-			<a href="#">Data Pembelian</a>
-		</li>
-	</ul>
-
+	  <ul class="page-breadcrumb">
+			<li>
+				<i class="fa fa-home"></i>
+				<a href="index.html">Master</a>
+				<i class="fa fa-angle-right"></i>
+			</li>
+			<li>
+				<a href="#">Data Pembelian</a>
+			</li>
+		</ul>
 
 
 <!-- Start modal edit detail pembelian -->
@@ -90,62 +89,60 @@
 	</div>
 @endif 
 
-
 <form role="form" method="POST" action="{{url('datapembelian/'.$data->id )}}">
-    @csrf 
-    @method("PUT")
-      <div class="form-body">
-  
-          <div class="form-group">
-              <label>Deskripsi</label>
-              <input type="text" class="form-control" name="deskripsi_produk" value="{{$data->deskripsi_produk}}">
-          </div>
-  
-          <div class="form-group">
-              <label>Stok</label>
-              <input type="stok" class="form-control" name="stok" value="{{$data->stok}}">
-          </div>
-  
-          <div class="form-group">
-              <label>Nama Supplier</label>
-              <input type="text" class="form-control" name="nama_supplier" value="{{$data->nama_supplier}}">
-          </div>
-          
-          <div class="form-group">
-              <label>Alamat Supplier</label>
-              <textarea class="form-control" rows="3" name="alamat_supplier">{{$data->alamat_supplier}}</textarea>
-          </div>
-          
-          <div class="form-group">
-              <label>No Telepon Supplier</label>
-              <input type="text" class="form-control" name="notelepon_supplier" value="{{$data->notelepon_supplier}}">
-          </div>
-          
-          <div class="form-group">
-              <label>Tanggal Pemesanan</label>
-              <input type="date" class="form-control" name="tanggal_pemesanan" value="{{$data->tanggal_pemesanan}}">
-          </div>
-          
-          <div class="form-group">
-              <label>Tanggal Penerimaan</label>
-              <input type="date" class="form-control" name="tanggal_penerimaan" value="{{$data->tanggal_penerimaan}}">
-          </div>
-          
-          <div class="form-group">
-              <label>Status</label>
-              <select class="form-control" name="status" value="{{$data->status}}">
-              <option value="selesai">selesai</option> 
-              <option value="proses">proses</option> 
-              </select>
-          </div>
-      </div>
-      
-      <div class="form-actions">
-          <button type="submit" class="btn btn-info">Submit</button>
-          <a href="{{url('datapembelian')}}" type="button" class="btn btn-default">Cancel</a>
-      </div>
-  </form>
-  
+  @csrf 
+  @method("PUT")
+	<div class="form-body">
+
+		<div class="form-group">
+			<label>Deskripsi</label>
+			<input type="text" class="form-control" name="deskripsi_produk" value="{{$data->deskripsi_produk}}">
+		</div>
+
+		<div class="form-group">
+            <label>Stok</label>
+            <input type="text" class="form-control" name="stok" value="{{$data->stok}}">
+        </div>
+
+		<div class="form-group">
+			<label>Nama Supplier</label>
+			<input type="text" class="form-control" name="nama_supplier" value="{{$data->nama_supplier}}">
+		</div>
+        
+		<div class="form-group">
+			<label>Alamat Supplier</label>
+			<textarea class="form-control" rows="3" name="alamat_supplier">{{$data->alamat_supplier}}</textarea>
+		</div>
+		
+		<div class="form-group">
+			<label>No Telepon Supplier</label>
+			<input type="text" class="form-control" name="notelepon_supplier" value="{{$data->notelepon_supplier}}">
+		</div>
+		
+		<div class="form-group">
+			<label>Tanggal Pemesanan</label>
+			<input type="date" class="form-control" name="tanggal_pemesanan" value="{{$data->tanggal_pemesanan}}">
+		</div>
+		
+		<div class="form-group">
+			<label>Tanggal Penerimaan</label>
+			<input type="date" class="form-control" name="tanggal_penerimaan" value="{{$data->tanggal_penerimaan}}">
+		</div>
+        
+		<div class="form-group">
+			<label>Status</label>
+			<select class="form-control" name="status" value="{{$data->status}}">
+			<option value="selesai">selesai</option> 
+			<option value="proses">proses</option> 
+			</select>
+		</div>
+	</div>
+	
+	<div class="form-actions">
+		<button type="submit" class="btn btn-info">Submit</button>
+		<a href="{{url('datapembelian')}}" type="button" class="btn btn-default">Cancel</a>
+	</div>
+</form>
 
 <br><br>
 
@@ -424,3 +421,8 @@
 	}
 </script>
 @endsection
+
+
+
+
+

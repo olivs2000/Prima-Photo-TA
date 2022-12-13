@@ -38,7 +38,7 @@
 
 
 <!-- BEGIN OVERVIEW STATISTIC BARS-->
-<div class="row stats-overview-cont">
+{{-- <div class="row stats-overview-cont">
     <div class="col-md-2 col-sm-4">
       <div class="stats-overview stat-block">
         <div class="display stat ok huge">
@@ -189,11 +189,12 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!-- END OVERVIEW STATISTIC BARS-->
 
 
-<!-- START TASK LIST -->
+
+  {{-- <!-- START TASK LIST -->
 <div class="col-md-6 col-sm-6">
 <div class="portlet tasks-widget">
 <div class="portlet-title">
@@ -501,13 +502,13 @@
 </div>
 </div>
 </div>
-<!-- END TASK LIST -->
+<!-- END TASK LIST --> --}}
 
 
 
 
 <!-- START NOTIFICATIONS -->
-<div class="col-md-6 col-sm-12">
+{{-- <div class="col-md-6 col-sm-12">
   <div class="portlet">
       <div class="portlet-title">
           <div class="caption">
@@ -1298,7 +1299,7 @@
           <!--END TABS-->
       </div>
   </div>
-</div>
+</div> --}}
 <!-- END NOTIFICATIONS -->
 
 

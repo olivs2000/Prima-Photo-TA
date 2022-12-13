@@ -26,7 +26,7 @@ class AdminStudioController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -69,9 +69,14 @@ class AdminStudioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, AdminStudio $dataadmin)
     {
-        //
+        $dataadmin->nama_admin=$request->get('nama_admin');
+        $dataadmin->notelepon=$request->get('notelepon');
+        $dataadmin->email=$request->get('email');
+        $dataadmin->save(); 
+
+        return redirect()->route('dataadmin.index')->with('status', 'Data admin berhasil tersimpan');
     }
 
     /**
@@ -95,5 +100,37 @@ class AdminStudioController extends Controller
         }
     }
 
+    // function delete(Request $request)
+    // {
+    //     if($request->get('nama_admin'))
+    //     {
+    //         \File::delete(public_path('storage/' .  $request->get('nama_admin'), ('notelepon'), ('email')));
+    //     }
+    // }
+
+    public function deleteAdmin(Request $request)
+    {
+        $request->validate([
+            'nama_admin' => 'required' ,
+            'notelepon' => 'required',
+            'email' => 'required'
+        ]);
+        Log::info("pass validation---------------------------");
+
+        if(File::exists(public_path('storage/'.$request->nama_admin.'/'.$request->notelepon.'/'.$request->email))){
+            Log::info("Delete file...............................");
+            File::delete(public_path('storage/'.$request->nama_admin.'/'.$request->notelepon.'/'.$request->email));
+        }
+
+        return response()->json(['msg'=> 'success']);
+
+    }
+
+    public function delete($id)
+    {
+        AdminStudio::find($id)->delete();
+  
+        return back();
+    }
     
 }

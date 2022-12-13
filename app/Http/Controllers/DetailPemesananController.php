@@ -86,7 +86,7 @@ class DetailPemesananController extends Controller
      * @param  \App\DetailPemesanan  $detailpemesanan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, DetailPemesanan $detailpemesanan)
     {
         $detailpemesanan->estimasi_sampai=$request->get('estimasi_sampai');
         $detailpemesanan->save(); 
@@ -100,7 +100,7 @@ class DetailPemesananController extends Controller
      * @param  \App\DetailPemesanan  $detailpemesanan
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DetailPemesanan $detailpemesanan)
     {
         $this->authorize('delete-permission');
         try

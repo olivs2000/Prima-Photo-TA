@@ -98,12 +98,12 @@
                 <li><span>Pengalaman:</span>{{$col->pengalaman}}</li>
 
                 <li><td><span>Status:</span>
-                  @if($col->status == 'tahap seleksi')
-                    <span id='td-status-{{$col->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Tahap Seleksi</span>
+                  @if($col->status == 'ditolak')
+                    <span id='td-status-{{$col->id}}' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">Ditolak</span>
                   @elseif($col->status == 'diterima')
                     <span id='td-status-{{$col->id}}' class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Diterima</span>
                   @else
-                    <span id='td-status-{{$col->id}}' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">Ditolak</span>
+                    <span id='td-status-{{$col->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Tahap Seleksi</span>
                   @endif
                 </td></li>  
               

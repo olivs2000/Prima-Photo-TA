@@ -1,7 +1,7 @@
 <form role="form" method="POST" action="{{url('datapembelian/'.$data->id)}}">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-    <h4 class="modal-title">Edit Data Pembelian</h4>
+    <h4 class="modal-title">Ubah Data Pembelian</h4>
   </div>
 
   <div class="modal-body">
@@ -15,10 +15,10 @@
   <input type="text" class="form-control" id="eDeskripsiProduk" name="deskripsi_produk" value="{{$data->deskripsi_produk}}">
 </div>
 
- <!-- <div class="form-group">
+<div class="form-group">
   <label>Stok</label>
   <input type="text" class="form-control" id="eStok" name="total_produk" value="{{$data->stok}}">
-  </div> -->
+  </div> 
 
 <div class="form-group">
   <label>Nama Supplier</label>
