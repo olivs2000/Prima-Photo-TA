@@ -22,7 +22,11 @@
 <section class="top-header">
    <div class="container">
    <div class="row">
-   <div class="col-md-4 col-xs-12 col-sm-4"></div>
+   <div class="col-md-4 col-xs-12 col-sm-4">
+      <a class="navbar-brand">
+         <img src="{{ asset('assets/img/primaphoto2.png')}}" alt=""/>
+      </a>
+   </div>
    <div class="col-md-4 col-xs-12 col-sm-4">
    <!-- Site Logo -->
    <div class="logo text-center">
@@ -167,9 +171,9 @@
                            <input type="hidden" name="judul_produk" value="{{$details2['judul_produk']}}">
                            <div class="cart-price">
                               <span>{{$details2['jumlah']}} x</span>
-                              <input type="hidden" name="jumlah2" value="{{$details2['jumlah']}}">
+                              <input type="hidden" name="jumlah1" value="{{$details2['jumlah']}}">
                               <span>{{number_format($details2['harga'])}}</span>
-                              <input type="hidden" name="harga2" value="{{$details2['harga']}}">
+                              <input type="hidden" name="harga1" value="{{$details2['harga']}}">
                            </div>
                         </div>
                         </div>

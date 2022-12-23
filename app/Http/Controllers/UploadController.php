@@ -3,24 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use App\PenyewaanAlat;
+use App\Pemesanan;
+use App\DetailPemesanan;
 use DB;
 
-class PenyewaanAlatController extends Controller
+class UploadController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-     public function index()
-     {
-         $queryRaw=DB::select(DB::raw("select * from penyewaan_alats"));
-         return view('penyewaanalat.index',['penyewaanalats'=>$queryRaw]);
-     }
- 
+    public function index(Request $request, $pemesanan_id)
+    {
+        // return view('uploadbuktitf.index', ['pemesanan_id'=>$pemesanan_id]);
+        
+        $pemesanan = Pemesanan::find($pemesanan_id);
+        $queryBuilder=DetailPemesanan::where('pemesanans_id',$pemesanan_id)->get();
+        
+        return view('uploadbuktitf.index',['pemesanan'=>$pemesanan,'data'=>$queryBuilder]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -40,7 +42,11 @@ class PenyewaanAlatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=new Pemesanan();
+        $data->bukti_transfer=$request->get('bukti_transfer');
+        $data->save();
+
+        return redirect()->route('uploadbuktitf.index');
     }
 
     /**
@@ -49,11 +55,9 @@ class PenyewaanAlatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(PenyewaanAlat $penyewaanalat)
+    public function show($id)
     {
-        $data = $penyewaanalat;
-        $data->gambar_detail = Storage::disk('public')->files($data->gambar_detail);
-        return view('penyewaanalat.show',compact('data'));
+        //
     }
 
     /**
@@ -88,33 +92,5 @@ class PenyewaanAlatController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function front_index()
-    {
-        $penyewaanalat=PenyewaanAlat::all();
-        return view('frontend.penyewaanalat', compact('penyewaanalat'));
-    }
-
-    public function addToCart($id)
-    {
-        $pa=PenyewaanAlat::find($id);
-        $cart=session()->get('cart4');
-        if(!isset($cart[$id]))
-        {
-            $cart[$id]=[
-                "nama_alat"=>$pa->nama_alat,
-                "gambar"=>$pa->gambar,
-                "harga"=>$pa->harga,
-                "jumlah"=>1,
-            ];
-        }
-        else
-        {
-            $cart[$id]['jumlah']++;
-        }
-        session()->put('cart4', $cart);
-
-        return redirect()->back()->with('success', 'Alat fotografi berhasil ditambahkan ke keranjang');
     }
 }

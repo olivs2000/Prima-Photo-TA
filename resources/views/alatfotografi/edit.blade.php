@@ -22,22 +22,30 @@
 
 	<div class="form-body">
     
-         <div class="form-group">
+        <div class="form-group">
             <label>Nama Alat</label>
             <input type="text" class="form-control" name="nama_alat" value="{{$data->nama_alat}}">
+        </div>
+
+        <div class="form-group">
+            <label>Stok</label>
+            <input type="number" class="form-control" name="stok" value="{{$data->stok}}">
         </div>
     
         <div class="form-group">
             <label>Nama Peminjam</label>
-            <input type="text" class="form-control" name="nama_peminjam" value="{{$data->nama_peminjam}}">
-          </div>
+            <select class="form-control" name="nama_peminjam">
+                @foreach($dataFotografer as $df)
+                    <option value='{{$df->id}}'>{{$df->nama}}</option> 
+                @endforeach
+            </select>
+        </div>
     
       <div class="form-group">
           <label>Status</label>
-          <select class="form-control" name="status" value="{{$data->status}}">
-          <option>Tersedia</option> 
-          <option>Tidak Tersedia</option> 
-          {{-- <option>{{$data->status}}</option> --}}
+            <select class="form-control" name="status" value="{{$data->status}}">
+            <option>Tersedia</option> 
+            <option>Habis</option> 
           </select>
       </div>
 

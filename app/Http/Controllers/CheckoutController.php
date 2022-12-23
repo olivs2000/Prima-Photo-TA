@@ -72,8 +72,8 @@ class CheckoutController extends Controller
         $data->tanggal_acara=$request->get('tanggal_acara');
         $data->waktu_acara=$request->get('waktu_acara');
         $data->total=$request->get('total');
-        $data->status_pembayaran="Selesai";
-        $data->status_pemesanan="Proses";
+        $data->status_pembayaran="berhasil";
+        $data->status_pemesanan="proses";
         $data->save();
         
         //dd($data);
@@ -89,13 +89,25 @@ class CheckoutController extends Controller
         $detail->produks_id=($produk)?$produk->id:null;
         $detail->pakets_id=($paket)?$paket->id:null;
         $detail->pemesanans_id=$data->id;
-        $detail->jumlah=$request->get('jumlah');
+
+        $detail->jumlah=$request->get('jumlah'); 
         $detail->harga=$request->get('harga');
+
+        $detail->jumlah=$request->get('jumlah1');
+        $detail->harga=$request->get('harga1'); 
+        
+        $detail->jumlah=$request->get('jumlah2');
+        $detail->harga=$request->get('harga2'); 
+
+        $detail->jumlah=$request->get('jumlah3');
+        $detail->harga=$request->get('harga3'); 
+
         $detail->total=$request->get('total');
+
         $detail->tanggal_transaksi=Carbon::now();
         $detail->save();
 
-        session()->forget('cart');
+        session()->forget('cart1');
         session()->forget('cart2');
         session()->forget('cart3');
         session()->forget('cart4');

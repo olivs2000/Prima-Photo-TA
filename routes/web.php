@@ -29,6 +29,7 @@ use App\Http\Controllers\RiwayatPemesananController;
 use App\Http\Controllers\DetailPemesananPelangganController;
 use App\Http\Controllers\AlatFotografiController;
 use App\Http\Controllers\DropzoneController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 
@@ -49,6 +50,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+
 Route::get('/checkStorage', function(){
     dd(public_path('storage'));
 });
@@ -60,6 +62,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('email', [EmailController::class,'kirim']);
     Route::get('attach', [EmailController::class,'attach']);
     Route::get('pesan', [EmailController::class,'notif']);
+
+    Route::resource('uploadbuktitf','UploadController');
+    Route::get('uploadbuktitf/{pemesanan_id}','UploadController@index')->name('uploadbuktitf.index');
 
     Route::resource('checkout','CheckoutController');
     Route::post('checkout/store','CheckoutController@store')->name('checkout.store');
@@ -345,6 +350,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/datapelanggan','DataPelangganController');
 
     Route::resource('alatfotografi', 'AlatFotografiController');
+    Route::post('/alatfotografi/edit','AlatFotografiController@edit')->name('alatfotografi.edit');
+    Route::post('/alatfotografi/create','AlatFotografiController@create')->name('alatfotografi.create');
 
     Route::resource('/detailpemesanan','DetailPemesananController');
     Route::post('/detailpemesanan/editForm','DetailPemesananController@editForm')->name('detailpemesanan.editForm');

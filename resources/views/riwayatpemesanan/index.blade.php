@@ -12,18 +12,18 @@
   <meta name="generator" content="Themefisher Constra HTML Template v1.0">
   
   <!-- Themefisher Icon font -->
-  <link rel="stylesheet" href="plugins/themefisher-font/style.css">
+  <link rel="stylesheet" href="{{asset('plugins/themefisher-font/style.css')}}">
   <!-- bootstrap.min css -->
-  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{asset('plugins/bootstrap/css/bootstrap.min.css')}}">
   
   <!-- Animate css -->
-  <link rel="stylesheet" href="plugins/animate/animate.css">
+  <link rel="stylesheet" href="{{asset('plugins/animate/animate.css')}}">
   <!-- Slick Carousel -->
-  <link rel="stylesheet" href="plugins/slick/slick.css">
-  <link rel="stylesheet" href="plugins/slick/slick-theme.css">
+  <link rel="stylesheet" href="{{asset('plugins/slick/slick.css')}}">
+  <link rel="stylesheet" href="{{asset('plugins/slick/slick-theme.css')}}">
   
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/styleaviato.css">
+  <link rel="stylesheet" href="{{asset('css/styleaviato.css')}}">
 
 
 <!-- Start Top Header Bar -->
@@ -49,15 +49,6 @@
 
 <div class="page-wrapper">
   <div class="cart shopping">
-
-    {{-- <th class="">Nama : </th>
-    <th class="">{{$pemesanan->nama}}</th>
-    <th class="">No telepon : </th>
-    <th class="">{{$pemesanan->notelepon}}</th>
-    <th class="">Email : </th>
-    <th class="">{{$pemesanan->email}}</th>
-    <th class="">Alamat : </th>
-    <th class="">{{$pemesanan->alamat}}</th> --}}
 
         <li><span>Nama : </span>{{$pemesanan->nama}}</li>
         <li><span>No Telepon : </span>{{$pemesanan->notelepon}}</li>
@@ -86,8 +77,8 @@
                     @foreach($data as $rp)
                     <tr class="">
                       <td>{{$rp->jumlah}}</td>
-                      <td>{{$rp->harga}}</td>
-                      <td>{{$rp->total}}</td>
+                      <td>Rp. {{number_format($rp->harga)}}</td>
+                      <td>Rp. {{number_format($rp->total)}}</td>
                       <td>{{$rp->tanggal_transaksi}}</td>
 
                       <td id='td-status_pembayaran-{{$rp->id}}'> 
@@ -109,6 +100,7 @@
                           <span id='td-status_pemesanan-{{$rp->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Menunggu Konfirmasi</span>
                         @endif
                       </td>
+                      
                     </tr>
                     @endforeach
                   </tbody>
@@ -119,6 +111,9 @@
           </div>
       </div>
     </div>
+
+    <a href="{{url('........')}}"class="btn btn-main btn-small btn-round-full">Batalkan Pesanan</a>
+
   </div>
 </div>
 
@@ -127,21 +122,21 @@
     =====================================-->
     
    <!-- Main jQuery -->
-   <script src="plugins/jquery/dist/jquery.min.js"></script>
+   <script src="{{asset('plugins/jquery/dist/jquery.min.js')}}"></script>
    <!-- Bootstrap 3.1 -->
-   <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+   <script src="{{asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
    <!-- Bootstrap Touchpin -->
-   <script src="plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+   <script src="{{asset('plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js')}}"></script>
    <!-- Instagram Feed Js -->
-   <script src="plugins/instafeed/instafeed.min.js"></script>
+   <script src="{{asset('plugins/instafeed/instafeed.min.js')}}"></script>
    <!-- Video Lightbox Plugin -->
-   <script src="plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
+   <script src="{{asset('plugins/ekko-lightbox/dist/ekko-lightbox.min.js')}}"></script>
    <!-- Count Down Js -->
-   <script src="plugins/syo-timer/build/jquery.syotimer.min.js"></script>
+   <script src="{{asset('plugins/syo-timer/build/jquery.syotimer.min.js')}}"></script>
 
    <!-- slick Carousel -->
-   <script src="plugins/slick/slick.min.js"></script>
-   <script src="plugins/slick/slick-animation.min.js"></script>
+   <script src="{{asset('plugins/slick/slick.min.js')}}"></script>
+   <script src="{{asset('plugins/slick/slick-animation.min.js')}}"></script>
 
    <!-- Main Js File -->
-   <script src="js/scriptaviato.js"></script>
+   <script src="{{asset('js/scriptaviato.js')}}"></script>

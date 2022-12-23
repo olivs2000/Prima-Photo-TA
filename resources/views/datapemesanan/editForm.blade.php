@@ -13,14 +13,16 @@
   <div class="form-group">
     <label>Status Pembayaran</label>
       <select class="form-control" id="eStatusPembayaran" name="status_pembayaran">
-        <option>belum</option> 
-        <option>selesai</option> 
+        <option>proses</option> 
+        <option>gagal</option> 
+        <option>berhasil</option> 
       </select>
   </div>
 
   <div class="form-group">
     <label>Status Pemesanan</label>
       <select class="form-control" id="eStatusPemesanan" name="status_pemesanan">
+        <option>menunggu konfirmasi</option> 
         <option>proses</option> 
         <option>selesai</option> 
       </select>

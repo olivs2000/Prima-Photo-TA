@@ -101,10 +101,10 @@
               <input type="text" class="form-control" name="deskripsi_produk" value="{{$data->deskripsi_produk}}">
           </div>
   
-          <div class="form-group">
+          {{-- <div class="form-group">
               <label>Stok</label>
               <input type="stok" class="form-control" name="stok" value="{{$data->stok}}">
-          </div>
+          </div> --}}
   
           <div class="form-group">
               <label>Nama Supplier</label>

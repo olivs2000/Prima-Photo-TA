@@ -123,7 +123,7 @@ class JadwalFotograferController extends Controller
         $jadwalfotografer->status=$request->get('status');
         $jadwalfotografer->save(); 
 
-        return redirect()->route('jadwalfotografer.index')->with('status', 'Jadwal fotografer baru berhasil tersimpan');
+        return redirect()->route('jadwalfotografer.index')->with('status', 'Jadwal fotografer berhasil tersimpan');
     }
 
     /**

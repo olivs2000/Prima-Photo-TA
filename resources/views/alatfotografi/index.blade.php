@@ -51,6 +51,7 @@
     <tr>
       <th>ID</th>
       <th>Nama Alat</th>
+      <th>Stok</th>
       <th>Nama Peminjam</th>
       <th>Status</th>
       <th colspan='2'></th>
@@ -60,15 +61,17 @@
 <tbody>
 
 @foreach($data as $af)
-<tr>
+<tr id='tr_{{$af->id}}'>
   <td>{{ $af->id }}</td>
   <td id='td-nama_alat-{{$af->id}}'>{{ $af->nama_alat }}</td>
-  <td id='td-nama_peminjam-{{$af->id}}'>{{ $af->nama_peminjam }}</td>
+  <td id='td-stok-{{$af->id}}'>{{ $af->stok }}</td>
+  <td id='td-nama_peminjam-{{$af->id}}'>{{ $af->nama }}</td>
+  
   <td id='td-status-{{$af->id}}'> 
     @if($af->status == 'tersedia')
       <span class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Tersedia</span>
     @else
-      <span class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Tidak Tersedia</span>
+      <span class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Habis</span>
     @endif
   </td>  
 

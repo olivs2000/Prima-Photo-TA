@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Database\QueryException;
 
 use App\AlatFotografi;
+use App\DataFotografer;
 use Illuminate\Http\Request;
 use DB;
 
@@ -15,8 +18,12 @@ class AlatFotografiController extends Controller
      */
     public function index()
     {
-        $queryRaw=DB::select(DB::raw("select * from alat_fotografis"));
-        return view('alatfotografi.index',['data'=>$queryRaw]);
+        $queryBuilder=DB::table("alat_fotografis")
+            ->leftJoin("data_fotografers", "alat_fotografis.nama_peminjam", "=", "data_fotografers.id")
+            ->orderBy("alat_fotografis.id", "ASC")
+            ->select("alat_fotografis.*", "data_fotografers.nama")
+            ->get();
+        return view('alatfotografi.index',['data'=>$queryBuilder]);
     }
 
     /**
@@ -26,8 +33,8 @@ class AlatFotografiController extends Controller
      */
     public function create()
     {
-        $data=AlatFotografi::all();
-        return view('alatfotografi.create', compact('data'));
+        $fotografer=DataFotografer::all();
+        return view('alatfotografi.create', compact('fotografer'));
     }
 
     /**
@@ -41,6 +48,7 @@ class AlatFotografiController extends Controller
         $data=new AlatFotografi();
         
         $data->nama_alat=$request->get('nama_alat');
+        $data->stok=$request->get('stok');
         $data->nama_peminjam=$request->get('nama_peminjam');       
         $data->status=$request->get('status');
         $data->save();
@@ -65,10 +73,21 @@ class AlatFotografiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(alatfotografi $alatfotografi)
+    public function edit($alatfotografi)
     {
-        $data = $alatfotografi;
-        return view('alatfotografi.edit',compact('data'));
+        $id=$alatfotografi;
+         
+        $data=DB::table("alat_fotografis")
+        ->leftJoin("data_fotografers", "alat_fotografis.nama_peminjam", "=", "data_fotografers.id")
+        ->select("alat_fotografis.*", "data_fotografers.nama")
+        ->where("alat_fotografis.id", $id)
+        ->first();
+
+        $dataFotografer=DB::table("data_fotografers")
+        ->select("data_fotografers.id", "nama")
+        ->get();
+
+        return view('alatfotografi.edit',compact('data','dataFotografer'));
     }
 
     /**
@@ -81,6 +100,7 @@ class AlatFotografiController extends Controller
     public function update(Request $request, alatfotografi $alatfotografi)
     {
         $alatfotografi->nama_alat=$request->get('nama_alat');
+        $alatfotografi->stok=$request->get('stok');
         $alatfotografi->nama_peminjam=$request->get('nama_peminjam');
         $alatfotografi->status=$request->get('status');
         $alatfotografi->save(); 

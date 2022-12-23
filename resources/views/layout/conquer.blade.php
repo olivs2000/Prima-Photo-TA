@@ -47,7 +47,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <link href="{{ asset('assets/css/style-responsive.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset('assets/css/plugins.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset('assets/css/pages/tasks.css')}}" rel="stylesheet" type="text/css"/>
-<link href="{{ asset('assets/css/themes/light.css')}}" rel="stylesheet" type="text/css" id="style_color"/>
+<link href="{{ asset('assets/css/themes/red.css')}}" rel="stylesheet" type="text/css" id="style_color"/>
 <link href="{{ asset('assets/css/custom.css')}}" rel="stylesheet" type="text/css"/>
 {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/dropzone.min.js" type="text/javascript"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js" type="text/javascript"></script>
@@ -460,7 +460,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<li class="divider">
 					</li>
 					<li>
-						<form action="{{route('logout')}}" method="GET">
+						<form action="{{route('logout')}}" method="post">
 						@csrf
 						<i class="fa fa-logout"></i></a>
 						<input type='submit' class='btn btn-xs btn-danger' value='Logout'>
@@ -737,7 +737,7 @@ jQuery(document).ready(function() {
 //    Index.initKnowElements();
 //    Index.initDashboardDaterange();
 //    Tasks.initDashboardWidget();
-$('#table').DataTable();
+$('#dataTable').DataTable();
 
 });
 </script>

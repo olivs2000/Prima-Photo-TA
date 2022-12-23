@@ -84,10 +84,10 @@
   </td> --}}
 
   <td id='td-status_pembayaran-{{$p->id}}'> 
-    @if($p->status_pembayaran == 'belum')
-      <span id='td-status_pembayaran-{{$p->id}}' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">belum</span>
-    @elseif($p->status_pembayaran == 'selesai')
-      <span id='td-status_pembayaran-{{$p->id}}' class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">selesai</span>
+    @if($p->status_pembayaran == 'gagal')
+      <span id='td-status_pembayaran-{{$p->id}}' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">Gagal</span>
+    @elseif($p->status_pembayaran == 'berhasil')
+      <span id='td-status_pembayaran-{{$p->id}}' class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Berhasil</span>
     @else
       <span id='td-status_pembayaran-{{$p->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Proses</span>
     @endif

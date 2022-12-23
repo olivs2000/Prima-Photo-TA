@@ -151,9 +151,9 @@
   @endif
   </td> 
 
-  <td>
+  {{-- <td>
     <a href="#modalEdit" data-toggle='modal' class="btn btn-primary" onclick="accepted({{$dp->stok}})">Diterima </a> 
-  </td>
+  </td> --}}
 
   <td>
     <a href="{{url('datapembelian/'.$dp->id.'/edit') }}" class="btn btn-warning">Ubah</a></td>
@@ -259,7 +259,3 @@ function saveDataUpdateTD(id)
 </script>
 
 @endsection
-
-
-
-

@@ -26,15 +26,24 @@
 </div>
 
 <div class="form-group">
-	<label>Nama Peminjam</label>
-	<input type="text" class="form-control" name="nama_peminjam">
+	<label>Stok</label>
+	<input type="number" class="form-control" name="stok">
+</div>
+
+<div class="form-group">
+    <label>Nama Peminjam</label>
+    <select class="form-control" name="data_fotografers_id">
+        @foreach($fotografer as $df)
+            <option value='{{$df->id}}'>{{$df->nama}}</option> 
+        @endforeach
+    </select>
 </div>
 
 <div class="form-group">
 	<label>Status</label>
 	<select class="form-control" name="status">
 		<option>Tersedia</option> 
-		<option>Tidak Tersedia</option> 
+		<option>Habis</option> 
 	</select>
 </div>
 
