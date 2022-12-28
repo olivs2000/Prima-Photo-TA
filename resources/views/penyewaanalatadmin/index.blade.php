@@ -16,9 +16,11 @@
   </li>
 </ul>
 
+@can('add-permission')
 <div class="page-toolbar">
 <a href="{{url('penyewaanalatadmin/create')}}" class="btn btn-info" type="button">+ Tambah Alat</a>	
 </div>
+@endcan
 
 </div>
 
@@ -68,11 +70,15 @@
   <td id='td-nama_alat-{{$pa->id}}'>{{$pa->nama_alat}}</td>
   <td id='td-stok-{{$pa->id}}'>{{$pa->stok}}</td>
   <td id='td-harga-{{$pa->id}}'>Rp. {{number_format($pa->harga)}}</td>
-  <td id='td-tipe-{{$pa->id}}'>{{$pa->tipe}}</td>     
+  <td id='td-tipe-{{$pa->id}}'>{{$pa->tipe}}</td>  
+  
+  @can('change-permission')
   <td>
     <a href="{{url('penyewaanalatadmin/'.$pa->id.'/edit') }}" class="btn btn-warning">Ubah</a>
   </td>
+  @endcan
 
+  @can('delete-permission')
   <td>
     <form method="POST" action="{{url('penyewaanalatadmin/'.$pa->id )}}">
       @csrf
@@ -80,6 +86,7 @@
       <input type='submit' value='Hapus' class='btn btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
     </form>
   </td>
+  @endcan
 
 </tr>
 

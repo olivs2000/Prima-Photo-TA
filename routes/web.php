@@ -410,4 +410,6 @@ Route::middleware(['auth'])->group(function () {
         Storage::disk('public')->makeDirectory('storage');
     });
 
+    Route::resource('/DETAILPEMESANANTEMP','DetailPemesananPelangganController');
+
 });

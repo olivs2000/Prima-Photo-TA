@@ -10,6 +10,7 @@ class DetailPemesananPelangganController extends Controller
 {
     public function index()
     {
-       
+        $queryRaw=DB::select(DB::raw("select * from detail_pemesanans"));
+        return view('DETAILPEMESANANTEMP',['data'=>$queryRaw]);
     }
 }

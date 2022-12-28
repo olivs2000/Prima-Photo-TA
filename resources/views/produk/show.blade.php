@@ -283,10 +283,10 @@
 <span>Keterangan: </span>{{$data->keterangan_produk}}
 </div>
 
-<div class="product-quantity">
+<div class="product-quantity quantity">
 	<span>Jumlah :</span>
 	<div class="product-quantity-slider">
-		<input id="product-quantity" type="text" value="0" name="product-quantity">
+		<input id="qty-input product-quantity" type="text" value="1" maxlength="2" name="product-quantity">{{$data->jumlah}}
 	</div>
 </div>
 

@@ -1,7 +1,7 @@
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>Upload Bukti Transfer</title>
+  <title>Kirim Bukti Transfer</title>
 
   <!-- Mobile Specific Metas
   ================================================== -->
@@ -30,7 +30,11 @@
 <section class="top-header">
    <div class="container">
    <div class="row">
-   <div class="col-md-4 col-xs-12 col-sm-4"></div>
+   <div class="col-md-4 col-xs-12 col-sm-4">
+      <a class="navbar-brand">
+         <img src="{{ asset('assets/img/primaphoto2.png')}}" alt=""/>
+      </a>
+   </div>
    <div class="col-md-4 col-xs-12 col-sm-4">
    <!-- Site Logo -->
    <div class="logo text-center">
@@ -49,55 +53,47 @@
 
 
 <div class="page-wrapper">
-   <div class="checkout shopping">
+ 
       <div class="container">
          <div class="row">
-            <div class="col-md-8">
+
+            
                <div class="block billing-details">
 
                   <section class="page-header">
                      <div class="container">
                            <div class="col-md-10">
-                              <h6 class="page-name">Pembayaran dapat dilakukan menggunakan:</h6>
-                              <h6 class="page-name">No Virtual Account BNI: 8578149566949804</h6>
-                              <h6 class="page-name">No Rekening BNI: 0097927804</h6>
-                              <h6 class="page-name">No Virtual Account BCA: 8735089566949804</h6>
-                              <h6 class="page-name">No Rekening BCA: 2373089804</h6>
+                              <h6 class="page-name">Syarat-syarat bukti transfer yang dapat kami terima : </h6>
+                              <h6 class="page-name">- Menunjukkan dengan jelas jumlah yang ditransfer</h6>
+                              <h6 class="page-name">- Menunjukkan dengan jelas nomor rekening tujuan</h6>
+                              <h6 class="page-name">- Menunjukkan waktu transaksi</h6>
+                              <h6 class="page-name">- Bukti telah divalidasi oleh bank</h6>
                            </div>
                      </div>
-                  </section>
+                  </section> <br>
 
-
-                  <form enctype='multipart/form-data' class="checkout-form" method="post" action="{{url('checkout/store')}}" role="form">
+                  <form enctype='multipart/form-data' class="checkout-form" method="post" action="{{url('upload/store')}}" role="form">
                      @csrf 
                
                      <div class="form-group">
-                        <h5>Silahkan Upload bukti transfer anda dibawah ini: </h5>
+                        <h5>Silahkan Kirim bukti transfer anda dibawah ini: </h5>
                         <input type="file" class="form-control" id="bukti_transfer" name="bukti_transfer">
                      </div>
 
                      <br>
 
                      <div id="cf-submit">
-                        <input type="submit" id="contact-submit" class="btn btn-main btn-small btn-round" value="Submit">
+                        <input type="submit" id="contact-submit" class="btn btn-main btn-small btn-round" value="Kirim">
                      </div>	
-               </div>
-            </div>
-            
-            <div class="col-md-4">
-               <div class="product-checkout-details">
-                  <div class="block">                    
-                     <div class="media product-card">
                   </form>
-                                
-                     
-                  </div>
+
                </div>
             </div>
+          
             
-         </div>
+         
       </div>
-   </div>
+
 </div>
 
 

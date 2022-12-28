@@ -16,9 +16,11 @@
   </li>
 </ul>
 
+@can('add-permission')
 <div class="page-toolbar">
 <a href="{{url('datafotografer/create')}}" class="btn btn-info" type="button">+ Tambah Data Fotografer</a>	
 </div>
+@endcan
 
 </div>
 
@@ -80,10 +82,13 @@
     @endif
   </td>  
 
+  @can('change-permission')
   <td>
     <a href="{{url('datafotografer/'.$df->id.'/edit') }}" class="btn btn-warning">Ubah</a></td>
   </td>
+  @endcan
 
+  @can('delete-permission')
   <td>
     <form method="POST" action="{{url('datafotografer/'.$df->id )}}">
       @csrf
@@ -93,6 +98,8 @@
 
     <!-- <a class='btn btn-xs btn-danger' onclick="if(confirm('Apakah anda yakin?')) deleteDataRemoveTR({{$df->id}})">Delete</a> -->
   </td>
+  @endcan
+
 </tr>
 @endforeach
 
@@ -165,7 +172,7 @@ function saveDataUpdateTD(id)
   });
 }
 
-function deleteDataRemoveTR(id)
+function deleteDataRemove(id)
 {
   $.ajax({
     type:'POST',

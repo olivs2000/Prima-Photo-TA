@@ -295,7 +295,7 @@
 <div class="product-quantity">
 	<span>Jumlah:</span>
 	<div class="product-quantity-slider">
-		<input id="product-quantity" type="text" value="0" name="product-quantity">
+		<input id="product-quantity" type="text" value="1" maxlength="2" name="product-quantity">{{$data->jumlah}}
 	</div>
 </div>
 

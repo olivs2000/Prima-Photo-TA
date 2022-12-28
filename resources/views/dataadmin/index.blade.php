@@ -51,6 +51,7 @@
   <td>{{$as->notelepon}}</td>
   <td>{{$as->email}}</td>
 
+  @can('delete-permission')
   <td>
     <form method="POST" action="{{url('dataadmin/'.$as->id )}}">
       @csrf
@@ -58,14 +59,15 @@
       <input type='submit' value='Hapus' class='btn btn-xs btn-danger' onclick="if(!confirm('Apakah anda yakin?')) return false;"/>
     </form>
   </td>
+  @endcan
 
-  <td>
+  {{-- <td>
     <form method="POST" action="{{ url('delete.admin') }}">
       @csrf
       <input name="_method" type="hidden" value="DELETE">
       <button type="button" class="btn btn-xs btn-danger show_confirm" onclick= "deleteAdmin('{{$as->id}}')" data-toggle="tooltip" title='Delete'>Hapus 2</button>
     </form>
-  </td>
+  </td> --}}
 
 </tr>
 

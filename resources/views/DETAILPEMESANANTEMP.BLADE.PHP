@@ -40,7 +40,7 @@
 
             <div class="row invoice-logo">
                 <div class="col-xs-6 invoice-logo-space">
-                    <img src="assets/img/invoice/walmart.png" alt="" />
+                    <img src="assets/img/primaphoto2.png" alt="" />
                 </div>
                 <div class="col-xs-6">
                     <p>

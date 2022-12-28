@@ -14,14 +14,15 @@ class UploadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $pemesanan_id)
+    public function index()
     {
-        // return view('uploadbuktitf.index', ['pemesanan_id'=>$pemesanan_id]);
-        
-        $pemesanan = Pemesanan::find($pemesanan_id);
-        $queryBuilder=DetailPemesanan::where('pemesanans_id',$pemesanan_id)->get();
-        
-        return view('uploadbuktitf.index',['pemesanan'=>$pemesanan,'data'=>$queryBuilder]);
+        // $pemesanan = Pemesanan::find($pemesanan_id);
+        // $queryBuilder=DetailPemesanan::where('pemesanans_id',$pemesanan_id)->get();
+        // return view('uploadbuktitf.index',['pemesanan'=>$pemesanan,'data'=>$queryBuilder]);
+
+        $queryRaw=DB::select(DB::raw("select * from pemesanans"));
+        return view('uploadbuktitf.index',['data'=>$queryRaw]);
+
     }
 
     /**
@@ -31,7 +32,8 @@ class UploadController extends Controller
      */
     public function create()
     {
-        //
+        $data=Pemesanan::all();
+        return view('uploadbuktitf.index', compact('data'));
     }
 
     /**

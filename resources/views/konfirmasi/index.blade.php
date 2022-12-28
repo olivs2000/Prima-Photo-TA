@@ -30,7 +30,11 @@
 <section class="top-header">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4 col-xs-12 col-sm-4"></div>
+			<div class="col-md-4 col-xs-12 col-sm-4">
+        <a class="navbar-brand">
+          <img src="{{ asset('assets/img/primaphoto2.png')}}" alt=""/>
+        </a>
+      </div>
 			<div class="col-md-4 col-xs-12 col-sm-4">
 				<!-- Site Logo -->
 				<div class="logo text-center">
@@ -56,17 +60,20 @@
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <div class="block text-center">
-		<i class="tf-ion-android-checkmark-circle"></i>
+		      <i class="tf-ion-android-checkmark-circle"></i>
 
-          <h2 class="text-center">Terima kasih telah melakukan pemesanan!</h2>
+          <h3 class="text-center">Terima kasih telah melakukan pemesanan!</h3>
 
-          <p>Silakan lihat detail pemesanan dan segera upload bukti trasnfer anda dibawah ini sebelum 24 jam.</p>
+          <p>
+            Silahkan lihat detail pemesanan anda terlebih dahulu dibawah ini, 
+            anda memiliki waktu 3 x 24 jam untuk melakukan pembayaran dan mengupload bukti pembayarannya. 
+            Apabila kami belum menerima bukti pembayaran yang valid dalam kurun waktu tersebut, 
+            maka pesanan anda akan dibatalkan
+          </p>
 
-		  <br>
+          <br>
 
-		  <a href="{{url('riwayatpemesanan/'.$pemesanan_id)}}"class="btn btn-main btn-medium btn-round">Lihat Detail Pemesanan</a>
-
-		  <a href="{{url('uploadbuktitf/'.$pemesanan_id)}}"class="btn btn-main btn-medium btn-round">Upload Bukti Transfer</a>
+          <a href="{{url('riwayatpemesanan/'.$pemesanan_id)}}"class="btn btn-main btn-medium btn-round">Lihat Detail Pemesanan</a>
 
         </div>
       </div>

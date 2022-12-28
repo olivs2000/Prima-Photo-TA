@@ -601,6 +601,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				</ul>
 			</li>
 
+			@can('view-permission')
 			<li >
 				<a href="javascript:;">
 				<i class="icon-briefcase"></i>
@@ -616,6 +617,8 @@ License: You must have a valid license purchased only from themeforest(the above
 					</li>
 				</ul>
 			</li>
+			@endcan
+
 
 			<li >
 				<a href="javascript:;">

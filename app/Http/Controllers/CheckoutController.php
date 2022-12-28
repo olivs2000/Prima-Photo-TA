@@ -25,9 +25,6 @@ class CheckoutController extends Controller
     {
         $queryRaw=DB::select(DB::raw("select * from pemesanans"));
         return view('checkout.index',['pemesanan'=>$queryRaw]);
-
-        // $data = Pemesanan::all();
-        // return view('checkout.index', compact('data'));
     }
 
     /**
@@ -55,6 +52,7 @@ class CheckoutController extends Controller
     
     public function store(Request $request)
     {
+        //dd($request->all());
         $data=new Pemesanan();
        
         // $file=$request->file('bukti_transfer');
@@ -63,6 +61,7 @@ class CheckoutController extends Controller
         // $file->move($imgFolder, $fileName);
        
         // $data->bukti_transfer=$fileName;
+        
         
         $data->nama=$request->get('nama');
         $data->notelepon=$request->get('notelepon');
@@ -76,36 +75,91 @@ class CheckoutController extends Controller
         $data->status_pemesanan="proses";
         $data->save();
         
-        //dd($data);
+        if($request->has('id_paket')){
+            for($i = 0; $i<count($request->id_paket); $i++){
+                $paket = Paket::find($request->id_paket[$i]);
+                $detail=new DetailPemesanan();
+                $detail->pakets_id=($paket)?$paket->id:null;
+                $detail->pemesanans_id=$data->id;
+                $detail->jumlah=$request->get('jumlah')[$i]; 
+                $detail->harga=$request->get('harga')[$i];
+                $detail->total=$detail->jumlah*$detail->harga;
+                $detail->tanggal_transaksi=Carbon::now();
+                $detail->save();
+            }
+        }
 
-        $paket = Paket::where('judul_paket',$request->get('judul_paket'))->first();
-        $produk = Produk::where('judul_produk',$request->get('judul_produk'))->first();
-        $layanan = Layanan::where('judul_layanan',$request->get('judul_layanan'))->first();
-        $penyewaanalat = PenyewaanAlat::where('nama_alat',$request->get('nama_alat'))->first();
+        if($request->has('id_produk')){
+            for($i = 0; $i<count($request->id_produk); $i++){
+                $produk = Produk::find($request->id_produk[$i]);
+                $detail=new DetailPemesanan();
+                $detail->produks_id=($produk)?$produk->id:null;
+                $detail->pemesanans_id=$data->id;
+                $detail->jumlah=$request->get('jumlah1')[$i]; 
+                $detail->harga=$request->get('harga1')[$i];
+                $detail->total=$detail->jumlah*$detail->harga;
+                $detail->tanggal_transaksi=Carbon::now();
+                $detail->save();
+            }
+        }
 
-        $detail=new DetailPemesanan();
-        $detail->layanans_id=($layanan)?$layanan->id:null;
-        $detail->penyewaan_alats_id=($penyewaanalat)?$penyewaanalat->id:null;
-        $detail->produks_id=($produk)?$produk->id:null;
-        $detail->pakets_id=($paket)?$paket->id:null;
-        $detail->pemesanans_id=$data->id;
+        if($request->has('id_layanan')){
+            for($i = 0; $i<count($request->id_layanan); $i++){
+                $layanan = Layanan::find($request->id_layanan[$i]);
+                $detail=new DetailPemesanan();
+                $detail->layanans_id=($layanan)?$layanan->id:null;
+                $detail->pemesanans_id=$data->id;
+                $detail->jumlah=$request->get('jumlah3')[$i]; 
+                $detail->harga=$request->get('harga3')[$i];
+                $detail->total=$detail->jumlah*$detail->harga;
+                $detail->tanggal_transaksi=Carbon::now();
+                $detail->save();
+            }
+        }
 
-        $detail->jumlah=$request->get('jumlah'); 
-        $detail->harga=$request->get('harga');
+        if($request->has('id_penyewaan')){
+            for($i = 0; $i<count($request->id_penyewaan); $i++){
+                $penyewaanalat = PenyewaanAlat::find($request->id_penyewaan[$i]);
+                $detail=new DetailPemesanan();
+                $detail->penyewaan_alats_id=($penyewaanalat)?$penyewaanalat->id:null;
+                $detail->pemesanans_id=$data->id;
+                $detail->jumlah=$request->get('jumlah4')[$i]; 
+                $detail->harga=$request->get('harga4')[$i];
+                $detail->total=$detail->jumlah*$detail->harga;
+                $detail->tanggal_transaksi=Carbon::now();
+                $detail->save();
+            }
+        }
 
-        $detail->jumlah=$request->get('jumlah1');
-        $detail->harga=$request->get('harga1'); 
+        // $paket = Paket::where('judul_paket',$request->get('judul_paket'))->first();
+        // $produk = Produk::where('judul_produk',$request->get('judul_produk'))->first();
+        // $layanan = Layanan::where('judul_layanan',$request->get('judul_layanan'))->first();
+        // $penyewaanalat = PenyewaanAlat::where('nama_alat',$request->get('nama_alat'))->first();
+
+        // $detail=new DetailPemesanan();
+        // $detail->pakets_id=($paket)?$paket->id:null;
+        // $detail->produks_id=($produk)?$produk->id:null;
+        // $detail->layanans_id=($layanan)?$layanan->id:null;
+        // $detail->penyewaan_alats_id=($penyewaanalat)?$penyewaanalat->id:null;
+        // $detail->pemesanans_id=$data->id;
+
+        // $detail->jumlah=$request->get('jumlah'); 
+        // $detail->harga=$request->get('harga');
+
+        // $detail->jumlah=$request->get('jumlah1');
+        // $detail->harga=$request->get('harga1'); 
+
         
-        $detail->jumlah=$request->get('jumlah2');
-        $detail->harga=$request->get('harga2'); 
+        // $detail->jumlah=$request->get('jumlah2');
+        // $detail->harga=$request->get('harga2'); 
 
-        $detail->jumlah=$request->get('jumlah3');
-        $detail->harga=$request->get('harga3'); 
+        // $detail->jumlah=$request->get('jumlah3');
+        // $detail->harga=$request->get('harga3'); 
 
-        $detail->total=$request->get('total');
+        // $detail->total=$request->get('total');
 
-        $detail->tanggal_transaksi=Carbon::now();
-        $detail->save();
+        // $detail->tanggal_transaksi=Carbon::now();
+        // $detail->save();
 
         session()->forget('cart1');
         session()->forget('cart2');
@@ -157,7 +211,20 @@ class CheckoutController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // $this->authorize('delete-permission');
+        // try
+        // {
+        //     $checkout->delete();
+        //     return redirect()->route('checkout.index')->with('status', 'Data fotografer berhasil dihapus');
+        // }
+        // catch(\PDOException $ex)
+        // {
+        //     $msg = 'Terjadi kesalahan! Gagal menghapus data fotografer';
+        //     return redirect()->route('checkout.index')->with('error', $msg);
+        // }
+
+        checkout::remove($id);
+        session()->flash('status', 'Item berhasil dihapus');
     }
 
     
@@ -174,11 +241,10 @@ class CheckoutController extends Controller
         // $c->transaction_date=Carbon::now()->toDateTimeString();
         $c->save();
 
-        $c->insertPemesanans($cart);
-        $c->insertPakets($cart);
-        $c->insertProduks($cart);
-        $c->insertLayanans($cart);
-        $c->insertPenyewaanAlats($cart);
+        $c->insertProduks($cart1);
+        $c->insertPakets($cart2);
+        $c->insertLayanans($cart3);
+        $c->insertPenyewaanAlats($cart4);
 
         session()->forget('cart1', 'cart2', 'cart3', 'cart4');
 
