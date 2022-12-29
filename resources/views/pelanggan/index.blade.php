@@ -52,6 +52,9 @@
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" href="{{url('layanan')}}"  aria-haspopup="true">Layanan</a>
 							</li>
+							<li class="nav-item dropdown dropdown-slide">
+								<a class="nav-link dropdown-toggle" href="{{url('informasipelanggan')}}"  aria-haspopup="true">Informasi Pelanggan</a>
+							</li>
 						</ul>
             
 						<ul class="navbar-nav ml-auto mt-10">

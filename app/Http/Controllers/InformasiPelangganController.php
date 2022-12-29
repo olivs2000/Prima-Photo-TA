@@ -3,26 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Pemesanan;
-use App\DetailPemesanan;
 use DB;
+use Pelanggan;
 
-class UploadController extends Controller
+
+class InformasiPelangganController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $pemesanan_id)
+    public function index()
     {
-        // $pemesanan = Pemesanan::find($pemesanan_id);
-        // $queryBuilder=DetailPemesanan::where('pemesanans_id',$pemesanan_id)->get();
-        // return view('uploadbuktitf.index',['pemesanan'=>$pemesanan,'data'=>$queryBuilder]);
-
-        // $queryRaw=DB::select(DB::raw("select * from pemesanans"));
-        return view('uploadbuktitf.index',['data'=>$pemesanan_id]);
-
+        $queryRaw=DB::select(DB::raw("select * from pelanggans"));
+        return view('informasipelanggan.index',['data'=>$queryRaw]);
+   
     }
 
     /**
@@ -32,8 +28,7 @@ class UploadController extends Controller
      */
     public function create()
     {
-        $data=Pemesanan::all();
-        return view('uploadbuktitf.index', compact('data'));
+        //
     }
 
     /**
@@ -44,17 +39,7 @@ class UploadController extends Controller
      */
     public function store(Request $request)
     {
-        $data=Pemesanan::find($request->pemesanan);
-        
-        $file=$request->file('bukti_transfer');
-        $imgFolder='images';
-        $fileName=time()."_".$file->getClientOriginalName();
-        $file->move($imgFolder, $fileName);
-        $data->bukti_transfer=$fileName;
-
-        $data->save();
-
-        return redirect()->back()->with('success', 'Bukti transfer anda telah terkirim');
+        //
     }
 
     /**

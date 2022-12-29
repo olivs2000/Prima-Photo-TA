@@ -12,7 +12,7 @@ class RiwayatPemesananController extends Controller
 {
     public function index(Request $request, $pemesanan_id)
     {
-        // $pemesanan = Pemesanan::find($pemesanan_id);
+        $pemesanan = Pemesanan::find($pemesanan_id);
         // $queryBuilder=DetailPemesanan::where('pemesanans_id',$pemesanan_id)->get();
 
         // return view('riwayatpemesanan.index',['pemesanan'=>$pemesanan,'data'=>$queryBuilder]);
@@ -23,10 +23,11 @@ class RiwayatPemesananController extends Controller
             ->leftJoin("produks", "detail_pemesanans.produks_id", "=", "produks.id")
             ->leftJoin("layanans", "detail_pemesanans.layanans_id", "=", "layanans.id")
             ->leftJoin("penyewaan_alats", "detail_pemesanans.penyewaan_alats_id", "=", "penyewaan_alats.id")
-            ->select("detail_pemesanans.*", "pakets.judul_paket", "produks.judul_produk", "layanans.judul_layanan", "penyewaan_alats.nama_alat")
+            ->select("pemesanans.*", "detail_pemesanans.jumlah", "detail_pemesanans.harga", "detail_pemesanans.total as sub_total",
+            "pakets.judul_paket", "produks.judul_produk", "layanans.judul_layanan", "penyewaan_alats.nama_alat")
             ->where('detail_pemesanans.pemesanans_id',$pemesanan_id)
             ->get();
-            //dd($queryBuilder);
+            // dd($pemesanan);
         return view('riwayatpemesanan.index',['pemesanan'=>$pemesanan, 'data'=>$queryBuilder]);
     }
 }

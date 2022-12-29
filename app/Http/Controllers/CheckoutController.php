@@ -250,4 +250,13 @@ class CheckoutController extends Controller
 
         return redirect('checkout.index');
     }
+
+    public function removeFromCart(Request $request)
+    {
+        $item = session()->get($request->cart);
+        unset($item[$request->item_id]);
+        session()->forget($request->cart);
+        session()->put($request->cart, $item);
+        return back();
+    }
 }

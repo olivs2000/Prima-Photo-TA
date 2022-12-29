@@ -118,6 +118,8 @@
                         <a href="{{ route('store') }}" id="contact-submit" class="btn btn-main mt-20">Order</a>
                      </div> --}}
 
+                     <br>
+
                      <div id="cf-submit">
                         <input type="submit" id="contact-submit" class="btn btn-main mt-20t" value="Order">
                      </div>	
@@ -146,17 +148,16 @@
                               <span>{{number_format($details['harga'])}}</span>
                               <input type="hidden" name="harga[]" value="{{$details['harga']}}">
                               <input type="hidden" name="id_paket[]" value="{{$id}}">
+
+                              &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+                              <td>
+                                 <input type='button' value='Hapus' onclick="removeFromCart('cart2',{{$id}})" class='tf-ion-ios-trash'/>
+                             </td>
+
                            </div>
                         </div>
                         </div>
-
-                        {{-- <td>
-                           <form method="POST" action="{{url('checkout/'.$details->id )}}">
-                             @csrf
-                             @method('DELETE')
-                             <input type='submit' value='Hapus' class='btn btn-danger'/>
-                           </form>
-                       </td> --}}
 
                         @endforeach
                         @endif
@@ -185,9 +186,13 @@
                               <span>{{number_format($details2['harga'])}}</span>
                               <input type="hidden" name="harga1[]" value="{{$details2['harga']}}">
                               <input type="hidden" name="id_produk[]" value="{{$id}}">
-                              &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; 
+
+                              &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 
                               {{-- <td><a href="{{url('checkout/'.$id) }}" >Hapus <i class="tf-ion-ios-trash"></i></a></td> --}}
+                              <td>
+                                 <input type='button' value='Hapus' onclick="removeFromCart('cart1',{{$id}})" class='tf-ion-ios-trash'/>
+                             </td>
 
                            </div>
                         </div>
@@ -218,6 +223,13 @@
                               <span>{{number_format($details3['harga'])}}</span>
                               <input type="hidden" name="harga3[]" value="{{$details3['harga']}}">
                               <input type="hidden" name="id_layanan[]" value="{{$id}}">
+
+                              &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                              <td>
+                                 <input type='button' class='tf-ion-ios-trash' value='Hapus' onclick="removeFromCart('cart3',{{$id}})" />
+                              </td>
+
                            </div>
                         </div>
                         </div>
@@ -247,6 +259,13 @@
                               <span>{{number_format($details4['harga'])}}</span>
                               <input type="hidden" name="harga4[]" value="{{$details4['harga']}}">
                               <input type="hidden" name="id_penyewaan[]" value="{{$id}}">
+
+                              &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                              <td>
+                                 <input type='button' value='Hapus' onclick="removeFromCart('cart4',{{$id}})" class='tf-ion-ios-trash'/>
+                              </td>
+
                            </div>
                         </div>
                         </div>
@@ -297,7 +316,25 @@
    </div>
 </div>
 
+<script>
+   function removeFromCart(cart, id){
+      $.ajax({
+			url:"{{ route('remove.from.cart') }}",
+         method: "POST",
+			data:{
+            cart : cart, 
+            item_id : id, 
+            _token : "{{ csrf_token() }}"
+         },
+			success:function(data)
+			{
+				location.reload();
+			}
+		})
+   }
 
+
+</script>
 
 <!-- Main jQuery -->
    <script src="plugins/jquery/dist/jquery.min.js"></script>

@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-xs-6">
                     <p>
-                            28 Feb 2013 <span class="muted">
+                            01 Des 2022 <span class="muted">
 							Tanggal Pemesanan / Estimasi Selesai (Menyesuaikan Pembayaran) </span>
                     </p>
                 </div>
@@ -144,10 +144,14 @@
                                     {{$no}}
                                 </td>
                                 <td>
-                                    @if(is_null($rp->))
-                                    <span class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Freelance</span>
-                                    @else
-                                    <span class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Tetap</span>
+                                    @if($rp->judul_paket!=null)
+                                    {{$rp->judul_paket}}
+                                    @elseif ($rp->judul_produk!=null)
+                                    {{$rp->judul_produk}}
+                                    @elseif ($rp->judul_layanan!=null)
+                                    {{$rp->judul_layanan}}
+                                    @elseif ($rp->nama_alat!=null)
+                                    {{$rp->nama_alat}}
                                     @endif
                                 </td>
                                 <td class="hidden-480">
@@ -157,7 +161,7 @@
                                     Rp. {{number_format($rp->harga)}}
                                 </td>
                                 <td class="hidden-480">
-                                    Rp. {{number_format($rp->total)}}
+                                    Rp. {{number_format($rp->sub_total)}}
                                 </td>
 
                             </tr>
@@ -211,18 +215,18 @@
                         <li>
                             <strong>Status Pemesanan:</strong>  <td id='td-status_pemesanan-{{$rp->id}}'> 
                                 @if($rp->status_pemesanan == 'proses')
-                                  <span id='td-status_pemesanan-{{$rp->id}}' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">Proses</span>
+                                  <span id='td-status_pemesanan-{{$rp->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Menunggu Konfirmasi</span>
                                 @elseif($rp->status_pemesanan == 'selesai')
                                   <span id='td-status_pemesanan-{{$rp->id}}' class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Selesai</span>
                                 @else
-                                  <span id='td-status_pemesanan-{{$rp->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Menunggu Konfirmasi</span>
+                                  <span id='td-status_pemesanan-{{$rp->id}}' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">Proses</span>
                                 @endif
                               </td>
                         </li>
                     </ul>
                     <br/> <br/>
                     <a class="btn btn-lg-xs btn-info hidden-print" onclick="javascript:window.print();">Print <i class="fa fa-print"></i></a>
-                    <a href="{{url('uploadbuktitf/')}}" class="btn btn-lg-xs btn-success hidden-print">Kirim Bukti Transfer <i class="fa fa-upload"></i></a>
+                    <a href="{{url('uploadbuktitf/'.$pemesanan->id)}}" class="btn btn-lg-xs btn-success hidden-print">Kirim Bukti Transfer <i class="fa fa-upload"></i></a>
                     <br/> <br/>
                     <a class="btn btn-lg-xs btn-danger hidden-print">Batalkan Pesanan <i class="fa fa-ban"></i></a>
                 </div>

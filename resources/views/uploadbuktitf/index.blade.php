@@ -51,49 +51,51 @@
 </section>
 <!-- End Top Header Bar -->
 
+<br><br><br><br>
+
+@if(session('success'))
+<div class="alert alert-success alert-common alert-solid" role="alert"><i class="tf-ion-thumbsup"></i> Horee!!
+{{session('success')}}
+</div>
+@endif
+
 
 <div class="page-wrapper">
- 
-      <div class="container">
-         <div class="row">
+   <div class="container">
+      <div class="row">
+         <div class="block billing-details">
 
-            
-               <div class="block billing-details">
-
-                  <section class="page-header">
-                     <div class="container">
-                           <div class="col-md-10">
-                              <h6 class="page-name">Syarat-syarat bukti transfer yang dapat kami terima : </h6>
-                              <h6 class="page-name">- Menunjukkan dengan jelas jumlah yang ditransfer</h6>
-                              <h6 class="page-name">- Menunjukkan dengan jelas nomor rekening tujuan</h6>
-                              <h6 class="page-name">- Menunjukkan waktu transaksi</h6>
-                              <h6 class="page-name">- Bukti telah divalidasi oleh bank</h6>
-                           </div>
+            <section class="page-header">
+               <div class="container">
+                     <div class="col-md-10">
+                        <h6 class="page-name">Syarat-syarat bukti transfer yang dapat kami terima : </h6>
+                        <h6 class="page-name">- Menunjukkan dengan jelas jumlah yang ditransfer</h6>
+                        <h6 class="page-name">- Menunjukkan dengan jelas nomor rekening tujuan</h6>
+                        <h6 class="page-name">- Menunjukkan waktu transaksi</h6>
+                        <h6 class="page-name">- Bukti telah divalidasi oleh bank</h6>
                      </div>
-                  </section> <br>
-
-                  <form enctype='multipart/form-data' class="checkout-form" method="post" action="{{url('upload/store')}}" role="form">
-                     @csrf 
-               
-                     <div class="form-group">
-                        <h5>Silahkan Kirim bukti transfer anda dibawah ini: </h5>
-                        <input type="file" class="form-control" id="bukti_transfer" name="bukti_transfer">
-                     </div>
-
-                     <br>
-
-                     <div id="cf-submit">
-                        <input type="submit" id="contact-submit" class="btn btn-main btn-small btn-round" value="Kirim">
-                     </div>	
-                  </form>
-
                </div>
-            </div>
-          
-            
-         
-      </div>
+            </section> <br>
 
+            <form enctype='multipart/form-data' class="checkout-form" method="post" action="{{route('uploadbuktitf.store')}}" role="form">
+               @csrf 
+         
+               <div class="form-group">
+                  <input type="hidden" name="pemesanan" value="{{$data}}">
+                  <h5>Silahkan Kirim bukti transfer anda dibawah ini: </h5>
+                  <input type="file" class="form-control" id="bukti_transfer" name="bukti_transfer">
+               </div>
+
+               <br>
+
+               <div id="cf-submit">
+                  <input type="submit" id="contact-submit" class="btn btn-main btn-small btn-round" value="Kirim">
+               </div>	
+            </form>
+
+         </div>
+      </div> 
+   </div>
 </div>
 
 

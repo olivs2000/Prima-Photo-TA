@@ -181,6 +181,7 @@
 <!-- End Top Header Bar -->
 
 
+<!-- Main Menu Section -->
 <section class="menu">
 	<nav class="navbar navigation">
 		<div class="container">
@@ -193,7 +194,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-			</div>
+			</div><!-- / .navbar-header -->
 
 			
 			<div id="navbar" class="navbar-collapse collapse text-center">

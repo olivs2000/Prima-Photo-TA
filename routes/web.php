@@ -30,6 +30,7 @@ use App\Http\Controllers\DetailPemesananPelangganController;
 use App\Http\Controllers\AlatFotografiController;
 use App\Http\Controllers\DropzoneController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\InformasiPelangganController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 
@@ -63,9 +64,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('attach', [EmailController::class,'attach']);
     Route::get('pesan', [EmailController::class,'notif']);
 
-    Route::resource('uploadbuktitf','UploadController');
     Route::get('uploadbuktitf/{pemesanan_id}','UploadController@index')->name('uploadbuktitf.index');
+    Route::resource('uploadbuktitf','UploadController');
+    
 
+    Route::post('remove-from-cart',[CheckoutController::class,'removeFromCart'])->name('remove.from.cart');
     Route::resource('checkout','CheckoutController');
     Route::post('checkout/store','CheckoutController@store')->name('checkout.store');
 
@@ -82,6 +85,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/collaborateadmin/saveData','CollaborateAdminController@saveData')->name('collaborateadmin.saveData');
 
     Route::resource('pelanggan','UserController');
+
+    Route::resource('informasipelanggan','InformasiPelangganController');
 
     Route::get('riwayatpemesanan/{pemesanan_id}','RiwayatPemesananController@index')->name('riwayatpemesanan.index');
     Route::resource('riwayatpemesanan','RiwayatPemesananController',['except' => ['index']]);
@@ -411,5 +416,6 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::resource('/DETAILPEMESANANTEMP','DetailPemesananPelangganController');
+
 
 });

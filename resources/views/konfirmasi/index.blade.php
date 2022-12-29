@@ -68,7 +68,7 @@
             Silahkan lihat detail pemesanan anda terlebih dahulu dibawah ini, 
             anda memiliki waktu 3 x 24 jam untuk melakukan pembayaran dan mengupload bukti pembayarannya. 
             Apabila kami belum menerima bukti pembayaran yang valid dalam kurun waktu tersebut, 
-            maka pesanan anda akan dibatalkan
+            maka pesanan anda akan dibatalkan.
           </p>
 
           <br>

@@ -46,7 +46,7 @@
 <div class="col-md-4 col-xs-12 col-sm-4">
 	<ul class="top-menu text-right list-inline">
 		<li class="dropdown cart-nav dropdown-slide">
-			<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i class="tf-ion-android-cart"></i>Cart</a>
+			<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i class="tf-ion-android-cart"></i>Keranjang</a>
 				<div class="dropdown-menu cart-dropdown">
 
 				<!-- Start Cart Item Paket -->
@@ -232,7 +232,7 @@
 	</nav>
 </section>
 
-<br>
+
 
 @if(session('success'))
 <div class="alert alert-success alert-common alert-solid" role="alert"><i class="tf-ion-thumbsup"></i> Horee!!

@@ -245,7 +245,7 @@
 	</div>
 </section>
 
-<br><br><br>
+
 
 @if(session('success'))
 <div class="alert alert-success alert-common alert-solid" role="alert"><i class="tf-ion-thumbsup"></i> Horee!!
