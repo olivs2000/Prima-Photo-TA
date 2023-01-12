@@ -69,6 +69,7 @@
 
                   <form enctype='multipart/form-data' class="checkout-form" method="post" action="{{url('checkout/store')}}" role="form">
                      @csrf 
+
                      <div class="form-group">
                         <label>Nama Lengkap</label>
                         <input type="text" class="form-control" id="nama" name="nama" placeholder="">
@@ -81,14 +82,11 @@
                         <label>Email</label>
                         <input type="text" class="form-control" id="email" name="email" placeholder="">
                      </div>
+
                      <div class="form-group">
                         <label>Alamat</label>
                         <input type="text" class="form-control" id="alamat" name="alamat" placeholder="">
                      </div>
-                     {{-- <div class="form-group">
-                        <h5>Sertakan bukti transfer anda dibawah ini: </h5>
-                        <input type="file" class="form-control" id="bukti_transfer" name="bukti_transfer">
-                     </div> --}}
 
                      <br><br><br>
 
@@ -113,10 +111,6 @@
                         </div>
 
                      </div>
-
-                     {{-- <div id="cf-submit">
-                        <a href="{{ route('store') }}" id="contact-submit" class="btn btn-main mt-20">Order</a>
-                     </div> --}}
 
                      <br>
 
@@ -153,7 +147,7 @@
 
                               <td>
                                  <input type='button' value='Hapus' onclick="removeFromCart('cart2',{{$id}})" class='tf-ion-ios-trash'/>
-                             </td>
+                              </td>
 
                            </div>
                         </div>
@@ -189,10 +183,9 @@
 
                               &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 
-                              {{-- <td><a href="{{url('checkout/'.$id) }}" >Hapus <i class="tf-ion-ios-trash"></i></a></td> --}}
                               <td>
                                  <input type='button' value='Hapus' onclick="removeFromCart('cart1',{{$id}})" class='tf-ion-ios-trash'/>
-                             </td>
+                              </td>
 
                            </div>
                         </div>

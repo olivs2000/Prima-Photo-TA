@@ -94,7 +94,7 @@ class PenyewaanAlatAdminController extends Controller
 
         $penyewaanalatadmin->save(); 
 
-        return redirect()->route('penyewaanalatadmin.index')->with('status', 'Alat Fotografi berhasil tersimpan');
+        return redirect()->route('penyewaanalatadmin.index')->with('status', 'Alat Fotografi berhasil diubah');
     }
 
     public function saveData(Request $request)

@@ -72,7 +72,21 @@
   <td id='td-ukuran_foto-{{$l->id}}'>{{$l->ukuran_foto}}</td>
   <td id='td-hasil_cetak-{{$l->id}}'>{{$l->hasil_cetak}}</td>
   <td id='td-harga-{{$l->id}}'>Rp. {{number_format($l->harga)}}</td>
-  <td id='td-keterangan_layanan-{{$l->id}}'>{{$l->keterangan_layanan}}</td> 
+  <td id='td-keterangan_layanan-{{$l->id}}'>{{$l->keterangan_layanan}}</td>
+  
+  <td>
+    <a class='btn btn-info' href="{{route('layananadmin.show',$l->id)}}" data-target="#show{{$l->id}}" data-toggle='modal'>Detail</a> 
+    
+    <div class="modal fade" id="show{{$l->id}}" tabindex="-1" role="basic" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div style="text-align:center">
+            <img src="{{asset('/assets/img/cam1.gif')}}"/>
+            </div>
+        </div>
+      </div>
+    </div>
+  </td>
   
   @can('change-permission')
   <td>

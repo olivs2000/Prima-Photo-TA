@@ -68,13 +68,15 @@
 </div>
 @endif
 
-<div class="alert alert-success" id='pesan' style="display:none"></div>
+{{-- <div class="alert alert-success" id='pesan' style="display:none"></div>
 
 @if(session('error'))
 <div class="alert alert-danger">
 {{session('error')}}
 </div>
-@endif 
+@endif  --}}
+
+@include('sweetalert::alert') 
 
 <section class="user-dashboard page-wrapper">
   <div class="container">

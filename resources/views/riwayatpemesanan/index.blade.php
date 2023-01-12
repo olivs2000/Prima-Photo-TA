@@ -29,6 +29,8 @@
 
 <div class="page-content-wrapper">
     <div class="page-content">
+        
+        @include('sweetalert::alert') 
 
         <h1 style="text-align:center">
             DETAIL PEMESANAN <small></small>
@@ -44,12 +46,14 @@
                 <div class="col-xs-6 invoice-logo-space">
                     <img src="{{ asset('assets/img/primaphoto3.png')}}" alt="" />
                 </div>
+
                 <div class="col-xs-6">
                     <p>
-                            01 Des 2022 <span class="muted">
-							Tanggal Pemesanan / Estimasi Selesai (Menyesuaikan Pembayaran) </span>
+                        {{$data[0]->tanggal_transaksi}} / {{$data[0]->estimasi_selesai}}<span class="muted">
+                        Tanggal Pemesanan / Estimasi Selesai (Menyesuaikan Pembayaran) </span>
                     </p>
                 </div>
+               
             </div>
 
             <hr/>
@@ -72,7 +76,7 @@
                     </ul>
                 </div>
                 <div class="col-xs-4">
-                    <h4 style="color: red;">PENTING:</h4>
+                    <h4 style="color: red;"><strong>PENTING:</strong></h4>
                     <ul class="list-unstyled">
                         <li>
                             Status pembayaran dan status pemesanan akan diubah
@@ -87,7 +91,7 @@
                             melakukan pembayaran status belum terubah, 
                         </li>
                         <li>
-                            harap hubungi kami melalui email primaphoto27@gmail.com
+                            harap hubungi kami melalui email primaphoto27@gmail.com.
                         </li>
                     </ul>
                 </div>
@@ -95,16 +99,16 @@
                     <h4>Pembayaran dapat dilakukan menggunakan:</h4>
                     <ul class="list-unstyled">
                         <li>
-                            <strong>No Virtual Account BNI:</strong> 8578149566949804
+                            No Virtual Account BNI: 8578149566949804
                         </li>
                         <li>
-                            <strong>No Rekening BNI:</strong> 0097927804
+                            No Rekening BNI: 0097927804
                         </li>
                         <li>
-                            <strong>No Virtual Account BCA:</strong> 8735089566949804
+                            No Virtual Account BCA: 8735089566949804
                         </li>
                         <li>
-                            <strong>No Rekening BCA:</strong> 2373089804
+                            No Rekening BCA: 2373089804
                         </li>
                     </ul>
                 </div>
@@ -163,7 +167,6 @@
                                 <td class="hidden-480">
                                     Rp. {{number_format($rp->sub_total)}}
                                 </td>
-
                             </tr>
                             @endforeach
                         </tbody>
@@ -171,11 +174,11 @@
                 </div>
             </div>
 
-            <br> <br>
+            <br> <br> 
 
             <div class="row">
                 <div class="col-xs-4">
-                    <div class="well">
+                    <div class="well"> 
                         <address>
 							<strong>Prima Photo</strong><br/>
 							Jl. Kamboja No. 27<br/>
@@ -183,10 +186,10 @@
 							<abbr title="Phone">P:</abbr> (0371) 625249<br/> 
                             <abbr title="Email">E:</abbr> primaphoto27@gmail.com 
                         </address>
-                        <address>
+                        {{-- <address>
 							<strong>Full Name</strong><br/>
 							<a href="mailto:#">first.last@email.com</a>
-						</address>
+						</address> --}}
                     </div>
                 </div>
 
@@ -205,8 +208,8 @@
                             <strong>Status Pembayaran:</strong>  <td id='td-status_pembayaran-{{$rp->id}}'> 
                                 @if($rp->status_pembayaran == 'belum')
                                   <span id='td-status_pembayaran-{{$rp->id}}' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">belum</span>
-                                @elseif($rp->status_pembayaran == 'selesai')
-                                  <span id='td-status_pembayaran-{{$rp->id}}' class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">selesai</span>
+                                @elseif($rp->status_pembayaran == 'berhasil')
+                                  <span id='td-status_pembayaran-{{$rp->id}}' class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">berhasil</span>
                                 @else
                                   <span id='td-status_pembayaran-{{$rp->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Proses</span>
                                 @endif
@@ -214,7 +217,7 @@
                         </li>
                         <li>
                             <strong>Status Pemesanan:</strong>  <td id='td-status_pemesanan-{{$rp->id}}'> 
-                                @if($rp->status_pemesanan == 'proses')
+                                @if($rp->status_pemesanan == 'menunggu konfirmasi')
                                   <span id='td-status_pemesanan-{{$rp->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Menunggu Konfirmasi</span>
                                 @elseif($rp->status_pemesanan == 'selesai')
                                   <span id='td-status_pemesanan-{{$rp->id}}' class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Selesai</span>
@@ -224,18 +227,52 @@
                               </td>
                         </li>
                     </ul>
-                    <br/> <br/>
+                    <br/><br/>
                     <a class="btn btn-lg-xs btn-info hidden-print" onclick="javascript:window.print();">Print <i class="fa fa-print"></i></a>
                     <a href="{{url('uploadbuktitf/'.$pemesanan->id)}}" class="btn btn-lg-xs btn-success hidden-print">Kirim Bukti Transfer <i class="fa fa-upload"></i></a>
-                    <br/> <br/>
-                    <a class="btn btn-lg-xs btn-danger hidden-print">Batalkan Pesanan <i class="fa fa-ban"></i></a>
+                    <br/><br/>
+                    <a class="btn btn-lg-xs btn-danger hidden-print" onclick="deletePemesanan({{$rp->id}})">Batalkan Pesanan <i class="fa fa-ban"></i></a>
+                    
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
+
+{{-- @section('javascript')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script type="text/javascript">
+
+    $('.show_confirm').click(function(event) {
+          var id = $(this).data("id");
+          event.preventDefault();
+          swal({
+              title: `Are you sure you want to delete this record?`,
+              text: "If you delete this, it will be gone forever.",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+               $.ajax({
+                    type: "POST",
+                    url: "{{route('riwayatpemesanan.delete')}}",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        id:id
+                    },
+                    success: function (data) {
+                        location.reload();
+                    }         
+                });
+            }
+          });
+      });
+
+</script>
+@endsection --}}
 
 
 
@@ -253,8 +290,50 @@
 <!-- END CORE PLUGINS -->
 <script src="{{asset('assets/scripts/app.js')}}"></script>
 
-<script>
-    jQuery(document).ready(function() {
-        App.init();
-    });
+
+{{-- @section('javascript')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script type="text/javascript">
+    function deletePemesanan(id){
+        swal({
+              title: `Yakin ingin membatalkan pemesanan?`,
+              text: "Jika anda membatalkan pemesanan, pesanan tidak dapat kembali lagi.",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{route('delete.gambar')}}",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        id:id,
+                    },
+                    success: function (data) {
+                        location.reload();
+                    }         
+                });
+            }
+          });
+    }
+
+	$(document).on('click', '.remove_image', function() {
+		var name = $(this).attr('id');
+		$.ajax({
+			url:"{{ route('paketadmin.delete') }}",
+			data:{name : name},
+			success:function(data)
+			{
+				load_images(); 
+			}
+		})
+	});
+
 </script>
+@endsection --}}
+
+
+
+

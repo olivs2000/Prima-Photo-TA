@@ -1,7 +1,7 @@
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>Detail Paket</title>
+  <title>Detail Paket Fotografi</title>
 
   <!-- Mobile Specific Metas
   ================================================== -->
@@ -27,7 +27,6 @@
   <link rel="stylesheet" href="{{ asset('css/styleaviato.css') }}">
 
 <!-- Start Top Header Bar -->
-
 <section class="top-header">
 <div class="container">
 <div class="row">
@@ -182,6 +181,7 @@
 <!-- End Top Header Bar -->
 
 
+
 <section class="menu">
 	<nav class="navbar navigation">
 		<div class="container">
@@ -207,7 +207,7 @@
 
 					<!-- Paket -->
 					<li class="dropdown ">
-						<a href="{{url('paket')}}">Paket</a>
+						<a href="{{url('paket')}}">Paket Fotografi</a>
 					</li><!-- / Paket -->
 
 					<!-- Produk -->
@@ -234,71 +234,149 @@
 
 
 
-@if(session('success'))
+{{-- @if(session('success'))
 <div class="alert alert-success alert-common alert-solid" role="alert"><i class="tf-ion-thumbsup"></i> Horee!!
 {{session('success')}}
 </div>
-@endif
+@endif --}}
+
+@include('sweetalert::alert') 
+
+
 
 <section class="single-product">
 <div class="container">
 
-<div class="col-md-7">
-<div class="single-product-details">
-<h2>{{$data->judul_paket}}</h2>
+<div class="row mt-20">
 
-
-<!-- ini -->
-<section class="awSlider">
-  <div  class="carousel slide" data-ride="carousel">
-<ol class="carousel-indicators">
-	<li data-target=".carousel" data-slide-to="0" class="active"></li>
-	<li data-target=".carousel" data-slide-to="1"></li>
-	<li data-target=".carousel" data-slide-to="2"></li>
-</ol>
-
-<div class="carousel-inner" role="listbox">
-	@foreach ($data->gambar_detail as $key => $gambar_detail)
-		@if ($key == 0)
-			<div class="item active">
-				<img src="{{ asset('storage/').'/'.$gambar_detail}}">
-			</div>
-		@else
-			<div class="item">
-				<img src="{{ asset('storage/').'/'.$gambar_detail}}">
-			</div>
-		@endif
+	<div class="col-md-5">
+		<!-- ini -->
+		<section class="awSlider">
+		<div  class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target=".carousel" data-slide-to="0" class="active"></li>
+			<li data-target=".carousel" data-slide-to="1"></li>
+			<li data-target=".carousel" data-slide-to="2"></li>
+		</ol>
 		
-	@endforeach
+		<div class="carousel-inner" role="listbox">
+			@foreach ($data->gambar_detail as $key => $gambar_detail)
+				@if ($key == 0)
+					<div class="item active">
+						<img src="{{ asset('storage/').'/'.$gambar_detail}}">
+					</div>
+				@else
+					<div class="item">
+						<img src="{{ asset('storage/').'/'.$gambar_detail}}">
+					</div>
+				@endif
+				
+			@endforeach
+		</div>
+		
+		</div>
+		</section>
+		<!-- ini-->
+	</div>
+
+	<div class="col-md-7">
+	<div class="single-product-details">
+	<h2>{{$data->judul_paket}}</h2>
+
+	<br>
+
+	<div>
+		<strong class="product-price">Harga : </strong> Rp. {{number_format($data->harga)}}
+	</div>
+
+	<br>
+
+	<div>
+		<strong>Durasi Pemotretan : </strong> {{$data->durasi}}
+	</div>
+
+	<br>
+
+	<div>
+		<strong>Jumlah Pemotretan : </strong> {{$data->jumlah_jepretan}} 
+	</div>
+
+	<br>
+
+	<div>
+		<strong>Keterangan: </strong> {{$data->keterangan}}
+	</div>
+
+
+	<br>
+
+	<a href="{{url('add-to-cart-paket/' .$data->id)}}" class="btn btn-main mt-20">Masukan Keranjang</a>
+
+</div>
 </div>
 
 </div>
-</section>
-<!-- ini-->
 
-<div class="product-quantity">
-	<span class="product-price">Harga:</span> Rp. {{number_format($data->harga)}}
-</div>
+<br><br><br><br>
 
-<div class="product-quantity">
-	<span>Durasi :</span> {{$data->durasi}}
-</div>
+<div class="row">
+	<div class="col-xs-12">
+		<div class="tabCommon mt-20">
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#details" aria-expanded="true">Detail</a></li>
+				<li class=""><a data-toggle="tab" href="#reviews" aria-expanded="false">Kategori Tersedia</a></li>
+			</ul>
+			<div class="tab-content patternbg">
+				<div id="details" class="tab-pane fade active in">
+					<h4>Deskripsi Paket Fotografi</h4>
+					<p>Pemesanan paket fotografi melalui website hanya bagi pelanggan yang ingin melakukan fotografi diluar studio Prima Photo, apabila ingin dilakukan di dalam studio Prima Photo dapat langsung mendatangi studio yang berlokasi di Jl. Kamboja No. 27. Properti pemotretan akan disiapkan oleh studio, diluar dari properti pemotretan dapat ditanggung oleh masing-masing pelanggan.</p>
+					<p>Pelanggan yang telah melakukan pemesanan fotografi akan mendapatkan free sesuai keterangan pada masing-masing paket fotografi yang dipilih setelah waktu pengerjaan selesai. Waktu pengerjaan dapat dikonfirmasikan kembali dengan pihak studio.</p>
+				</div>
 
-<div class="product-quantity">
-	<span>Jumlah Jepretan :</span> {{$data->jumlah_jepretan}} jepretan
-</div>
+				<div id="reviews" class="tab-pane fade">
+					<div class="post-comments">
+						<ul class="media-list comments-list m-bot-50 clearlist">
+							<!-- Comment Item start-->
+							<li class="media">
 
-<div class="product-quantity">
-	<span>Keterangan:</span> {{$data->keterangan}}
-</div>
+								{{-- <a class="pull-left" href="#!">
+									<img class="media-object comment-avatar" src="images/blog/avater-1.jpg" alt="" width="50" height="50" />
+								</a> --}}
 
+								<div class="media-body">
+									<p>
+									
+									. Family Photography Paket 1 &nbsp; &nbsp; &nbsp; &nbsp; . Family Photography Paket 2
+									<br>
+									. Alumni Photography Paket 1 &nbsp; &nbsp; &nbsp; &nbsp; . Alumni Photography Paket 2
+									<br>
+									. Product Photography Paket 1 &nbsp; &nbsp; &nbsp; &nbsp; . Product Photography Paket 2
+									<br>
+									. Baby&Kids Photography Single &nbsp; &nbsp; &nbsp; &nbsp; 	. Baby&Kids Photography Double
+									<br>
+									. Prewedding Photography Paket 1 &nbsp; &nbsp; &nbsp; &nbsp; . Wedding Photography Paket 2
+									<br>
+									. Constructions Photography Paket 1 &nbsp; &nbsp; &nbsp; &nbsp; . Constructions Photography Paket 2
+									<br>
+									. Student Photography Paket 1 &nbsp; &nbsp; &nbsp; &nbsp; . Student Photography Paket 2 &nbsp; &nbsp; &nbsp; &nbsp; . Student Photography Paket 3
+									<br>
+									. Birthday Photography Paket 1 &nbsp; &nbsp; &nbsp; &nbsp; . Birthday Photography Paket 2 &nbsp; &nbsp; &nbsp; &nbsp; .Birthday Photography Paket 3
+									<br>
+									. Graduation Photography Single &nbsp; &nbsp; &nbsp; &nbsp; . Graduation Photography Double &nbsp; &nbsp; &nbsp; &nbsp; . Graduation Photography Special	
+								</p>
+								</div>
 
-<br>
+							</li>
+							<!-- End Comment Item -->
 
-<a href="{{url('add-to-cart-paket/' .$data->id)}}" class="btn btn-main mt-20">Masukan Keranjang</a>
+					
 
-</div>
-</div>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 </div>

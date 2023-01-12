@@ -26,7 +26,7 @@ class CollaborateAdminController extends Controller
         $collaborateAdmin->status=$request->get('status');
         $collaborateAdmin->save(); 
 
-        return redirect()->route('collaborateadmin.index')->with('status', 'Data berhasil tersimpan');
+        return redirect()->route('collaborateadmin.index')->with('status', 'Data berhasil diubah');
     }
 
     public function destroy(CollaborateAdmin $collaborateAdmin)
@@ -48,6 +48,7 @@ class CollaborateAdminController extends Controller
     {
         $id=$request->get('id');
         $data=CollaborateAdmin::find($id);
+
         return response()->json(array(
             'status'=>'oke',
             'msg'=>view('collaborateadmin.editcol',compact('data'))->render()
@@ -60,9 +61,13 @@ class CollaborateAdminController extends Controller
         $collaborateAdmin=collaborateAdmin::find($id);
         $collaborateAdmin->status=$request->get('status');
         $collaborateAdmin->save();
+        
+        alert()->success('Success','Status berhasil diubah'); 
+        
+
         return response()->json(array(
-            'status'=>'oke',
-            'msg'=>'Data berhasil di ubah'
+            'status'=>'Success',
+            'msg'=>'Status berhasil di ubah'
         ),200);
     }
 }

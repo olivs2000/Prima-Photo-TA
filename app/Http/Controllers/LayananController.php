@@ -27,7 +27,8 @@ class LayananController extends Controller
      */
     public function create()
     {
-        //
+        $data=Layanan::all();
+        return view('layanan.show', compact('data'));
     }
 
     /**
@@ -38,7 +39,16 @@ class LayananController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=new Layanan();
+      
+        $imgFolder="images";
+        $fileName=time()."_".$file->getClientOriginalName();
+        $file->move($imgFolder, $fileName);
+        $data->kirim_foto=$fileName;
+    
+        $data->save();
+
+        return redirect()->route('layanan.index');
     }
 
     /**
@@ -104,7 +114,8 @@ class LayananController extends Controller
                 "judul_layanan"=>$l->judul_layanan,
                 "gambar"=>$l->gambar,
                 "harga"=>$l->harga,
-                "jumlah"=>1
+                "jumlah"=>1,
+                "kirim_foto"=>$l->kirim_foto
             ];
         }
         else
@@ -112,7 +123,9 @@ class LayananController extends Controller
             $cart[$id]['jumlah']++;
         }
         session()->put('cart3', $cart);
+
+        alert()->success('Success','Layanan berhasil ditambahkan ke keranjang'); 
         
-        return redirect()->back()->with('success', 'Layanan berhasil ditambahkan ke keranjang');
+        return redirect()->back();
     }
 }

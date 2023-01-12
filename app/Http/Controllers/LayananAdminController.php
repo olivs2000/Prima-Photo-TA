@@ -18,6 +18,7 @@ class LayananAdminController extends Controller
         return view('layananadmin.index',['data'=>$queryRaw]);
     }
 
+
     public function create()
     {
         $layanans=Layanan::all();
@@ -86,7 +87,7 @@ class LayananAdminController extends Controller
 
         $layananadmin->save(); 
 
-        return redirect()->route('layananadmin.index')->with('status', 'Layanan berhasil tersimpan');
+        return redirect()->route('layananadmin.index')->with('status', 'Layanan berhasil diubah');
     }
 
     public function saveData(Request $request)

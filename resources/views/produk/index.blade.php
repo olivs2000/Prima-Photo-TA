@@ -204,7 +204,7 @@
 
 				<!-- Paket -->
 				<li class="dropdown ">
-					<a href="{{url('paket')}}">Paket</a>
+					<a href="{{url('paket')}}">Paket Fotografi</a>
 				</li><!-- / Paket -->
 
 				<!-- layanan -->
@@ -238,11 +238,13 @@
 
 <br><br><br>
 
-@if(session('success'))
+{{-- @if(session('success'))
 <div class="alert alert-success alert-common alert-solid" role="alert"><i class="tf-ion-thumbsup"></i> Horee!!
 {{session('success')}}
 </div>
-@endif
+@endif --}}
+
+@include('sweetalert::alert') 
 
 <br><br><br>
 

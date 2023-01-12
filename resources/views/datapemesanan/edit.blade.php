@@ -36,6 +36,12 @@
                </select>
           </div>
 
+          <div class="form-group">
+               <label>Estimasi Selesai</label>
+               <select class="form-control" name="estimasi_selesai" value="{{$data->estimasi_selesai}}">
+               </select>
+          </div>
+
 	</div>
 
 	<div class="form-actions">

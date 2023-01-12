@@ -229,11 +229,13 @@
 
 <br>
 
-@if(session('success'))
+{{-- @if(session('success'))
 <div class="alert alert-success alert-common alert-solid" role="alert"><i class="tf-ion-thumbsup"></i> Horee!!
 {{session('success')}}
 </div>
-@endif
+@endif --}}
+
+@include('sweetalert::alert') 
 
 <section class="single-product">
 <div class="container">
@@ -274,8 +276,17 @@
 	<span class="product-price">Harga :</span> Rp. {{number_format($data->harga)}}
 </div>
 
-<div class="product-quantity">
-<span>Keterangan :</span> {{$data->keterangan_layanan}}
+<br>
+
+<div>
+<strong>Keterangan :</strong> {{$data->keterangan_layanan}}
+</div>
+
+<br>
+
+<div class="form-group">
+	<h5>Sertakan foto yang ingin anda cetak dibawah ini: </h5>
+	<input  type="file" class="form-control" id="kirim_foto" name="kirim_foto">
 </div>
 
 <div class="product-size">
@@ -292,10 +303,17 @@
 </select>
 </div>
 
-<div class="product-quantity">
-	<span>Jumlah:</span>
+{{-- <div class="product-quantity">
+	<span>Jumlah/lembar : </span>
 	<div class="product-quantity-slider">
 		<input id="product-quantity" type="text" value="1" maxlength="2" name="product-quantity">{{$data->jumlah}}
+	</div>
+</div> --}}
+
+<div class="product-quantity">
+	<strong>Jumlah/lembar : </strong>
+	<div class="product-quantity-slider">
+		<input id="qty-input product-quantity" type="text" value="1" maxlength="2" name="product-quantity">{{$data->jumlah}}
 	</div>
 </div>
 

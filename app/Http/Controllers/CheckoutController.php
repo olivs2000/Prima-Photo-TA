@@ -49,19 +49,11 @@ class CheckoutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     
     public function store(Request $request)
     {
-        //dd($request->all());
-        $data=new Pemesanan();
-       
-        // $file=$request->file('bukti_transfer');
-        // $imgFolder="images";
-        // $fileName=time()."_".$file->getClientOriginalName();
-        // $file->move($imgFolder, $fileName);
-       
-        // $data->bukti_transfer=$fileName;
-        
+        $data=new Pemesanan();    
         
         $data->nama=$request->get('nama');
         $data->notelepon=$request->get('notelepon');
@@ -71,8 +63,8 @@ class CheckoutController extends Controller
         $data->tanggal_acara=$request->get('tanggal_acara');
         $data->waktu_acara=$request->get('waktu_acara');
         $data->total=$request->get('total');
-        $data->status_pembayaran="berhasil";
-        $data->status_pemesanan="proses";
+        $data->status_pembayaran="proses";
+        $data->status_pemesanan="menunggu konfirmasi";
         $data->save();
         
         if($request->has('id_paket')){
@@ -186,9 +178,20 @@ class CheckoutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Checkout $checkout)
     {
-        //
+        // $data = $checkout;
+        
+        // $pelanggan=DB::table("pelanggans")
+        // ->join("data_pembelians", "detail_pembelians.data_pembelians_id", "=", "data_pembelians.id")
+        // ->join("produks", "detail_pembelians.produks_id", "=", "produks.id")
+        // ->select("detail_pembelians.id", "produks.judul_produk", "detail_pembelians.jumlah", 
+        //          "detail_pembelians.harga", "detail_pembelians.total", 
+        //          "detail_pembelians.produks_id","produks.id as produk")
+        // ->where("detail_pembelians.data_pembelians_id", $data->id)
+        // ->get();
+
+        // return view('datapembelian.edit',compact('data', 'dataDetailPembelian'));
     }
 
     /**
@@ -198,9 +201,13 @@ class CheckoutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Checkout $checkout)
     {
-        //
+        $checkout->nama=$request->get('nama');
+        $checkout->alamat=$request->get('alamat');
+        $checkout->notelepon=$request->get('notelepon');
+        $checkout->email=$request->get('email');
+        $checkout->save(); 
     }
 
     /**

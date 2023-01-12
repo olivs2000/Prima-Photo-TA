@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use App\Pemesanan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class DataPemesananController extends Controller
 {
@@ -14,19 +15,35 @@ class DataPemesananController extends Controller
         return view('datapemesanan.index',['data'=>$queryRaw]);
     }
 
-    public function show($id)
+    public function show(Pemesanan $datapemesanan)
     {
-        $data = $pemesanan;
-        return view('dataPemesanan.show',compact('data'));
+        $datapemesan = $datapemesanan;
+
+        Log::info($datapemesanan);
+
+        $data = DB::table("detail_pemesanans")
+        ->leftJoin("layanans", "detail_pemesanans.layanans_id", "=", "layanans.id")
+        ->leftJoin("penyewaan_alats", "detail_pemesanans.penyewaan_alats_id", "=", "penyewaan_alats.id")
+        ->leftJoin("pemesanans", "detail_pemesanans.pemesanans_id", "=", "pemesanans.id")
+        ->leftJoin("produks", "detail_pemesanans.produks_id", "=", "produks.id")
+        ->leftJoin("pakets", "detail_pemesanans.pakets_id", "=", "pakets.id")
+        ->orderBy("pemesanans_id", "ASC")
+        ->select("detail_pemesanans.*", "layanans.judul_layanan", "penyewaan_alats.nama_alat", 
+                 "pemesanans.nama", "pemesanans.bukti_transfer", "pemesanans.total", "produks.judul_produk", "pakets.judul_paket")
+        ->where('detail_pemesanans.pemesanans_id',$datapemesan->id)->get();
+
+        Log::info($data);
+        return view('detailpemesanan.show',compact('data'));
     }
 
     public function update(Request $request, Pemesanan $datapemesanan)
     {
         $pemesanan->status_pembayaran=$request->get('status_pembayaran');
         $pemesanan->status_pemesanan=$request->get('status_pemesanan');
+        $pemesanan->estimasi_selesai=$request->get('estimasi_selesai');
         $pemesanan->save(); 
 
-        return redirect()->route('datapemesanan.index')->with('status', 'Data pemesanan berhasil tersimpan');
+        return redirect()->route('datapemesanan.index')->with('status', 'Data pemesanan berhasil diubah');
     }
 
     public function destroy(Pemesanan $datapemesanan)
@@ -60,10 +77,11 @@ class DataPemesananController extends Controller
         $datapemesanan=Pemesanan::find($id);
         $datapemesanan->status_pembayaran=$request->get('status_pembayaran');
         $datapemesanan->status_pemesanan=$request->get('status_pemesanan');
+        $datapemesanan->estimasi_selesai=$request->get('estimasi_selesai');
         $datapemesanan->save();
         return response()->json(array(
             'status'=>'oke',
-            'msg'=>'Data pemesanan berhasil di update'
+            'msg'=>'Data pemesanan berhasil di ubah'
         ),200);
     }
 

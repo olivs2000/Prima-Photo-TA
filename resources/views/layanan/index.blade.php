@@ -212,7 +212,7 @@
 
                     <!-- Paket -->
                     <li class="dropdown ">
-                        <a href="{{url('paket')}}">Paket</a>
+                        <a href="{{url('paket')}}">Paket Fotografi</a>
                     </li><!-- / Paket -->
 
 				</ul>
@@ -241,11 +241,13 @@
 
 <br><br><br>
 
-@if(session('success'))
+{{-- @if(session('success'))
 <div class="alert alert-success alert-common alert-solid" role="alert"><i class="tf-ion-thumbsup"></i> Horee!!
 {{session('success')}}
 </div>
-@endif
+@endif --}}
+
+@include('sweetalert::alert') 
 
 <br><br><br>
 
@@ -256,6 +258,7 @@
 <img src="{{$layanan->gambar}}" alt="" style="width:100%">
 <h4>{{$layanan->judul_layanan}}</h4> <br>
 <p class="price">Rp. {{number_format($layanan->harga)}}</p><br>
+<p class="price">{{$layanan->kirim_foto}}</p><br>
 <a href="{{url('layanan/'.$layanan->id)}}" class="btn-solid-border">Lihat Detail</a>  <br><br> 
 <a href="{{url('add-to-cart-layanan/' .$layanan->id)}}" class="btn-main">Masukan Keranjang</a> <br><br> 
 </div>

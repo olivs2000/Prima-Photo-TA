@@ -7,7 +7,7 @@ use Illuminate\Database\QueryException;
 use App\JadwalFotografer;
 use App\AdminStudio;
 use App\DataFotografer;
-use App\DetailPemesanan;
+use App\Pemesanan;
 use Illuminate\Http\Request;
 use DB;
 
@@ -21,12 +21,12 @@ class JadwalFotograferController extends Controller
     public function index()
     {
         $queryBuilder=DB::table("jadwal_fotografers")
-            ->leftJoin("detail_pemesanans", "jadwal_fotografers.detail_pemesanans_id", "=", "detail_pemesanans.id")
+            ->leftJoin("pemesanans", "jadwal_fotografers.pemesanans_id", "=", "pemesanans.id")
             ->leftJoin("admin_studios", "jadwal_fotografers.admin_studios_id", "=", "admin_studios.id")
             ->leftJoin("data_fotografers", "jadwal_fotografers.data_fotografers_id", "=", "data_fotografers.id")
-            ->orderBy("jadwal_fotografers.detail_pemesanans_id", "ASC")
-            ->select("jadwal_fotografers.*", "detail_pemesanans.id as detail_pemesanans_id", 
-                     "admin_studios.nama_admin", "data_fotografers.nama")
+            ->orderBy("jadwal_fotografers.pemesanans_id", "ASC")
+            ->select("jadwal_fotografers.*", "pemesanans.nama", 
+                     "admin_studios.nama_admin", "data_fotografers.nama_fotografer")
             ->get();
         return view('jadwalfotografer.index',['data'=>$queryBuilder]);
     }
@@ -40,7 +40,7 @@ class JadwalFotograferController extends Controller
     {
         $admin=AdminStudio::all();
         $fotografer=DataFotografer::all();
-        $pemesanan=DetailPemesanan::all();
+        $pemesanan=Pemesanan::all();
         return view('jadwalfotografer.create', compact('admin','fotografer','pemesanan'));
     }
 
@@ -54,7 +54,7 @@ class JadwalFotograferController extends Controller
     {
         $data=new JadwalFotografer();
         
-        $data->detail_pemesanans_id=$request->get('detail_pemesanans_id');
+        $data->pemesanans_id=$request->get('pemesanans_id');
         $data->data_fotografers_id=$request->get('data_fotografers_id');
         $data->admin_studios_id=$request->get('admin_studios_id');
         $data->status=$request->get('status');
@@ -85,16 +85,16 @@ class JadwalFotograferController extends Controller
         $id=$jadwalfotografer;
          
         $data=DB::table("jadwal_fotografers")
-        ->leftJoin("detail_pemesanans", "jadwal_fotografers.detail_pemesanans_id", "=", "detail_pemesanans.id")
+        ->leftJoin("pemesanans", "jadwal_fotografers.pemesanans_id", "=", "pemesanans.id")
         ->leftJoin("admin_studios", "jadwal_fotografers.admin_studios_id", "=", "admin_studios.id")
         ->leftJoin("data_fotografers", "jadwal_fotografers.data_fotografers_id", "=", "data_fotografers.id")
-        ->select("jadwal_fotografers.*", "detail_pemesanans.id as detail_pemesanans_id", 
-                 "admin_studios.nama_admin", "data_fotografers.nama")
+        ->select("jadwal_fotografers.*", "pemesanans.nama", 
+                 "admin_studios.nama_admin", "data_fotografers.nama_fotografer")
         ->where("jadwal_fotografers.id", $id)
         ->first();
 
-        $dataDetailPemesanan=DB::table("detail_pemesanans")
-        ->select("detail_pemesanans.id")
+        $dataPemesanan=DB::table("pemesanans")
+        ->select("pemesanans.id", "nama")
         ->get();
 
         $dataAdmin=DB::table("admin_studios")
@@ -102,10 +102,10 @@ class JadwalFotograferController extends Controller
         ->get();
 
         $dataFotografer=DB::table("data_fotografers")
-        ->select("data_fotografers.id", "nama")
+        ->select("data_fotografers.id", "nama_fotografer")
         ->get();
 
-        return view("jadwalfotografer.edit",compact('data', 'dataDetailPemesanan', 'dataAdmin', 'dataFotografer'));
+        return view("jadwalfotografer.edit",compact('data', 'dataPemesanan', 'dataAdmin', 'dataFotografer'));
     }
 
     /**
@@ -117,13 +117,13 @@ class JadwalFotograferController extends Controller
      */
     public function update(Request $request, jadwalfotografer $jadwalfotografer)
     {
-        $jadwalfotografer->detail_pemesanans_id=$request->get('detail_pemesanans_id');
+        $jadwalfotografer->pemesanans_id=$request->get('pemesanans_id');
         $jadwalfotografer->data_fotografers_id=$request->get('data_fotografers_id');
         $jadwalfotografer->admin_studios_id=$request->get('admin_studios_id');
         $jadwalfotografer->status=$request->get('status');
         $jadwalfotografer->save(); 
 
-        return redirect()->route('jadwalfotografer.index')->with('status', 'Jadwal fotografer berhasil tersimpan');
+        return redirect()->route('jadwalfotografer.index')->with('status', 'Jadwal fotografer berhasil diubah');
     }
 
     /**
@@ -152,10 +152,10 @@ class JadwalFotograferController extends Controller
         $id=$request->get('id');
         
         $data=DB::table("jadwal_fotografers")
-        ->join("detail_pemesanans", "jadwal_fotografers.detail_pemesanans_id", "=", "detail_pemesanans.id")
+        ->join("pemesanans", "jadwal_fotografers.pemesanans_id", "=", "pemesanans.id")
         ->join("admin_studios", "jadwal_fotografers.admin_studios_id", "=", "admin_studios.id")
         ->join("data_fotografers", "jadwal_fotografers.data_fotografers_id", "=", "data_fotografers.id")
-        ->select("jadwal_fotografers.*", "detail_pemesanans.id as detail_pemesanans_id", "admin_studios.nama_admin", "data_fotografers.nama")
+        ->select("jadwal_fotografers.*", "pemesanans.nama", "admin_studios.nama_admin", "data_fotografers.nama_fotografer")
         ->where("jadwal_fotografers.id", $id)
         ->first();
         
@@ -171,7 +171,7 @@ class JadwalFotograferController extends Controller
         $jadwalfotografer=JadwalFotografer::find($id);
         
         $jadwalfotografer->admin_studios_id=$request->get('admin_studios_id');
-        $jadwalfotografer->detail_pemesanans_id=$request->get('detail_pemesanans_id');
+        $jadwalfotografer->pemesanans_id=$request->get('pemesanans_id');
         $jadwalfotografer->data_fotografers_id=$request->get('data_fotografers_id');
         $jadwalfotografer->status=$request->get('status');
         $jadwalfotografer->save(); 

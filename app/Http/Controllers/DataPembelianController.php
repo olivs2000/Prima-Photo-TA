@@ -155,7 +155,7 @@ class DataPembelianController extends Controller
         $datapembelian->status=$request->get('status');
         $datapembelian->save(); 
 
-        return redirect()->route('datapembelian.index')->with('status', 'Data pembelian berhasil tersimpan');
+        return redirect()->route('datapembelian.index')->with('status', 'Data pembelian berhasil diubah');
     }
 
     /**

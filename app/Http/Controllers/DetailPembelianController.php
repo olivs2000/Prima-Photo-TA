@@ -145,7 +145,7 @@ class DetailPembelianController extends Controller
         $detailpembelian->total=$request->total;
         $detailpembelian->save(); 
 
-        return redirect('datapembelian/'.$request->data_pembelians_id.'/edit')->with('status', 'Detail pembelian berhasil tersimpan');
+        return redirect('datapembelian/'.$request->data_pembelians_id.'/edit')->with('status', 'Detail pembelian berhasil diubah');
     }
 
     /**

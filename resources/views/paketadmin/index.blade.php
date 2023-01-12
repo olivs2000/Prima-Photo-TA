@@ -18,7 +18,7 @@
 
 @can('add-permission')
 <div class="page-toolbar">
-<a href="{{url('paketadmin/create')}}" class="btn btn-info" type="button">+ Tambah Paket</a>	
+<a href="{{url('paketadmin/create')}}" class="btn btn-info" type="button">+ Tambah Paket Fotografi</a>	
 </div>
 @endcan
 

@@ -62,7 +62,7 @@
         <div class="block text-center">
         	<i class="tf-ion-android-checkmark-circle"></i>
           <h2 class="text-center">Terima kasih telah melakukan pendaftaran!</h2>
-          <p>Untuk info lebih lanjut silahkan cek email anda.</p>
+          <p>Kami akan menghubungi anda kembali melalui email yang telah anda kirim untuk proses selanjutnya.</p>
 			<a href="{{url('pelanggan')}}"class="btn btn-main mt-20">Beranda Pelanggan</a>
 
 			

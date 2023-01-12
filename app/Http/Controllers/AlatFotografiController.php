@@ -105,7 +105,7 @@ class AlatFotografiController extends Controller
         $alatfotografi->status=$request->get('status');
         $alatfotografi->save(); 
 
-        return redirect()->route('alatfotografi.index')->with('status', 'Alat Fotografi berhasil tersimpan');
+        return redirect()->route('alatfotografi.index')->with('status', 'Alat Fotografi berhasil diubah');
     }
 
     /**

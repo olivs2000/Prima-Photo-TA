@@ -62,9 +62,26 @@ class DetailPemesananController extends Controller
      * @param  \App\DetailPemesanan  $detailpemesanan
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(DetailPemesanan $detailpemesanan)
     {
-        //
+        $data = $datapemesanan;
+
+        $detailDataPemesanan=DB::table("detail_pemesanans")
+            ->leftJoin("layanans", "detail_pemesanans.layanans_id", "=", "layanans.id")
+            ->leftJoin("penyewaan_alats", "detail_pemesanans.penyewaan_alats_id", "=", "penyewaan_alats.id")
+            ->leftJoin("pemesanans", "detail_pemesanans.pemesanans_id", "=", "pemesanans.id")
+            ->leftJoin("produks", "detail_pemesanans.produks_id", "=", "produks.id")
+            ->leftJoin("pakets", "detail_pemesanans.pakets_id", "=", "pakets.id")
+            ->where("detail_pemesanans.pemesanans_id", $data->id)
+            ->select("detail_pemesanans.*", "layanans.judul_layanan", "penyewaan_alats.nama_alat", "produks.judul_produk", "pakets.judul_paket",
+                     "pemesanans.nama", "pemesanans.jumlah", "pemesanans.harga", "pemesanans.total")
+            ->get();
+
+        Log::info(json_encode($data->id));
+        
+        Log::info("File exist----------------------------");
+
+        return view('detailpemesanan.show',compact('data'));
     }
 
     /**
@@ -91,7 +108,7 @@ class DetailPemesananController extends Controller
         $detailpemesanan->estimasi_sampai=$request->get('estimasi_sampai');
         $detailpemesanan->save(); 
 
-        return redirect()->route('detailpemesanan.index')->with('status', 'Detail pemesanan berhasil tersimpan');
+        return redirect()->route('detailpemesanan.index')->with('status', 'Detail pemesanan berhasil diubah');
     }
 
     /**

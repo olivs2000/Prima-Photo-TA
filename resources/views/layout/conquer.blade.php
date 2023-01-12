@@ -47,7 +47,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <link href="{{ asset('assets/css/style-responsive.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset('assets/css/plugins.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset('assets/css/pages/tasks.css')}}" rel="stylesheet" type="text/css"/>
-<link href="{{ asset('assets/css/themes/red.css')}}" rel="stylesheet" type="text/css" id="style_color"/>
+<link href="{{ asset('assets/css/themes/light.css')}}" rel="stylesheet" type="text/css" id="style_color"/>
 <link href="{{ asset('assets/css/custom.css')}}" rel="stylesheet" type="text/css"/>
 {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/dropzone.min.js" type="text/javascript"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js" type="text/javascript"></script>
@@ -81,7 +81,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<ul class="nav navbar-nav pull-right">
 
 			<!-- BEGIN NOTIFICATION DROPDOWN -->
-			{{-- <li class="dropdown" id="header_notification_bar">
+			<li class="dropdown" id="header_notification_bar">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 				<i class="icon-bell"></i>
 				<span class="badge badge-success">
@@ -182,11 +182,11 @@ License: You must have a valid license purchased only from themeforest(the above
 						<a href="#">See all notifications <i class="fa fa-angle-right"></i></a>
 					</li>
 				</ul>
-			</li> --}}
+			</li>
 			<!-- END NOTIFICATION DROPDOWN -->
 
 			<!-- BEGIN INBOX DROPDOWN -->
-			{{-- <li class="dropdown" id="header_inbox_bar">
+			<li class="dropdown" id="header_inbox_bar">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 				<i class="icon-envelope-open"></i>
 				<span class="badge badge-info">
@@ -281,11 +281,11 @@ License: You must have a valid license purchased only from themeforest(the above
 						<a href="inbox.html">See all messages <i class="fa fa-angle-right"></i></a>
 					</li>
 				</ul>
-			</li> --}}
+			</li>
 			<!-- END INBOX DROPDOWN -->
 
 			<!-- BEGIN TODO DROPDOWN -->
-			{{-- <li class="dropdown" id="header_task_bar">
+			<li class="dropdown" id="header_task_bar">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 				<i class="icon-calendar"></i>
 				<span class="badge badge-warning">
@@ -417,7 +417,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<a href="#">See all tasks <i class="fa fa-angle-right"></i></a>
 					</li>
 				</ul>
-			</li> --}}
+			</li>
 			<!-- END TODO DROPDOWN -->
 			
 			

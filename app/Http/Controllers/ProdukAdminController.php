@@ -84,7 +84,7 @@ class ProdukAdminController extends Controller
 
         $produkadmin->save(); 
 
-        return redirect()->route('produkadmin.index')->with('status', 'Produk berhasil tersimpan');
+        return redirect()->route('produkadmin.index')->with('status', 'Produk berhasil diubah');
     }
 
     public function saveData(Request $request)

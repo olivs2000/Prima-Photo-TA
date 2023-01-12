@@ -143,7 +143,9 @@ class PaketController extends Controller
         }
         
         session()->put('cart2', $cart);
+
+        alert()->success('Success','Paket berhasil ditambahkan ke keranjang'); 
         
-        return redirect()->back()->with('success', 'Paket berhasil ditambahkan ke keranjang');
+        return redirect()->back();
     }
 }

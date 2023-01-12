@@ -23,10 +23,10 @@
 	<div class="form-body">
 
         <div class="form-group">
-            <label>Detail Pemesanan</label>
-            <select class="form-control" name="detail_pemesanans_id">
-                @foreach($dataDetailPemesanan as $dp)
-                    <option value='{{$dp->id}}'>{{$dp->id}}</option> 
+            <label>Nama Pemesanan</label>
+            <select class="form-control" name="pemesanans_id">
+                @foreach($dataPemesanan as $dp)
+                    <option value='{{$dp->id}}'>{{$dp->nama}}</option> 
                 @endforeach
             </select>
         </div>
@@ -35,7 +35,7 @@
             <label>Nama Fotografer</label>
             <select class="form-control" name="data_fotografers_id">
                 @foreach($dataFotografer as $df)
-                    <option value='{{$df->id}}'>{{$df->nama}}</option> 
+                    <option value='{{$df->id}}'>{{$df->nama_fotografer}}</option> 
                 @endforeach
             </select>
         </div>

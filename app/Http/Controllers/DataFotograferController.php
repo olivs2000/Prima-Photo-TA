@@ -47,7 +47,7 @@ class DataFotograferController extends Controller
         $file->move($imgFolder, $fileName);
         
         $data->pas_foto=$fileName;
-        $data->nama=$request->get('nama');
+        $data->nama_fotografer=$request->get('nama_fotografer');
         $data->alamat=$request->get('alamat');
         $data->notelepon=$request->get('notelepon');
         $data->email=$request->get('email');
@@ -92,7 +92,7 @@ class DataFotograferController extends Controller
     public function update(Request $request, datafotografer $datafotografer)
     {
         $datafotografer->pas_foto=$request->get('pas_foto');
-        $datafotografer->nama=$request->get('nama');
+        $datafotografer->nama_fotografer=$request->get('nama_fotografer');
         $datafotografer->alamat=$request->get('alamat');
         $datafotografer->notelepon=$request->get('notelepon');
         $datafotografer->email=$request->get('email');
@@ -100,7 +100,7 @@ class DataFotograferController extends Controller
         $datafotografer->status=$request->get('status');
         $datafotografer->save(); 
 
-        return redirect()->route('datafotografer.index')->with('status', 'Data fotografer berhasil tersimpan');
+        return redirect()->route('datafotografer.index')->with('status', 'Data fotografer berhasil diubah');
     }
 
     /**
@@ -129,7 +129,7 @@ class DataFotograferController extends Controller
         $id=$request->get('id');
         $datafotografer=DataFotografer::find($id);
         $datafotografer->pas_foto=$request->get('pas_foto');
-        $datafotografer->nama=$request->get('nama');
+        $datafotografer->nama_fotografer=$request->get('nama_fotografer');
         $datafotografer->alamat=$request->get('alamat');
         $datafotografer->notelepon=$request->get('notelepon');
         $datafotografer->email=$request->get('email');

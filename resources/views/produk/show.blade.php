@@ -27,7 +27,6 @@
   <link rel="stylesheet" href="{{ asset('css/styleaviato.css') }}">
 
 <!-- Start Top Header Bar -->
-
 <section class="top-header">
 <div class="container">
 <div class="row">
@@ -227,13 +226,13 @@
 	</nav>
 </section>
 
-<br>
-
-@if(session('success'))
+{{-- @if(session('success'))
 <div class="alert alert-success alert-common alert-solid" role="alert"><i class="tf-ion-thumbsup"></i> Horee!!
 {{session('success')}}
 </div>
-@endif
+@endif --}}
+
+@include('sweetalert::alert') 
 
 <section class="single-product">
 <div class="container">
@@ -245,14 +244,14 @@
 
 <!-- ini -->
 <section class="awSlider">
-	<div  class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
+<div  class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
 	  <li data-target=".carousel" data-slide-to="0" class="active"></li>
 	  <li data-target=".carousel" data-slide-to="1"></li>
 	  <li data-target=".carousel" data-slide-to="2"></li>
-  </ol>
+    </ol>
   
-  <div class="carousel-inner" role="listbox">
+    <div class="carousel-inner" role="listbox">
 	  @foreach ($data->gambar_detail as $key => $gambar_detail)
 		  @if ($key == 0)
 			  <div class="item active">
@@ -265,14 +264,14 @@
 		  @endif
 		  
 	  @endforeach
-  </div>
+    </div>
   
   </div>
   </section>
   <!-- ini-->
 
 <div class="product-quantity">
-<span>Stok :</span> {{$data->stok}}
+<span>Stok :</span> {{$data->stok}} pcs
 </div>
 
 <div class="product-quantity">
@@ -284,7 +283,7 @@
 </div>
 
 <div class="product-quantity quantity">
-	<span>Jumlah :</span>
+	<span>Jumlah / pcs :</span>
 	<div class="product-quantity-slider">
 		<input id="qty-input product-quantity" type="text" value="1" maxlength="2" name="product-quantity">{{$data->jumlah}}
 	</div>

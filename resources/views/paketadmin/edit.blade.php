@@ -11,7 +11,7 @@
 				<i class="fa fa-angle-right"></i>
 			</li>
 			<li>
-				<a href="#">Paket</a>
+				<a href="#">Paket Fotografi</a>
 			</li>
 		</ul>
 </div>
@@ -63,7 +63,7 @@
         </div>
 
         <div class="form-group">
-            <label>Jumlah Jepretan</label>
+            <label>Jumlah Pemotretan</label>
             <input type="number" class="form-control" name="jumlah_jepretan" value="{{$data->jumlah_jepretan}}">
         </div>
     

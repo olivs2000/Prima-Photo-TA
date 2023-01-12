@@ -27,7 +27,7 @@
 
 <div class="form-group">
 	<label>Nama</label>
-	<input type="text" class="form-control" name="nama">
+	<input type="text" class="form-control" name="nama_fotografer">
 </div>
 
 <div class="form-group">

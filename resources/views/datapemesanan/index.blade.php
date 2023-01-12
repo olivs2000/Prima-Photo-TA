@@ -52,7 +52,7 @@
     <th>Lokasi Acara</th>
     <th>Tanggal Acara</th>
     <th>Waktu Acara</th>
-    <th>Total</th> 
+    <th>Estimasi Selesai</th> 
     <th>Status Pembayaran</th> 
     <th>Status Pemesanan</th>
     <th colspan='1'></th>  
@@ -71,17 +71,7 @@
   <td>{{$p->lokasi_acara}}</td>
   <td>{{$p->tanggal_acara}}</td>
   <td>{{$p->waktu_acara}}</td>
-  <td>Rp. {{number_format($p->total)}}</td>  
-
-  {{-- <td>
-    @if($col->status == 'ditolak')
-      <span id='td-status-{{$col->id}}' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">Ditolak</span>
-    @elseif($col->status == 'diterima')
-      <span id='td-status-{{$col->id}}' class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Diterima</span>
-    @else
-      <span id='td-status-{{$col->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Tahap Seleksi</span>
-    @endif
-  </td> --}}
+  <td>{{$p->estimasi_selesai}}</td>  
 
   <td id='td-status_pembayaran-{{$p->id}}'> 
     @if($p->status_pembayaran == 'gagal')
@@ -103,13 +93,19 @@
     @endif
   </td>
 
-  {{-- <td id='td-status_pemesanan-{{$p->id}}'> 
-    @if($p->status_pemesanan == 'proses')
-      <span class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">proses</span>
-    @else
-      <span class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">selesai</span>
-    @endif
-  </td> --}}
+  <td>
+    <a class='btn btn-info' href="{{route('datapemesanan.show',$p->id)}}" data-target="#show{{$p->id}}" data-toggle='modal'>Detail</a> 
+    
+    <div class="modal fade" id="show{{$p->id}}" tabindex="-1" role="basic" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div style="text-align:center">
+            <img src="{{asset('/assets/img/cam1.gif')}}"/>
+            </div>
+        </div>
+      </div>
+    </div>
+  </td>
 
   <td>
     <a href="#modalEdit" data-toggle='modal' class="btn btn-warning" onclick="editForm({{$p->id}})">Ubah</a> 
@@ -159,19 +155,22 @@ function saveDataUpdateTD(id)
 {
   var eStatusPembayaran = $('#eStatusPembayaran').val();
   var eStatusPemesanan = $('#eStatusPemesanan').val();
+  var eEstimasiSelesai = $('#eEstimasiSelesai').val();
   $.ajax({
     type:'POST',
     url:'{{route("datapemesanan.saveData")}}',
     data:{'_token':'<?php echo csrf_token() ?>',
         'id':id,
         'status_pembayaran':eStatusPembayaran,
-        'status_pemesanan':eStatusPemesanan
+        'status_pemesanan':eStatusPemesanan,
+        'estimasi_selesai':eEstimasiSelesai
         },
     success: function(data){
       if(data.status=='oke')
       {
         $('#td_status_pembayaran_'+id).html(eStatusPembayaran)
         $('#td_status_pemesanan_'+id).html(eStatusPemesanan)
+        $('#td_estimasi_selesai_'+id).html(eEstimasiSelesai)
         $('#pesan').show();
         $('#pesan').html(data.msg)
       }

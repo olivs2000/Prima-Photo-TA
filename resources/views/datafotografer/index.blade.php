@@ -69,7 +69,7 @@
 <tr>
   <td>{{ $df->id }}</td>
   <td id='td-pas_foto-{{$df->id}}'><img src='images/{{$df->pas_foto}}' height='50px'></td>
-  <td id='td-nama-{{$df->id}}'>{{ $df->nama }}</td>
+  <td id='td-nama_fotografer-{{$df->id}}'>{{ $df->nama_fotografer }}</td>
   <td id='td-alamat-{{$df->id}}'>{{ $df->alamat }}</td>
   <td id='td-notelepon-{{$df->id}}'>{{ $df->notelepon }}</td>
   <td id='td-email-{{$df->id}}'>{{ $df->email }}</td>

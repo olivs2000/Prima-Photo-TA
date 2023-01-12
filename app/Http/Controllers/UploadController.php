@@ -14,20 +14,15 @@ class UploadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(Request $request, $pemesanan_id)
     {
-        // $pemesanan = Pemesanan::find($pemesanan_id);
-        // $queryBuilder=DetailPemesanan::where('pemesanans_id',$pemesanan_id)->get();
-        // return view('uploadbuktitf.index',['pemesanan'=>$pemesanan,'data'=>$queryBuilder]);
-
-        // $queryRaw=DB::select(DB::raw("select * from pemesanans"));
         return view('uploadbuktitf.index',['data'=>$pemesanan_id]);
-
     }
 
     /**
      * Show the form for creating a new resource.
-     *
+     *++
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -45,16 +40,16 @@ class UploadController extends Controller
     public function store(Request $request)
     {
         $data=Pemesanan::find($request->pemesanan);
-        
         $file=$request->file('bukti_transfer');
         $imgFolder='images';
         $fileName=time()."_".$file->getClientOriginalName();
         $file->move($imgFolder, $fileName);
         $data->bukti_transfer=$fileName;
-
         $data->save();
 
-        return redirect()->back()->with('success', 'Bukti transfer anda telah terkirim');
+        alert()->success('SuccessAlert','Bukti transfer anda telah terkirim.'); 
+
+        return redirect()->route('riwayatpemesanan.index', [$request->pemesanan]);
     }
 
     /**

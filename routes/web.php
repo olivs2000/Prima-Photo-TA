@@ -69,10 +69,12 @@ Route::middleware(['auth'])->group(function () {
     
 
     Route::post('remove-from-cart',[CheckoutController::class,'removeFromCart'])->name('remove.from.cart');
+    
     Route::resource('checkout','CheckoutController');
     Route::post('checkout/store','CheckoutController@store')->name('checkout.store');
 
     Route::get('konfirmasi/{pemesanan_id}','KonfirmasiController@index')->name('konfirmasi.index');
+
     Route::resource('konfirmasi','KonfirmasiController',['except' => ['index']]);
 
     Route::resource('konfirmasicol','KonfirmasicolController');
@@ -88,10 +90,19 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('informasipelanggan','InformasiPelangganController');
 
+    Route::delete('riwayatpemesanan/{pemesanan_id}', [RiwayatPemesananController::class, 'delete'])->name('riwayatpemesanan.delete');
+
     Route::get('riwayatpemesanan/{pemesanan_id}','RiwayatPemesananController@index')->name('riwayatpemesanan.index');
     Route::resource('riwayatpemesanan','RiwayatPemesananController',['except' => ['index']]);
 
+    Route::post('/riwayatpemesanan/deleteData','RiwayatPemesananController@deleteData')->name('riwayatpemesanan.deleteData');
 
+    // Route::post('/riwayatpemesanan/deleteData','RiwayatPemesananController@deleteData')->name('riwayatpemesanan.deleteData');
+    // Route::post('/delete-pemesanan','RiwayatPemesananController@deletePemesanan')->name('delete.riwayatpemesanan');
+    // Route::get('riwayatpemesanan/delete','RiwayatPemesananController@delete')->name('riwayatpemesanan.delete');
+
+    //Route::get('riwayatpemesanan', [RiwayatPemesananController::class, 'index'])->name('riwayatpemesanan.index');
+    
     Route::resource('/detailpemesananpelanggan','DetailPemesananPelangganController');
 
 
@@ -362,6 +373,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/detailpemesanan/editForm','DetailPemesananController@editForm')->name('detailpemesanan.editForm');
     Route::post('/detailpemesanan/edit','DetailPemesananController@edit')->name('detailpemesanan.edit');
     Route::post('/detailpemesesanan/saveData','DetailpemesananController@saveData')->name('detailpemesanan.saveData');
+    Route::post('/detailpemesesanan/showDetailPemesanan','DetailpemesananController@showDetailPemesanan')->name('detailpemesanan.showDetailPemesanan');
 
     Route::resource('/datapembelian','DataPembelianController');
     Route::resource('/datapembelian','DataPembelianController',['except' => ['store','update','destroy']]);

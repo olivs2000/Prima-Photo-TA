@@ -50,7 +50,7 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>No Detail Pemesanan</th>
+      <th>Pemesanan</th>
       <th>Nama Fotografer</th>
       <th>Admin Studio</th>
       <th>Status</th>
@@ -63,8 +63,8 @@
 @foreach($data as $jf)
   <tr id='tr_{{$jf->id}}'>
     <td>{{$jf->id}}</td>
-    <td id='td-detail_pemesanans_id-{{$jf->id}}'>{{$jf->detail_pemesanans_id}}</a></td>
-    <td id='td-data_fotografers_id-{{$jf->id}}'>{{$jf->nama}}</td>
+    <td id='td-pemesanans_id-{{$jf->id}}'>{{$jf->nama}}</a></td>
+    <td id='td-data_fotografers_id-{{$jf->id}}'>{{$jf->nama_fotografer}}</td>
     <td id='td-admin_studios_id-{{$jf->id}}'>{{$jf->nama_admin}}</td>
 
     <td id='td-status-{{$jf->id}}'> 

@@ -45,7 +45,7 @@
 	</div>
 	
 	<div class="form-group">
-		<label>Jumlah Jepretan</label>
+		<label>Jumlah Pemotretan</label>
 		<input type="number" class="form-control" name="jumlah_jepretan">
 	</div>
 

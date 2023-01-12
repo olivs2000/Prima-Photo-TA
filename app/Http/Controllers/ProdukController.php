@@ -112,8 +112,10 @@ class ProdukController extends Controller
             $cart[$id]['jumlah']++;
         }
         session()->put('cart1', $cart);
+
+        alert()->success('Success','Produk berhasil ditambahkan ke keranjang'); 
         
-        return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang');
+        return redirect()->back();
     }
 
     public function getListProduk(Request $request)

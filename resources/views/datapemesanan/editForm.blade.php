@@ -27,6 +27,11 @@
         <option>selesai</option> 
       </select>
   </div>
+
+  <div class="form-group">
+    <label>Estimasi Selesai</label>
+      <input type="date" class="form-control" id="eEstimasiSelesai" name="eEstimasiSelesai"  value="{{$data->estimasi_selesai}}">
+   </div>
    
   </div>
 

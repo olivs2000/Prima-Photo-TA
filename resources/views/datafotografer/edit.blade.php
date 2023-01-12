@@ -29,7 +29,7 @@
     
         <div class="form-group">
             <label>Nama</label>
-            <input type="text" class="form-control" name="nama" value="{{$data->nama}}">
+            <input type="text" class="form-control" name="nama_fotografer" value="{{$data->nama_fotografer}}">
         </div>
     
         <div class="form-group">

@@ -225,11 +225,13 @@
 
 <br>
 
-@if(session('success'))
+{{-- @if(session('success'))
 <div class="alert alert-success alert-common alert-solid" role="alert"><i class="tf-ion-thumbsup"></i> Horee!!
 {{session('success')}}
 </div>
-@endif
+@endif --}}
+
+@include('sweetalert::alert') 
 
 <section class="single-product">
 <div class="container">
@@ -266,16 +268,20 @@
 </section>
 <!-- ini-->
 
-<div class="product-quantity">
-	<span>Stok :</span> {{$data->stok}}
+<div>
+	<strong>Stok : </strong> {{$data->stok}} pcs
 </div>
 
-<div class="product-quantity">
-	<span class="product-price">Harga :</span> Rp. {{number_format($data->harga)}}
+<br>
+
+<div>
+	<strong class="product-price">Harga : </strong> Rp. {{number_format($data->harga)}}
 </div>
 
-<div class="product-quantity">
-	<span>tipe :</span> {{$data->tipe}}
+<br>
+
+<div>
+	<strong>tipe : </strong> {{$data->tipe}}
 </div>
 
 <br>
