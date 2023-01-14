@@ -62,8 +62,7 @@ class CollaborateAdminController extends Controller
         $collaborateAdmin->status=$request->get('status');
         $collaborateAdmin->save();
         
-        alert()->success('Success','Status berhasil diubah'); 
-        
+        alert()->success('Success','Status berhasil diubah');     
 
         return response()->json(array(
             'status'=>'Success',

@@ -259,8 +259,8 @@
 <h4>{{$layanan->judul_layanan}}</h4> <br>
 <p class="price">Rp. {{number_format($layanan->harga)}}</p><br>
 <p class="price">{{$layanan->kirim_foto}}</p><br>
-<a href="{{url('layanan/'.$layanan->id)}}" class="btn-solid-border">Lihat Detail</a>  <br><br> 
-<a href="{{url('add-to-cart-layanan/' .$layanan->id)}}" class="btn-main">Masukan Keranjang</a> <br><br> 
+<a href="{{url('layanan/'.$layanan->id)}}" class="btn-solid-border">Detail Layanan</a>  <br><br> 
+{{-- <a href="{{url('add-to-cart-layanan/' .$layanan->id)}}" class="btn-main">Masukan Keranjang</a> <br><br>  --}}
 </div>
 </div>
 </div>

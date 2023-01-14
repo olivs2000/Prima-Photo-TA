@@ -51,26 +51,29 @@
 <table class="table" id='dataTable'>
   <thead>
     <tr>
-      <th>ID</th>
+      <th>NO</th>
       <th>Gambar</th>
       <th>Nama Alat</th>
       <th>Stok</th>
       <th>Harga</th>
       <th>Tipe</th>
+      <th>Status</th>
       <th colspan='2'></th>
    </tr>
   </thead>
 
 <tbody>        
-
+<?php $no = 0;?>
 @foreach($data as $pa)
+<?php $no++ ;?>
 <tr>
-  <td>{{$pa->id}}</td>
+  <td>{{$no}}</td>
   <td id='td-gambar-{{$pa->id}}'><img src='{{$pa->gambar}}' height='50px'></td>
   <td id='td-nama_alat-{{$pa->id}}'>{{$pa->nama_alat}}</td>
   <td id='td-stok-{{$pa->id}}'>{{$pa->stok}}</td>
   <td id='td-harga-{{$pa->id}}'>Rp. {{number_format($pa->harga)}}</td>
-  <td id='td-tipe-{{$pa->id}}'>{{$pa->tipe}}</td>  
+  <td id='td-tipe-{{$pa->id}}'>{{$pa->tipe}}</td> 
+  <td id='td-tipe-{{$pa->id}}'>{{$pa->status}}</td>  
   
   @can('change-permission')
   <td>

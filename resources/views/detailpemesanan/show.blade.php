@@ -18,12 +18,6 @@
     
     <tbody>
       @foreach ($data as $detail)
-
-      <tr>
-        <th>Nama</th>
-        <td>{{$detail->nama}}</td>
-        </tr>
-
       <tr>
         <th>Jenis Pemesanan</th>
         <td>

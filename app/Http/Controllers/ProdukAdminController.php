@@ -24,20 +24,21 @@ class ProdukAdminController extends Controller
         return view('produkadmin.create', compact('produks'));
     }
 
-    // public function store(Request $request)
-    // {
-    //     $data=new Produk();
+    public function store(Request $request)
+    {
+        $data=new Produk();
 
-    //     $data->gambar=$request->get('gambar');
-    //     $data->gambar_detail=$request->get('gambar_detail');
-    //     $data->judul_produk=$request->get('judul_produk');
-    //     $data->stok=$request->get('stok');
-    //     $data->harga=$request->get('harga');
-    //     $data->keterangan_produk=$request->get('keterangan_produk');       
-    //     $data->save();
+        $data->gambar=$request->get('gambar');
+        $data->gambar_detail=$request->get('gambar_detail');
+        $data->judul_produk=$request->get('judul_produk');
+        $data->stok=$request->get('stok');
+        $data->harga=$request->get('harga');
+        $data->keterangan_produk=$request->get('keterangan_produk');    
+        $data->status=$request->get('status');       
+        $data->save();
 
-    //     return redirect()->route('produkadmin.index')->with('status', 'Produk baru berhasil tersimpan');
-    // }
+        return redirect()->route('produkadmin.index')->with('status', 'Produk baru berhasil tersimpan');
+    }
 
     public function edit($produkadmin)
     {
@@ -66,7 +67,8 @@ class ProdukAdminController extends Controller
         $produkadmin->judul_produk=$request->get('judul_produk');
         $produkadmin->stok=$request->get('stok');
         $produkadmin->harga=$request->get('harga');
-        $produkadmin->keterangan_produk=$request->get('keterangan_produk');   
+        $produkadmin->keterangan_produk=$request->get('keterangan_produk'); 
+        $produkadmin->status=$request->get('status');   
 
         if($request->file('file_foto')){
             Log::info("File exist----------------------------");
@@ -94,7 +96,8 @@ class ProdukAdminController extends Controller
             'judul_produk' => 'required|min:3',
             'gambar' => 'required',
             'harga' => 'required',
-            'keterangan_produk' => 'required'
+            'keterangan_produk' => 'required',
+            'status' => 'required'
         ]);
         Log::info("pass validation---------------------------");
 
@@ -120,7 +123,8 @@ class ProdukAdminController extends Controller
         $data->gambar_detail=$foldername;
         $data->judul_produk=$request->get('judul_produk');
         $data->harga=$request->get('harga');
-        $data->keterangan_produk=$request->get('keterangan_produk');       
+        $data->keterangan_produk=$request->get('keterangan_produk');  
+        $data->status=$request->get('status');       
 
         $data->save();
 

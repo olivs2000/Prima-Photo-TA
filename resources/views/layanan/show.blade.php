@@ -240,9 +240,12 @@
 <section class="single-product">
 <div class="container">
 
-<div class="col-md-7">
-<div class="single-product-details">
-<h2>{{$data->judul_layanan}}</h2>
+	
+	<div class="row mt-20">
+
+		<div class="col-md-5">
+
+
 
 <!-- ini -->
 <section class="awSlider">
@@ -271,6 +274,11 @@
 </div>
 </section>
 <!-- ini-->
+		</div>
+
+<div class="col-md-7">
+	<div class="single-product-details">
+	<h2>{{$data->judul_layanan}}</h2>
 
 <div class="product-quantity">
 	<span class="product-price">Harga :</span> Rp. {{number_format($data->harga)}}
@@ -280,13 +288,6 @@
 
 <div>
 <strong>Keterangan :</strong> {{$data->keterangan_layanan}}
-</div>
-
-<br>
-
-<div class="form-group">
-	<h5>Sertakan foto yang ingin anda cetak dibawah ini: </h5>
-	<input  type="file" class="form-control" id="kirim_foto" name="kirim_foto">
 </div>
 
 <div class="product-size">
@@ -319,10 +320,63 @@
 
 <br>
 
+<div class="form-group">
+	<h5>Sertakan foto yang ingin anda cetak dibawah ini: </h5>
+	<input  type="file" class="form-control" id="kirim_foto" name="kirim_foto">
+</div>
+
+<br>
+
 <a href="{{url('add-to-cart-layanan/' .$data->id)}}" class="btn btn-main mt-20">Masukan Keranjang</a>
 
 </div>
 </div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		<div class="tabCommon mt-20">
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#details" aria-expanded="true">Detail</a></li>
+				<li class=""><a data-toggle="tab" href="#reviews" aria-expanded="false">Layanan Tersedia</a></li>
+			</ul>
+			<div class="tab-content patternbg">
+				<div id="details" class="tab-pane fade active in">
+					<h4>Deskripsi Layanan</h4>
+					<p>Pemesanan layanan dapat dilakukan dengan mengirimkan file melalui website dalam bentuk JPEG/JPG/PNG, lama pengerjaan dilakukan berdasarkan keterangan pada masing-masing layanan. 
+						Apabila ingin melakukan pencetakan secara langsung dapat mendatangi studio Prima Photo yang berlokasi di Jl. Kamboja No. 27.</p>
+				</div>
+
+				<div id="reviews" class="tab-pane fade">
+					<div class="post-comments">
+						<ul class="media-list comments-list m-bot-50 clearlist">
+							<li class="media">
+
+								<div class="media-body">
+									<p>
+									. Album Foto 10 sheets & 15 sheets 
+									<br>
+									. Bingkai 20R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 20RS 
+									<br>
+									. Bingkai 24R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 24RS 
+									<br>
+									. Bingkai 12R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 12RS &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 12RS Mahar
+									<br>
+									. Bingkai 16R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 16RS &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 16RS Mahar
+									<br>
+									. Bingkai 4R isi 1-4 &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 5R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 6R
+									<br>
+									. Bingkai 10R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 10RS &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 10R Gandeng &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 10RS Mahar
+									</p>
+								</div>
+
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 </div>

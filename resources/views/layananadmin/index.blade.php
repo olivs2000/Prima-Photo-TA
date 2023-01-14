@@ -51,7 +51,7 @@
 <table class="table" id='dataTable'>
   <thead>
     <tr>
-      <th>ID</th>
+      <th>NO</th>
       <th>Gambar</th>
       <th>Judul Layanan</th>
       <th>Ukuran</th>
@@ -63,10 +63,11 @@
   </thead>
 
 <tbody>        
-
+  <?php $no = 0;?>
 @foreach($data as $l)
+<?php $no++ ;?>
 <tr>
-  <td>{{$l->id}}</td>
+  <td>{{$no}}</td>
   <td id='td-gambar-{{$l->id}}'><img src='{{$l->gambar}}' height='50px'></td>
   <td id='td-judul_layanan-{{$l->id}}'>{{$l->judul_layanan}}</td>
   <td id='td-ukuran_foto-{{$l->id}}'>{{$l->ukuran_foto}}</td>

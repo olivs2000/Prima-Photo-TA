@@ -75,6 +75,14 @@
             <input type="text" class="form-control" name="keterangan_produk" value="{{$data->keterangan_produk}}">
         </div>
 
+        <div class="form-group">
+            <label>Status</label>
+            <select class="form-control" name="status" value="{{$data->status}}">
+            <option>Tersedia</option> 
+            <option>Habis</option> 
+            </select>
+        </div>
+
 	</div>
 
 	<div class="form-actions">

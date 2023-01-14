@@ -256,7 +256,15 @@
 <h4>{{$produk->judul_produk}}</h4> <br>
 <p class="price">Rp. {{number_format($produk->harga)}}</p><br>
 <a href="{{url('produk/'.$produk->id)}}" class="btn-solid-border">Lihat detail</a>  <br><br> 
-<a href="{{url('add-to-cart-produk/' .$produk->id)}}" class="btn-main">Masukan Keranjang</a> <br><br> 
+
+@if($produk->status == 'tersedia')
+<a href="{{url('add-to-cart-produk/' .$produk->id)}}" class="btn-main">Masukan Keranjang</a>
+@else
+
+@endif
+<br><br>
+{{-- <a href="{{url('add-to-cart-produk/' .$produk->id)}}" class="btn-main">Masukan Keranjang</a> <br><br>  --}}
+
 </div>
 </div>
 </div>

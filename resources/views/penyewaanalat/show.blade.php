@@ -236,9 +236,11 @@
 <section class="single-product">
 <div class="container">
 
-<div class="col-md-7">
-<div class="single-product-details">
-<h2>{{$data->nama_alat}}</h2>
+	<div class="row mt-20">
+
+		<div class="col-md-5">
+
+
 
 <!-- ini -->
 <section class="awSlider">
@@ -267,6 +269,12 @@
 </div>
 </section>
 <!-- ini-->
+		</div>
+
+		<div class="col-md-7">
+			<div class="single-product-details">
+			<h2>{{$data->nama_alat}}</h2>
+
 
 <div>
 	<strong>Stok : </strong> {{$data->stok}} pcs
@@ -286,11 +294,61 @@
 
 <br>
 
+@if($data->status == 'tersedia')
 <a href="{{url('add-to-cart-penyewaanalat/' .$data->id)}}" class="btn btn-main mt-20">Masukan Keranjang</a>
+@else
+<div class="alert alert-warning alert-common" role="alert"><i class="tf-ion-alert-circled"></i><span>Peringatan!</span> Alat Fotografi tidak dapat disewa, silahkan memilih alat fotografi yang masih tersedia</div>
+@endif
 
 </div>
 </div>
 </div>
+
+<br><br><br><br>
+
+<div class="row">
+	<div class="col-xs-12">
+		<div class="tabCommon mt-20">
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#details" aria-expanded="true">Detail</a></li>
+				<li class=""><a data-toggle="tab" href="#reviews" aria-expanded="false">Alat Fotografi Tersedia</a></li>
+			</ul>
+			<div class="tab-content patternbg">
+				<div id="details" class="tab-pane fade active in">
+					<h4>Deskripsi Alat Fotografi</h4>
+					<p>Penyewaan Alat Fotografi melalui website hanya bagi pelanggan yang melakukan pemesanan jasa fotografi melalui website juga, apabila ingin melakukan penyewaan alat fotografi di studio maka anda dapat melakukan pemesanan jasa fotografer di studio yang berlokasi di Jl. Kamboja No. 27. 
+					   Waktu penyewaan alat fotografi dapat disesuaikan dengan waktu pemotretan pada paket fotografi yang dipesan. Stok alat fotografi yang tersedia pada website akan disesuaikan dengan stok penyewaan secara langsung pada studio.</p>
+				</div>
+
+				<div id="reviews" class="tab-pane fade">
+					<div class="post-comments">
+						<ul class="media-list comments-list m-bot-50 clearlist">
+							<li class="media">
+
+								<div class="media-body">
+									<p>	
+									<br>
+									. Flash Godox &nbsp; &nbsp; &nbsp; &nbsp; . Flash Canon 
+									<br>
+									. Tripod Yunteng &nbsp; &nbsp; &nbsp; &nbsp; . Tripod Takara 
+									<br>								
+									. Kamera DSLR Nikon &nbsp; &nbsp; &nbsp; &nbsp; . Kamera DSLR Canon
+									<br>
+									. Kamera Pocket Olympus &nbsp; &nbsp; &nbsp; &nbsp; . Kamera Pocket Olympus &nbsp; &nbsp; &nbsp; &nbsp; . Kamera Pocket Sony
+									<br>
+									. Backdrop &nbsp; &nbsp; &nbsp; &nbsp; . Light Stand Takara &nbsp; &nbsp; &nbsp; &nbsp; . Reflektor Lighting Tronic &nbsp; &nbsp; &nbsp; &nbsp; . Softbox Lighting Godox
+									</p>
+								</div>
+
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 
 </div>
 </section>

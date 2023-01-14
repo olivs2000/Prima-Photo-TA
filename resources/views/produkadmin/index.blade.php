@@ -51,26 +51,35 @@
 <table class="table" id='dataTable'>
   <thead>
     <tr>
-      <th>ID</th>
+      <th>NO</th>
       <th>Gambar</th>
       <th>Judul Produk</th>
       <th>Stok</th>
       <th>Harga</th>
       <th>Keterangan</th>
+      <th>Status</th>
       <th colspan='2'></th>
    </tr>
   </thead>
 
 <tbody>        
-
+<?php $no = 0;?>
 @foreach($data as $p)
+<?php $no++ ;?>
 <tr>
-  <td>{{$p->id}}</td>
+  <td>{{$no}}</td>
   <td id='td-gambar-{{$p->id}}'><img src='{{$p->gambar}}' height='50px'></td>
   <td id='td-judul_produk-{{$p->id}}'>{{$p->judul_produk}}</td>
   <td id='td-stok-{{$p->id}}'>{{$p->stok}}</td>
   <td id='td-harga-{{$p->id}}'>Rp. {{number_format($p->harga)}}</td>
   <td id='td-keterangan_produk-{{$p->id}}'>{{$p->keterangan_produk}}</td> 
+  <td id='td-status-{{$p->id}}'> 
+    @if($p->status == 'tersedia')
+      <span id='td-status-{{$p->id}}' class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Tersedia</span>
+    @else
+      <span id='td-status-{{$p->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Habis</span>
+    @endif
+  </td>  
   
   @can('change-permission')
   <td>

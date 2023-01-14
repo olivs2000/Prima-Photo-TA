@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Pemesanan;
 use App\DetailPemesanan;
 use App\RiwayatPemesanan;
+use App\JadwalFotografer;
 use DB;
 
 class RiwayatPemesananController extends Controller
@@ -64,25 +66,44 @@ class RiwayatPemesananController extends Controller
 
     public function deletePemesanan(Request $request)
     {
-        try
-        {
-            $id=$request->get('id');
-            $riwayatpemesanan=Pemesanan::find($id);
-            $riwayatpemesanan->delete(); 
-            return response()->json(array(
-            'status'=>'oke',
-            'msg'=>'Sukses menghapus data pemesanan'
-        ),200);
-        }catch(\PDOException $e){
-            return response()->json(array(
-                'status'=>'success',
-                'msg'=>'Gagal menghapus data pemesanan'
-            ),200);
-        }
+       
+            $request->validate([
+                'id' => 'required' ,
+            ]);
+    
+            $detailpemesanan = DetailPemesanan::where('pemesanans_id', $request->id)->get();
 
-        //return response()->json(['msg'=> 'success']);
+            if(count($detailpemesanan)>0){
+                foreach ($detailpemesanan as $detail) {
+                    $detail->delete();
+                }
+            }            
 
-    }
+            $jadwalFotografer = JadwalFotografer::where('pemesanans_id', $request->id)->get();
+            if(count($jadwalFotografer)>0){
+                foreach ($jadwalFotografer as $detail) {
+                    $detail->delete();
+                }
+            }
+    
+            $pemesanan = Pemesanan::find($request->id);
+
+            Log::info("pemesanan");
+            Log::info($pemesanan);
+
+            if($pemesanan != null) {
+                Log::info("get data pemesanan---------------------------");
+    
+                $pemesanan->delete();
+
+                alert()->success('Success','Pemesanan berhasil dibatalkan'); 
+                return response()->json(['msg'=> 'success']);
+            }
+            
+            alert()->error('ErrorAlert','Gagal membatalkan pemesanan'); 
+            return response()->json(['msg'=> 'error']);
+    } 
+    
 
     public function delete($id)
     {

@@ -262,8 +262,18 @@
 <img src="{{$sewa->gambar}}" alt="" style="width:100%">
 <h4>{{$sewa->nama_alat}}</h4> <br>
 <p class="price">Rp. {{number_format($sewa->harga)}}</p><br>
-<a href="{{url('penyewaanalat/'.$sewa->id)}}" class="btn-solid-border">Lihat detail</a>  <br><br> 
-<a href="{{url('add-to-cart-penyewaanalat/' .$sewa->id)}}" class="btn-main">Masukan Keranjang</a> <br><br> 
+<a href="{{url('penyewaanalat/'.$sewa->id)}}" class="btn-solid-border">Lihat detail</a>  <br><br>
+
+@if($sewa->status == 'tersedia')
+<a href="{{url('add-to-cart-penyewaanalat/' .$sewa->id)}}" class="btn-main">Masukan Keranjang</a> 
+@else
+
+@endif
+
+
+
+<br><br> 
+
 </div>
 </div>
 </div>

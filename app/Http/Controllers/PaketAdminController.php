@@ -212,13 +212,13 @@ class PaketAdminController extends Controller
     public function deleteDetailGambar(Request $request)
     {
         $request->validate([
-            'nama_gambar' => 'required' ,
+            'nama_gambar' => 'required',
             'nama_folder' => 'required',
         ]);
         Log::info("pass validation---------------------------");
 
         if(File::exists(public_path('storage/'.$request->nama_folder.'/'.$request->nama_gambar))){
-            Log::info("Delete file...............................");
+            //Log::info("Delete file...............................");
             File::delete(public_path('storage/'.$request->nama_folder.'/'.$request->nama_gambar));
         }
 

@@ -186,10 +186,6 @@
 							<abbr title="Phone">P:</abbr> (0371) 625249<br/> 
                             <abbr title="Email">E:</abbr> primaphoto27@gmail.com 
                         </address>
-                        {{-- <address>
-							<strong>Full Name</strong><br/>
-							<a href="mailto:#">first.last@email.com</a>
-						</address> --}}
                     </div>
                 </div>
 
@@ -275,6 +271,44 @@
 @endsection --}}
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script src="{{ asset('assets/plugins/jquery-1.11.0.min.js')}}" type="text/javascript"></script>
+<script src="{{ asset('assets/plugins/jquery-migrate-1.2.1.min.js')}}" type="text/javascript"></script>
+<script type="text/javascript">
+    function deletePemesanan(id){
+        swal({
+              title: `Yakin ingin membatalkan pemesanan?`,
+              text: "Jika anda membatalkan pemesanan, pesanan tidak dapat kembali lagi.",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{route('delete.pemesanan')}}",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        id:id,
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        if(data.msg == 'success'){
+                            //alert()->success('Success','Pemesanan berhasil dibatalkan'); 
+                            swal("Pemesanan berhasil dibatalkan", {
+                            icon:"success"
+                            });
+                            window.location.replace("http://127.0.0.1:8000/pelanggan");
+                        }
+                    }         
+                });
+            }
+          });
+    }
+</script>
+
+
 
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 <!-- BEGIN CORE PLUGINS -->
@@ -291,48 +325,7 @@
 <script src="{{asset('assets/scripts/app.js')}}"></script>
 
 
-{{-- @section('javascript')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
-<script type="text/javascript">
-    function deletePemesanan(id){
-        swal({
-              title: `Yakin ingin membatalkan pemesanan?`,
-              text: "Jika anda membatalkan pemesanan, pesanan tidak dapat kembali lagi.",
-              icon: "warning",
-              buttons: true,
-              dangerMode: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-                $.ajax({
-                    type: "POST",
-                    url: "{{route('delete.gambar')}}",
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        id:id,
-                    },
-                    success: function (data) {
-                        location.reload();
-                    }         
-                });
-            }
-          });
-    }
 
-	$(document).on('click', '.remove_image', function() {
-		var name = $(this).attr('id');
-		$.ajax({
-			url:"{{ route('paketadmin.delete') }}",
-			data:{name : name},
-			success:function(data)
-			{
-				load_images(); 
-			}
-		})
-	});
-
-</script>
-@endsection --}}
 
 
 

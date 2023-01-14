@@ -237,9 +237,11 @@
 <section class="single-product">
 <div class="container">
 
-<div class="col-md-7">
-<div class="single-product-details">
-<h2>{{$data->judul_produk}}</h2>
+	<div class="row mt-20">
+
+		<div class="col-md-5">
+
+
 
 
 <!-- ini -->
@@ -269,6 +271,11 @@
   </div>
   </section>
   <!-- ini-->
+		</div>
+
+  <div class="col-md-7">
+	<div class="single-product-details">
+	<h2>{{$data->judul_produk}}</h2>
 
 <div class="product-quantity">
 <span>Stok :</span> {{$data->stok}} pcs
@@ -285,16 +292,70 @@
 <div class="product-quantity quantity">
 	<span>Jumlah / pcs :</span>
 	<div class="product-quantity-slider">
-		<input id="qty-input product-quantity" type="text" value="1" maxlength="2" name="product-quantity">{{$data->jumlah}}
+		<input id="qty-input product-quantity" type="text" value="1" maxlength="2" name="product-quantity">
 	</div>
 </div>
 
 <br>
 
+@if($data->status == 'tersedia')
 <a href="{{url('add-to-cart-produk/' .$data->id)}}" class="btn btn-main mt-20">Masukan Keranjang</a>
+@else
+<div class="alert alert-warning alert-common" role="alert"><i class="tf-ion-alert-circled"></i><span>Peringatan!</span> Produk tidak dapat dipesan, silahkan memilih produk tersedia</div>
+@endif
+
+
 
 </div>
 </div>
+</div>
+
+<br><br><br><br>
+
+<div class="row">
+	<div class="col-xs-12">
+		<div class="tabCommon mt-20">
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#details" aria-expanded="true">Detail</a></li>
+				<li class=""><a data-toggle="tab" href="#reviews" aria-expanded="false">Produk Tersedia</a></li>
+			</ul>
+			<div class="tab-content patternbg">
+				<div id="details" class="tab-pane fade active in">
+					<h4>Deskripsi Produk</h4>
+					<p>Pemesanan produk melalui website hanya bagi pelanggan yang tidak dapat mendatangi studio Prima Photo, apabila ingin melakukan pembelian di studio Prima Photo dapat langsung mendatangi studio yang berlokasi di Jl. Kamboja No. 27.
+					   Stok produk yang tersedia pada website akan disesuaikan dengan stok pembelian langsung pada studio.</p>
+				</div>
+
+				<div id="reviews" class="tab-pane fade">
+					<div class="post-comments">
+						<ul class="media-list comments-list m-bot-50 clearlist">
+							<li class="media">
+
+								<div class="media-body">
+									<p>
+									. Album Foto 10 sheets & 15 sheets 
+									<br>
+									. Bingkai 20R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 20RS 
+									<br>
+									. Bingkai 24R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 24RS 
+									<br>
+									. Bingkai 12R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 12RS &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 12RS Mahar
+									<br>
+									. Bingkai 16R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 16RS &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 16RS Mahar
+									<br>
+									. Bingkai 4R isi 1-4 &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 5R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 6R
+									<br>
+									. Bingkai 10R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 10RS &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 10R Gandeng &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 10RS Mahar
+									</p>
+								</div>
+
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 </div>

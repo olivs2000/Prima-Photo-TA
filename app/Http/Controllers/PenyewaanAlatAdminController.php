@@ -33,7 +33,8 @@ class PenyewaanAlatAdminController extends Controller
         $data->nama_alat=$request->get('nama_alat');
         $data->stok=$request->get('stok');
         $data->harga=$request->get('harga');
-        $data->tipe=$request->get('tipe');       
+        $data->tipe=$request->get('tipe'); 
+        $data->status=$request->get('status');         
         $data->save();
 
         return redirect()->route('penyewaanalatadmin.index')->with('status', 'Alat baru berhasil tersimpan');
@@ -64,7 +65,8 @@ class PenyewaanAlatAdminController extends Controller
         $penyewaanalatadmin->nama_alat=$request->get('nama_alat');
         $penyewaanalatadmin->stok=$request->get('stok');
         $penyewaanalatadmin->harga=$request->get('harga');
-        $penyewaanalatadmin->tipe=$request->get('tipe'); 
+        $penyewaanalatadmin->tipe=$request->get('tipe');
+        $penyewaanalatadmin->status=$request->get('status');   
         $penyewaanalatadmin->save(); 
 
         return redirect()->route('penyewaanalatadmin.index')->with('status', 'Alat fotografi berhasil tersimpan');
@@ -77,6 +79,7 @@ class PenyewaanAlatAdminController extends Controller
         $penyewaanalatadmin->stok=$request->get('stok');
         $penyewaanalatadmin->harga=$request->get('harga');
         $penyewaanalatadmin->tipe=$request->get('tipe');   
+        $penyewaanalatadmin->status=$request->get('status');  
 
         if($request->file('file_foto')){
             Log::info("File exist----------------------------");
@@ -104,7 +107,8 @@ class PenyewaanAlatAdminController extends Controller
             'nama_alat' => 'required|min:3',
             'gambar' => 'required',
             'harga' => 'required',
-            'tipe' => 'required'
+            'tipe' => 'required',
+            'status' => 'required'
         ]);
         Log::info("pass validation---------------------------");
 
@@ -130,7 +134,8 @@ class PenyewaanAlatAdminController extends Controller
         $data->gambar_detail=$foldername;
         $data->nama_alat=$request->get('nama_alat');
         $data->harga=$request->get('harga');
-        $data->tipe=$request->get('tipe');       
+        $data->tipe=$request->get('tipe');  
+        $data->status=$request->get('status');       
 
         $data->save();
 

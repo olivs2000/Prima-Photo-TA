@@ -101,7 +101,7 @@
 <script type="text/javascript">
     function deleteGambar(foldername, filename){
         swal({
-            title: `Yakin ingin menghapus gambar?`,
+              title: `Yakin ingin menghapus gambar?`,
               text: "Jika anda menghapus gambar ini, gambar tidak dapat kembali lagi.",
               icon: "warning",
               buttons: true,

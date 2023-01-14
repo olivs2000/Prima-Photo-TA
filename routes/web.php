@@ -31,6 +31,7 @@ use App\Http\Controllers\AlatFotografiController;
 use App\Http\Controllers\DropzoneController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\InformasiPelangganController;
+use App\Http\Controllers\DaftarRiwayatPemesananController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 
@@ -90,18 +91,15 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('informasipelanggan','InformasiPelangganController');
 
-    Route::delete('riwayatpemesanan/{pemesanan_id}', [RiwayatPemesananController::class, 'delete'])->name('riwayatpemesanan.delete');
+    // Route::delete('riwayatpemesanan/{pemesanan_id}', [RiwayatPemesananController::class, 'delete'])->name('riwayatpemesanan.delete');
 
     Route::get('riwayatpemesanan/{pemesanan_id}','RiwayatPemesananController@index')->name('riwayatpemesanan.index');
     Route::resource('riwayatpemesanan','RiwayatPemesananController',['except' => ['index']]);
 
-    Route::post('/riwayatpemesanan/deleteData','RiwayatPemesananController@deleteData')->name('riwayatpemesanan.deleteData');
-
-    // Route::post('/riwayatpemesanan/deleteData','RiwayatPemesananController@deleteData')->name('riwayatpemesanan.deleteData');
-    // Route::post('/delete-pemesanan','RiwayatPemesananController@deletePemesanan')->name('delete.riwayatpemesanan');
-    // Route::get('riwayatpemesanan/delete','RiwayatPemesananController@delete')->name('riwayatpemesanan.delete');
-
-    //Route::get('riwayatpemesanan', [RiwayatPemesananController::class, 'index'])->name('riwayatpemesanan.index');
+    // Route::get('daftarriwayatpemesanan/{pemesanan_id}','DaftarRiwayatPemesananController@index')->name('daftarriwayatpemesanan.index');
+    // Route::resource('daftarriwayatpemesanan','DaftarRiwayatPemesananController',['except' => ['index']]);
+    
+    Route::resource('daftarriwayatpemesanan','DaftarRiwayatPemesananController');
     
     Route::resource('/detailpemesananpelanggan','DetailPemesananPelangganController');
 
@@ -254,6 +252,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('paketadmin','PaketAdminController');
 
     Route::post('/delete-gambar','PaketAdminController@deleteDetailGambar')->name('delete.gambar');
+    Route::post('/delete-pemesanan','RiwayatPemesananController@deletePemesanan')->name('delete.pemesanan');
 
     Route::post('/storepaket','PaketAdminController@saveData')->name('paketadmin.saveData');
 
