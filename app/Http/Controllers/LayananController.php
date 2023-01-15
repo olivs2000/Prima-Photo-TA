@@ -108,19 +108,26 @@ class LayananController extends Controller
     {
         $l=Layanan::find($id);
         $cart=session()->get('cart3');
+        $img = $request->file('kirim_foto');
         if(!isset($cart[$id]))
         {
+            $original_name = $img->getClientOriginalName();
+            $filename = 'cart3'.$id.$original_name.'.'.$img->getClientOriginalExtension();
+            $img->move(public_path('storage/cart_session'), $filename);
             $cart[$id]=[
                 "judul_layanan"=>$l->judul_layanan,
                 "gambar"=>$l->gambar,
                 "harga"=>$l->harga,
-                "jumlah"=>1,
-                "kirim_foto"=>$l->kirim_foto
+                "jumlah"=>$request->product_quantity,
+                // "product_quantity" =>$request->product_quantity,
+                "ukuran_foto"=>$request->ukuran_foto,
+                "hasil_cetak"=>$request->hasil_cetak,
+                "file_name"=>$filename,
             ];
         }
         else
         {
-            $cart[$id]['jumlah']++;
+            $cart[$id]['jumlah']+=$request->product_quantity;
         }
         session()->put('cart3', $cart);
 

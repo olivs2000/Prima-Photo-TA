@@ -49,9 +49,6 @@
     <th>No Telepon</th>
     <th>Email</th>
     <th>Alamat</th>
-    <th>Lokasi Acara</th>
-    <th>Tanggal Acara</th>
-    <th>Waktu Acara</th>
     <th>Estimasi Selesai</th> 
     <th>Status Pembayaran</th> 
     <th>Status Pemesanan</th>
@@ -68,9 +65,6 @@
   <td>{{$p->notelepon}}</td>
   <td>{{$p->email}}</td>
   <td>{{$p->alamat}}</td>
-  <td>{{$p->lokasi_acara}}</td>
-  <td>{{$p->tanggal_acara}}</td>
-  <td>{{$p->waktu_acara}}</td>
   <td>{{$p->estimasi_selesai}}</td>  
 
   <td id='td-status_pembayaran-{{$p->id}}'> 

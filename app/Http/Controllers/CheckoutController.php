@@ -23,8 +23,9 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        $queryRaw=DB::select(DB::raw("select * from pemesanans"));
-        return view('checkout.index',['pemesanan'=>$queryRaw]);
+         $queryRaw=DB::select(DB::raw("select * from pemesanans"));
+        
+        return view('checkout.index',['pemesananryRaw']);
     }
 
     /**
@@ -54,14 +55,14 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
         $data=new Pemesanan();    
-        
+        Auth::user()->id;
         $data->nama=$request->get('nama');
         $data->notelepon=$request->get('notelepon');
         $data->email=$request->get('email');
         $data->alamat=$request->get('alamat');
-        $data->lokasi_acara=$request->get('lokasi_acara');
-        $data->tanggal_acara=$request->get('tanggal_acara');
-        $data->waktu_acara=$request->get('waktu_acara');
+        // $data->lokasi_acara=$request->get('lokasi_acara');
+        // $data->tanggal_acara=$request->get('tanggal_acara');
+        // $data->waktu_acara=$request->get('waktu_acara');
         $data->total=$request->get('total');
         $data->status_pembayaran="proses";
         $data->status_pemesanan="menunggu konfirmasi";
@@ -73,6 +74,9 @@ class CheckoutController extends Controller
                 $detail=new DetailPemesanan();
                 $detail->pakets_id=($paket)?$paket->id:null;
                 $detail->pemesanans_id=$data->id;
+                $detail->lokasi_acara=$request->get('lokasi_acara');
+                $detail->tanggal_acara=$request->get('tanggal_acara');
+                $detail->waktu_acara=$request->get('waktu_acara');
                 $detail->jumlah=$request->get('jumlah')[$i]; 
                 $detail->harga=$request->get('harga')[$i];
                 $detail->total=$detail->jumlah*$detail->harga;
@@ -101,11 +105,19 @@ class CheckoutController extends Controller
                 $detail=new DetailPemesanan();
                 $detail->layanans_id=($layanan)?$layanan->id:null;
                 $detail->pemesanans_id=$data->id;
+                $detail->ukuran_foto=$request->get('ukuran_foto')[$i];
+                $detail->hasil_cetak=$request->get('hasil_cetak')[$i];
                 $detail->jumlah=$request->get('jumlah3')[$i]; 
                 $detail->harga=$request->get('harga3')[$i];
                 $detail->total=$detail->jumlah*$detail->harga;
                 $detail->tanggal_transaksi=Carbon::now();
+                $detail->file_attachment = $request->get('file_attachment')[$i];
                 $detail->save();
+
+                $img->move(public_path('storage/cart_session'), $filename);
+
+                File::move(public_path('storage/cart_session/'.$request->get('file_attachment')[$i]), public_path('storage/attachment_layanan/'.$request->get('file_attachment')[$i]));
+                File::delete(public_path('storage/cart_session/'.$request->get('file_attachment')[$i]));
             }
         }
 

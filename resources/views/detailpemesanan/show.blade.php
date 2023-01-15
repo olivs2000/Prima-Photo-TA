@@ -32,6 +32,7 @@
             @endif
         </td>
         </tr>
+        
     
         <tr>
         <th>Jumlah</th>
@@ -46,19 +47,19 @@
       @endforeach
 
       <tr> 
-        <th>Total</th>
-        <td>Rp. {{number_format($detail->total)}}</td>
-        </tr>
+      <th>Total</th>
+      <td>Rp. {{number_format($detail->total)}}</td>
+      </tr>
 
-        <tr> 
-          <th>Tanggal Transaksi</th>
-          <td>{{($detail->tanggal_transaksi)}}</td>
-        </tr>
+      <tr> 
+        <th>Tanggal Transaksi</th>
+        <td>{{($detail->tanggal_transaksi)}}</td>
+      </tr>
 
-        <tr> 
-          <th>Bukti Transfer</th>
-          <td><img src='images/{{$detail->bukti_transfer}}' height='80px'></td>
-        </tr>
+      <tr> 
+        <th>Bukti Transfer</th>
+        <td><img src='images/{{$detail->bukti_transfer}}' height='80px'></td>
+      </tr>
 
     </tbody>
     

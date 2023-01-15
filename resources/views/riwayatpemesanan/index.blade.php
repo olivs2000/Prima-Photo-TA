@@ -150,10 +150,15 @@
                                 <td>
                                     @if($rp->judul_paket!=null)
                                     {{$rp->judul_paket}}
+                                    <p class="price">{{$rp->lokasi_acara}}</p>
+                                    <p class="price">{{$rp->tanggal_acara}}</p>
+                                    <p class="price">{{$rp->waktu_acara}}</p>
                                     @elseif ($rp->judul_produk!=null)
                                     {{$rp->judul_produk}}
                                     @elseif ($rp->judul_layanan!=null)
                                     {{$rp->judul_layanan}}
+                                    <p class="price">{{$rp->hasil_cetak}}</p>
+                                    <p class="price">{{$rp->ukuran_foto}}</p>
                                     @elseif ($rp->nama_alat!=null)
                                     {{$rp->nama_alat}}
                                     @endif
@@ -201,7 +206,8 @@
                             <strong>Pengiriman: </strong> Free
                         </li>
                         <li>
-                            <strong>Status Pembayaran:</strong>  <td id='td-status_pembayaran-{{$rp->id}}'> 
+                            <strong>Status Pembayaran:</strong>  
+                            <td id='td-status_pembayaran-{{$rp->id}}'> 
                                 @if($rp->status_pembayaran == 'belum')
                                   <span id='td-status_pembayaran-{{$rp->id}}' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">belum</span>
                                 @elseif($rp->status_pembayaran == 'berhasil')
@@ -212,7 +218,8 @@
                             </td>
                         </li>
                         <li>
-                            <strong>Status Pemesanan:</strong>  <td id='td-status_pemesanan-{{$rp->id}}'> 
+                            <strong>Status Pemesanan:</strong>  
+                            <td id='td-status_pemesanan-{{$rp->id}}'> 
                                 @if($rp->status_pemesanan == 'menunggu konfirmasi')
                                   <span id='td-status_pemesanan-{{$rp->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Menunggu Konfirmasi</span>
                                 @elseif($rp->status_pemesanan == 'selesai')
@@ -220,7 +227,7 @@
                                 @else
                                   <span id='td-status_pemesanan-{{$rp->id}}' class="btn btn-xs btn-danger btn-sm m-b-10 m-l-5">Proses</span>
                                 @endif
-                              </td>
+                            </td>
                         </li>
                     </ul>
                     <br/><br/>

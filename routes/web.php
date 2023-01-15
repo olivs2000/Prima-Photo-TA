@@ -91,17 +91,19 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('informasipelanggan','InformasiPelangganController');
 
-    // Route::delete('riwayatpemesanan/{pemesanan_id}', [RiwayatPemesananController::class, 'delete'])->name('riwayatpemesanan.delete');
-
     Route::get('riwayatpemesanan/{pemesanan_id}','RiwayatPemesananController@index')->name('riwayatpemesanan.index');
     Route::resource('riwayatpemesanan','RiwayatPemesananController',['except' => ['index']]);
 
-    // Route::get('daftarriwayatpemesanan/{pemesanan_id}','DaftarRiwayatPemesananController@index')->name('daftarriwayatpemesanan.index');
-    // Route::resource('daftarriwayatpemesanan','DaftarRiwayatPemesananController',['except' => ['index']]);
+    Route::post('/riwayatpemesanan/{pemesanan_id}','DaftarRiwayatPemesananController@show')->name('daftarriwayatpemesanan.index');
+
+    Route::get('daftarriwayatpemesanan/{user_id}','DaftarRiwayatPemesananController@index')->name('daftarriwayatpemesanan.index');
+    Route::resource('daftarriwayatpemesanan','DaftarRiwayatPemesananController',['except' => ['index']]);
     
-    Route::resource('daftarriwayatpemesanan','DaftarRiwayatPemesananController');
+    // Route::resource('daftarriwayatpemesanan','DaftarRiwayatPemesananController');
     
     Route::resource('/detailpemesananpelanggan','DetailPemesananPelangganController');
+
+    Route::post('/delete-pemesanan','RiwayatPemesananController@deletePemesanan')->name('delete.pemesanan');
 
 
     // START LAYANAN //
@@ -252,7 +254,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('paketadmin','PaketAdminController');
 
     Route::post('/delete-gambar','PaketAdminController@deleteDetailGambar')->name('delete.gambar');
-    Route::post('/delete-pemesanan','RiwayatPemesananController@deletePemesanan')->name('delete.pemesanan');
 
     Route::post('/storepaket','PaketAdminController@saveData')->name('paketadmin.saveData');
 
@@ -418,7 +419,7 @@ Route::middleware(['auth'])->group(function () {
     //Cart Layanan
     Route::get('/', 'LayananController@front_index');
     Route::get('cart', 'LayananController@cart');
-    Route::get('add-to-cart-layanan/{id}', 'LayananController@addToCart');
+    Route::post('add-to-cart-layanan/{id}', 'LayananController@addToCart');
 
     Route::get('submit_checkout','CheckoutController@submit_front')->name('submitCheckout');
 
@@ -428,5 +429,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('/DETAILPEMESANANTEMP','DetailPemesananPelangganController');
 
+    Route::get('/clear-session', function(){
+        Session::flush();
+    });
 
 });

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use DB;
-use RiwayatPemesanan;
-use DataPemesanan;
+use App\RiwayatPemesanan;
+use App\Pemesanan;
+use App\User;
+use App\DetailPemesanan;
 
 class DaftarRiwayatPemesananController extends Controller
 {
@@ -14,11 +17,19 @@ class DaftarRiwayatPemesananController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $user_id)
     {
-        // return view('daftarriwayatpemesanan.index',['data'=>$pemesanan_id]);
-        $queryRaw=DB::select(DB::raw("select * from pemesanans"));
-        return view('daftarriwayatpemesanan.index',['data'=>$queryRaw]);
+        $user = User::find($user_id);
+        //dd(Auth::user()->id);
+        //Auth::user()->id;
+
+        $queryBuilder=DB::table("pemesanans")
+            ->leftJoin("detail_pemesanans", "detail_pemesanans.pemesanans_id", "=", "pemesanans.id")
+            ->leftJoin("users", "pemesanans.users_id", "=", "users.id")
+            ->select("pemesanans.*", "detail_pemesanans.total as sub_total", "detail_pemesanans.tanggal_transaksi")
+            ->where('pemesanans.users_id', $user_id)
+            ->get();
+        return view('daftarriwayatpemesanan.index',['user'=>$user, 'data'=>$queryBuilder]);
     }
 
     /**
@@ -48,9 +59,11 @@ class DaftarRiwayatPemesananController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $pemesanan_id)
     {
-        //
+        // $pemesanan = Pemesanan::find($pemesanan_id);
+        // return view('daftarriwayatpemesanan',['pemesanan'=>$pemesanan]);
+        return view('daftarriwayatpemesanan.index',['pemesanan'=>$pemesanan_id]);
     }
 
     /**

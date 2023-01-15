@@ -290,44 +290,43 @@
 <strong>Keterangan :</strong> {{$data->keterangan_layanan}}
 </div>
 
-<div class="product-size">
-<span>Ukuran Foto :</span>
-<select class="form-control">
-    <option>{{$data->ukuran_foto}}</option>
-</select>
-</div>
+<form enctype='multipart/form-data' method="POST" action="{{url('add-to-cart-layanan/' .$data->id)}}">
+	@csrf 
+	<div class="form-body">
 
-<div class="product-size">
-<span>Hasil Cetak :</span>
-<select class="form-control">
-	<option>{{$data->hasil_cetak}}</option>
-</select>
-</div>
+		<div class="product-size">
+			<span>Ukuran Foto :</span>
+			<select class="form-control" name="ukuran_foto">
+				<option>{{$data->ukuran_foto}}</option>
+			</select>
+			</div>
+			
+			<div class="product-size">
+			<span>Hasil Cetak :</span>
+			<select class="form-control" name="hasil_cetak">
+				<option>{{$data->hasil_cetak}}</option>
+			</select>
+			</div>
+			
+			<div class="product-quantity">
+				<strong>Jumlah/lembar : </strong>
+				<div class="product-quantity-slider" name="jumlah3">
+					<input id="qty-input product-quantity" type="number" min="1" maxlength="2" name="product_quantity">{{$data->jumlah}}
+				</div>
+			</div>
 
-{{-- <div class="product-quantity">
-	<span>Jumlah/lembar : </span>
-	<div class="product-quantity-slider">
-		<input id="product-quantity" type="text" value="1" maxlength="2" name="product-quantity">{{$data->jumlah}}
+			<div class="form-group">
+				<h5>Sertakan foto yang ingin anda cetak dibawah ini: </h5>
+				<input  type="file" class="form-control" id="kirim_foto" name="kirim_foto">
+			</div>
+
 	</div>
-</div> --}}
-
-<div class="product-quantity">
-	<strong>Jumlah/lembar : </strong>
-	<div class="product-quantity-slider">
-		<input id="qty-input product-quantity" type="text" value="1" maxlength="2" name="product-quantity">{{$data->jumlah}}
+	<div class="form-actions">
+		<button type="submit" class="btn btn-main mt-20">Masukan Keranjang</button>
 	</div>
-</div>
+</form>
 
-<br>
-
-<div class="form-group">
-	<h5>Sertakan foto yang ingin anda cetak dibawah ini: </h5>
-	<input  type="file" class="form-control" id="kirim_foto" name="kirim_foto">
-</div>
-
-<br>
-
-<a href="{{url('add-to-cart-layanan/' .$data->id)}}" class="btn btn-main mt-20">Masukan Keranjang</a>
+{{-- <a href="{{url('add-to-cart-layanan/' .$data->id)}}" class="btn btn-main mt-20">Masukan Keranjang</a> --}}
 
 </div>
 </div>

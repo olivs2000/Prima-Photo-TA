@@ -4,19 +4,19 @@
   <title>Checkout</title>
 
   
-  <!-- Themefisher Icon font -->
-  <link rel="stylesheet" href="plugins/themefisher-font/style.css">
-  <!-- bootstrap.min css -->
-  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
-  
-  <!-- Animate css -->
-  <link rel="stylesheet" href="plugins/animate/animate.css">
-  <!-- Slick Carousel -->
-  <link rel="stylesheet" href="plugins/slick/slick.css">
-  <link rel="stylesheet" href="plugins/slick/slick-theme.css">
-  
-  <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/styleaviato.css">
+    <!-- Themefisher Icon font -->
+    <link rel="stylesheet" href="{{asset('plugins/themefisher-font/style.css')}}">
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="{{asset('plugins/bootstrap/css/bootstrap.min.css')}}">
+    
+    <!-- Animate css -->
+    <link rel="stylesheet" href="{{asset('plugins/animate/animate.css')}}">
+    <!-- Slick Carousel -->
+    <link rel="stylesheet" href="{{asset('plugins/slick/slick.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/slick/slick-theme.css')}}">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="{{asset('css/styleaviato.css')}}">
 
   <!-- Start Top Header Bar -->
 <section class="top-header">
@@ -216,6 +216,10 @@
                               <span>{{number_format($details3['harga'])}}</span>
                               <input type="hidden" name="harga3[]" value="{{$details3['harga']}}">
                               <input type="hidden" name="id_layanan[]" value="{{$id}}">
+                              <input type="hidden" name="ukuran_foto[]" value="{{$details3['ukuran_foto']}}">
+                              <input type="hidden" name="hasil_cetak[]" value="{{$details3['hasil_cetak']}}">
+                              <input type="hidden" name="id_layanan[]" value="{{$id}}">
+                              <input type="hidden" name="file_attachment[]" value="{{$details3['file_name']}}">
 
                               &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 
@@ -329,23 +333,22 @@
 
 </script>
 
-<!-- Main jQuery -->
-   <script src="plugins/jquery/dist/jquery.min.js"></script>
-   <!-- Bootstrap 3.1 -->
-   <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-   <!-- Bootstrap Touchpin -->
-   <script src="plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
-   <!-- Instagram Feed Js -->
-   <script src="plugins/instafeed/instafeed.min.js"></script>
-   <!-- Video Lightbox Plugin -->
-   <script src="plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
-   <!-- Count Down Js -->
-   <script src="plugins/syo-timer/build/jquery.syotimer.min.js"></script>
+  <!-- Main jQuery -->
+  <script src="{{asset('plugins/jquery/dist/jquery.min.js')}}"></script>
+  <!-- Bootstrap 3.1 -->
+  <script src="{{asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+  <!-- Bootstrap Touchpin -->
+  <script src="{{asset('plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js')}}"></script>
+  <!-- Instagram Feed Js -->
+  <script src="{{asset('plugins/instafeed/instafeed.min.js')}}"></script>
+  <!-- Video Lightbox Plugin -->
+  <script src="{{asset('plugins/ekko-lightbox/dist/ekko-lightbox.min.js')}}"></script>
+  <!-- Count Down Js -->
+  <script src="{{asset('plugins/syo-timer/build/jquery.syotimer.min.js')}}"></script>
 
-   <!-- slick Carousel -->
-   <script src="plugins/slick/slick.min.js"></script>
-   <script src="plugins/slick/slick-animation.min.js"></script>
+  <!-- slick Carousel -->
+  <script src="{{asset('plugins/slick/slick.min.js')}}"></script>
+  <script src="{{asset('plugins/slick/slick-animation.min.js')}}"></script>
 
-   <!-- Main Js File -->
-   <script src="js/scriptaviato.js"></script>
-    
+  <!-- Main Js File -->
+  <script src="{{asset('js/scriptaviato.js')}}"></script>
