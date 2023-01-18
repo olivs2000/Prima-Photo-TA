@@ -24,9 +24,12 @@ class RiwayatPemesananController extends Controller
             ->leftJoin("penyewaan_alats", "detail_pemesanans.penyewaan_alats_id", "=", "penyewaan_alats.id")
             ->select("pemesanans.*", "detail_pemesanans.jumlah", "detail_pemesanans.harga", 
             "detail_pemesanans.total as sub_total", "detail_pemesanans.tanggal_transaksi", 
+            "detail_pemesanans.hasil_cetak", "detail_pemesanans.ukuran_foto", "detail_pemesanans.file_attachment", 
+            "detail_pemesanans.lokasi_acara", "detail_pemesanans.tanggal_acara", "detail_pemesanans.waktu_acara",   
             "pakets.judul_paket", "produks.judul_produk", "layanans.judul_layanan", "penyewaan_alats.nama_alat")
             ->where('detail_pemesanans.pemesanans_id',$pemesanan_id)
             ->get();
+           // dd($queryBuilder);
         return view('riwayatpemesanan.index',['pemesanan'=>$pemesanan, 'data'=>$queryBuilder]);
     }
 

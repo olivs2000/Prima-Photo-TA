@@ -58,9 +58,9 @@
 						</ul>
             
 						<ul class="navbar-nav ml-auto mt-10">
-							<!-- <li class="nav-item">
+							{{-- <li class="nav-item">
                 				<a class="nav-link login-button" href="{{url('register')}}"> Registrasi </a>
-							</li> -->
+							</li>  --}}
 							<li class="nav-item">
                 				<a class="nav-link login-button" href="{{url('login')}}"> Masuk </a>
 							</li>

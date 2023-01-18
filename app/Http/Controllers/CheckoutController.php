@@ -10,6 +10,10 @@ use App\PenyewaanAlat;
 use App\DetailPemesanan;
 use App\Checkout;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use DB;
 use Auth;
 use Carbon\Carbon;
@@ -60,9 +64,6 @@ class CheckoutController extends Controller
         $data->notelepon=$request->get('notelepon');
         $data->email=$request->get('email');
         $data->alamat=$request->get('alamat');
-        // $data->lokasi_acara=$request->get('lokasi_acara');
-        // $data->tanggal_acara=$request->get('tanggal_acara');
-        // $data->waktu_acara=$request->get('waktu_acara');
         $data->total=$request->get('total');
         $data->status_pembayaran="proses";
         $data->status_pemesanan="menunggu konfirmasi";
@@ -112,11 +113,14 @@ class CheckoutController extends Controller
                 $detail->total=$detail->jumlah*$detail->harga;
                 $detail->tanggal_transaksi=Carbon::now();
                 $detail->file_attachment = $request->get('file_attachment')[$i];
+                //dd( $request->get('file_attachment')[$i]);
                 $detail->save();
+              
+                $destination = public_path('storage/attachment_layanan/'.$detail->id);
+                File::makeDirectory($destination);
+                File::move(public_path('storage/cart_session/'.$request->get('file_attachment')[$i]), 
+                public_path('storage/attachment_layanan/'.$detail->id.$request->get('file_attachment')[$i]));
 
-                $img->move(public_path('storage/cart_session'), $filename);
-
-                File::move(public_path('storage/cart_session/'.$request->get('file_attachment')[$i]), public_path('storage/attachment_layanan/'.$request->get('file_attachment')[$i]));
                 File::delete(public_path('storage/cart_session/'.$request->get('file_attachment')[$i]));
             }
         }

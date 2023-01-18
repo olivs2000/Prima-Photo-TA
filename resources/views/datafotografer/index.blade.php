@@ -51,7 +51,7 @@
 <table class="table" id='dataTable'>
   <thead>
     <tr>
-      <th>ID</th>
+      <th>NO</th>
       <th>Foto</th>
       <th>Nama</th>
       <th>Alamat</th>
@@ -65,7 +65,10 @@
 
 <tbody>
 
+<?php $no = 0;?>
 @foreach($data as $df)
+<?php $no++ ;?>
+
 <tr>
   <td>{{ $df->id }}</td>
   <td id='td-pas_foto-{{$df->id}}'><img src='images/{{$df->pas_foto}}' height='50px'></td>

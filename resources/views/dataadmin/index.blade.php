@@ -34,7 +34,7 @@
 <table  id="table_contoh" class="table">
 <thead>
   <tr>
-    <th>ID</th>
+    <th>NO</th>
     <th>Nama Admin</th>
     <th>No Telepon</th>
     <th>Email</th>
@@ -43,10 +43,11 @@
 </thead>
 
 <tbody>
-
+<?php $no = 0;?>
 @foreach($data as $as)
+<?php $no++ ;?>
 <tr>
-  <td>{{$as->id}}</td>
+  <td>{{$no}}</td>
   <td>{{$as->nama_admin}}</td>
   <td>{{$as->notelepon}}</td>
   <td>{{$as->email}}</td>

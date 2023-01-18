@@ -49,7 +49,7 @@
 <table class="table" id='dataTable'>
   <thead>
     <tr>
-      <th>ID</th>
+      <th>NO</th>
       <th>Pemesanan</th>
       <th>Nama Fotografer</th>
       <th>Admin Studio</th>
@@ -60,7 +60,10 @@
 
 <tbody>
 
-@foreach($data as $jf)
+  <?php $no = 0;?>
+  @foreach($data as $jf)
+  <?php $no++ ;?>
+
   <tr id='tr_{{$jf->id}}'>
     <td>{{$jf->id}}</td>
     <td id='td-pemesanans_id-{{$jf->id}}'>{{$jf->nama}}</a></td>

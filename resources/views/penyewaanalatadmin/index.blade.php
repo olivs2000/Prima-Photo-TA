@@ -63,9 +63,11 @@
   </thead>
 
 <tbody>        
+
 <?php $no = 0;?>
 @foreach($data as $pa)
 <?php $no++ ;?>
+
 <tr>
   <td>{{$no}}</td>
   <td id='td-gambar-{{$pa->id}}'><img src='{{$pa->gambar}}' height='50px'></td>

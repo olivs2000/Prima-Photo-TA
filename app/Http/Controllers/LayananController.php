@@ -112,7 +112,7 @@ class LayananController extends Controller
         if(!isset($cart[$id]))
         {
             $original_name = $img->getClientOriginalName();
-            $filename = 'cart3'.$id.$original_name.'.'.$img->getClientOriginalExtension();
+            $filename = 'cart3'.$id.$original_name;
             $img->move(public_path('storage/cart_session'), $filename);
             $cart[$id]=[
                 "judul_layanan"=>$l->judul_layanan,

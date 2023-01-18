@@ -309,9 +309,9 @@
 			</div>
 			
 			<div class="product-quantity">
-				<strong>Jumlah/lembar : </strong>
+				<strong>Jumlah/lembar : </strong>&nbsp; &nbsp; 
 				<div class="product-quantity-slider" name="jumlah3">
-					<input id="qty-input product-quantity" type="number" min="1" maxlength="2" name="product_quantity">{{$data->jumlah}}
+					 <input id="qty-input product-quantity" type="number" min="1" value="1" maxlength="2" name="product_quantity">{{$data->jumlah}}
 				</div>
 			</div>
 
@@ -343,7 +343,8 @@
 				<div id="details" class="tab-pane fade active in">
 					<h4>Deskripsi Layanan</h4>
 					<p>Pemesanan layanan dapat dilakukan dengan mengirimkan file melalui website dalam bentuk JPEG/JPG/PNG, lama pengerjaan dilakukan berdasarkan keterangan pada masing-masing layanan. 
-						Apabila ingin melakukan pencetakan secara langsung dapat mendatangi studio Prima Photo yang berlokasi di Jl. Kamboja No. 27.</p>
+					   Apabila ingin melakukan pencetakan secara langsung dapat mendatangi studio Prima Photo yang berlokasi di Jl. Kamboja No. 27.
+					   Untuk pemesanan satu jenis layanan hanya dapat mengirimkan satu file foto, apabila pada satu layanan ingin melakukan pencetakan untuk dua file maka pemesanan dapat dilakukan dalam dua kali trnasaksi.</p>
 				</div>
 
 				<div id="reviews" class="tab-pane fade">

@@ -20,22 +20,27 @@
 <table  id="table_contoh" class="table">
 <thead>
   <tr>
-    <th>ID</th>
+    <th>NO</th>
     <th>Nama</th>
     <th>No Telepon</th>
     <th>Email</th>
+    <th>Alamat</th>
     {{-- <th colspan='1'></th> --}}
   <tr>
 </thead>
 
 <tbody>
 
+<?php $no = 0;?>
 @foreach($data as $dp)
+<?php $no++ ;?>
+
 <tr>
-  <td>{{$dp->id}}</td>
+  <td>{{$no}}</td>
   <td>{{$dp->nama}}</td>
   <td>{{$dp->notelepon}}</td>
   <td>{{$dp->email}}</td>
+  <td>{{$dp->alamat}}</td>
 
   {{-- <td>
     <form method="POST" action="{{url('datapelanggan/'.$dp->id )}}">

@@ -64,17 +64,13 @@
 
 <section class="user-dashboard page-wrapper">
   <div class="container">
+      <ul class="list-unstyled">
+        <li>
+          <h4>Nama : {{$user->name}}</h4>
+      </li>
+      </ul>
     <div class="row">
       <div class="col-md-12">
-
-        <div class="col-xs-4">
-          <h4>Pelanggan:</h4>
-          <ul class="list-unstyled">
-              <li>
-                  {{$user->name}}
-              </li>
-          </ul>
-       </div>
 
         <div class="dashboard-wrapper user-dashboard">
           <div class="table-responsive">
@@ -94,24 +90,26 @@
 
                 <tr>
 
-                  <td id='td-status_pemesanan-{{$drp->id}}'> 
+                  <td>{{$drp->tanggal_transaksi}}</td>
+                  <td>Rp. {{number_format($drp->sub_total)}}</td>
+                  <td>{{$drp->estimasi_selesai}}</td>
+                  <td>
+                    <div class="btn-group" role="group">
+                      {{-- <button type="button" class="btn btn-default"><i class="tf-pencil2" aria-hidden="true"></i></button> --}}
+                      <a href="{{url('riwayatpemesanan/'.$drp->id)}}"class="btn btn-default"><i class="tf-pencil2" aria-hidden="true"></i></a>
+                    </div>
+                  </td> 
+
+                  {{-- <td id='td-status_pemesanan-{{$drp->id}}'> 
                     @if($drp->status_pembayaran == 'berhasil')    
                     
                     
-                    <td>{{$drp->tanggal_transaksi}}</td>
-                    <td>Rp. {{number_format($drp->sub_total)}}</td>
-                    <td>{{$drp->estimasi_selesai}}</td>
-                    <td>
-                      <div class="btn-group" role="group">
-                        {{-- <button type="button" class="btn btn-default"><i class="tf-pencil2" aria-hidden="true"></i></button> --}}
-                        <a href="{{url('riwayatpemesanan/'.$drp->id)}}"class="btn btn-default"><i class="tf-pencil2" aria-hidden="true"></i></a>
-                      </div>
-                    </td> 
+                   
 
-                    @elseif($drp->status_pemesanan == 'proses')
+                    @elseif($drp->status_pembayaran == 'proses')
                     @else
                     @endif
-                  </td>
+                  </td> --}}
 
                  
                 </tr>

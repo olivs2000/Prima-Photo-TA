@@ -157,6 +157,7 @@
                                     {{$rp->judul_produk}}
                                     @elseif ($rp->judul_layanan!=null)
                                     {{$rp->judul_layanan}}
+                                    <p class="price">{{$rp->file_attachment}}</p>
                                     <p class="price">{{$rp->hasil_cetak}}</p>
                                     <p class="price">{{$rp->ukuran_foto}}</p>
                                     @elseif ($rp->nama_alat!=null)

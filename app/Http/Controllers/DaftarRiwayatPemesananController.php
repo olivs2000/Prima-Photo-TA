@@ -27,7 +27,7 @@ class DaftarRiwayatPemesananController extends Controller
             ->leftJoin("detail_pemesanans", "detail_pemesanans.pemesanans_id", "=", "pemesanans.id")
             ->leftJoin("users", "pemesanans.users_id", "=", "users.id")
             ->select("pemesanans.*", "detail_pemesanans.total as sub_total", "detail_pemesanans.tanggal_transaksi")
-            ->where('pemesanans.users_id', $user_id)
+            ->where( 'pemesanans.users_id', $user_id)
             ->get();
         return view('daftarriwayatpemesanan.index',['user'=>$user, 'data'=>$queryBuilder]);
     }

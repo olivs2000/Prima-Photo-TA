@@ -62,10 +62,12 @@
    </tr>
   </thead>
 
-<tbody>        
-  <?php $no = 0;?>
+<tbody> 
+
+<?php $no = 0;?>
 @foreach($data as $l)
 <?php $no++ ;?>
+
 <tr>
   <td>{{$no}}</td>
   <td id='td-gambar-{{$l->id}}'><img src='{{$l->gambar}}' height='50px'></td>

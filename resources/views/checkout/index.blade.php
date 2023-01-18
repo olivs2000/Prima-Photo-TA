@@ -201,6 +201,7 @@
                         <!-- End Cart Item Produk -->
 
                         <!-- Start Cart Item Layanan -->
+                        {{-- @dd(session()->get('cart3')); --}}
                         @if(session()->get('cart3'))
                         @foreach(session()->get('cart3') as $id => $details3)
                         <div class="media">
@@ -218,8 +219,8 @@
                               <input type="hidden" name="id_layanan[]" value="{{$id}}">
                               <input type="hidden" name="ukuran_foto[]" value="{{$details3['ukuran_foto']}}">
                               <input type="hidden" name="hasil_cetak[]" value="{{$details3['hasil_cetak']}}">
-                              <input type="hidden" name="id_layanan[]" value="{{$id}}">
                               <input type="hidden" name="file_attachment[]" value="{{$details3['file_name']}}">
+                       
 
                               &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 
