@@ -27,7 +27,8 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        //
+        $data=Produk::all();
+        return view('produk.show', compact('data'));
     }
 
     /**
@@ -104,33 +105,47 @@ class ProdukController extends Controller
                 "judul_produk"=>$p->judul_produk,
                 "gambar"=>$p->gambar,
                 "harga"=>$p->harga,
-                "jumlah"=>1
+                "jumlah"=>$request->product_quantity,
             ];
         }
         else
         {
-            $cart[$id]['jumlah']++;
+            $cart[$id]['jumlah']+=$request->product_quantity;
         }
         session()->put('cart1', $cart);
 
         alert()->success('Success','Produk berhasil ditambahkan ke keranjang'); 
         
-        return redirect()->back();
+        return redirect();
     }
 
-    public function getListProduk(Request $request)
-    {
-        $queryRaw=DB::select(DB::raw("select id, judul_produk from produks"));
 
-        return response()->json($queryRaw,200);
-    }
 
-    public function getListProduk2(Request $request)
-    {
-        $queryRaw=DB::select(DB::raw("select id, judul_produk from produks"));
 
-        return response()->json($queryRaw,200);
-    }
+
+
+
+
+
+
+
+
+
+    
+
+    // public function getListProduk(Request $request)
+    // {
+    //     $queryRaw=DB::select(DB::raw("select id, judul_produk from produks"));
+
+    //     return response()->json($queryRaw,200);
+    // }
+
+    // public function getListProduk2(Request $request)
+    // {
+    //     $queryRaw=DB::select(DB::raw("select id, judul_produk from produks"));
+
+    //     return response()->json($queryRaw,200);
+    // }
 
     public function cart (Request $request)
     {

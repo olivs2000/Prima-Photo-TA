@@ -211,7 +211,7 @@
                         <div class="media-body">
                            <h4 class="media-heading">{{$details3['judul_layanan']}}</h4>
                            <input type="hidden" name="judul_layanan[]" value="{{$details3['judul_layanan']}}">
-                           <div class="cart-price">
+                           <div class="cart-price"> 
                               <span>{{$details3['jumlah']}} x</span>
                               <input type="hidden" name="jumlah3[]" value="{{$details3['jumlah']}}">
                               <span>{{number_format($details3['harga'])}}</span>

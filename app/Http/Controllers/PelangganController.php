@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\pelanggan;
+use App\user;
 use Illuminate\Http\Request;
+use Auth;
 use DB;
 
 class PelangganController extends Controller
@@ -15,10 +17,17 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        $queryRaw=DB::select(DB::raw("select * from user"));
-        return view('pelanggan.index',['data'=>$queryRaw]);
-    }
+        // $iduser = Auth::user()->id;
+        //Auth::user()->id;
 
+        $queryBuilder=DB::table("pelanggans")
+        ->leftJoin("users", "pelanggans.users_id", "=", "users.id")
+        ->select("pelanggans.*")
+        ->where( 'pelanggans.users_id')
+        ->get();
+        return view('pelanggan.index',['data'=>$queryBuilder]);
+    }
+    
     /**
      * Show the form for creating a new resource.
      *

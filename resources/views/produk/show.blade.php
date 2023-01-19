@@ -289,21 +289,29 @@
 <span>Keterangan: </span>{{$data->keterangan_produk}}
 </div>
 
-<div class="product-quantity quantity">
-	<span>Jumlah / pcs :</span>
-	<div class="product-quantity-slider">
-		<input id="qty-input product-quantity" type="text" value="1" maxlength="2" name="product-quantity">
+<form enctype='multipart/form-data' method="POST" action="{{url('add-to-cart-produk/' .$data->id)}}">
+	@csrf 
+	<div class="form-body">
+
+<div class="product-quantity">
+	<strong>Jumlah / pcs :</strong>&nbsp; &nbsp; 
+	<div class="product-quantity-slider" name="jumlah1">
+		<input id="qty-input product-quantity" type="number" min="1" value="1" maxlength="2" name="product_quantity">
 	</div>
 </div>
 
 <br>
 
+</div>
+
 @if($data->status == 'tersedia')
-<a href="{{url('add-to-cart-produk/' .$data->id)}}" class="btn btn-main mt-20">Masukan Keranjang</a>
+<div class="form-actions">
+	<button type="submit" class="btn btn-main mt-20">Masukan Keranjang</button>
+</div>
 @else
 <div class="alert alert-warning alert-common" role="alert"><i class="tf-ion-alert-circled"></i><span>Peringatan!</span> Produk tidak dapat dipesan, silahkan memilih produk tersedia</div>
 @endif
-
+</form>
 
 
 </div>

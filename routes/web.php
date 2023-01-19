@@ -51,61 +51,51 @@ Route::view('/', 'auth/login');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-
 Route::get('/checkStorage', function(){
     dd(public_path('storage'));
 });
 
 Route::post('/saveDropzone', 'PaketAdminController@upload')->name('dropzone.upload');
 
-Route::middleware(['auth'])->group(function () {
+
+
+    Route::get('uploadbuktitf/{pemesanan_id}','UploadController@index')->name('uploadbuktitf.index')->middleware('auth');
+    Route::resource('uploadbuktitf','UploadController')->middleware('auth');
     
-    Route::get('email', [EmailController::class,'kirim']);
-    Route::get('attach', [EmailController::class,'attach']);
-    Route::get('pesan', [EmailController::class,'notif']);
+    Route::resource('checkout','CheckoutController')->middleware('auth');
+    Route::post('checkout/store','CheckoutController@store')->name('checkout.store')->middleware('auth');
+    Route::post('remove-from-cart',[CheckoutController::class,'removeFromCart'])->name('remove.from.cart')->middleware('auth');
 
-    Route::get('uploadbuktitf/{pemesanan_id}','UploadController@index')->name('uploadbuktitf.index');
-    Route::resource('uploadbuktitf','UploadController');
-    
+    Route::get('konfirmasi/{pemesanan_id}','KonfirmasiController@index')->name('konfirmasi.index')->middleware('auth');
+    Route::resource('konfirmasi','KonfirmasiController',['except' => ['index']])->middleware('auth');
 
-    Route::post('remove-from-cart',[CheckoutController::class,'removeFromCart'])->name('remove.from.cart');
-    
-    Route::resource('checkout','CheckoutController');
-    Route::post('checkout/store','CheckoutController@store')->name('checkout.store');
+    Route::resource('konfirmasicol','KonfirmasicolController')->middleware('auth');
 
-    Route::get('konfirmasi/{pemesanan_id}','KonfirmasiController@index')->name('konfirmasi.index');
+    Route::resource('collaborate','CollaborateController')->middleware('auth');
 
-    Route::resource('konfirmasi','KonfirmasiController',['except' => ['index']]);
+    Route::resource('collaborateadmin','CollaborateAdminController')->middleware('auth');
+    Route::post('/collaborateadmin/deleteData','CollaborateAdminController@deleteData')->name('collaborateadmin.deleteData')->middleware('auth');
+    Route::post('collaborateadmin/editcol','CollaborateAdminController@editcol')->name('collaborateadmin.editcol')->middleware('auth');
+    Route::post('/collaborateadmin/saveData','CollaborateAdminController@saveData')->name('collaborateadmin.saveData')->middleware('auth');
 
-    Route::resource('konfirmasicol','KonfirmasicolController');
+    // Route::get('pelanggan/{user_id}','PelangganController@index')->name('pelanggan.index');
+    Route::resource('/pelanggan','PelangganController');
 
-    Route::resource('collaborate','CollaborateController');
-
-    Route::resource('collaborateadmin','CollaborateAdminController');
-    Route::post('/collaborateadmin/deleteData','CollaborateAdminController@deleteData')->name('collaborateadmin.deleteData');
-    Route::post('collaborateadmin/editcol','CollaborateAdminController@editcol')->name('collaborateadmin.editcol');
-    Route::post('/collaborateadmin/saveData','CollaborateAdminController@saveData')->name('collaborateadmin.saveData');
-
-    Route::resource('pelanggan','UserController');
+    Route::resource('datafotografer', 'DataFotograferController')->middleware('auth');
 
     Route::resource('informasipelanggan','InformasiPelangganController');
 
-    Route::get('riwayatpemesanan/{pemesanan_id}','RiwayatPemesananController@index')->name('riwayatpemesanan.index');
-    Route::resource('riwayatpemesanan','RiwayatPemesananController',['except' => ['index']]);
+    Route::get('riwayatpemesanan/{pemesanan_id}','RiwayatPemesananController@index')->name('riwayatpemesanan.index')->middleware('auth');
+    Route::resource('riwayatpemesanan','RiwayatPemesananController',['except' => ['index']])->middleware('auth');
+    Route::post('/delete-pemesanan','RiwayatPemesananController@deletePemesanan')->name('delete.pemesanan')->middleware('auth');
 
-    Route::post('/riwayatpemesanan/{pemesanan_id}','DaftarRiwayatPemesananController@show')->name('daftarriwayatpemesanan.index');
+    // Route::post('/riwayatpemesanan/{pemesanan_id}','DaftarRiwayatPemesananController@show')->name('daftarriwayatpemesanan.index')->middleware('auth');
 
-    Route::get('daftarriwayatpemesanan/{user_id}','DaftarRiwayatPemesananController@index')->name('daftarriwayatpemesanan.index');
-    Route::resource('daftarriwayatpemesanan','DaftarRiwayatPemesananController',['except' => ['index']]);
-    
-    // Route::resource('daftarriwayatpemesanan','DaftarRiwayatPemesananController');
-    
-    Route::resource('/detailpemesananpelanggan','DetailPemesananPelangganController');
-
-    Route::post('/delete-pemesanan','RiwayatPemesananController@deletePemesanan')->name('delete.pemesanan');
+    Route::get('daftarriwayatpemesanan/{user_id}','DaftarRiwayatPemesananController@index')->name('daftarriwayatpemesanan.index')->middleware('auth');
+    Route::resource('daftarriwayatpemesanan','DaftarRiwayatPemesananController',['except' => ['index']])->middleware('auth');
 
 
+    Route::middleware(['auth'])->group(function () {  
     // START LAYANAN //
     Route::resource('layanan','LayananController');
 
@@ -145,7 +135,7 @@ Route::middleware(['auth'])->group(function () {
         return view('layanan.cetak24R'); 
     })->name('layanan.cetak24R');
     // END LAYANAN //
-
+   
 
 
     // START SEWA ALAT //
@@ -335,10 +325,11 @@ Route::middleware(['auth'])->group(function () {
         return view('paket.productpaket2'); 
     })->name('paket.productpaket2');
     // END PAKET //
+});
 
 
-    Route::resource('datafotografer', 'DataFotograferController');
 
+Route::middleware(['auth'])->group(function () { 
     Route::post('/datafotografer/createForm','DataFotograferController@createForm')->name('datafotografer.create');
     Route::post('/datafotografer/editForm','DataFotograferController@editForm')->name('datafotografer.editForm');
     Route::post('/datafotografer/deleteData','DataFotograferController@deleteData')->name('datafotografer.deleteData');
@@ -360,7 +351,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('/dataadmin','AdminStudioController');
     Route::post('/delete-admin','AdminStudioController@deleteAdmin')->name('delete.admin');
-    Route::post('/delete-gambar','PaketAdminController@deleteDetailGambar')->name('delete.gambar');
     Route::delete('/delete-admin', [AdminStudioController::class, 'delete'])->name('delete.admin');
 
     Route::resource('/datapelanggan','DataPelangganController');
@@ -390,7 +380,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/detailpembelian/edit/{id}','DetailPembelianController@update')->name('detailpembelian.edit');
     Route::post('/detailpembelian/destroy','DetailPembelianController@destroy')->name('detailpembelian.destroy');
     Route::get('/detailpembelian/getDetail/{id}','DetailPembelianController@getDetailPembelian')->name('detailpembelian.getDetail');
-
     Route::post('/detailpembelian/create','DetailPembelianController@add')->name('detailpembelian.add');
 
     Route::get('/get-list-produk','ProdukController@getListProduk') ->name('get.list.produk');
@@ -414,7 +403,7 @@ Route::middleware(['auth'])->group(function () {
     //Cart Produk
     Route::get('/', 'ProdukController@front_index');
     Route::get('cart', 'ProdukController@cart');
-    Route::get('add-to-cart-produk/{id}', 'ProdukController@addToCart');
+    Route::post('add-to-cart-produk/{id}', 'ProdukController@addToCart');
 
     //Cart Layanan
     Route::get('/', 'LayananController@front_index');
@@ -427,10 +416,10 @@ Route::middleware(['auth'])->group(function () {
         Storage::disk('public')->makeDirectory('storage');
     });
 
-    Route::resource('/DETAILPEMESANANTEMP','DetailPemesananPelangganController');
+});
 
     Route::get('/clear-session', function(){
         Session::flush();
     });
 
-});
+

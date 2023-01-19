@@ -114,12 +114,12 @@ class LayananController extends Controller
             $original_name = $img->getClientOriginalName();
             $filename = 'cart3'.$id.$original_name;
             $img->move(public_path('storage/cart_session'), $filename);
+
             $cart[$id]=[
                 "judul_layanan"=>$l->judul_layanan,
                 "gambar"=>$l->gambar,
                 "harga"=>$l->harga,
                 "jumlah"=>$request->product_quantity,
-                // "product_quantity" =>$request->product_quantity,
                 "ukuran_foto"=>$request->ukuran_foto,
                 "hasil_cetak"=>$request->hasil_cetak,
                 "file_name"=>$filename,
@@ -133,6 +133,6 @@ class LayananController extends Controller
 
         alert()->success('Success','Layanan berhasil ditambahkan ke keranjang'); 
         
-        return redirect()->back();
+        return redirect();
     }
 }

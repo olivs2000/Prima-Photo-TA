@@ -271,9 +271,9 @@
 <!-- ini-->
 		</div>
 
-		<div class="col-md-7">
-			<div class="single-product-details">
-			<h2>{{$data->nama_alat}}</h2>
+<div class="col-md-7">
+	<div class="single-product-details">
+	<h2>{{$data->nama_alat}}</h2>
 
 
 <div>

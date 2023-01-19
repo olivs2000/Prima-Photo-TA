@@ -55,6 +55,9 @@
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" href="{{url('informasipelanggan')}}"  aria-haspopup="true">Informasi Pelanggan</a>
 							</li>
+							<li class="nav-item dropdown dropdown-slide">
+								<a class="nav-link dropdown-toggle" href="{{url('daftarriwayatpemesanan/')}}"  aria-haspopup="true">Riwayat Pemesanan</a>
+							</li>
 						</ul>
             
 						<ul class="navbar-nav ml-auto mt-10">

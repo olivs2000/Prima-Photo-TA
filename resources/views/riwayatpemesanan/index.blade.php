@@ -150,16 +150,12 @@
                                 <td>
                                     @if($rp->judul_paket!=null)
                                     {{$rp->judul_paket}}
-                                    <p class="price">{{$rp->lokasi_acara}}</p>
-                                    <p class="price">{{$rp->tanggal_acara}}</p>
-                                    <p class="price">{{$rp->waktu_acara}}</p>
+                                    <h6>{{$rp->lokasi_acara}} , {{$rp->tanggal_acara}} , {{$rp->waktu_acara}}</h6>
                                     @elseif ($rp->judul_produk!=null)
                                     {{$rp->judul_produk}}
                                     @elseif ($rp->judul_layanan!=null)
                                     {{$rp->judul_layanan}}
-                                    <p class="price">{{$rp->file_attachment}}</p>
-                                    <p class="price">{{$rp->hasil_cetak}}</p>
-                                    <p class="price">{{$rp->ukuran_foto}}</p>
+                                    <h6><img src='storage/attachment_layanan/.$rp->id.{{$rp->file_attachment}}' height='20px'> , {{$rp->ukuran_foto}} , {{$rp->hasil_cetak}}</h6>
                                     @elseif ($rp->nama_alat!=null)
                                     {{$rp->nama_alat}}
                                     @endif

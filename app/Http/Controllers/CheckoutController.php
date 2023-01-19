@@ -113,13 +113,14 @@ class CheckoutController extends Controller
                 $detail->total=$detail->jumlah*$detail->harga;
                 $detail->tanggal_transaksi=Carbon::now();
                 $detail->file_attachment = $request->get('file_attachment')[$i];
-                //dd( $request->get('file_attachment')[$i]);
+
                 $detail->save();
               
                 $destination = public_path('storage/attachment_layanan/'.$detail->id);
                 File::makeDirectory($destination);
+                
                 File::move(public_path('storage/cart_session/'.$request->get('file_attachment')[$i]), 
-                public_path('storage/attachment_layanan/'.$detail->id.$request->get('file_attachment')[$i]));
+                public_path('storage/attachment_layanan/'.$detail->id.'/'.$request->get('file_attachment')[$i]));
 
                 File::delete(public_path('storage/cart_session/'.$request->get('file_attachment')[$i]));
             }
