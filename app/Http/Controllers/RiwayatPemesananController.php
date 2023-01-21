@@ -22,7 +22,7 @@ class RiwayatPemesananController extends Controller
             ->leftJoin("produks", "detail_pemesanans.produks_id", "=", "produks.id")
             ->leftJoin("layanans", "detail_pemesanans.layanans_id", "=", "layanans.id")
             ->leftJoin("penyewaan_alats", "detail_pemesanans.penyewaan_alats_id", "=", "penyewaan_alats.id")
-            ->select("pemesanans.*", "detail_pemesanans.jumlah", "detail_pemesanans.harga", 
+            ->select("pemesanans.*", "detail_pemesanans.id as id_detail", "detail_pemesanans.jumlah", "detail_pemesanans.harga", 
             "detail_pemesanans.total as sub_total", "detail_pemesanans.tanggal_transaksi", 
             "detail_pemesanans.hasil_cetak", "detail_pemesanans.ukuran_foto", "detail_pemesanans.file_attachment", 
             "detail_pemesanans.lokasi_acara", "detail_pemesanans.tanggal_acara", "detail_pemesanans.waktu_acara",   
@@ -31,6 +31,13 @@ class RiwayatPemesananController extends Controller
             ->get();
            // dd($queryBuilder);
         return view('riwayatpemesanan.index',['pemesanan'=>$pemesanan, 'data'=>$queryBuilder]);
+    }
+
+    public function show(DetailPemesanan $detailpemesanan)
+    {
+        $data = $detailpemesanan;
+        $data->file_attachment = Storage::disk('public')->files($data->file_attachment);
+        return view('riwayatpemesanan.index',compact('data'));
     }
 
     public function destroy(Pemesanan $riwayatpemesanan)

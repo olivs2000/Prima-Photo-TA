@@ -59,7 +59,7 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
         $data=new Pemesanan();    
-        Auth::user()->id;
+        //Auth::user()->id;
         $data->nama=$request->get('nama');
         $data->notelepon=$request->get('notelepon');
         $data->email=$request->get('email');
@@ -118,7 +118,7 @@ class CheckoutController extends Controller
               
                 $destination = public_path('storage/attachment_layanan/'.$detail->id);
                 File::makeDirectory($destination);
-                
+
                 File::move(public_path('storage/cart_session/'.$request->get('file_attachment')[$i]), 
                 public_path('storage/attachment_layanan/'.$detail->id.'/'.$request->get('file_attachment')[$i]));
 

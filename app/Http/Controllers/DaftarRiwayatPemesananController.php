@@ -17,20 +17,39 @@ class DaftarRiwayatPemesananController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $user_id)
+    public function index()
     {
-        $user = User::find($user_id);
-        //dd(Auth::user()->id);
+        $user = auth()->user()->userid;
+        // $user = User::find($user_id);
         //Auth::user()->id;
 
         $queryBuilder=DB::table("pemesanans")
             ->leftJoin("detail_pemesanans", "detail_pemesanans.pemesanans_id", "=", "pemesanans.id")
             ->leftJoin("users", "pemesanans.users_id", "=", "users.id")
-            ->select("pemesanans.*", "detail_pemesanans.total as sub_total", "detail_pemesanans.tanggal_transaksi")
-            ->where( 'pemesanans.users_id', $user_id)
+            ->select("pemesanans.*", "detail_pemesanans.tanggal_transaksi")
+            ->where('pemesanans.users_id', $user)
             ->get();
-        return view('daftarriwayatpemesanan.index',['user'=>$user, 'data'=>$queryBuilder]);
+        return view('daftarriwayatpemesanan.index',['data'=>$queryBuilder]);
     }
+
+    // public function index()
+    // {
+    //     // $user = auth()->user()->userid;
+    //     //dd(Auth::user()->id);
+    //     //Auth::user()->id;
+
+    //     $queryBuilder=DB::table("detail_pemesanans")
+    //         // ->leftJoin("detail_pemesanans", "detail_pemesanans.pemesanans_id", "=", "pemesanans.id")
+    //         ->leftJoin("pemesanans", "detail_pemesanans.pemesanans_id", "=", "pemesanans.id")
+    //         ->leftJoin("users", "detail_pemesanans.users_id", "=", "users.id")
+    //         ->select("detail_pemesanans.*", "pemesanans.estimasi_selesai", "pemesanans.total", "pemesanans.status_pembayaran")
+        
+    //         ->get();
+    //         // dd($queryBuilder);
+    //     return view('daftarriwayatpemesanan.index',['data'=>$queryBuilder]);
+
+        
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -59,12 +78,11 @@ class DaftarRiwayatPemesananController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $pemesanan_id)
+    public function show()
     {
-        // $pemesanan = Pemesanan::find($pemesanan_id);
-        // return view('daftarriwayatpemesanan',['pemesanan'=>$pemesanan]);
-        return view('daftarriwayatpemesanan.index',['pemesanan'=>$pemesanan_id]);
+      
     }
+
 
     /**
      * Show the form for editing the specified resource.

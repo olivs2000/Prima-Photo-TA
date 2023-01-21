@@ -58,7 +58,6 @@ Route::get('/checkStorage', function(){
 Route::post('/saveDropzone', 'PaketAdminController@upload')->name('dropzone.upload');
 
 
-
     Route::get('uploadbuktitf/{pemesanan_id}','UploadController@index')->name('uploadbuktitf.index')->middleware('auth');
     Route::resource('uploadbuktitf','UploadController')->middleware('auth');
     
@@ -91,8 +90,8 @@ Route::post('/saveDropzone', 'PaketAdminController@upload')->name('dropzone.uplo
 
     // Route::post('/riwayatpemesanan/{pemesanan_id}','DaftarRiwayatPemesananController@show')->name('daftarriwayatpemesanan.index')->middleware('auth');
 
-    Route::get('daftarriwayatpemesanan/{user_id}','DaftarRiwayatPemesananController@index')->name('daftarriwayatpemesanan.index')->middleware('auth');
-    Route::resource('daftarriwayatpemesanan','DaftarRiwayatPemesananController',['except' => ['index']])->middleware('auth');
+    // Route::get('daftarriwayatpemesanan','DaftarRiwayatPemesananController@index')->name('daftarriwayatpemesanan.index')->middleware('auth');
+    Route::resource('daftarriwayatpemesanan','DaftarRiwayatPemesananController')->middleware('auth');
 
 
     Route::middleware(['auth'])->group(function () {  

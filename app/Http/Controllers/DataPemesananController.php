@@ -28,8 +28,10 @@ class DataPemesananController extends Controller
         ->leftJoin("produks", "detail_pemesanans.produks_id", "=", "produks.id")
         ->leftJoin("pakets", "detail_pemesanans.pakets_id", "=", "pakets.id")
         ->orderBy("pemesanans_id", "ASC")
-        ->select("detail_pemesanans.*", "layanans.judul_layanan", "penyewaan_alats.nama_alat",  
-                 "pemesanans.bukti_transfer", "pemesanans.total", "produks.judul_produk", "pakets.judul_paket")
+        ->select("detail_pemesanans.*", "detail_pemesanans.id as id_detail", 
+                 "layanans.judul_layanan", 
+                 "pakets.judul_paket", 
+                 "penyewaan_alats.nama_alat", "produks.judul_produk", "pemesanans.bukti_transfer", "pemesanans.total")
         ->where('detail_pemesanans.pemesanans_id',$datapemesan->id)->get();
 
         Log::info($data);

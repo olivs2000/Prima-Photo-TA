@@ -10,11 +10,8 @@ class Produk extends Model
     //use HasFactory;
 
     public $timestamps = false;
-
-    public function detailpembelian()
-    {
-        return $this->hasMany("App\DetailPembelian", "produks_id", "id");
-    }
+    
+    protected $table='produks';
 
     public function detailpemesanan()
     {
@@ -24,5 +21,10 @@ class Produk extends Model
     public function datapembelian()
     {
         return $this->belongsToMany(DataPembelian::class, 'detail_pembelians', 'produks_id', 'data_pembelians_id');
+    }
+
+    public function detailpembelian()
+    {
+        return $this->hasMany("App\DetailPembelian", "produks_id", "id");
     }
 }

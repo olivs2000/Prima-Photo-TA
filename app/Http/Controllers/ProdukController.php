@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\Produk;
 use DB;
 
@@ -115,8 +116,10 @@ class ProdukController extends Controller
         session()->put('cart1', $cart);
 
         alert()->success('Success','Produk berhasil ditambahkan ke keranjang'); 
+        // $request->session()->flash('Success','Produk berhasil ditambahkan ke keranjang');
         
         return redirect();
+        // return redirect()->with('Success','Produk berhasil ditambahkan ke keranjang');
     }
 
 

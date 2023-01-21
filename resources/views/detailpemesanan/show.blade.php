@@ -22,11 +22,13 @@
         <th>Jenis Pemesanan</th>
         <td>
             @if($detail->judul_paket!=null)
-            {{$detail->judul_paket}}
+            {{$detail->judul_paket}}  
+            <h6>{{$detail->lokasi_acara}} , {{$detail->tanggal_acara}} , {{$detail->waktu_acara}}</h6>
             @elseif ($detail->judul_produk!=null)
             {{$detail->judul_produk}}
             @elseif ($detail->judul_layanan!=null)
-            {{$detail->judul_layanan}}
+            {{$detail->judul_layanan}}   
+            <h6><img src="{{ asset('storage/attachment_layanan/' . $detail->id_detail .'/'. $detail->file_attachment) }}" height='50px'> , {{$detail->ukuran_foto}} , {{$detail->hasil_cetak}}</h6>           
             @elseif ($detail->nama_alat!=null)
             {{$detail->nama_alat}}
             @endif

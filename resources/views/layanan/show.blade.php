@@ -240,147 +240,145 @@
 <section class="single-product">
 <div class="container">
 
-	
 	<div class="row mt-20">
 
 		<div class="col-md-5">
 
+		<!-- ini -->
+		<section class="awSlider">
+		<div  class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target=".carousel" data-slide-to="0" class="active"></li>
+			<li data-target=".carousel" data-slide-to="1"></li>
+			<li data-target=".carousel" data-slide-to="2"></li>
+		</ol>
 
-
-<!-- ini -->
-<section class="awSlider">
-  <div  class="carousel slide" data-ride="carousel">
-<ol class="carousel-indicators">
-	<li data-target=".carousel" data-slide-to="0" class="active"></li>
-	<li data-target=".carousel" data-slide-to="1"></li>
-	<li data-target=".carousel" data-slide-to="2"></li>
-</ol>
-
-<div class="carousel-inner" role="listbox">
-	@foreach ($data->gambar_detail as $key => $gambar_detail)
-		@if ($key == 0)
-			<div class="item active">
-				<img src="{{ asset('storage/').'/'.$gambar_detail}}">
-			</div>
-		@else
-			<div class="item">
-				<img src="{{ asset('storage/').'/'.$gambar_detail}}">
-			</div>
-		@endif
-		
-	@endforeach
-</div>
-
-</div>
-</section>
-<!-- ini-->
+		<div class="carousel-inner" role="listbox">
+			@foreach ($data->gambar_detail as $key => $gambar_detail)
+				@if ($key == 0)
+					<div class="item active">
+						<img src="{{ asset('storage/').'/'.$gambar_detail}}">
+					</div>
+				@else
+					<div class="item">
+						<img src="{{ asset('storage/').'/'.$gambar_detail}}">
+					</div>
+				@endif
+				
+			@endforeach
 		</div>
 
-<div class="col-md-7">
-	<div class="single-product-details">
-	<h2>{{$data->judul_layanan}}</h2>
+		</div>
+		</section>
+		<!-- ini-->
 
-<div class="product-quantity">
-	<span class="product-price">Harga :</span> Rp. {{number_format($data->harga)}}
-</div>
+		</div>
 
-<br>
+		<div class="col-md-7">
+			<div class="single-product-details">
+			<h2>{{$data->judul_layanan}}</h2>
 
-<div>
-<strong>Keterangan :</strong> {{$data->keterangan_layanan}}
-</div>
+		<div class="product-quantity">
+			<span class="product-price">Harga :</span> Rp. {{number_format($data->harga)}}
+		</div>
 
-<form enctype='multipart/form-data' method="POST" action="{{url('add-to-cart-layanan/' .$data->id)}}">
-	@csrf 
-	<div class="form-body">
+		<br>
 
-		<div class="product-size">
-			<span>Ukuran Foto :</span>
-			<select class="form-control" name="ukuran_foto">
-				<option>{{$data->ukuran_foto}}</option>
-			</select>
+		<div>
+		<strong>Keterangan :</strong> {{$data->keterangan_layanan}}
+		</div>
+
+		<form enctype='multipart/form-data' method="POST" action="{{url('add-to-cart-layanan/' .$data->id)}}">
+			@csrf 
+			<div class="form-body">
+
+				<div class="product-size">
+					<span>Ukuran Foto :</span>
+					<select class="form-control" name="ukuran_foto">
+						<option>{{$data->ukuran_foto}}</option>
+					</select>
+					</div>
+					
+					<div class="product-size">
+					<span>Hasil Cetak :</span>
+					<select class="form-control" name="hasil_cetak">
+						<option>{{$data->hasil_cetak}}</option>
+					</select>
+					</div>
+					
+					<div class="product-quantity">
+						<strong>Jumlah/lembar : </strong>&nbsp; &nbsp; 
+						<div class="product-quantity-slider" name="jumlah3">
+							<input id="qty-input product-quantity" type="number" min="1" value="1" maxlength="2" name="product_quantity">{{$data->jumlah}}
+						</div>
+					</div>
+
+					<div class="form-group">
+						<h5>Sertakan foto yang ingin anda cetak dibawah ini: </h5>
+						<input  type="file" class="form-control" id="kirim_foto" name="kirim_foto">
+					</div>
+
 			</div>
-			
-			<div class="product-size">
-			<span>Hasil Cetak :</span>
-			<select class="form-control" name="hasil_cetak">
-				<option>{{$data->hasil_cetak}}</option>
-			</select>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-main mt-20">Masukan Keranjang</button>
 			</div>
-			
-			<div class="product-quantity">
-				<strong>Jumlah/lembar : </strong>&nbsp; &nbsp; 
-				<div class="product-quantity-slider" name="jumlah3">
-					 <input id="qty-input product-quantity" type="number" min="1" value="1" maxlength="2" name="product_quantity">{{$data->jumlah}}
-				</div>
-			</div>
-
-			<div class="form-group">
-				<h5>Sertakan foto yang ingin anda cetak dibawah ini: </h5>
-				<input  type="file" class="form-control" id="kirim_foto" name="kirim_foto">
-			</div>
-
-	</div>
-	<div class="form-actions">
-		<button type="submit" class="btn btn-main mt-20">Masukan Keranjang</button>
-	</div>
-</form>
+		</form>
 
 {{-- <a href="{{url('add-to-cart-layanan/' .$data->id)}}" class="btn btn-main mt-20">Masukan Keranjang</a> --}}
+           
+		</div>
+		</div>
+		</div>
 
-</div>
-</div>
-</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="tabCommon mt-20">
+					<ul class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="#details" aria-expanded="true">Detail</a></li>
+						<li class=""><a data-toggle="tab" href="#reviews" aria-expanded="false">Layanan Tersedia</a></li>
+					</ul>
+					<div class="tab-content patternbg">
+						<div id="details" class="tab-pane fade active in">
+							<h4>Deskripsi Layanan</h4>
+							<p>Pemesanan layanan dapat dilakukan dengan mengirimkan file melalui website dalam bentuk JPEG/JPG/PNG, lama pengerjaan dilakukan berdasarkan keterangan pada masing-masing layanan. 
+							Apabila ingin melakukan pencetakan secara langsung dapat mendatangi studio Prima Photo yang berlokasi di Jl. Kamboja No. 27.
+							Untuk pemesanan satu jenis layanan hanya dapat mengirimkan satu file foto, apabila pada satu layanan ingin melakukan pencetakan untuk dua file maka pemesanan dapat dilakukan dalam dua kali trnasaksi.</p>
+						</div>
 
-<div class="row">
-	<div class="col-xs-12">
-		<div class="tabCommon mt-20">
-			<ul class="nav nav-tabs">
-				<li class="active"><a data-toggle="tab" href="#details" aria-expanded="true">Detail</a></li>
-				<li class=""><a data-toggle="tab" href="#reviews" aria-expanded="false">Layanan Tersedia</a></li>
-			</ul>
-			<div class="tab-content patternbg">
-				<div id="details" class="tab-pane fade active in">
-					<h4>Deskripsi Layanan</h4>
-					<p>Pemesanan layanan dapat dilakukan dengan mengirimkan file melalui website dalam bentuk JPEG/JPG/PNG, lama pengerjaan dilakukan berdasarkan keterangan pada masing-masing layanan. 
-					   Apabila ingin melakukan pencetakan secara langsung dapat mendatangi studio Prima Photo yang berlokasi di Jl. Kamboja No. 27.
-					   Untuk pemesanan satu jenis layanan hanya dapat mengirimkan satu file foto, apabila pada satu layanan ingin melakukan pencetakan untuk dua file maka pemesanan dapat dilakukan dalam dua kali trnasaksi.</p>
-				</div>
+						<div id="reviews" class="tab-pane fade">
+							<div class="post-comments">
+								<ul class="media-list comments-list m-bot-50 clearlist">
+									<li class="media">
 
-				<div id="reviews" class="tab-pane fade">
-					<div class="post-comments">
-						<ul class="media-list comments-list m-bot-50 clearlist">
-							<li class="media">
+										<div class="media-body">
+											<p>
+											. Album Foto 10 sheets & 15 sheets 
+											<br>
+											. Bingkai 20R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 20RS 
+											<br>
+											. Bingkai 24R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 24RS 
+											<br>
+											. Bingkai 12R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 12RS &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 12RS Mahar
+											<br>
+											. Bingkai 16R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 16RS &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 16RS Mahar
+											<br>
+											. Bingkai 4R isi 1-4 &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 5R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 6R
+											<br>
+											. Bingkai 10R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 10RS &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 10R Gandeng &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 10RS Mahar
+											</p>
+										</div>
 
-								<div class="media-body">
-									<p>
-									. Album Foto 10 sheets & 15 sheets 
-									<br>
-									. Bingkai 20R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 20RS 
-									<br>
-									. Bingkai 24R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 24RS 
-									<br>
-									. Bingkai 12R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 12RS &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 12RS Mahar
-									<br>
-									. Bingkai 16R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 16RS &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 16RS Mahar
-									<br>
-									. Bingkai 4R isi 1-4 &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 5R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 6R
-									<br>
-									. Bingkai 10R &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 10RS &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 10R Gandeng &nbsp; &nbsp; &nbsp; &nbsp; . Bingkai 10RS Mahar
-									</p>
-								</div>
-
-							</li>
-						</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
 
-</div>
-</section>
+		</div>
+		</section>
 
 
 

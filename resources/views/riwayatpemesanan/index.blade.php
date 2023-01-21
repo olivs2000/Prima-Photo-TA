@@ -155,7 +155,7 @@
                                     {{$rp->judul_produk}}
                                     @elseif ($rp->judul_layanan!=null)
                                     {{$rp->judul_layanan}}
-                                    <h6><img src='storage/attachment_layanan/.$rp->id.{{$rp->file_attachment}}' height='20px'> , {{$rp->ukuran_foto}} , {{$rp->hasil_cetak}}</h6>
+                                    <h6><img src="{{ asset('storage/attachment_layanan/' . $rp->id_detail .'/'. $rp->file_attachment) }}" height='20px'> , {{$rp->ukuran_foto}} , {{$rp->hasil_cetak}}</h6>
                                     @elseif ($rp->nama_alat!=null)
                                     {{$rp->nama_alat}}
                                     @endif
