@@ -117,6 +117,6 @@ class PenyewaanAlatController extends Controller
 
         alert()->success('Success','Alat Fotografi berhasil ditambahkan ke keranjang'); 
 
-        return redirect();
+        return redirect()->back()->with('success', 'Alat Fotografi berhasil ditambahkan ke keranjang');
     }
 }

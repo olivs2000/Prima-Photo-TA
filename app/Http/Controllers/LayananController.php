@@ -133,7 +133,7 @@ class LayananController extends Controller
 
         alert()->success('Success','Layanan berhasil ditambahkan ke keranjang'); 
         
-        return redirect();
+        return redirect()->back()->with('success', 'Layanan berhasil ditambahkan ke keranjang');
     }
 
 

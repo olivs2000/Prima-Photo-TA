@@ -26,6 +26,7 @@
             <h6>{{$detail->lokasi_acara}} , {{$detail->tanggal_acara}} , {{$detail->waktu_acara}}</h6>
             @elseif ($detail->judul_produk!=null)
             {{$detail->judul_produk}}
+            <h6>{{$rp->nama_penerima}} , {{$rp->lokasi_pengiriman}}</h6>
             @elseif ($detail->judul_layanan!=null)
             {{$detail->judul_layanan}}   
             <h6><img src="{{ asset('storage/attachment_layanan/' . $detail->id_detail .'/'. $detail->file_attachment) }}" height='50px'> , {{$detail->ukuran_foto}} , {{$detail->hasil_cetak}}</h6>           

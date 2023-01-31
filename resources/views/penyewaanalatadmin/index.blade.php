@@ -18,7 +18,7 @@
 
 @can('add-permission')
 <div class="page-toolbar">
-<a href="{{url('penyewaanalatadmin/create')}}" class="btn btn-info" type="button">+ Tambah Alat</a>	
+<a href="{{url('penyewaanalatadmin/create')}}" class="btn btn-info" type="button">+ Tambah Alat Fotografi</a>	
 </div>
 @endcan
 
@@ -75,7 +75,13 @@
   <td id='td-stok-{{$pa->id}}'>{{$pa->stok}}</td>
   <td id='td-harga-{{$pa->id}}'>Rp. {{number_format($pa->harga)}}</td>
   <td id='td-tipe-{{$pa->id}}'>{{$pa->tipe}}</td> 
-  <td id='td-tipe-{{$pa->id}}'>{{$pa->status}}</td>  
+  <td id='td-tipe-{{$pa->id}}'>  
+    @if($pa->status == 'tersedia')
+      <span id='td-status-{{$pa->id}}' class="btn btn-xs btn-success btn-sm m-b-10 m-l-5">Tersedia</span>
+    @else
+      <span id='td-status-{{$pa->id}}' class="btn btn-xs btn-default btn-sm m-b-10 m-l-5">Habis</span>
+    @endif
+  </td>  
   
   @can('change-permission')
   <td>

@@ -51,7 +51,7 @@
     <tr>
       <th>ID</th>
       <th>Deskripsi</th>
-      <th>Stok</th>
+      {{-- <th>Stok</th> --}}
       <th>Nama Supplier</th>
       <th>Alamat Supplier</th>
       <th>No Telepon Supplier</th>
@@ -137,7 +137,7 @@
 
   </td>
 
-  <td id='td-stok-{{$dp->id}}'>{{$dp->stok}}</td>
+  {{-- <td id='td-stok-{{$dp->id}}'>{{$dp->stok}}</td> --}}
   <td id='td-nama_supplier-{{$dp->id}}'>{{$dp->nama_supplier}}</td>
   <td id='td-alamat_supplier-{{$dp->id}}'>{{$dp->alamat_supplier}}</td>
   <td id='td-notelepon_supplier-{{$dp->id}}'>{{$dp->notelepon_supplier}}</td>

@@ -102,6 +102,11 @@
 							<h5>Sertakan pas foto anda dibawah ini: </h5>
                             <input  type="file" class="form-control" id="pas_foto" name="pas_foto">
 						</div>
+
+						<div class="form-group">
+							<h5>Sertakan portofolio/CV anda dibawah ini: </h5>
+                            <input  type="file" class="form-control" id="portofolio" name="portofolio">
+						</div>
 						
 						<div id="cf-submit">
 							<input type="submit" id="contact-submit" class="btn btn-transparent" value="Kirim">

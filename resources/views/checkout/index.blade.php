@@ -65,7 +65,7 @@
          <div class="row">
             <div class="col-md-8">
                <div class="block billing-details">
-                  <h4 class="widget-title">Data Pemesan</h4>
+                  <h4 class="widget-title">Data Pemesanan</h4>
 
                   <form enctype='multipart/form-data' class="checkout-form" method="post" action="{{url('checkout/store')}}" role="form">
                      @csrf 
@@ -91,7 +91,7 @@
                      <br><br><br>
 
                      <h4 class="widget-title">Pemesanan Fotografer</h4>
-                     <p>*Wajib mengisi jika anda juga memesan jasa fotografer dan lewati jika tidak</p>
+                     <p>*Wajib mengisi jika anda memesan jasa fotografer dan lewati jika tidak</p>
 
                      <div class="checkout-country-code clearfix">
 
@@ -112,11 +112,66 @@
 
                      </div>
 
+                     <br><br><br>
+
+                     <h4 class="widget-title">Pemesanan Produk Atau Layanan</h4>
+                     <p>*Wajib mengisi jika anda memesan produk atau layanan dan lewati jika tidak</p>
+
+                     <div class="checkout-country-code clearfix">
+
+                        <div class="form-group">
+                           <label>Nama Penerima</label>
+                           <input type="text" class="form-control" id="nama_penerima" name="nama_penerima">
+                        </div>
+
+                        <div class="form-group">
+                           <label>Lokasi Pengiriman</label>
+                           <input type="text" class="form-control" id="lokasi_pengiriman" name="lokasi_pengiriman">
+                        </div>
+
+                     </div>
+
+                     
+{{-- 
+                     @if($data->judul_paket!=null)
+                     {{$data->judul_paket}}
+                     <h4 class="widget-title">Pemesanan Fotografer</h4>
+                     <p>*Wajib mengisi jika anda juga memesan jasa fotografer dan lewati jika tidak</p>
+
+                     <div class="checkout-country-code clearfix">
+
+                        <div class="form-group">
+                           <label>Lokasi Acara</label>
+                           <input type="text" class="form-control" id="lokasi_acara" name="lokasi_acara">
+                        </div>
+                        
+                        <div class="form-group">
+                           <label>Tanggal Acara</label>
+                           <input type="date" class="form-control" id="tanggal_acara" name="tanggal_acara">
+                        </div>
+
+                        <div class="form-group" >
+                           <label>Waktu Mulai</label>
+                           <input type="text" class="form-control" id="waktu_acara" name="waktu_acara" placeholder="Tulis dalam format 12:00">
+                        </div>
+
+                     </div>
+                     @elseif ($data->judul_produk!=null)
+                     {{$data->judul_produk}}
+                     @elseif ($data->judul_layanan!=null)
+                     {{$data->judul_layanan}}
+                     @elseif ($data->nama_alat!=null)
+                     {{$data->nama_alat}}
+                     @endif
+                  --}}
+
                      <br>
 
                      <div id="cf-submit">
                         <input type="submit" id="contact-submit" class="btn btn-main mt-20t" value="Order">
                      </div>	
+                 
+
                </div>
             </div>
             
@@ -127,6 +182,7 @@
                      <div class="media product-card">
 
                    		<!-- Start Cart Item Paket -->
+
                         @if(session()->get('cart2'))
                         @foreach(session()->get('cart2') as $id => $details )
                         <div class="media">

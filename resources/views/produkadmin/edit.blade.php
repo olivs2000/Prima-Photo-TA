@@ -44,16 +44,13 @@
                     $filename = end($filename);
                 @endphp
             <input type='button' value='Hapus' class='btn btn-xs btn-danger btn-sm m-b-10 m-l-5' 
-            onclick= "deleteGambar('{{$data->nama_folder}}', '{{$filename}}')"/>
+                onclick= "deleteGambar('{{$data->nama_folder}}', '{{$filename}}')"/>
             @endforeach 
 
             <div class="panel-body">
                 <input type="file" name="file_foto[]" multiple>
             </div>
         </div>
-
-
-
     
         <div class="form-group">
             <label>Judul Produk</label>
@@ -99,7 +96,7 @@
 <script type="text/javascript">
     function deleteGambar(foldername, filename){
         swal({
-            title: `Yakin ingin menghapus gambar?`,
+              title: `Yakin ingin menghapus gambar?`,
               text: "Jika anda menghapus gambar ini, gambar tidak dapat kembali lagi.",
               icon: "warning",
               buttons: true,

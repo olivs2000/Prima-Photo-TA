@@ -32,7 +32,8 @@ class DataPembelianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    
+    public function create(DataPembelian $datapembelian)
     {
         $data=DataPembelian::all();
         return view('datapembelian.create', compact('data'));
@@ -110,9 +111,11 @@ class DataPembelianController extends Controller
      */
     public function show(DataPembelian $datapembelian)
     {
-        // $data = $datapembelian;
-        // return view('datapembelian.show',compact('data'));
+        $data = $datapembelian;
+        return view('datapembelian.create',compact('data'));
     }
+
+  
 
     /**
      * Show the form for editing the specified resource.

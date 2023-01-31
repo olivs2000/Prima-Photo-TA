@@ -48,6 +48,12 @@ class CheckoutController extends Controller
         return view('checkout.index', compact('data','detail','layanan','produk','paket','penyewaanalat'));
     }
 
+    public function tambah(Pemesanan $pemesanan)
+    {
+        $data = $pemesanan;
+        return view('checkout.index',compact('data'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -58,8 +64,10 @@ class CheckoutController extends Controller
     
     public function store(Request $request)
     {
-        $data=new Pemesanan();    
-        //Auth::user()->id;
+        $data=new Pemesanan();  
+
+        // $data->users_id = Auth::user()->id;
+        
         $data->nama=$request->get('nama');
         $data->notelepon=$request->get('notelepon');
         $data->email=$request->get('email');
@@ -93,6 +101,8 @@ class CheckoutController extends Controller
                 $detail->produks_id=($produk)?$produk->id:null;
                 $detail->pemesanans_id=$data->id;
                 $detail->jumlah=$request->get('jumlah1')[$i]; 
+                $detail->nama_penerima=$request->get('nama_penerima'); 
+                $detail->lokasi_pengiriman=$request->get('lokasi_pengiriman'); 
                 $detail->harga=$request->get('harga1')[$i];
                 $detail->total=$detail->jumlah*$detail->harga;
                 $detail->tanggal_transaksi=Carbon::now();
@@ -184,9 +194,9 @@ class CheckoutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Pemesanan $pemesanan)
     {
-        //
+        
     }
 
     /**

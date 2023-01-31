@@ -311,6 +311,8 @@
 	<br>
 
 	<a href="{{url('add-to-cart-paket/' .$data->id)}}" class="btn btn-main mt-20">Masukan Keranjang</a>
+	{{-- @dd("{{url('add-to-cart-paket/' .$data->id)}}"); --}}
+	
 
 </div>
 </div>

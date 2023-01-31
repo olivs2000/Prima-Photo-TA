@@ -31,14 +31,15 @@
 </div>
 @endif 
 
-<table  id="table_contoh" class="table">
+<table class="table" id='dataTable'>
 <thead>
   <tr>
     <th>NO</th>
     <th>Nama Admin</th>
     <th>No Telepon</th>
     <th>Email</th>
-    <th colspan='1'></th>
+    <th colspan="1"></th>
+    {{-- <th rowspan="0"></th> --}}
   <tr>
 </thead>
 
@@ -47,7 +48,7 @@
 @foreach($data as $as)
 <?php $no++ ;?>
 <tr>
-  <td>{{$no}}</td>
+  <td rowspan="1">{{$no}}</td>
   <td>{{$as->nama_admin}}</td>
   <td>{{$as->notelepon}}</td>
   <td>{{$as->email}}</td>
@@ -77,6 +78,9 @@
 </table>
 
 @endsection
+
+</div>
+
 
 
 

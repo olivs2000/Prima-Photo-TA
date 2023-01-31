@@ -284,7 +284,7 @@
 		</div>
 
 		<div class="product-quantity">
-		<span>Keterangan: </span>{{$data->keterangan_produk}}
+		<span>Keterangan: </span> &nbsp; &nbsp; {{$data->keterangan_produk}}
 		</div>
 
 	<form enctype='multipart/form-data' method="POST" action="{{url('add-to-cart-produk/' .$data->id)}}">
@@ -300,13 +300,14 @@
 
 	</div>
 
+	<br>
 	
 	<div class="form-actions">
 		@if($data->status == 'tersedia')
 		<button type="submit" class="btn btn-main mt-20">Masukan Keranjang</button>
 		@else
 		<div class="alert alert-warning alert-common" role="alert"><i class="tf-ion-alert-circled"></i><span>Peringatan!</span> Produk tidak 
-		dapatdipesan, silahkan memilih produk tersedia</div>
+		dapat dipesan, silahkan memilih produk tersedia</div>
 		@endif
 	</div>
 	

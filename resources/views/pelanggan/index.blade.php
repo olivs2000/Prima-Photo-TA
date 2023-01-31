@@ -67,6 +67,11 @@
 							<li class="nav-item">
                 				<a class="nav-link login-button" href="{{url('login')}}"> Masuk </a>
 							</li>
+							{{-- @if(Auth::user())
+							{{Auth::user()->name}}
+							@else
+							<a class="nav-link login-button" href="{{url('login')}}"> Masuk </a>
+							@endif --}}
 							<li class="nav-item">
 								<a class="nav-link text-white add-button" href="{{url('collaborate')}}"> Collaborate</a>
 							</li>

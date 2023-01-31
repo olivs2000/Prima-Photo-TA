@@ -53,6 +53,9 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js" type="text/javascript"></script>
 <script src="{{ asset('assets/plugins/jquery-1.11.0.min.js')}}" type="text/javascript"></script>
 
+
+
+
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
 @yield('javascript')
@@ -504,7 +507,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				
 				<!-- start -->
 				<li class="start active">
-					<a href="{{url('logout')}}">
+					<a href="{{url('login')}}">
 					<i class="icon-home"></i>
 					<span class="title">Dashboard</span>
 					</a>
@@ -726,6 +729,27 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="{{ asset('assets/scripts/app.js')}}" type="text/javascript"></script>
 <script src="{{ asset('assets/scripts/index.js')}}" type="text/javascript"></script>
 <script src="{{ asset('assets/scripts/tasks.js')}}" type="text/javascript"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script> --}}
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('fc5561bcbc15382ca377', {
+      cluster: 'ap1'
+    });
+
+    var channel = pusher.subscribe('popup-channel');
+    channel.bind('collaborate', function(data) {
+	  toastr.success(JSON.stringify(data.nama) + ' mendaftar menjadi fotografer')
+
+    //   alert();
+    });
+  </script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
 jQuery(document).ready(function() {    

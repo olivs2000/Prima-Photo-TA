@@ -153,6 +153,7 @@
                                     <h6>{{$rp->lokasi_acara}} , {{$rp->tanggal_acara}} , {{$rp->waktu_acara}}</h6>
                                     @elseif ($rp->judul_produk!=null)
                                     {{$rp->judul_produk}}
+                                    <h6>{{$rp->nama_penerima}} , {{$rp->lokasi_pengiriman}}</h6>
                                     @elseif ($rp->judul_layanan!=null)
                                     {{$rp->judul_layanan}}
                                     <h6><img src="{{ asset('storage/attachment_layanan/' . $rp->id_detail .'/'. $rp->file_attachment) }}" height='20px'> , {{$rp->ukuran_foto}} , {{$rp->hasil_cetak}}</h6>
@@ -231,7 +232,17 @@
                     <a class="btn btn-lg-xs btn-info hidden-print" onclick="javascript:window.print();">Print <i class="fa fa-print"></i></a>
                     <a href="{{url('uploadbuktitf/'.$pemesanan->id)}}" class="btn btn-lg-xs btn-success hidden-print">Kirim Bukti Transfer <i class="fa fa-upload"></i></a>
                     <br/><br/>
+
+                    @if($rp->status_pembayaran == 'gagal')    
+                    
                     <a class="btn btn-lg-xs btn-danger hidden-print" onclick="deletePemesanan({{$rp->id}})">Batalkan Pesanan <i class="fa fa-ban"></i></a>
+                    
+                    @elseif($rp->status_pembayaran == 'proses')
+                    <a class="btn btn-lg-xs btn-danger hidden-print" onclick="deletePemesanan({{$rp->id}})">Batalkan Pesanan <i class="fa fa-ban"></i></a>
+                    @else
+                   
+                    @endif
+
                     
                 </div>
             </div>

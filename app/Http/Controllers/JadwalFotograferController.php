@@ -24,7 +24,7 @@ class JadwalFotograferController extends Controller
             ->leftJoin("pemesanans", "jadwal_fotografers.pemesanans_id", "=", "pemesanans.id")
             ->leftJoin("admin_studios", "jadwal_fotografers.admin_studios_id", "=", "admin_studios.id")
             ->leftJoin("data_fotografers", "jadwal_fotografers.data_fotografers_id", "=", "data_fotografers.id")
-            ->orderBy("jadwal_fotografers.pemesanans_id", "ASC")
+            // ->orderBy("jadwal_fotografers.pemesanans_id", "ASC")
             ->select("jadwal_fotografers.*", "pemesanans.nama", 
                      "admin_studios.nama_admin", "data_fotografers.nama_fotografer")
             ->get();

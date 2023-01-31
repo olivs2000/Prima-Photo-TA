@@ -98,6 +98,7 @@
                 <li><span>No Telepon:</span>{{$col->notelepon}}</li>
                 <li><span>Alat Fotografi:</span>{{$col->alat_fotografi}}</li>
                 <li><span>Pengalaman:</span>{{$col->pengalaman}}</li>
+                <li><span>Portofolio:</span><a href='file/{{$col->portofolio}}'><button class="btn btn-xs btn-info btn-sm m-b-10 m-l-5">Lihat</button></a></li>
 
                 <li><td><span>Status:</span>
                   @if($col->status == 'ditolak')

@@ -266,6 +266,7 @@
 <p class="price">Rp. {{number_format($paket->harga)}}</p><br>
 <a href="{{url('paket/'.$paket->id)}}" class="btn-solid-border">Lihat Detail</a>  <br><br> 
 <a href="{{url('add-to-cart-paket/' .$paket->id)}}" class="btn-main">Masukan Keranjang</a> <br><br> 
+
 </div>
 </div>
 </div>

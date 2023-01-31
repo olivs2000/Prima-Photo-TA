@@ -227,7 +227,6 @@
 	</nav>
 </section>
 
-<br>
 
 {{-- @if(session('success'))
 <div class="alert alert-success alert-common alert-solid" role="alert"><i class="tf-ion-thumbsup"></i> Horee!!
@@ -275,8 +274,9 @@
 		</div>
 
 		<div class="col-md-7">
-			<div class="single-product-details">
-			<h2>{{$data->judul_layanan}}</h2>
+			
+		<div class="single-product-details">
+		<h2>{{$data->judul_layanan}}</h2>
 
 		<div class="product-quantity">
 			<span class="product-price">Harga :</span> Rp. {{number_format($data->harga)}}

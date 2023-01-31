@@ -84,14 +84,6 @@ class PaketAdminController extends Controller
         // return response()->json(['success' => $imageName]);
     }
 
-    function delete(Request $request)
-    {
-        if($request->get('gambar_detail'))
-        {
-            \File::delete(public_path('storage/' .  $request->get('gambar_detail')));
-        }
-    }
-
     public function saveData(Request $request)
     {
         $request->validate([
@@ -209,6 +201,14 @@ class PaketAdminController extends Controller
         }
     }
 
+    function delete(Request $request)
+    {
+        if($request->get('gambar_detail'))
+        {
+            \File::delete(public_path('storage/' .  $request->get('gambar_detail')));
+        }
+    }
+
     public function deleteDetailGambar(Request $request)
     {
         $request->validate([
@@ -219,11 +219,10 @@ class PaketAdminController extends Controller
 
         if(File::exists(public_path('storage/'.$request->nama_folder.'/'.$request->nama_gambar))){
             //Log::info("Delete file...............................");
-            File::delete(public_path('storage/'.$request->nama_folder.'/'.$request->nama_gambar));
+           File::delete(public_path('storage/'.$request->nama_folder.'/'.$request->nama_gambar));
         }
 
         return response()->json(['msg'=> 'success']);
-
     }
 }
 

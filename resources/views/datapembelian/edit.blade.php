@@ -123,7 +123,7 @@
           
           <div class="form-group">
               <label>Tanggal Pemesanan</label>
-              <input type="date" class="form-control" name="tanggal_pemesanan" value="{{$data->tanggal_pemesanan}}">
+              <input type="date" class="form-control" name="tanggal_pemesanan" readonly="readonly" value="{{$data->tanggal_pemesanan}}">
           </div>
           
           <div class="form-group">

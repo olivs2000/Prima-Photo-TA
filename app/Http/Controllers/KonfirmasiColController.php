@@ -22,8 +22,21 @@ class KonfirmasiColController extends Controller
         $imgFolder="images";
         $fileName=time()."_".$file->getClientOriginalName();
         $file->move($imgFolder, $fileName);
-        
         $data->pas_foto=$fileName;
+
+ 
+        // $imgFolder="images";
+        // $fileName=time()."_".$file->getClientOriginalName();
+        // $file->move($imgFolder, $fileName);      
+        // $data->pas_foto=$fileName;
+
+        $file2=$request->file('portofolio');
+        $fileFolder="file";
+        $fileName2=time()."_".$file2->getClientOriginalName();
+        $file2->move($fileFolder, $fileName2);    
+        $data->portofolio=$fileName2;
+
+
         $data->nama=$request->get('nama');
         $data->alamat=$request->get('alamat');
         $data->notelepon=$request->get('notelepon');

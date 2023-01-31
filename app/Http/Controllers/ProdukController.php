@@ -116,10 +116,8 @@ class ProdukController extends Controller
         session()->put('cart1', $cart);
 
         alert()->success('Success','Produk berhasil ditambahkan ke keranjang'); 
-        // $request->session()->flash('Success','Produk berhasil ditambahkan ke keranjang');
         
-        return redirect();
-        // return redirect()->with('Success','Produk berhasil ditambahkan ke keranjang');
+        return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang');
     }
 
 
@@ -136,19 +134,19 @@ class ProdukController extends Controller
 
     
 
-    // public function getListProduk(Request $request)
-    // {
-    //     $queryRaw=DB::select(DB::raw("select id, judul_produk from produks"));
+    public function getListProduk(Request $request)
+    {
+        $queryRaw=DB::select(DB::raw("select id, judul_produk from produks"));
 
-    //     return response()->json($queryRaw,200);
-    // }
+        return response()->json($queryRaw,200);
+    }
 
-    // public function getListProduk2(Request $request)
-    // {
-    //     $queryRaw=DB::select(DB::raw("select id, judul_produk from produks"));
+    public function getListProduk2(Request $request)
+    {
+        $queryRaw=DB::select(DB::raw("select id, judul_produk from produks"));
 
-    //     return response()->json($queryRaw,200);
-    // }
+        return response()->json($queryRaw,200);
+    }
 
     public function cart (Request $request)
     {

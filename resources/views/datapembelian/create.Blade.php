@@ -120,10 +120,28 @@
 <input type="date" id="tgl_pesan" class="form-control" name="tanggal_pemesanan">
 </div>
 
+
+{{-- @dd($data)    --}}
+{{-- @if($data->status == 'selesai')    
+    
 <div class="form-group">
-<label>Tanggal Penerimaan</label>
-<input type="date" id="tgl_terima" class="form-control" name="tanggal_penerimaan">
+	<label>Tanggal Penerimaan</label>
+	<input type="date" id="tgl_terima" class="form-control" name="tanggal_penerimaan">
 </div>
+
+
+@else
+
+@endif --}}
+
+
+
+
+
+
+
+ 
+
 
 <div class="form-group">
 <label>Status</label>

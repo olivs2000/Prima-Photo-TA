@@ -146,6 +146,6 @@ class PaketController extends Controller
 
         alert()->success('Success','Paket berhasil ditambahkan ke keranjang'); 
         
-        return redirect();
+        return redirect()->back()->with('success', 'Paket berhasil ditambahkan ke keranjang');
     }
 }

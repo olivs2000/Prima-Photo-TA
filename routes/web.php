@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\Collaborate;
 use Illuminate\Auth\Event\Login;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\EmailController;
@@ -47,9 +48,10 @@ use Illuminate\Support\Facades\Http;
 */
 
 
-Route::view('/', 'auth/login');
+// Route::view('/home', 'auth/login');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/login', 'LoginController@index')->name('login');
 
 Route::get('/checkStorage', function(){
     dd(public_path('storage'));
@@ -57,20 +59,30 @@ Route::get('/checkStorage', function(){
 
 Route::post('/saveDropzone', 'PaketAdminController@upload')->name('dropzone.upload');
 
-
     Route::get('uploadbuktitf/{pemesanan_id}','UploadController@index')->name('uploadbuktitf.index')->middleware('auth');
     Route::resource('uploadbuktitf','UploadController')->middleware('auth');
     
     Route::resource('checkout','CheckoutController')->middleware('auth');
     Route::post('checkout/store','CheckoutController@store')->name('checkout.store')->middleware('auth');
     Route::post('remove-from-cart',[CheckoutController::class,'removeFromCart'])->name('remove.from.cart')->middleware('auth');
+    Route::post('/checkout/tambah','CheckoutController@tambah')->name('checkout.tambah');
 
     Route::get('konfirmasi/{pemesanan_id}','KonfirmasiController@index')->name('konfirmasi.index')->middleware('auth');
     Route::resource('konfirmasi','KonfirmasiController',['except' => ['index']])->middleware('auth');
 
     Route::resource('konfirmasicol','KonfirmasicolController')->middleware('auth');
 
-    Route::resource('collaborate','CollaborateController')->middleware('auth');
+    // Route::resource('collaborate','CollaborateController')->middleware('auth');
+
+    Route::post('/collaborate', function () {
+        return view('collaborate.index');
+    });
+
+    Route::get('/collaborate', function () {
+        $nama = request()->nama;
+        event(new Collaborate($nama));
+        return view('collaborate.index');
+    });
 
     Route::resource('collaborateadmin','CollaborateAdminController')->middleware('auth');
     Route::post('/collaborateadmin/deleteData','CollaborateAdminController@deleteData')->name('collaborateadmin.deleteData')->middleware('auth');
@@ -194,7 +206,7 @@ Route::post('/saveDropzone', 'PaketAdminController@upload')->name('dropzone.uplo
 
     Route::post('/delete-gambar','ProdukAdminController@deleteDetailGambar')->name('delete.gambar');
 
-    Route::post('/storepaket','ProdukAdminController@saveData')->name('produkadmin.saveData');
+    Route::post('/storeproduk','ProdukAdminController@saveData')->name('produkadmin.saveData');
 
     Route::get('produkadmin/delete','ProdukAdminController@delete')->name('produkadmin.delete');
 
