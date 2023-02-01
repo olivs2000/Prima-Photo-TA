@@ -25,5 +25,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Builder::defaultStringLength(191);
+
+        // $this->observers();
     }
+
+    // private function observers()
+    // {
+    //     Collaborated::obseve(CollaboratedObserver::class);
+    // }
 }

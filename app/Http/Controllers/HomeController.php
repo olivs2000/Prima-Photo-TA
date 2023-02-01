@@ -24,5 +24,21 @@ class HomeController extends Controller
     public function index()
     {
         return view('welcome');
+
+        // $notifications = auth()->user()->unreadNotifications;
+
+        // return view('layout/conquer', compact('notifications'));
     }
+
+    // public function markNotification(Request $request)
+    // {
+    //     auth()->user()
+    //         ->unreadNotifications
+    //         ->when($request->input('id'), function ($query) use ($request) {
+    //             return $query->where('id', $request->input('id'));
+    //         })
+    //         ->markAsRead();
+
+    //     return response()->noContent();
+    // }
 }

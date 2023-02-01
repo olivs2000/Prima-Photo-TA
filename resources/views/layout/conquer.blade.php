@@ -658,7 +658,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			</li>
 			
 			<li>
-				<a href="{{url('login')}}" >
+				<a href="{{url('logout')}}" >
 				<i class="close"></i>
 				<span class="title">Logout</span>
 				</a>
@@ -672,6 +672,8 @@ License: You must have a valid license purchased only from themeforest(the above
 	<div class="page-content-wrapper">
 		<div class="page-content">
         @yield("content")
+
+
         </div>
 	</div>
 	<!-- END CONTENT -->
@@ -734,22 +736,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-  <script>
 
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher('fc5561bcbc15382ca377', {
-      cluster: 'ap1'
-    });
-
-    var channel = pusher.subscribe('popup-channel');
-    channel.bind('collaborate', function(data) {
-	  toastr.success(JSON.stringify(data.nama) + ' mendaftar menjadi fotografer')
-
-    //   alert();
-    });
-  </script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
 jQuery(document).ready(function() {    
@@ -768,6 +755,37 @@ $('#dataTable').DataTable();
 
 });
 </script>
+
+@section('scripts')
+{{-- @if(auth()->user()->is_admin) --}}
+    <script>
+    function sendMarkRequest(id = null) {
+        return $.ajax("{{ route('collaborate.markNotification') }}", {
+            method: 'POST',
+            data: {
+                _token,
+                id
+            }
+        });
+    }
+    $(function() {
+        $('.mark-as-read').click(function() {
+            let request = sendMarkRequest($(this).data('id'));
+            request.done(() => {
+                $(this).parents('div.alert').remove();
+            });
+        });
+        $('#mark-all').click(function() {
+            let request = sendMarkRequest();
+            request.done(() => {
+                $('div.alert').remove();
+            })
+        });
+    });
+    </script>
+{{-- @endif --}}
+@endsection
+
 @yield('initialscript')
 <!-- END JAVASCRIPTS -->
 </body>

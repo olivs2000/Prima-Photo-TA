@@ -72,17 +72,19 @@ Route::post('/saveDropzone', 'PaketAdminController@upload')->name('dropzone.uplo
 
     Route::resource('konfirmasicol','KonfirmasicolController')->middleware('auth');
 
-    // Route::resource('collaborate','CollaborateController')->middleware('auth');
+    Route::resource('collaborate','CollaborateController')->middleware('auth');
 
-    Route::post('/collaborate', function () {
-        return view('collaborate.index');
-    });
+    // Route::post('/collaborate', function () {
+    //     return view('collaborate.index');
+    // });
 
-    Route::get('/collaborate', function () {
-        $nama = request()->nama;
-        event(new Collaborate($nama));
-        return view('collaborate.index');
-    });
+    // Route::get('/collaborate', function () {
+    //     $nama = request()->nama;
+    //     event(new Collaborate($nama));
+    //     return view('collaborate.index');
+    // });
+
+    Route::post('/mark-as-read', 'CollaborateController@markNotification')->name('collaborate.markNotification');
 
     Route::resource('collaborateadmin','CollaborateAdminController')->middleware('auth');
     Route::post('/collaborateadmin/deleteData','CollaborateAdminController@deleteData')->name('collaborateadmin.deleteData')->middleware('auth');

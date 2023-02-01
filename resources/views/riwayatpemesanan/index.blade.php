@@ -230,7 +230,9 @@
                     </ul>
                     <br/><br/>
                     <a class="btn btn-lg-xs btn-info hidden-print" onclick="javascript:window.print();">Print <i class="fa fa-print"></i></a>
+
                     <a href="{{url('uploadbuktitf/'.$pemesanan->id)}}" class="btn btn-lg-xs btn-success hidden-print">Kirim Bukti Transfer <i class="fa fa-upload"></i></a>
+                   
                     <br/><br/>
 
                     @if($rp->status_pembayaran == 'gagal')    

@@ -12,7 +12,10 @@ class CollaborateController extends Controller
     public function index()
     {
         $queryRaw=DB::select(DB::raw("select * from collaborates"));
-        return view('collaborate.index',['collaborate'=>$queryRaw]);
+        return view('collaborate.index',['data'=>$queryRaw]);
+        
+        // $notifications = collaborate()->unreadNotifications;
+        // return view('layout/conquer', compact('notifications'));
     }
 
     public function create()
@@ -46,7 +49,18 @@ class CollaborateController extends Controller
         $data->pengalaman=$request->get('pengalaman');
         $data->save();
 
-
         return redirect()->route('konfirmasicol.index')->with('status', 'Data Berhasil Terkirim!');
     }
+
+    // public function markNotification(Request $request)
+    // {
+    //     collaborate()
+    //         ->unreadNotifications
+    //         ->when($request->input('id'), function ($query) use ($request) {
+    //             return $query->where('id', $request->input('id'));
+    //         })
+    //         ->markAsRead();
+
+    //     return response()->noContent();
+    // }
 }
